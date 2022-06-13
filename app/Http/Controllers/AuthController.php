@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
@@ -56,6 +58,32 @@ class AuthController extends Controller
         
         return redirect()->route('login');
     
+    }
+
+    public function register(){
+        return view ('auth.register',[
+            'title' => 'Register',
+        ]);
+    }
+
+    public function store(Request $request){
+        // Ambil semua request terus validasi
+        // request()->all();
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            // 'phone' => ['required', 'min:10', 'max:15','numeric', 'unique:users' ],
+            'phone' => 'required|numeric|unique:users|digits_between:12,15',
+            'email' => 'required|email:dns|unique:users',
+            'password' => 'required|min:5|max:255',
+            // 'level' => 'required|in:Petugas,Jaringan,Server,Sistem Informasi,Website UNIMA,Learning Management System,Ijazah,Slip',
+            'level' => 'required|in:petugas,jaringan,server,sistem_informasi,website_unima,lms,ijazah,slip',
+        ]);
+        // Jika data lolos Enkripsi password 
+        // $validatedData['password'] = bcrypt($validatedData['password']);
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        User::create($validatedData);
+        // $request->session()->flash('success','Registrasi berhasil');
+        return redirect()->route('register')->with('success','Registrasi berhasil');
     }
 
 }

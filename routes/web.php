@@ -26,17 +26,26 @@ Route::get('login',[AuthController::class,'index'])->name('login');
 Route::post('authenticate',[AuthController::class,'authenticate'])->name('authenticate');
 Route::post('logout',[AuthController::class,'logout'])->name('logout');
 
+
+
 // Route Group untuk yang login
 Route::group(['middleware' => ['auth']], function(){
     
     // Admin Page 
     Route::group(['middleware' => ['cek_login:admin']], function (){
-        Route::get('admin',[AdminController::class,'index'])->name('admin.index');
+        // Register Admin yang lain
+        Route::get('register', [AuthController::class, 'register'])->name('register');
+        Route::post('register', [AuthController::class, 'store'])->name('register.store');
+     
+        Route::get('admin',[AdminController::class,'index'])->name('admin.index');    
+
     });
     
     // Jaringan Page
     Route::group(['middleware' => ['cek_login:jaringan']], function (){
+       
         Route::get('jaringan',[JaringanController::class,'index'])->name('jaringan.index');
+    
     });
 
 });

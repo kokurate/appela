@@ -5,4 +5,4 @@
 
 <h1>Ini halaman Admin setelah login</h1>
 
-<p>{{ auth()->user()->level }}</p>
+<p>{{ auth()->user()->level = 'ADMIN'}}</p>
