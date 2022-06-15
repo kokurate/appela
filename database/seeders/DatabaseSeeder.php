@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Pengaduan;
+use App\Models\Tujuan;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -42,5 +44,11 @@ class DatabaseSeeder extends Seeder
             'phone' => '08521236354891',
             'password' => bcrypt('password'), //password
         ]);
+
+
+
+        Pengaduan::factory(20)->create();
+        
     }
+
 }
