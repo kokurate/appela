@@ -47,7 +47,7 @@ class UserSeeder extends Seeder
             'name' => 'server',
             'level' => 'server',
             'email' => 'server@unima.ac.id',
-            'phone' => '08521236354891',
+            'phone' => '08521236354812',
             'password' => bcrypt('password'), //password
         ]);
 
@@ -56,7 +56,7 @@ class UserSeeder extends Seeder
             'name' => 'Sistem Informasi',
             'level' => 'sistem_informasi',
             'email' => 'sisteminformasi@unima.ac.id',
-            'phone' => '08521236354891',
+            'phone' => '08521216354891',
             'password' => bcrypt('password'), //password
         ]);
 
@@ -65,7 +65,7 @@ class UserSeeder extends Seeder
             'name' => 'Website Unima',
             'level' => 'website_unima',
             'email' => 'websiteunima@unima.ac.id',
-            'phone' => '08521236354891',
+            'phone' => '08521986354891',
             'password' => bcrypt('password'), //password
         ]);
 
@@ -74,7 +74,7 @@ class UserSeeder extends Seeder
             'name' => 'Learning Management System',
             'level' => 'lms',
             'email' => 'lms@unima.ac.id',
-            'phone' => '08521236354891',
+            'phone' => '08525636354891',
             'password' => bcrypt('password'), //password
         ]);
 
@@ -83,7 +83,7 @@ class UserSeeder extends Seeder
             'name' => 'ijazah',
             'level' => 'ijazah',
             'email' => 'ijazah@unima.ac.id',
-            'phone' => '08521236354891',
+            'phone' => '08092236354891',
             'password' => bcrypt('password'), //password
         ]);
 
@@ -92,7 +92,7 @@ class UserSeeder extends Seeder
             'name' => 'slip',
             'level' => 'slip',
             'email' => 'slip@unima.ac.id',
-            'phone' => '08521236354891',
+            'phone' => '08512436354891',
             'password' => bcrypt('password'), //password
         ]);
 
