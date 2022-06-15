@@ -53,3 +53,7 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
 
 Route::get('pengaduan', [PengaduanController::class,'index'])->name('pengaduan.index');
 Route::post('pengaduan', [PengaduanController::class,'verify'])->name('pengaduan.verify-email');
+Route::get('pengaduan/check', [PengaduanController::class,'check'])->name('pengaduan.check');
+Route::post('pengaduan/check', [PengaduanController::class,'resend_email'])->name('pengaduan.resend_email');
+
+Route::get('pengaduan/create/{pengaduan:token}', [PengaduanController::class,'create'])->name('pengaduan.create');
