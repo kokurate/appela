@@ -123,8 +123,12 @@ public function verify(VerifyRequest $request)
         ])->with('i', ($request->input('page', 1) - 1) * $pagination); // code for paginate       
     }
 
-    public function detail(){
-
+    public function detail(Pengaduan $pengaduan){
+        return view('pengaduan.detail',[
+            "title" => "Detail Pengaduan User",
+            // Lazy Eager Loading
+            "pengaduan" =>$pengaduan->load('tujuan')
+        ]);
     }
 
 //  ==================================== POV ADMIN ==============================================

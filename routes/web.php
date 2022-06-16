@@ -65,5 +65,5 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
 
 // Search Pengaduan
     Route::get('pengaduan/search',[PengaduanController::class,'search'])->name('pengaduan.search');
-    Route::get('pengaduan/detail/{pengaduan:kode}',[PengaduanController::class,'detail'])->name('visitor.detail');
+    Route::get('pengaduan/detail/{pengaduan:kode}',[PengaduanController::class,'detail'])->name('pengaduan.detail');
 
