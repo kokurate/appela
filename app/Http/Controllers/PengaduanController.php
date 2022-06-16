@@ -100,8 +100,33 @@ public function verify(VerifyRequest $request)
                         ->with('success', 'Pengaduan Berhasil dibuat. Silahkan cek email anda untuk melihat kode pengaduan');
     }
 
-    public function search(){
-        return 'testing search';       
+    public function search(Request $request){
+        // Kalo mo ubah paginasi ubaj juga variabelnya like this 5->all
+        $pagination = 5;
+        $search = request('kode');
+
+        // Lakukan pengecekan terhadap request search yang dikirim dari Button pengaduan/cari.blade.php
+        if($search){ 
+            // Jika request seach sama dengan filter[search] query dari database maka tampilkan hasilnya
+            $cari = Pengaduan::filter(request(['kode']));
+        } else{
+            // Jika tidak sama jangan tampilkan 
+            $cari =  Pengaduan::where('kode','-');
+        }
+        
+        return view ('pengaduan.search',[
+            "title" => "Cari Pengaduan",
+            // Kalau ada request yang berisi search didalam filter maka ambil datanya (get)
+            // "kode" => Pengaduan::filter(request(['search']))->paginate(5)->withQueryString(),
+
+            "kode" => $cari->paginate(5)->withQueryString(), // Ambil filter dari model Pengaduan, apapun yang ada di query string sebelumnya bawa
+        ])->with('i', ($request->input('page', 1) - 1) * $pagination); // code for paginate       
     }
+
+    public function detail(){
+
+    }
+
+//  ==================================== POV ADMIN ==============================================
 
 }

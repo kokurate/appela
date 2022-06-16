@@ -27,4 +27,23 @@ class Pengaduan extends Model
         return $this->belongsTo(Tujuan::class);
     }
     
+    public function scopeFilter ($query, array $filters ){
+
+      //   Kalau ada request dari pencarian (search)
+      // kalau dalam variabel filters ada search ambil searchnya kalau tidak jangan kerjain (false)
+      // if(isset($filters['search']) ? $filters['search'] : false)
+      // {
+          // return $query->where('kode', 'like','%' . $filters['search'] . '%')
+          //               ->orWhere('judul', 'like','%' . $filters['search']. '%');
+          //  }
+      
+      // Kalau misalkan ada searchingnya tampilkan kalau tidak jangan eksekusi (false)
+      // Null coalescing operator, apa yang mau dicek kalau tidak ada kembalikan nilai (false)
+      $query->when($filters['kode'] ?? false, function($query, $kode) {
+          return $query->where('kode', $kode ); //Kode yang dicari harus sama persis
+      });     
+      
+  
+      }
+
 }

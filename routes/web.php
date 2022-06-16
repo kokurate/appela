@@ -60,9 +60,10 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
     Route::post('pengaduan/check', [PengaduanController::class,'resend_email'])->name('pengaduan.resend_email');
 
 //  untuk membuat pengaduan harus lewat email yang sudah dimasukkan
-Route::get('pengaduan/create/{pengaduan:token}', [PengaduanController::class,'create'])->name('pengaduan.create');
-Route::post('pengaduan/create/{pengaduan:token}', [PengaduanController::class,'store'])->name('pengaduan.store');
+    Route::get('pengaduan/create/{pengaduan:token}', [PengaduanController::class,'create'])->name('pengaduan.create');
+    Route::post('pengaduan/create/{pengaduan:token}', [PengaduanController::class,'store'])->name('pengaduan.store');
 
 // Search Pengaduan
-Route::get('pengaduan/search',[PengaduanController::class,'search'])->name('pengaduan.search');
+    Route::get('pengaduan/search',[PengaduanController::class,'search'])->name('pengaduan.search');
+    Route::get('pengaduan/detail/{pengaduan:kode}',[PengaduanController::class,'detail'])->name('visitor.detail');
 
