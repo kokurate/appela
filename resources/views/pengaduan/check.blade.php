@@ -87,7 +87,7 @@
     <h1 class="h3 mb-3 fw-normal">Landing Page After Registration</h1>
 
     <div class="form-floating">
-        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Email" required autofocus value="{{ old('email') }}">
+        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Email" required autofocus value="{{ old('email') }}"  oninput="this.value = this.value.replace(/[^a-zA-Z0-9#-+_.]/g, '').replace(/(\..*)\./g, '$1');" />
         <label for="email">Email address</label>
           @error('email')
               <div class="invalid-feedback">
