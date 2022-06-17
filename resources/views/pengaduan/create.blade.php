@@ -98,12 +98,17 @@
                 @endif
               @endforeach
               </select>
+              @error('tujuan_id')
+              <p class="text-danger">Pilih Tujuan Pengaduan</p>
+                @enderror
             </div>  
 
             {{-- Upload Image --}}
             <div class="mb-3">
                 <label for="visitor_image_1" class="form-label" >Pengaduan Image</label>
-                <input class="form-control @error('visitor_image_1') is-invalid @enderror" type="file" id="visitor_image_1" name="visitor_image_1">
+                {{-- Deklarasi Javascript untuk preview --}}
+                <img class="img-preview-visitor-1 img-fluid mb-3 col-sm-3">
+                <input class="form-control @error('visitor_image_1') is-invalid @enderror" type="file" id="visitor_image_1" name="visitor_image_1" onchange="previewVisitor_image_1();">
                 @error('visitor_image_1')
                 <div class="invalid-feedback">
                   {{ $message }}
@@ -137,11 +142,31 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
         {{-- Menghilangkan fungsi dari attach file pada trix editor --}}
-        <script>
-          document.addEventListener('trix-file-accept', function(e) {
+    <script>
+        document.addEventListener('trix-file-accept', function(e) {
             e.preventDefault()
-          })
-        </script>
+        })
+
+        function previewVisitor_image_1(){
+            const image = document.querySelector('#visitor_image_1');
+            const imgPreview = document.querySelector('.img-preview-visitor-1');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent){
+                imgPreview.src = oFREvent.target.result;
+            }
+
+        }
+          
+
+
+    </script>
+
+        
 
     </body>
     </html>
