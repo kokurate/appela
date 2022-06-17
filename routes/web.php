@@ -39,6 +39,8 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
                 Route::post('register', [AuthController::class, 'store'])->name('register.store');
             
                 Route::get('admin',[AdminController::class,'index'])->name('admin.index');    
+                Route::delete('admin/destroy/{pengaduan:kode}',[AdminController::class,'destroy'])->name('admin.destroy');    
+                Route::get('admin/detail/{pengaduan:kode}',[AdminController::class,'detail'])->name('admin.detail');    
 
             });
             
