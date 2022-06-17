@@ -82,14 +82,16 @@ public function verify(VerifyRequest $request)
     }
 
     public function store(Pengaduan $pengaduan, Request $request){
-        $test = $request;
+       
         $validatedData = $request->validate([   
             'nama' => 'required',
             'judul' => 'required|max:255',
             'tujuan_id' => 'required',
+            'visitor_image_1' => 'image|file|max:1024',
             'isi' => 'required',
         ]);
       
+        $validatedData['visitor_image_1'] = $request->file('visitor_image_1')->store('image');
         $validatedData['token'] = null;
         $validatedData['kode'] = Str::random(10);
         $validatedData['status'] = 'Pengaduan Sedang Diverifikasi';

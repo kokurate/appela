@@ -48,7 +48,8 @@
         <h3>Ini halaman {{ $title }}</h3>
 
       <div class="col-lg-8">
-        <form method="post" action="{{ $token }}">
+        <form method="post" action="{{ $token }}" enctype="multipart/form-data">
+           {{-- Using enctype so this form can handle file --}}
           @csrf
           {{-- <input type="hidden" name="kode" value="{{ Str::random(10) }}">
           <input type="hidden" name="status" value="Pengaduan Sedang Diverifikasi"> --}}
@@ -98,6 +99,17 @@
               @endforeach
               </select>
             </div>  
+
+            {{-- Upload Image --}}
+            <div class="mb-3">
+                <label for="visitor_image_1" class="form-label" >Pengaduan Image</label>
+                <input class="form-control @error('visitor_image_1') is-invalid @enderror" type="file" id="visitor_image_1" name="visitor_image_1">
+                @error('visitor_image_1')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+                @enderror
+            </div>
 
                {{-- Isi --}}
                <div class="mb-3">

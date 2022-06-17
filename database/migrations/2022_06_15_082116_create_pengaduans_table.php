@@ -27,6 +27,7 @@ class CreatePengaduansTable extends Migration
               $table->string('status')->nullable();
               $table->string('judul')->nullable();
               $table->text('isi')->nullable();
+              $table->string('visitor_image_1')->nullable();
               $table->text('keterangan')->nullable();
             $table->timestamps();
         });
