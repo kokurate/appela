@@ -79,7 +79,7 @@ public function verify(VerifyRequest $request)
             "pengaduan" =>$pengaduan->load('tujuan')
             
         ]);
-    }
+    } 
 
     public function store(Pengaduan $pengaduan, Request $request){
        
@@ -88,6 +88,8 @@ public function verify(VerifyRequest $request)
             'judul' => 'required|max:255',
             'tujuan_id' => 'required|in:1,2,3,4,5,6,7',
             'visitor_image_1' => 'required|image|file|max:1024',
+            'visitor_image_2' => '|image|file|max:1024',
+            'visitor_image_3' => '|image|file|max:1024',
             'isi' => 'required',
         ]);
 
@@ -96,17 +98,22 @@ public function verify(VerifyRequest $request)
         $validatedData = $request->validate($rules);
         
         // Kalo image ada isi, store(), kalo nda kasih nilai null
-        // if($request->file('visitor_image_1')){
-        //     $validatedData['visitor_image_1'] = $request->file('visitor_image_1')->store('image');
-        // }
+        if($request->file('visitor_image_2')){
+            $validatedData['visitor_image_2'] = $request->file('visitor_image_2')->store('image');
+        }
+
+        if($request->file('visitor_image_3')){
+            $validatedData['visitor_image_3'] = $request->file('visitor_image_3')->store('image');
+        }
 
         $validatedData['visitor_image_1'] = $request->file('visitor_image_1')->store('image');
+
 
         $validatedData['token'] = null;
         $validatedData['kode'] = Str::random(10);
         $validatedData['status'] = 'Pengaduan Sedang Diverifikasi';
         $validatedData['published_at'] = Carbon::now()->toDateTimeString();
-
+        
        Pengaduan::where('id',$pengaduan->id)->update($validatedData);
        return redirect()->route('pengaduan.search')
                         ->with('success', 'Pengaduan Berhasil dibuat. Silahkan cek email anda untuk melihat kode pengaduan');

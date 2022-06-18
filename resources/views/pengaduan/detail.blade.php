@@ -38,8 +38,11 @@
         <div class="container my-5">
           <h3 class="my-5">Ini halaman  {{ $title }}</h3>
           <div style="max-height:350px overflow:hidden;">
-              <img src="{{ asset('storage/'. $pengaduan->visitor_image_1) }}" class="img-thumbnail" alt="..." width="500px">
-           </div>
+              <img src="{{ asset('storage/'. $pengaduan->visitor_image_1) }}" class="img-thumbnail" alt="..." width="250px">
+              <img src="{{ asset('storage/'. $pengaduan->visitor_image_2) }}" class="img-thumbnail" alt="..." width="250px">
+              <img src="{{ asset('storage/'. $pengaduan->visitor_image_3) }}" class="img-thumbnail" alt="..." width="250px">
+            </div>
+       
 
           <p class="btn btn-primary">{{ $pengaduan->status }}</p>
          <h6>{{ $pengaduan->tujuan->nama }}</h6>

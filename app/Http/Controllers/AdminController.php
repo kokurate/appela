@@ -32,6 +32,12 @@ class AdminController extends Controller
     if($pengaduan->visitor_image_1){
       Storage::delete($pengaduan->visitor_image_1);
     }
+    if($pengaduan->visitor_image_2){
+      Storage::delete($pengaduan->visitor_image_2);
+    }
+    if($pengaduan->visitor_image_3){
+      Storage::delete($pengaduan->visitor_image_3);
+    }
 
   Pengaduan::destroy($pengaduan->id);
   return redirect()->route('admin.index')->with('success','Data berhasil dihapus');

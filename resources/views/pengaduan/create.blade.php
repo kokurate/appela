@@ -103,7 +103,7 @@
                 @enderror
             </div>  
 
-            {{-- Upload Image --}}
+            {{-- Upload Image  1--}}
             <div class="mb-3">
                 <label for="visitor_image_1" class="form-label" >Pengaduan Image</label>
                 {{-- Deklarasi Javascript untuk preview --}}
@@ -115,6 +115,34 @@
                 </div>
                 @enderror
             </div>
+
+            {{-- Upload Image 2 --}}
+            <div class="mb-3">
+                <label for="visitor_image_2" class="form-label" >Image 2</label>
+                {{-- Deklarasi Javascript untuk preview --}}
+                <img class="img-preview-visitor-2 img-fluid mb-3 col-sm-3">
+                <input class="form-control @error('visitor_image_2') is-invalid @enderror" type="file" id="visitor_image_2" name="visitor_image_2" onchange="previewVisitor_image_2();">
+                @error('visitor_image_2')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+            {{-- Upload Image 3 --}}
+            <div class="mb-3">
+                <label for="visitor_image_3" class="form-label" >Image 3</label>
+                {{-- Deklarasi Javascript untuk preview --}}
+                <img class="img-preview-visitor-3 img-fluid mb-3 col-sm-3">
+                <input class="form-control @error('visitor_image_3') is-invalid @enderror" type="file" id="visitor_image_3" name="visitor_image_3" onchange="previewVisitor_image_3();">
+                @error('visitor_image_3')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+
 
                {{-- Isi --}}
                <div class="mb-3">
@@ -147,20 +175,50 @@
             e.preventDefault()
         })
 
-        function previewVisitor_image_1(){
-            const image = document.querySelector('#visitor_image_1');
-            const imgPreview = document.querySelector('.img-preview-visitor-1');
+        // Preview Image 1
+            function previewVisitor_image_1(){
+                const image = document.querySelector('#visitor_image_1');
+                const imgPreview = document.querySelector('.img-preview-visitor-1');
 
-            imgPreview.style.display = 'block';
+                imgPreview.style.display = 'block';
 
-            const oFReader = new FileReader();
-            oFReader.readAsDataURL(image.files[0]);
+                const oFReader = new FileReader();
+                oFReader.readAsDataURL(image.files[0]);
 
-            oFReader.onload = function(oFREvent){
-                imgPreview.src = oFREvent.target.result;
+                oFReader.onload = function(oFREvent){
+                    imgPreview.src = oFREvent.target.result;
+                }
             }
 
-        }
+        // Preview Image 2
+            function previewVisitor_image_2(){
+                const image = document.querySelector('#visitor_image_2');
+                const imgPreview = document.querySelector('.img-preview-visitor-2');
+
+                imgPreview.style.display = 'block';
+
+                const oFReader = new FileReader();
+                oFReader.readAsDataURL(image.files[0]);
+
+                oFReader.onload = function(oFREvent){
+                    imgPreview.src = oFREvent.target.result;
+                }
+            }
+
+        // Preview Image 3
+            function previewVisitor_image_3(){
+                const image = document.querySelector('#visitor_image_3');
+                const imgPreview = document.querySelector('.img-preview-visitor-3');
+
+                imgPreview.style.display = 'block';
+
+                const oFReader = new FileReader();
+                oFReader.readAsDataURL(image.files[0]);
+
+                oFReader.onload = function(oFREvent){
+                    imgPreview.src = oFREvent.target.result;
+                }
+            }
           
 
 
