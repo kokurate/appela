@@ -55,7 +55,8 @@
 
         <div class="container my-5">
           <h3 class="my-5">Ini halaman  {{ $title }}</h3>
-        
+        <h4> Only Pengaduan masuk</h4>
+        <br>
       {{-- Flash Message --}}
           @if(session()->has('success'))
             <div class="alert alert-success" role="alert">
@@ -67,7 +68,9 @@
           @foreach ($pengaduan as $p)
             <article class="mb-5 border-bottom">
                 <span><strong>{{ $p->tujuan->nama }}</strong></span>
-                <a href="/admin/detail/{{ $p->kode }}">{{ $p->kode }}</a>
+                {{-- <a href="/admin/detail/{{ $p->kode }}">{{ $p->kode }}</a> --}}
+                <a href="/admin/masuk/{{ $p->kode }}">{{ $p->kode }}</a>
+          
                 
                 <form action="{{ route('admin.destroy', $p->kode) }}" method="post" class="d-inline">
                   @method('delete')

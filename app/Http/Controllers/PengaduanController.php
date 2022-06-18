@@ -111,7 +111,7 @@ public function verify(VerifyRequest $request)
 
         $validatedData['token'] = null;
         $validatedData['kode'] = Str::random(10);
-        $validatedData['status'] = 'Pengaduan Sedang Diverifikasi';
+        $validatedData['status'] = 'Pengaduan Masuk';
         $validatedData['published_at'] = Carbon::now()->toDateTimeString();
         
        Pengaduan::where('id',$pengaduan->id)->update($validatedData);

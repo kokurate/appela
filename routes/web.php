@@ -41,7 +41,14 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
                 Route::get('admin',[AdminController::class,'index'])->name('admin.index');    
                 Route::delete('admin/destroy/{pengaduan:kode}',[AdminController::class,'destroy'])->name('admin.destroy');    
                 Route::get('admin/detail/{pengaduan:kode}',[AdminController::class,'detail'])->name('admin.detail');    
+                
+                // Pengaduan Masuk Proses
+                route::get('/admin/masuk/{pengaduan:kode}',[AdminController::class,'masuk'])->name('admin.masuk'); 
+                route::post('/admin/masuk/{pengaduan:kode}',[AdminController::class,'masuk_store'])->name('admin.masuk.store'); 
 
+                // Edit Tujuan
+                route::get('/admin/tujuan/edit/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
+                route::post('/admin/tujuan/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
             });
             
             // Jaringan Page

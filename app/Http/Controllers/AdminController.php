@@ -3,44 +3,86 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengaduan;
+use App\Models\Tujuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
- public function index(){
-   return view('_admin.index',[
-    "title" => "Admin Index",
-    // Tidak perlu lagi pake with karena sudah didefinisikan withnya di dalam model pengaduan
-    // pengaduans karena banyak
-    "pengaduan" => Pengaduan::all()
+    public function index(){
+      return view('_admin.index',[
+        "title" => "Admin Index",
+        // Tidak perlu lagi pake with karena sudah didefinisikan withnya di dalam model pengaduan
+        // pengaduans karena banyak
+        "pengaduan" => Pengaduan::where('status', 'Pengaduan Masuk')->get()->load('tujuan')
+        ]);
+    }
+
+    public function detail(Pengaduan $pengaduan)
+    {
+        return view('_admin/detail',[
+            "title" => "Detail Pengaduan Admin",
+            // Lazy Eager Loading
+            "pengaduan" =>$pengaduan->load('tujuan')
+        ]);     
+    }
+    
+    public function destroy(Pengaduan $pengaduan){
+
+      // Kalo ada isi itu image hapus juga
+        if($pengaduan->visitor_image_1){
+          Storage::delete($pengaduan->visitor_image_1);
+        }
+        if($pengaduan->visitor_image_2){
+          Storage::delete($pengaduan->visitor_image_2);
+        }
+        if($pengaduan->visitor_image_3){
+          Storage::delete($pengaduan->visitor_image_3);
+        }
+
+      Pengaduan::destroy($pengaduan->id);
+      return redirect()->route('admin.index')->with('success','Data berhasil dihapus');
+    }
+ 
+// =============================== Pengaduan Masuk ==================================
+    public function masuk(Pengaduan $pengaduan, Request $request){
+      return view('_admin.masuk',[
+        'title' => "Pengaduan Masuk Proses",
+        'pengaduan' => $pengaduan,
+        'tujuan' => Tujuan::all()
+      ]);
+    }
+
+    public function masuk_store(Pengaduan $pengaduan, Request $request){
+     $validateData = $request->validate([
+      'status' => 'required'
+     ],
+    [
+      'status.required' => 'Field ini tidak boleh kosong'
     ]);
- }
 
- public function detail(Pengaduan $pengaduan)
- {
-     return view('_admin/detail',[
-         "title" => "Detail Pengaduan Admin",
-         // Lazy Eager Loading
-         "pengaduan" =>$pengaduan->load('tujuan')
-     ]);     
- }
- 
- public function destroy(Pengaduan $pengaduan){
+     Pengaduan::where('id', $pengaduan->id)->update($validateData);
+     return redirect()->route('admin.index')
+                        ->with('success', 'Pengaduan Berhasil Diupdate');
 
-  // Kalo ada isi itu image hapus juga
-    if($pengaduan->visitor_image_1){
-      Storage::delete($pengaduan->visitor_image_1);
-    }
-    if($pengaduan->visitor_image_2){
-      Storage::delete($pengaduan->visitor_image_2);
-    }
-    if($pengaduan->visitor_image_3){
-      Storage::delete($pengaduan->visitor_image_3);
     }
 
-  Pengaduan::destroy($pengaduan->id);
-  return redirect()->route('admin.index')->with('success','Data berhasil dihapus');
- }
- 
+// ================================ Tujuan Edit =======================================
+    public function edit_tujuan(){
+
+    }
+
+    public function tujuan_store(Pengaduan $pengaduan, Request $request){
+      $validateData = $request->validate([
+        'tujuan_id' => 'required'
+       ],
+       [
+        'tujuan_id.required' => 'Field ini harus diisi'
+       ]);
+
+       Pengaduan::where('id', $pengaduan->id)->update($validateData);
+       return back()->with('success', 'Tujuan Pengaduan Berhasil Diupdate');
+  
+
+    }
 }
