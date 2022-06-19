@@ -62,8 +62,8 @@
           <a href="{{ route('admin.sistem_informasi.index') }}">sistem_informasi</a>  <strong>  {{ $sistem_informasi }} </strong> <br>
           <a href="{{ route('admin.website_unima.index') }}">website_unima</a>  <strong>  {{ $website_unima }} </strong> <br>
           <a href="{{ route('admin.lms.index') }}">lms</a>  <strong>  {{ $lms }} </strong> <br>
-          <a href="{{ route('admin.ijazah.index') }}">ijazah</a>  <strong>  {{ $jaringan }} </strong> <br>
-          <a href="{{ route('admin.slip.index') }}">slip</a> <strong>  {{ $jaringan }} </strong> <br>
+          <a href="{{ route('admin.ijazah.index') }}">ijazah</a>  <strong>  {{ $ijazah }} </strong> <br>
+          <a href="{{ route('admin.slip.index') }}">slip</a> <strong>  {{ $slip }} </strong> <br>
 
 
         <h4> Only Pengaduan masuk</h4>

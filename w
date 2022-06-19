@@ -1,0 +1,131 @@
+[33mcommit 031e32b7a2c875ee83742ee6517624efea1293f6[m[33m ([m[1;36mHEAD -> [m[1;32madmin-page[m[33m)[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Sun Jun 19 11:35:08 2022 +0800
+
+    Add Count the tujuan in admin.index
+
+[33mcommit 056b9913a22e0a8e9786b6448642ae640ed5cc8e[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Sat Jun 18 21:09:50 2022 +0800
+
+    Installing Pretty route list and create pengaduan.masuk with edit tujuan in that pengaduan.masuk view
+
+[33mcommit cd29ed27815ddcdb75fe11262268d4e94ffafae9[m[33m ([m[1;32mmain[m[33m)[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Sat Jun 18 09:50:57 2022 +0800
+
+    added very useful function in view. If image value is null then don't display the <img/> tag +++ onerror=this.style.display=none
+
+[33mcommit 183c1a6159339291fcc5bce919d59e2af0b76925[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Sat Jun 18 09:36:41 2022 +0800
+
+    Added Visitor_image_2 & Visitor_image_3
+
+[33mcommit 7b6235adbad6fdb0ab64471efc5b38401e928213[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Fri Jun 17 16:33:33 2022 +0800
+
+    Make admin.index, admin.detail page and New Feature Delete. Now the image would be deleted too
+
+[33mcommit 2e9a3a58c583aa4fccf63e0afc586171194f2a25[m[33m ([m[1;32mcreate-visitors-page[m[33m)[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Fri Jun 17 14:41:40 2022 +0800
+
+    Preview Image in Form Pengaduan and fixing Tujuan Pengaduan error message when they didn't select
+
+[33mcommit a35c97b21eb3fd01eb015aa3aa4d48826afc1273[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Fri Jun 17 10:22:47 2022 +0800
+
+    Adding Upload single image in pengaduan form
+
+[33mcommit 74b1780a29b9e5ef53f2d1e5b41872b45570755c[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Thu Jun 16 21:32:17 2022 +0800
+
+    Visitor Page, Detail Pengaduan now is ready to use
+
+[33mcommit a98fde8ade1835260d7172dd553f4d9b6492cd44[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Thu Jun 16 21:19:09 2022 +0800
+
+    Added Search Feature, create pagination and scope filter for 'kode' in Pengaduan Model
+
+[33mcommit 9e9975667030b6e04c58c2ed3671ac7375aff8d1[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Thu Jun 16 20:25:13 2022 +0800
+
+    Add create pengaduan form, validate, and update the form also installing trix editor in the visitor create page
+
+[33mcommit 1b2ce9ca76823ae1e5841f4d8635631c9b27441d[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Thu Jun 16 12:38:19 2022 +0800
+
+    Fixing an error in Verify & Resend_email. Now Visitor just type their name and the domain will automatically @unima.ac.id. Also Visitor can't type @
+
+[33mcommit ddfd48ed1928868ea6990fe80c7a3435b6eafd36[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Wed Jun 15 19:58:16 2022 +0800
+
+    Fixing the error in Resend_Email
+
+[33mcommit e360f61de32f0bbac5f50a3454175652578bdfe4[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Wed Jun 15 10:16:51 2022 +0800
+
+    Make the form and method verify to handle the visitor email for verifying
+
+[33mcommit 061691a4d24e9d9c7359a69343ffea51668345fc[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Wed Jun 15 09:01:57 2022 +0800
+
+    Fixing the error in Database Seeder
+
+[33mcommit a3e00bb343a87ea7dcbdcfa2ac85c96aaed6accb[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Wed Jun 15 08:52:50 2022 +0800
+
+    Added new Tujuan:Model, Migration, Seeder
+
+[33mcommit 08a1ad030e10a4e85556c55fe50835680d258df8[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Wed Jun 15 08:51:42 2022 +0800
+
+    Add new UserSeeder
+
+[33mcommit cb4bb78b6a645164d11100acc8dc31f869246ab8[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Wed Jun 15 08:37:19 2022 +0800
+
+    2. Setup The Pengaduan:model, migrations, factory and database seeder
+
+[33mcommit 0b0532cdf35238ca5ab7e591ec1e01d928fe5b63[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Wed Jun 15 08:36:14 2022 +0800
+
+    Setup The Pengaduan:model, migrations, factory and database seeder
+
+[33mcommit 1dd3ae939ec711ebb9717522bf5308b27b5a3e77[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Mon Jun 13 16:33:12 2022 +0800
+
+    Auth.Register Admin Done
+
+[33mcommit 85a6355af829b1db47bf7ac1dcc0fda82b3e08b7[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Mon Jun 13 14:36:03 2022 +0800
+
+    Auth.Login Multi Level & Auth.Logout
+
+[33mcommit cf3b1ad520b6f2f7e4247ff074c5fcc8591fcaac[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Mon Jun 13 08:32:08 2022 +0800
+
+    First Configuration
+
+[33mcommit bacd9a0329e2f2c20df802897abeaf03acbf64bb[m
+Author: kokurate <ericksanger66@gmail.com>
+Date:   Mon Jun 13 08:23:42 2022 +0800
+
+    first commit
