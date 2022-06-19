@@ -51,7 +51,7 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
                 route::post('/admin/tujuan/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
 
                 // Jaringan all
-                route::get('admin/jaringan',[AdminController::class,'jaringan'])->name('admin.jaringan.index');
+                route::get('admin/jaringan',[JaringanController::class,'index'])->name('admin.jaringan.index');
 
                 // Server all
                 route::get('admin/server',[AdminController::class,'server'])->name('admin.server.index');
