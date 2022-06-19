@@ -32,7 +32,7 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
         // Route Group untuk yang login
         Route::group(['middleware' => ['auth']], function(){
             
-            // Admin Page 
+            // =============================== Admin Page ================================= 
             Route::group(['middleware' => ['cek_login:admin']], function (){
                 // Register Admin yang lain
                 Route::get('register', [AuthController::class, 'register'])->name('register');
@@ -49,9 +49,15 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
                 // Edit Tujuan
                 route::get('/admin/tujuan/edit/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
                 route::post('/admin/tujuan/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
+
+                // Jaringan all
+                route::get('admin/jaringan',[AdminController::class,'jaringan'])->name('admin.jaringan.index');
+
+                // Server all
+
             });
             
-            // Jaringan Page
+            // =================================== Jaringan Page ==================================
             Route::group(['middleware' => ['cek_login:jaringan']], function (){
             
                 Route::get('jaringan',[JaringanController::class,'index'])->name('jaringan.index');

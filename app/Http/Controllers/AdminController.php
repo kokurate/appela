@@ -11,6 +11,15 @@ class AdminController extends Controller
 {
     public function index(){
       return view('_admin.index',[
+        // Count 
+        'jaringan' => Pengaduan::where('tujuan_id','1')->count(),
+        'server' => Pengaduan::where('tujuan_id','2')->count(),
+        'sistem_informasi' => Pengaduan::where('tujuan_id','3')->count(),
+        'website_unima' => Pengaduan::where('tujuan_id','4')->count(),
+        'lms' => Pengaduan::where('tujuan_id','5')->count(),
+        'ijazah' => Pengaduan::where('tujuan_id','6')->count(),
+        'slip' => Pengaduan::where('tujuan_id','7')->count(),
+
         "title" => "Admin Index",
         // Tidak perlu lagi pake with karena sudah didefinisikan withnya di dalam model pengaduan
         // pengaduans karena banyak
@@ -69,7 +78,9 @@ class AdminController extends Controller
 
 // ================================ Tujuan Edit =======================================
     public function edit_tujuan(){
-
+    return view('tujuan.index',[
+      
+    ]);
     }
 
     public function tujuan_store(Pengaduan $pengaduan, Request $request){
