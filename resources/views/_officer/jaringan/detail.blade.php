@@ -63,9 +63,9 @@
           <p class="btn btn-primary">{{ $pengaduan->keterangan }}</p>
 
           @if($pengaduan->status == 'Pengaduan Sedang Diverifikasi') 
-          <a href="{{ route('admin.jaringan.update', $pengaduan->kode) }}">Update</a>
+          <a href="{{ route('jaringan.update', $pengaduan->kode) }}">Update</a>
           @elseif($pengaduan->status == 'Pengaduan Sedang Diproses')
-          <a href="{{ route('admin.jaringan.proses', $pengaduan->kode) }}">Proses</a>
+          <a href="{{ route('jaringan.proses', $pengaduan->kode) }}">Proses</a>
           @endif
 
          <h6>{{ $pengaduan->nama }}</h6>
@@ -79,7 +79,7 @@
 
 
 
-         <a href="{{ route('admin.jaringan.index') }}">back to cari</a>
+         <a href="{{ route('jaringan.index') }}">back to cari</a>
         </div>
 
 
@@ -92,7 +92,7 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <form class="mt-5" method="post" action="/admin/tujuan/{{ $pengaduan->kode }}">
+                  <form class="mt-5" method="post" action="{{ route('admin.tujuan.store', $pengaduan->kode) }}">
                     @csrf
 
                     <div class="col-5">

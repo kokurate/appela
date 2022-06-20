@@ -13,7 +13,6 @@ class JaringanController extends Controller
      // Kalo mo ubah paginasi ubaj juga variabelnya like this 15->all
      $pagination = 15;
 
-
         return view('_officer.jaringan.index',[
           'title' => 'Ini halaman jaringan setelah login',
           'jaringancount' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
@@ -63,7 +62,7 @@ class JaringanController extends Controller
       ]);
     }
        Pengaduan::where('id', $pengaduan->id)->update($validateData);
-       return redirect()->route('admin.jaringan.detail', $pengaduan->kode)
+       return redirect()->route('jaringan.detail', $pengaduan->kode)
                           ->with('success', 'Pengaduan Berhasil Diupdate');
   
     }
@@ -105,21 +104,12 @@ class JaringanController extends Controller
             
     Pengaduan::where('id',$pengaduan->id)->update($validatedData);
 
-    // Kalo admin yang login redirect ke halaman admin
-    if(auth()->user()->level = '1')
-    {
-      return redirect()->route('admin.jaringan.detail', $pengaduan->kode)
-                        ->with('success', 'Pengaduan Berhasil Diselesaikan');
-    }
-    
-    // Kalo Petugas jaringan yang login redirect ke jaringan
-    elseif(auth()->user()->level = 2)
-    {
       return redirect()->route('jaringan.detail', $pengaduan->kode)
-      ->with('success', 'Pengaduan Berhasil Diselesaikan');
-    }
-    
+                        ->with('success', 'Pengaduan Berhasil Diselesaikan');
 
     }
 
-}
+
+    }
+
+

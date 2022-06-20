@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JaringanController;
 use App\Http\Controllers\PengaduanController;
+use App\Http\Middleware\Cek_Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,24 +51,7 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
                 // route::get('/admin/tujuan/edit/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
                 route::post('/admin/tujuan/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
 
-
-                // ========================== Admin Jaringan Section ==============================
-                // Show all and detail
-                route::get('admin/jaringan',[JaringanController::class,'index'])->name('admin.jaringan.index');
-                route::get('admin/jaringan/detail/{pengaduan:kode}',[JaringanController::class,'detail'])->name('admin.jaringan.detail');
-
-                // Update (Pengaduan Sedang Diverifikasi)
-                route::get('admin/jaringan/update/{pengaduan:kode}',[JaringanController::class,'update'])->name('admin.jaringan.update');
-                route::post('admin/jaringan/update/{pengaduan:kode}',[JaringanController::class,'update_store'])->name('admin.jaringan.update.store');
-                
-                // Proses (Pengaduan Sedang Diproses)
-                route::get('admin/jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses'])->name('admin.jaringan.proses');
-                route::post('admin/jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses_store'])->name('admin.jaringan.proses.store');
-                
-
-
-
-
+                //  ==========================================
                 // Server all
                 route::get('admin/server',[AdminController::class,'server'])->name('admin.server.index');
 
@@ -80,9 +64,19 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
             });
             
             // =================================== Jaringan Page ==================================
-            Route::group(['middleware' => ['cek_login:jaringan']], function (){
+            // Route::group(['middleware' => ['cek_login:jaringan' OR 'cek_login:jaringan']], function (){
+            Route::middleware('cek_login:jaringan')->middleware('cek_login:admin')->group(function (){
             
-                Route::get('jaringan',[JaringanController::class,'index'])->name('jaringan.index');
+                route::get('/jaringan',[JaringanController::class,'index'])->name('jaringan.index');
+                route::get('jaringan/detail/{pengaduan:kode}',[JaringanController::class,'detail'])->name('jaringan.detail');
+
+                // Update (Pengaduan Sedang Diverifikasi)
+                route::get('jaringan/update/{pengaduan:kode}',[JaringanController::class,'update'])->name('jaringan.update');
+                route::post('jaringan/update/{pengaduan:kode}',[JaringanController::class,'update_store'])->name('jaringan.update.store');
+                
+                // Proses (Pengaduan Sedang Diproses)
+                route::get('jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses'])->name('jaringan.proses');
+                route::post('jaringan/jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses_store'])->name('jaringan.proses.store');
             
             });
 

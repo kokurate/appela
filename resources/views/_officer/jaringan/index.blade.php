@@ -95,7 +95,7 @@
                   <td>{{ $pengaduanjaringan->status }}</td>
                   <td>
                     {{-- Detail --}}
-                    <a href="{{ route('admin.jaringan.detail', $pengaduanjaringan->kode) }}">detail</a>
+                    <a href="{{ route('jaringan.detail', $pengaduanjaringan->kode) }}">detail</a>
                     
                     {{-- Delete --}}
                     <form action="{{ route('admin.destroy', $pengaduanjaringan->kode) }}" method="post" class="d-inline">

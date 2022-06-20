@@ -76,13 +76,13 @@
 
 
 
-            <a href="{{ route('admin.jaringan.detail', $pengaduan->kode) }}">back to post</a>
+            <a href="{{ route('jaringan.detail', $pengaduan->kode) }}">back to post</a>
             </div>
     </div>
 
     {{-- Proses Pengaduan --}}
         <div class="col-md-6 ">
-        <form class="mt-5" method="post" action="{{ route('admin.jaringan.update.store', $pengaduan->kode) }}">
+        <form class="mt-5" method="post" action="{{ route('jaringan.update.store', $pengaduan->kode) }}">
             @csrf
             <div class="col-5">
                 @error('status')

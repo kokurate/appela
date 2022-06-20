@@ -87,13 +87,13 @@
 
 
 
-            <a href="{{ route('admin.jaringan.detail', $pengaduan->kode) }}">back to post</a>
+            <a href="{{ route('jaringan.detail', $pengaduan->kode) }}">back to post</a>
             </div>
     </div>
 
     {{-- Proses Pengaduan --}}
         <div class="col-md-6 ">
-            <form method="post" action="{{ route('admin.jaringan.proses.store', $pengaduan->kode) }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('jaringan.proses.store', $pengaduan->kode) }}" enctype="multipart/form-data">
                 {{-- Using enctype so this form can handle file --}}
                @csrf
                
