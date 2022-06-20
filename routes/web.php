@@ -68,7 +68,6 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
             // =================================== Jaringan Page ==================================
             Route::group(['middleware' => ['auth','cek_level:jaringan,admin']], (function (){
             // Route::middleware(['auth','cek_level:jaringan,admin'])->group (function (){
-   
                 route::get('/jaringan',[JaringanController::class,'index'])->name('jaringan.index');
                 route::get('jaringan/detail/{pengaduan:kode}',[JaringanController::class,'detail'])->name('jaringan.detail');
 
@@ -79,7 +78,6 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
                 // Proses (Pengaduan Sedang Diproses)
                 route::get('jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses'])->name('jaringan.proses');
                 route::post('jaringan/jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses_store'])->name('jaringan.proses.store');
-            
             }));
 
   
