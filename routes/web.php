@@ -31,10 +31,11 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
 
 
         // Route Group untuk yang login
-        Route::group(['middleware' => ['auth']], function(){
+        
             
             // =============================== Admin Page ================================= 
-            Route::group(['middleware' => ['cek_login:admin']], function (){
+            Route::group(['middleware' => ['auth','cek_level:admin']], (function (){
+            // Route::middleware(['auth','cek_level:admin'])->group (function (){
                 // Register Admin yang lain
                 Route::get('register', [AuthController::class, 'register'])->name('register');
                 Route::post('register', [AuthController::class, 'store'])->name('register.store');
@@ -51,6 +52,8 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
                 // route::get('/admin/tujuan/edit/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
                 route::post('/admin/tujuan/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
 
+                route::get('/jaringan',[JaringanController::class,'index'])->name('jaringan.index');
+
                 //  ==========================================
                 // Server all
                 route::get('admin/server',[AdminController::class,'server'])->name('admin.server.index');
@@ -60,12 +63,12 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
                 route::get('admin/learning-management-system',[AdminController::class,'jaringan'])->name('admin.lms.index');
                 route::get('admin/ijazah',[AdminController::class,'jaringan'])->name('admin.ijazah.index');
                 route::get('admin/slip',[AdminController::class,'jaringan'])->name('admin.slip.index');
-            });
+            }));
              
             // =================================== Jaringan Page ==================================
-            // Route::group(['middleware' => ['cek_login:jaringan' OR 'cek_login:jaringan']], function (){
-            Route::middleware('cek_login:jaringan')->middleware('cek_login:admin')->group(function (){
-            
+            Route::group(['middleware' => ['auth','cek_level:jaringan,admin']], (function (){
+            // Route::middleware(['auth','cek_level:jaringan,admin'])->group (function (){
+   
                 route::get('/jaringan',[JaringanController::class,'index'])->name('jaringan.index');
                 route::get('jaringan/detail/{pengaduan:kode}',[JaringanController::class,'detail'])->name('jaringan.detail');
 
@@ -77,9 +80,9 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
                 route::get('jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses'])->name('jaringan.proses');
                 route::post('jaringan/jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses_store'])->name('jaringan.proses.store');
             
-            });
+            }));
 
-        });
+  
 
 // ================================ POV Visitor 
 
