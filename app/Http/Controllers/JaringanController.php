@@ -55,12 +55,16 @@ class JaringanController extends Controller
       if($request['status'] == 'Pengaduan Ditolak'){
        $validateData = $request->validate([
          'keterangan' => 'required',
+         'status' => 'required'
        ],
       [
-        'keterangan.required' => 'Tanggapan harus diisi'
+        'keterangan.required' => 'Tanggapan harus diisi',
+        'status.required' => 'Field ini tidak boleh kosong'
       ]);
     }
 
+ 
+   
        Pengaduan::where('id', $pengaduan->id)->update($validateData);
        return redirect()->route('admin.jaringan.detail', $pengaduan->kode)
                           ->with('success', 'Pengaduan Berhasil Diupdate');

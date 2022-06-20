@@ -76,7 +76,7 @@
 
 
 
-            <a href="/admin">back to post</a>
+            <a href="{{ route('admin.jaringan.detail', $pengaduan->kode) }}">back to post</a>
             </div>
     </div>
 
