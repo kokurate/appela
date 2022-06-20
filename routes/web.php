@@ -55,14 +55,13 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
                 // Server all
                 route::get('admin/server',[AdminController::class,'server'])->name('admin.server.index');
 
-                // 
                 route::get('admin/sistem-informasi',[AdminController::class,'jaringan'])->name('admin.sistem_informasi.index');
                 route::get('admin/website-unima',[AdminController::class,'jaringan'])->name('admin.website_unima.index');
                 route::get('admin/learning-management-system',[AdminController::class,'jaringan'])->name('admin.lms.index');
                 route::get('admin/ijazah',[AdminController::class,'jaringan'])->name('admin.ijazah.index');
                 route::get('admin/slip',[AdminController::class,'jaringan'])->name('admin.slip.index');
             });
-            
+             
             // =================================== Jaringan Page ==================================
             // Route::group(['middleware' => ['cek_login:jaringan' OR 'cek_login:jaringan']], function (){
             Route::middleware('cek_login:jaringan')->middleware('cek_login:admin')->group(function (){
