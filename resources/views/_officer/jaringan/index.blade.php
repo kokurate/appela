@@ -83,14 +83,28 @@
                   <th scope="col">Aksi</th>
                 </tr>
               </thead>
-            @foreach ($pengaduan as $pengaduanjaringan)
+              
+              {{-- Count --}}
+              <h3 class="btn btn-secondary">Pengaduan Jaringan = <strong>{{ $jaringancount }}</strong></h3>
 
+            @foreach ($pengaduan as $pengaduanjaringan)
               <tbody>
                 <tr>
                   <th scope="row">{{ ++$i }}</th>
                   <td>{{ $pengaduanjaringan->nama }}</td>
                   <td>{{ $pengaduanjaringan->status }}</td>
-                  <td></td>
+                  <td>
+                    {{-- Detail --}}
+                    <a href="{{ route('admin.jaringan.detail', $pengaduanjaringan->kode) }}">detail</a>
+                    
+                    {{-- Delete --}}
+                    <form action="{{ route('admin.destroy', $pengaduanjaringan->kode) }}" method="post" class="d-inline">
+                      @method('delete')
+                      @csrf
+                      <button class="badge bg-danger border-0" onclick="return confirm('Yakin mau hapus data ?')">delete</button>
+    
+                    </form>
+                  </td>
                 </tr>
               </tbody>
             @endforeach

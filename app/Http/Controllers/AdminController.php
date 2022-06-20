@@ -50,7 +50,7 @@ class AdminController extends Controller
         }
 
       Pengaduan::destroy($pengaduan->id);
-      return redirect()->route('admin.index')->with('success','Data berhasil dihapus');
+      return back()->with('success','Data berhasil dihapus');
     }
  
 // =============================== Pengaduan Masuk ==================================

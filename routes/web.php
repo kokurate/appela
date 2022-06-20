@@ -47,11 +47,19 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
                 route::post('/admin/masuk/{pengaduan:kode}',[AdminController::class,'masuk_store'])->name('admin.masuk.store'); 
 
                 // Edit Tujuan
-                route::get('/admin/tujuan/edit/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
+                // route::get('/admin/tujuan/edit/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
                 route::post('/admin/tujuan/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
 
-                // Jaringan all
+
+                // ========================== Admin Jaringan Section ==============================
                 route::get('admin/jaringan',[JaringanController::class,'index'])->name('admin.jaringan.index');
+                route::get('admin/jaringan/detail/{pengaduan:kode}',[JaringanController::class,'detail'])->name('admin.jaringan.detail');
+                route::get('admin/jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses'])->name('admin.jaringan.proses');
+                route::post('admin/jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses_store'])->name('admin.jaringan.proses.store');
+               
+
+
+
 
                 // Server all
                 route::get('admin/server',[AdminController::class,'server'])->name('admin.server.index');
