@@ -70,6 +70,18 @@ class AdminController extends Controller
       'status.required' => 'Field ini tidak boleh kosong'
     ]);
 
+      // Sebelum update Cek dlu kalo misalnya ditolak kase validasi keterangan(tanggapan)
+      if($request['status'] == 'Pengaduan Ditolak'){
+        $validateData = $request->validate([
+          'keterangan' => 'required',
+          'status' => 'required'
+        ],
+       [
+         'keterangan.required' => 'Tanggapan harus diisi',
+         'status.required' => 'Field ini tidak boleh kosong'
+       ]);
+     }
+
      Pengaduan::where('id', $pengaduan->id)->update($validateData);
      return redirect()->route('admin.index')
                         ->with('success', 'Pengaduan Berhasil Diupdate');

@@ -142,8 +142,6 @@
                 @enderror
             </div>
 
-
-
                {{-- Isi --}}
                <div class="mb-3">
                 <label for="isi" class="form-label">isi</label>

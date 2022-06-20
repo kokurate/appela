@@ -76,14 +76,13 @@
 
 
 
-            <a href="/admin">back to post</a>
+            <a href="{{ route('admin.jaringan.detail', $pengaduan->kode) }}">back to post</a>
             </div>
     </div>
 
     {{-- Proses Pengaduan --}}
         <div class="col-md-6 ">
-
-        <form class="mt-5" method="post" action="/admin/masuk/{{ $pengaduan->kode }}">
+        <form class="mt-5" method="post" action="{{ route('admin.jaringan.update.store', $pengaduan->kode) }}">
             @csrf
             <div class="col-5">
                 @error('status')
@@ -92,60 +91,39 @@
                 </div>
                 @enderror
             </div>
+
+           
   
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Pengaduan Sedang Diverifikasi" onclick="show(1)">
+                <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Pengaduan Sedang Diproses" onclick="show(1)"  > 
                 <label class="form-check-label" for="flexRadioDefault1">
-                  Update Pengaduan
+                  Proses Pengaduan
                 </label>
               </div>
               <div class="form-check">
                 <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="Pengaduan Ditolak" onclick="show(0)" {{ old('status') == 'Pengaduan Ditolak' ? 'checked' : ''}}>
                 <label class="form-check-label" for="flexRadioDefault2">Tolak Pengaduan</label>
-
-                     {{-- Alasan --}}
+              
+                {{-- Alasan --}}
                 <div class="mb-3" id="show_tanggapan">
-                    <label for="exampleFormControlTextarea1" class="form-label">Tanggapan</label>
-                    <textarea class="form-control @error('keterangan') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="keterangan"></textarea>
-                    <div class="col-5">
-                        @error('keterangan')
-                        <div class="alert alert-danger" role="alert">
-                        {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
+                  <label for="exampleFormControlTextarea1" class="form-label">Tanggapan</label>
+                  <textarea class="form-control @error('keterangan') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="keterangan"></textarea>
+                  <div class="col-5">
+                      @error('keterangan')
+                      <div class="alert alert-danger" role="alert">
+                      {{ $message }}
+                      </div>
+                      @enderror
+                  </div>
                 </div>
               </div>
+
+
+
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
 
           <hr>
-
-
-        <form class="mt-5" method="post" action="/admin/tujuan/{{ $pengaduan->kode }}">
-            @csrf
-
-            <div class="col-5">
-                @error('tujuan_id')
-                <div class="alert alert-danger" role="alert">
-                {{ $message }}
-                </div>
-                @enderror
-                 
-                @foreach ($tujuan as $tujuan)
-                    {{-- tujuan(all) tidak sama dengan tujuan->nama skrng, tampilkan selain yang bukan--}}
-                    @if ($tujuan->nama != $pengaduan->tujuan->nama )
-                        {{-- {{ $tujuan->nama }} --}}
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="tujuan_id" id="{{ $tujuan->nama }}" value="{{ $tujuan->id }}">
-                            <label class="form-check-label" for="{{ $tujuan->nama }}">
-                              {{ $tujuan->nama }}
-                            </label>
-                          </div>
-                    @endif
-                @endforeach
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
 
         </div>
 
@@ -154,8 +132,8 @@
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-          {{-- Javascript buat show tanggapan kalo pilih Tolak --}}
-          <script>
+        {{-- Javascript buat show tanggapan kalo pilih Tolak --}}
+        <script>
             function show(x){
                 if (x==0)
                 document.getElementById('show_tanggapan').style.display='block';

@@ -52,11 +52,18 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
 
 
                 // ========================== Admin Jaringan Section ==============================
+                // Show all and detail
                 route::get('admin/jaringan',[JaringanController::class,'index'])->name('admin.jaringan.index');
                 route::get('admin/jaringan/detail/{pengaduan:kode}',[JaringanController::class,'detail'])->name('admin.jaringan.detail');
+
+                // Update (Pengaduan Sedang Diverifikasi)
+                route::get('admin/jaringan/update/{pengaduan:kode}',[JaringanController::class,'update'])->name('admin.jaringan.update');
+                route::post('admin/jaringan/update/{pengaduan:kode}',[JaringanController::class,'update_store'])->name('admin.jaringan.update.store');
+                
+                // Proses (Pengaduan Sedang Diproses)
                 route::get('admin/jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses'])->name('admin.jaringan.proses');
                 route::post('admin/jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses_store'])->name('admin.jaringan.proses.store');
-               
+                
 
 
 

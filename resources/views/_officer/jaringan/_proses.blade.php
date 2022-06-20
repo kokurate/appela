@@ -108,13 +108,13 @@
                       </div>  
      
                       {{-- Klik ini baru mo muncul yang upload image input --}}
-                      <a href="#"  class="badge bg-primary" onclick="display_petugas_img_1()">Add Image 1</a>
-                      <a href="#"  class="badge bg-primary" onclick="display_petugas_img_2()">Add Image 2</a>
-                      <a href="#"  class="badge bg-primary" onclick="display_petugas_img_3()">Add Image 3</a>
+                      <button> Add Image 1</button>
+                      <button> Add Image 2 </button>
+                      <button> Add Image 2 </button>
 
                         {{-- Upload Image  1--}}
-                        <div class="mb-3 upload_img_1">
-                            <label for="petugas_image_1" class="form-label" >Image 1</label>
+                        <div class="mb-3">
+                            <label for="petugas_image_1" class="form-label" >Upload Image</label>
                             {{-- Deklarasi Javascript untuk preview --}}
                             <img class="img-preview-petugas-1 img-fluid mb-3 col-sm-3">
                             <input class="form-control @error('petugas_image_1') is-invalid @enderror" type="file" id="petugas_image_1" name="petugas_image_1" onchange="previewPetugas_image_1();">
@@ -126,7 +126,7 @@
                         </div>
      
                  {{-- Upload Image 2 --}}
-                 <div class="mb-3 upload_img_2">
+                 <div class="mb-3">
                      <label for="petugas_image_2" class="form-label" >Image 2</label>
                      {{-- Deklarasi Javascript untuk preview --}}
                      <img class="img-preview-petugas-2 img-fluid mb-3 col-sm-3">
@@ -139,7 +139,7 @@
                  </div>
      
                  {{-- Upload Image 3 --}}
-                 <div class="mb-3 upload_img_3">
+                 <div class="mb-3">
                      <label for="petugas_image_3" class="form-label" >Image 3</label>
                      {{-- Deklarasi Javascript untuk preview --}}
                      <img class="img-preview-petugas-3 img-fluid mb-3 col-sm-3">
@@ -172,38 +172,6 @@
         document.addEventListener('trix-file-accept', function(e) {
             e.preventDefault()
         })
-
-        //Trigger Function
-        img_1_petugas = document.querySelector('.upload_img_1');
-        img_2_petugas = document.querySelector('.upload_img_2');
-        img_3_petugas = document.querySelector('.upload_img_3');
-
-        img_1_petugas.style.display =  "none";
-        img_2_petugas.style.display =  "none";
-        img_3_petugas.style.display =  "none";
-
-        function display_petugas_img_1(){
-            if (img_1_petugas.style.display === "none") {
-    		    img_1_petugas.style.display = "block";
-  		    } else {
-    		    img_1_petugas.style.display = "none";
-  		    }
-        }
-        function display_petugas_img_2(){
-            if (img_2_petugas.style.display === "none") {
-    		    img_2_petugas.style.display = "block";
-  		    } else {
-    		    img_2_petugas.style.display = "none";
-  		    }
-        }
-        function display_petugas_img_3(){
-            if (img_3_petugas.style.display === "none") {
-    		    img_3_petugas.style.display = "block";
-  		    } else {
-    		    img_3_petugas.style.display = "none";
-  		    }
-        }
-
 
         // Preview Image 1
             function previewPetugas_image_1(){

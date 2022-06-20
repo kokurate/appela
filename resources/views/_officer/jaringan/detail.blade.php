@@ -62,7 +62,11 @@
           <p class="btn btn-primary">{{ $pengaduan->status }}</p>
           <p class="btn btn-primary">{{ $pengaduan->keterangan }}</p>
 
+          @if($pengaduan->status == 'Pengaduan Sedang Diverifikasi') 
+          <a href="{{ route('admin.jaringan.update', $pengaduan->kode) }}">Update</a>
+          @elseif($pengaduan->status == 'Pengaduan Sedang Diproses')
           <a href="{{ route('admin.jaringan.proses', $pengaduan->kode) }}">Proses</a>
+          @endif
 
          <h6>{{ $pengaduan->nama }}</h6>
          <h6>{{ $pengaduan->tujuan->nama }}</h6>
