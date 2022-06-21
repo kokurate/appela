@@ -26,12 +26,14 @@ public function verify(VerifyRequest $request)
 {
     // Verify using PengaduanRequest
     $validated = array_merge($request->validated(), ['token' => Str::random(127)]);
+    // Buat 
     Pengaduan::create($validated);
     $data = [
         'content' => 'Untuk membuat pengaduan silahkan klik button di bawah ini',
         'url' => 'http://127.0.0.1:8000/pengaduan/create/' . $validated['token'],
     ];
     Mail::to($validated['email'])->send(new VerifyAlternative($data));
+  
     return redirect()
         ->route('pengaduan.check')
         ->with('success', 'Registrasi Email berhasil. Silahkan cek email anda untuk membuat pengaduan');
@@ -55,7 +57,8 @@ public function verify(VerifyRequest $request)
 
                 // Tampilkan error
                   if(is_null($post)) {
-                      return redirect()->route('pengaduan.check')->with('error','Email belum terverifikasi');
+                      return redirect()->route('pengaduan.check')
+                                       ->with('error','Email belum terverifikasi');
                   }
                         //Kalo sesuai update token   
                   else{
@@ -115,9 +118,28 @@ public function verify(VerifyRequest $request)
         $validatedData['status'] = 'Pengaduan Masuk';
         $validatedData['published_at'] = Carbon::now()->toDateTimeString();
         
-    
-        
+        $tujuan = $request->tujuan_id;
+                // buat kondisi untuk menamakan tujuan 
+                if($tujuan == 1){$tujuan = 'Jaringan';}
+                elseif($tujuan == 2){$tujuan = 'Server';}
+                elseif($tujuan == 3){$tujuan = 'Sistem Informasi';}
+                elseif($tujuan == 4){$tujuan = 'Website unima';}
+                elseif($tujuan == 5){$tujuan = 'Learning Management System';}
+                elseif($tujuan == 6){$tujuan = 'Ijazah';}
+                elseif($tujuan == 7){$tujuan = 'Slip';}
+
+        // Activity Log
+        $activitylog = [
+            'pengaduan_id' => $pengaduan->id,
+            'opener' => '+',
+            'user' => 'User :'.' '.$pengaduan->email,
+            'do' => 'membuat pengaduan ke : '. $tujuan,
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ];
+        DB::table('catatans')->insert($activitylog);
        Pengaduan::where('id',$pengaduan->id)->update($validatedData);
+
+
        return redirect()->route('pengaduan.search')
                         ->with('success', 'Pengaduan Berhasil dibuat. Silahkan cek email anda untuk melihat kode pengaduan');
     }

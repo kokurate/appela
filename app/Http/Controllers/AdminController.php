@@ -86,16 +86,20 @@ class AdminController extends Controller
        ]);
      }
 
+     $status = $request['status'];
+        // Activity Log
+        $activitylog = [
+          'pengaduan_id' => $pengaduan->id,
+          'opener' => 'Update',
+          'user' => auth()->user()->name  ,
+          'do' => 'mengupdate pengaduan menjadi'.' '. $status ,
+          'updated_at' => Carbon::now()->toDateTimeString(),
+      ];
+ 
+      DB::table('catatans')->insert($activitylog);
+
      Pengaduan::where('id', $pengaduan->id)->update($validateData);
 
-         // Log
-         $activitylog = [
-          'pengaduan_id' => $pengaduan->id,
-          'do' => 'Mengupdate Pengaduan',
-          'created_at' =>  Carbon::now()->toDateTimeString(),
-      ];
-
-      DB::table('catatans')->insert($activitylog);
       
      return redirect()->route('admin.index')
                         ->with('success', 'Pengaduan Berhasil Diupdate');
@@ -116,6 +120,26 @@ class AdminController extends Controller
        [
         'tujuan_id.required' => 'Field ini harus diisi'
        ]);
+          $tujuan = $request->tujuan_id;
+            // buat kondisi untuk menamakan tujuan 
+            if($tujuan == 1){$tujuan = 'Jaringan';}
+            elseif($tujuan == 2){$tujuan = 'Server';}
+            elseif($tujuan == 3){$tujuan = 'Sistem Informasi';}
+            elseif($tujuan == 4){$tujuan = 'Website unima';}
+            elseif($tujuan == 5){$tujuan = 'Learning Management System';}
+            elseif($tujuan == 6){$tujuan = 'Ijazah';}
+            elseif($tujuan == 7){$tujuan = 'Slip';}
+    
+       // Activity Log
+       $activitylog = [
+         'pengaduan_id' => $pengaduan->id,
+         'opener' => 'Change',
+         'user' => auth()->user()->name  ,
+         'do' => 'mengubah tujuan pengaduan menjadi : ' . $tujuan,
+         'updated_at' => Carbon::now()->toDateTimeString(),
+     ];
+     DB::table('catatans')->insert($activitylog);
+
 
        Pengaduan::where('id', $pengaduan->id)->update($validateData);
        return back()->with('success', 'Tujuan Pengaduan Berhasil Diupdate');

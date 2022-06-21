@@ -17,6 +17,7 @@ class CreateCatatansTable extends Migration
             $table->id();
             // Foreign Key
             $table->foreignId('pengaduan_id')->nullable();
+            $table->string('opener')->nullable();
             $table->string('user')->nullable();
             $table->string('do')->nullable();
             $table->timestamps();
