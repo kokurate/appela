@@ -51,6 +51,16 @@ class AdminController extends Controller
         if($pengaduan->visitor_image_3){
           Storage::delete($pengaduan->visitor_image_3);
         }
+
+        if($pengaduan->petugas_image_1){
+          Storage::delete($pengaduan->petugas_image_1);
+        }
+        if($pengaduan->petugas_image_2){
+          Storage::delete($pengaduan->petugas_image_2);
+        }
+        if($pengaduan->petugas_image_3){
+          Storage::delete($pengaduan->petugas_image_3);
+        }
       
       Catatan::where('pengaduan_id', $pengaduan->id)->delete();
       Pengaduan::destroy($pengaduan->id);
@@ -85,6 +95,12 @@ class AdminController extends Controller
          'status.required' => 'Field ini tidak boleh kosong'
        ]);
      }
+
+          // Kalo ditolak email kase null
+    if($request['status'] == 'Pengaduan Ditolak'){
+      $validateData['email'] = null;    
+    }
+
 
      $status = $request['status'];
         // Activity Log

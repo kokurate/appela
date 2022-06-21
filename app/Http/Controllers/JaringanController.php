@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Pengaduan;
 use App\Models\Tujuan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class JaringanController extends Controller
 {
@@ -61,6 +63,23 @@ class JaringanController extends Controller
         'status.required' => 'Field ini tidak boleh kosong'
       ]);
     }
+
+     // Kalo ditolak email kase null
+    if($request['status'] == 'Pengaduan Ditolak'){
+      $validateData['email'] = null;    
+    }
+
+    $status = $request['status'];
+        // Activity Log
+        $activitylog = [
+          'pengaduan_id' => $pengaduan->id,
+          'opener' => 'Update',
+          'user' => auth()->user()->name  ,
+          'do' => 'mengupdate pengaduan menjadi'.' '. $status ,
+          'updated_at' => Carbon::now()->toDateTimeString(),
+      ];
+      DB::table('catatans')->insert($activitylog);
+
        Pengaduan::where('id', $pengaduan->id)->update($validateData);
        return redirect()->route('jaringan.detail', $pengaduan->kode)
                           ->with('success', 'Pengaduan Berhasil Diupdate');
@@ -101,7 +120,20 @@ class JaringanController extends Controller
       }
       
       $validatedData['status'] = 'Pengaduan Selesai';
-            
+      // Kalo so klar email kase null supaya kalo dia mo beking ulang pengaduan so boleh
+      $validatedData['email'] = null;     
+
+      // Activity Log
+      $activitylog = [
+        'pengaduan_id' => $pengaduan->id,
+        'opener' => 'Complete',
+        'user' => auth()->user()->name  ,
+        'do' => 'telah menyelesaikan pengaduan' ,
+        'updated_at' => Carbon::now()->toDateTimeString(),
+    ];
+    DB::table('catatans')->insert($activitylog);
+
+
     Pengaduan::where('id',$pengaduan->id)->update($validatedData);
 
       return redirect()->route('jaringan.detail', $pengaduan->kode)
