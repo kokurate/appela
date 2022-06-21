@@ -26,6 +26,12 @@ class Pengaduan extends Model
     public function tujuan(){
         return $this->belongsTo(Tujuan::class);
     }
+
+     // 1 pengaduan memiliki banyak log
+     public function catatan(){
+        return $this->hasMany(Catatan::class);
+    }
+    
     
     public function scopeFilter ($query, array $filters ){
 

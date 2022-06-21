@@ -53,6 +53,9 @@
          {!! $pengaduan->isi !!}
          <br>
 
+         @foreach ($log as $activity)
+            {{ $activity->do }} <br>
+         @endforeach
 
 
          <a href="{{ route('pengaduan.search') }}">back to cari</a>

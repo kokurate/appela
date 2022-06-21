@@ -18,4 +18,9 @@ class Tujuan extends Model
         return $this->hasMany(Pengaduan::class);
     }
     
+    // 1 tujuan memiliki banyak log
+    public function tujuan(){
+        return $this->hasMany(Catatan::class);
+    }
+    
 }

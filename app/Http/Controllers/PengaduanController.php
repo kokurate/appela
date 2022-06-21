@@ -8,11 +8,12 @@ use App\Http\Requests\VerifyRequest;
 use App\Mail\VerifyAlternative;
 use App\Models\Tujuan;
 use App\Models\Pengaduan;
+use App\Models\Catatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\DB;
 
 class PengaduanController extends Controller
 {
@@ -114,6 +115,8 @@ public function verify(VerifyRequest $request)
         $validatedData['status'] = 'Pengaduan Masuk';
         $validatedData['published_at'] = Carbon::now()->toDateTimeString();
         
+    
+        
        Pengaduan::where('id',$pengaduan->id)->update($validatedData);
        return redirect()->route('pengaduan.search')
                         ->with('success', 'Pengaduan Berhasil dibuat. Silahkan cek email anda untuk melihat kode pengaduan');
@@ -146,7 +149,8 @@ public function verify(VerifyRequest $request)
         return view('pengaduan.detail',[
             "title" => "Detail Pengaduan User",
             // Lazy Eager Loading
-            "pengaduan" =>$pengaduan->load('tujuan')
+            "pengaduan" =>$pengaduan->load('tujuan'),
+            'log' => Catatan::where('pengaduan_id', $pengaduan->id)->get()->load('tujuan')
         ]);
     }
 

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Catatan;
 use App\Models\Pengaduan;
 use App\Models\Tujuan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -48,7 +51,8 @@ class AdminController extends Controller
         if($pengaduan->visitor_image_3){
           Storage::delete($pengaduan->visitor_image_3);
         }
-
+      
+      Catatan::where('pengaduan_id', $pengaduan->id)->delete();
       Pengaduan::destroy($pengaduan->id);
       return back()->with('success','Data berhasil dihapus');
     }
@@ -83,6 +87,16 @@ class AdminController extends Controller
      }
 
      Pengaduan::where('id', $pengaduan->id)->update($validateData);
+
+         // Log
+         $activitylog = [
+          'pengaduan_id' => $pengaduan->id,
+          'do' => 'Mengupdate Pengaduan',
+          'created_at' =>  Carbon::now()->toDateTimeString(),
+      ];
+
+      DB::table('catatans')->insert($activitylog);
+      
      return redirect()->route('admin.index')
                         ->with('success', 'Pengaduan Berhasil Diupdate');
 
