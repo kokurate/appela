@@ -8,6 +8,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Mail\SendMailVisitor;
+use Illuminate\Support\Facades\Mail;
 
 class JaringanController extends Controller
 {
@@ -81,6 +83,17 @@ class JaringanController extends Controller
       DB::table('catatans')->insert($activitylog);
 
        Pengaduan::where('id', $pengaduan->id)->update($validateData);
+
+
+       $data =[
+        'header' => 'Update Pengaduan ',
+        'content' => 'Untuk melihat detail pengaduan silahkan cek appela puskom ',
+        'status' =>   'Status pengaduan saat ini '.$validateData['status'] ,
+    ];
+       // Kirim Email
+       Mail::to($pengaduan->email)->send(new SendMailVisitor ($data)); 
+  
+
        return redirect()->route('jaringan.detail', $pengaduan->kode)
                           ->with('success', 'Pengaduan Berhasil Diupdate');
   
@@ -136,6 +149,16 @@ class JaringanController extends Controller
 
     Pengaduan::where('id',$pengaduan->id)->update($validatedData);
 
+
+    $data =[
+      'header' => 'Update Pengaduan ',
+      'content' => 'Untuk melihat detail pengaduan silahkan cek appela puskom ',
+      'status' =>   'Status pengaduan saat ini '.$validatedData['status'] ,
+  ];
+     // Kirim Email
+     Mail::to($pengaduan->email)->send(new SendMailVisitor ($data)); 
+
+    
       return redirect()->route('jaringan.detail', $pengaduan->kode)
                         ->with('success', 'Pengaduan Berhasil Diselesaikan');
 

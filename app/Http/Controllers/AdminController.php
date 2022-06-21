@@ -9,6 +9,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Mail\SendMailVisitor;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -67,7 +69,7 @@ class AdminController extends Controller
       return back()->with('success','Data berhasil dihapus');
     }
  
-// =============================== Pengaduan Masuk ==================================
+// =============================== Pengaduan Masuk ===============================
     public function masuk(Pengaduan $pengaduan, Request $request){
       return view('_admin.masuk',[
         'title' => "Pengaduan Masuk Proses",
@@ -116,6 +118,14 @@ class AdminController extends Controller
 
      Pengaduan::where('id', $pengaduan->id)->update($validateData);
 
+     $data =[
+      'header' => 'Update Pengaduan ',
+      'content' => 'Untuk melihat detail pengaduan silahkan cek appela puskom ',
+      'status' =>   'Status pengaduan saat ini '.$validateData['status'] ,
+  ];
+     // Kirim Email
+     Mail::to($pengaduan->email)->send(new SendMailVisitor ($data)); 
+
       
      return redirect()->route('admin.index')
                         ->with('success', 'Pengaduan Berhasil Diupdate');
@@ -155,9 +165,8 @@ class AdminController extends Controller
          'updated_at' => Carbon::now()->toDateTimeString(),
      ];
      DB::table('catatans')->insert($activitylog);
-
-
        Pengaduan::where('id', $pengaduan->id)->update($validateData);
+
        return back()->with('success', 'Tujuan Pengaduan Berhasil Diupdate');
   
 

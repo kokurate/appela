@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PengaduanRequest;
 use App\Http\Requests\Resend_emailRequest;
 use App\Http\Requests\VerifyRequest;
+use App\Mail\SendMailVisitor;
 use App\Mail\VerifyAlternative;
 use App\Models\Tujuan;
 use App\Models\Pengaduan;
@@ -111,8 +112,6 @@ public function verify(VerifyRequest $request)
         }
 
         $validatedData['visitor_image_1'] = $request->file('visitor_image_1')->store('image');
-
-
         $validatedData['token'] = null;
         $validatedData['kode'] = Str::random(10);
         $validatedData['status'] = 'Pengaduan Masuk';
@@ -138,8 +137,14 @@ public function verify(VerifyRequest $request)
         ];
         DB::table('catatans')->insert($activitylog);
        Pengaduan::where('id',$pengaduan->id)->update($validatedData);
-
-
+       
+       $data =[
+        'header' => 'Selamat datang di APPELA Puskom ',
+        'content' => 'Gunakan kode berikut untuk cek detail pengaduan anda',
+        'status' =>   $validatedData['kode'] ,
+    ];
+       // Kirim Email
+       Mail::to($pengaduan->email)->send(new SendMailVisitor ($data)); 
        return redirect()->route('pengaduan.search')
                         ->with('success', 'Pengaduan Berhasil dibuat. Silahkan cek email anda untuk melihat kode pengaduan');
     }
