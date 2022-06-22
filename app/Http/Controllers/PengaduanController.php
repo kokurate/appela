@@ -177,9 +177,28 @@ public function verify(VerifyRequest $request)
             "title" => "Detail Pengaduan User",
             // Lazy Eager Loading
             "pengaduan" =>$pengaduan->load('tujuan'),
-            'log' => Catatan::where('pengaduan_id', $pengaduan->id)->get()->load('tujuan')
+            'log' => Catatan::where('pengaduan_id', $pengaduan->id)->get()->load('pengaduan'),
         ]);
     }
+
+    // ================================== For Rating ========================================
+    public function detail_store(Pengaduan $pengaduan, Request $request){
+        // dd($request);
+        $validatedata = $request->validate([
+            'rating' => 'required'
+        ],
+    [
+        'rating.required' => 'Rating harus diisi',
+    ]);
+
+    if($request->komentar !=  null ){
+        $validatedata['komentar'] = $request->komentar;
+    }
+    Pengaduan::where('id' , $pengaduan->id)->update($validatedata);
+
+    return back()->with('success','Rating berhasil ditambahkan');
+    }
+
 
 //  ==================================== POV ADMIN ==============================================
 

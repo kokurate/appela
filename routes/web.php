@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JaringanController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Middleware\Cek_Login;
+use App\Models\Pengaduan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -96,5 +97,8 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
 
 // Search Pengaduan
     Route::get('pengaduan/search',[PengaduanController::class,'search'])->name('pengaduan.search');
+    
+// Rating
     Route::get('pengaduan/detail/{pengaduan:kode}',[PengaduanController::class,'detail'])->name('pengaduan.detail');
+    Route::post('Pengaduan/detail/{pengaduan:kode}', [PengaduanController::class,'detail_store'])->name('pengaduan.detail.store');
 
