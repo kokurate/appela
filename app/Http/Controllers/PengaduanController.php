@@ -196,6 +196,16 @@ public function verify(VerifyRequest $request)
     }
     Pengaduan::where('id' , $pengaduan->id)->update($validatedata);
 
+         // Activity Log
+         $activitylog = [
+            'pengaduan_id' => $pengaduan->id,
+            'opener' => '+',
+            'user' => 'User :'.' '.$pengaduan->nama,
+            'do' => 'Menambahkan rating',
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ];
+        DB::table('catatans')->insert($activitylog);
+
     return back()->with('success','Rating berhasil ditambahkan');
     }
 
