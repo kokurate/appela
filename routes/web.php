@@ -6,6 +6,7 @@ use App\Http\Controllers\JaringanController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Middleware\Cek_Login;
 use App\Models\Pengaduan;
+use App\Models\Tujuan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,8 +21,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+  $jaringan = Pengaduan::where('tujuan_id','1')->count();
+  $server = Pengaduan::where('tujuan_id', '2' )->count();
+  $si = Pengaduan::where('tujuan_id', '3' )->count();
+  $web_unima = Pengaduan::where('tujuan_id', '4' )->count();
+  $lms = Pengaduan::where('tujuan_id', '5' )->count();
+  $ijazah = Pengaduan::where('tujuan_id', '6' )->count();
+  $slip = Pengaduan::where('tujuan_id', '7' )->count();
+
+    return view('welcome',compact('jaringan','server','si','web_unima','lms','ijazah','slip'));
 });
+
 
 Route::get('cannot-access',[AuthController::class,'cannot_access'])->name('cannot_access');
 
