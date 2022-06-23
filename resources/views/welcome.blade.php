@@ -1,3 +1,22 @@
+<!-- New Chart from https://canvasjs.com/php-charts/responsive-chart/ 
+The tutorial = https://www.youtube.com/watch?v=62tpwIfHb-Q
+-->
+
+<?php
+ 
+$dataPoints_status = array(
+	array("label"=> "masuk", "y"=> $masuk ),
+	array("label"=> "diverifikasi", "y"=>  $diverifikasi ),
+	array("label"=> "diproses", "y"=>  $diproses ),
+	array("label"=> "ditolak", "y"=>  $ditolak ),
+	array("label"=> "selesai", "y"=>  $selesai ),
+);
+
+
+ 
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -37,11 +56,23 @@
         </nav>
         
         <div class="container my-2">
+            <h1>Hello, world!</h1>
+            <div class="card chart-container ">
+                <h4 class="justify-content-center">Total Pengaduan di Appela Puskom</h4>
+                <div class="chart has-fixed-height" id="chart_all"></div>
+            </div>
             <div class="row">
-               <h1>Hello, world!</h1>
-                <div class="card chart-container">
-                    <h4 class="justify-content-center">Total Pengaduan di Appela Puskom</h4>
-                    <div class="chart has-fixed-height" id="chart_all"></div>
+                <!-- Status Saat Ini -->
+                <div class="card my-5 col-sm-6">
+                    <div class="status" id="status" style="height: 370px; width: 100%;">
+                  
+                    </div>
+                </div>
+                <!-- Pengaduan Saat ini -->
+                <div class="card my-5 col-sm-6">
+                    <div class="pengaduan" id="pengaduan" style="height: 370px; width: 100%;">
+                        <p>test</p>
+                    </div>
                 </div>
 
 
@@ -54,7 +85,7 @@
    <!-- High Chart JS -->
    <script src="https://code.highcharts.com/highcharts.js"></script>
 
-    <!-- Highchart -->
+    <!-- Highchart all pengaduan -->
     <script>
             // Radialize the colors
         Highcharts.setOptions({
@@ -118,5 +149,99 @@
             }]
         });
     </script>
+
+
+        <!--  Script status dan pengaduan bulan --> 
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    
+
+    <!-- Canvas js Chart Container status bulan ini-->
+    <script>
+        window.onload = function () {
+         
+        var chart = new CanvasJS.Chart("status", {
+            animationEnabled: true,
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            title: {
+                text: "Status Bulan ini"
+            },
+            axisY: {
+                title: "Total"
+            },
+            data: [{
+                type: "column",
+                dataPoints: <?php echo json_encode($dataPoints_status, JSON_NUMERIC_CHECK); ?>
+            }]
+        });
+        chart.render();
+         
+        }
+        </script>
+  
+
+        <!-- Highchart pengaduan  -->
+        <script>
+            Highcharts.chart('pengaduan', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '<b>Pengaduan bulan ini</b>'
+        },
+        subtitle: {
+            text: 'appela puskom'
+        },
+        xAxis: {
+            categories: [
+                'Jaringan',
+                'Server',
+                'Sistem Informasi',
+                'Website Unima',
+                'Learning Management System',
+                'Ijazah',
+                'Slip',
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.0f} </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Tujuan Pengaduan',
+            data: [
+               {{ $current_jaringan }},
+               {{ $current_server }},
+               {{ $current_si }},
+               {{ $current_webunima }},
+               {{ $current_lms }},
+               {{ $current_ijazah }},
+               {{ $current_slip }},
+            ]
+
+        },]
+    });
+        
+    </script>
+    
+
+
+
   </body>
 </html>
