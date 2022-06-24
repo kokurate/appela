@@ -41,9 +41,9 @@ class AdminController extends Controller
         ]);     
     }
     
+// ==================================    Hapus Data    ======================================
     public function destroy(Pengaduan $pengaduan){
-
-      // Kalo ada isi itu image hapus juga
+      // Kalo ada isi itu image visitor hapus juga
         if($pengaduan->visitor_image_1){
           Storage::delete($pengaduan->visitor_image_1);
         }
@@ -53,7 +53,7 @@ class AdminController extends Controller
         if($pengaduan->visitor_image_3){
           Storage::delete($pengaduan->visitor_image_3);
         }
-
+      // Kalo ada isi itu image petugas hapus juga
         if($pengaduan->petugas_image_1){
           Storage::delete($pengaduan->petugas_image_1);
         }
@@ -63,8 +63,9 @@ class AdminController extends Controller
         if($pengaduan->petugas_image_3){
           Storage::delete($pengaduan->petugas_image_3);
         }
-      
-      Catatan::where('pengaduan_id', $pengaduan->id)->delete();
+      // Hapus juga dia pe log
+        Catatan::where('pengaduan_id', $pengaduan->id)->delete();
+      // Hapus di table pengaduan
       Pengaduan::destroy($pengaduan->id);
       return back()->with('success','Data berhasil dihapus');
     }
@@ -80,32 +81,31 @@ class AdminController extends Controller
 
     public function masuk_store(Pengaduan $pengaduan, Request $request){
      $validateData = $request->validate([
-      'status' => 'required'
-     ],
-    [
-      'status.required' => 'Field ini tidak boleh kosong'
-    ]);
+        'status' => 'required'
+      ],
+      [
+        'status.required' => 'Field ini tidak boleh kosong'
+      ]);
 
       // Sebelum update Cek dlu kalo misalnya ditolak kase validasi keterangan(tanggapan)
+        if($request['status'] == 'Pengaduan Ditolak'){
+          $validateData = $request->validate([
+            'keterangan' => 'required',
+            'status' => 'required'
+          ],
+        [
+          'keterangan.required' => 'Tanggapan harus diisi',
+          'status.required' => 'Field ini tidak boleh kosong'
+        ]);
+      }
+
+    // Kalo ditolak email kase null supaya dorang boleh b beking ulang pengaduan
       if($request['status'] == 'Pengaduan Ditolak'){
-        $validateData = $request->validate([
-          'keterangan' => 'required',
-          'status' => 'required'
-        ],
-       [
-         'keterangan.required' => 'Tanggapan harus diisi',
-         'status.required' => 'Field ini tidak boleh kosong'
-       ]);
-     }
-
-          // Kalo ditolak email kase null
-    if($request['status'] == 'Pengaduan Ditolak'){
-      $validateData['email'] = null;    
-    }
-
-
-     $status = $request['status'];
-        // Activity Log
+        $validateData['email'] = null; 
+      }
+      
+    $status = $request['status'];
+    // Setup Activity Log
         $activitylog = [
           'pengaduan_id' => $pengaduan->id,
           'opener' => 'Update',
@@ -113,20 +113,19 @@ class AdminController extends Controller
           'do' => 'mengupdate pengaduan menjadi'.' '. $status ,
           'updated_at' => Carbon::now()->toDateTimeString(),
       ];
- 
+    // Insert Activity Log
       DB::table('catatans')->insert($activitylog);
-
+    // Update Pengaduan
      Pengaduan::where('id', $pengaduan->id)->update($validateData);
 
+    // Setup email message
      $data =[
       'header' => 'Update Pengaduan ',
       'content' => 'Untuk melihat detail pengaduan silahkan cek appela puskom ',
       'status' =>   'Status pengaduan saat ini '.$validateData['status'] ,
-  ];
-     // Kirim Email
-     Mail::to($pengaduan->email)->send(new SendMailVisitor ($data)); 
-
-      
+      ];
+    // Kirim Email
+     Mail::to($pengaduan->email)->send(new SendMailVisitor ($data));   
      return redirect()->route('admin.index')
                         ->with('success', 'Pengaduan Berhasil Diupdate');
 
@@ -164,11 +163,8 @@ class AdminController extends Controller
          'do' => 'mengubah tujuan pengaduan menjadi : ' . $tujuan,
          'updated_at' => Carbon::now()->toDateTimeString(),
      ];
-     DB::table('catatans')->insert($activitylog);
-       Pengaduan::where('id', $pengaduan->id)->update($validateData);
-
-       return back()->with('success', 'Tujuan Pengaduan Berhasil Diupdate');
-  
-
-    }
+    DB::table('catatans')->insert($activitylog);
+    Pengaduan::where('id', $pengaduan->id)->update($validateData);
+  return back()->with('success', 'Tujuan Pengaduan Berhasil Diupdate');
+  }
 }

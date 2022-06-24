@@ -36,6 +36,7 @@ class CreatePengaduansTable extends Migration
               $table->text('petugas_image_3')->nullable();
               $table->string('rating')->nullable();
               $table->string('komentar')->nullable();
+              $table->string('used_email')->nullable();
             $table->timestamps();
         });
     }

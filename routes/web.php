@@ -59,39 +59,39 @@ $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbo
 });
 
 
-Route::get('cannot-access',[AuthController::class,'cannot_access'])->name('cannot_access');
+// Kalo yang login nda ad akses direct ke sini
+    Route::get('cannot-access',[AuthController::class,'cannot_access'])->name('cannot_access');
 
-Route::get('login',[AuthController::class,'index'])->name('login');
-Route::post('authenticate',[AuthController::class,'authenticate'])->name('authenticate');
-Route::post('logout',[AuthController::class,'logout'])->name('logout');
+// Controller Auth
+    Route::get('login',[AuthController::class,'index'])->name('login');
+    Route::post('authenticate',[AuthController::class,'authenticate'])->name('authenticate');
+    Route::post('logout',[AuthController::class,'logout'])->name('logout');
 
-
-
-        // Route Group untuk yang login
-        
-            
-            // =============================== Admin Page ================================= 
-            Route::group(['middleware' => ['auth','cek_level:admin']], (function (){
+// Route Group untuk yang login
+    // =============================== Admin Page ================================= 
+        Route::group(['middleware' => ['auth','cek_level:admin']], (function (){
             // Route::middleware(['auth','cek_level:admin'])->group (function (){
-                // Register Admin yang lain
+            
+            // Register Admin yang lain || Controller Auth
                 Route::get('register', [AuthController::class, 'register'])->name('register');
                 Route::post('register', [AuthController::class, 'store'])->name('register.store');
             
-                Route::get('admin',[AdminController::class,'index'])->name('admin.index');    
+            // Hapus data pengaduan 
                 Route::delete('admin/destroy/{pengaduan:kode}',[AdminController::class,'destroy'])->name('admin.destroy');    
+
+            // index & detail
+                Route::get('admin',[AdminController::class,'index'])->name('admin.index');    
                 Route::get('admin/detail/{pengaduan:kode}',[AdminController::class,'detail'])->name('admin.detail');    
                 
-                // Pengaduan Masuk Proses
+            // Pengaduan Masuk Proses
                 route::get('/admin/masuk/{pengaduan:kode}',[AdminController::class,'masuk'])->name('admin.masuk'); 
                 route::post('/admin/masuk/{pengaduan:kode}',[AdminController::class,'masuk_store'])->name('admin.masuk.store'); 
 
-                // Edit Tujuan
+            // Edit Tujuan
                 // route::get('/admin/tujuan/edit/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
                 route::post('/admin/tujuan/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
 
-                route::get('/jaringan',[JaringanController::class,'index'])->name('jaringan.index');
-
-                //  ==========================================
+                //  ========================================== Belum beking dia pe controller
                 // Server all
                 route::get('admin/server',[AdminController::class,'server'])->name('admin.server.index');
 
@@ -102,9 +102,10 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
                 route::get('admin/slip',[AdminController::class,'jaringan'])->name('admin.slip.index');
             }));
              
-            // =================================== Jaringan Page ==================================
-            Route::group(['middleware' => ['auth','cek_level:jaringan,admin']], (function (){
+    // =================================== Jaringan Page ==================================
+        Route::group(['middleware' => ['auth','cek_level:jaringan,admin']], (function (){
             // Route::middleware(['auth','cek_level:jaringan,admin'])->group (function (){
+            // index & detail jaringan
                 route::get('/jaringan',[JaringanController::class,'index'])->name('jaringan.index');
                 route::get('jaringan/detail/{pengaduan:kode}',[JaringanController::class,'detail'])->name('jaringan.detail');
 
@@ -119,22 +120,25 @@ Route::post('logout',[AuthController::class,'logout'])->name('logout');
 
   
 
-// ================================ POV Visitor 
+// ======== POV Visitor ===========
 
-// Pengaduan Email Verifying alternative 
-    Route::get('pengaduan', [PengaduanController::class,'index'])->name('pengaduan.index');
-    Route::post('pengaduan', [PengaduanController::class,'verify'])->name('pengaduan.verify-email');
-    Route::get('pengaduan/check', [PengaduanController::class,'check'])->name('pengaduan.check');
-    Route::post('pengaduan/check', [PengaduanController::class,'resend_email'])->name('pengaduan.resend_email');
+    // Pengaduan Email Verifying alternative 
+        // Verifikasi email (to create pengaduan)
+        Route::get('pengaduan', [PengaduanController::class,'index'])->name('pengaduan.index');
+        Route::post('pengaduan', [PengaduanController::class,'verify'])->name('pengaduan.verify-email');
+        
+        // Resend link verifikasi (to create pengaduan)
+        Route::get('pengaduan/check', [PengaduanController::class,'check'])->name('pengaduan.check');
+        Route::post('pengaduan/check', [PengaduanController::class,'resend_email'])->name('pengaduan.resend_email');
 
-//  untuk membuat pengaduan harus lewat email yang sudah dimasukkan
-    Route::get('pengaduan/create/{pengaduan:token}', [PengaduanController::class,'create'])->name('pengaduan.create');
-    Route::post('pengaduan/create/{pengaduan:token}', [PengaduanController::class,'store'])->name('pengaduan.store');
+    //  untuk membuat pengaduan harus lewat email yang sudah dimasukkan
+        Route::get('pengaduan/create/{pengaduan:token}', [PengaduanController::class,'create'])->name('pengaduan.create');
+        Route::post('pengaduan/create/{pengaduan:token}', [PengaduanController::class,'store'])->name('pengaduan.store');
 
-// Search Pengaduan
-    Route::get('pengaduan/search',[PengaduanController::class,'search'])->name('pengaduan.search');
-    
-// Rating
-    Route::get('pengaduan/detail/{pengaduan:kode}',[PengaduanController::class,'detail'])->name('pengaduan.detail');
-    Route::post('Pengaduan/detail/{pengaduan:kode}', [PengaduanController::class,'detail_store'])->name('pengaduan.detail.store');
+    // Search Pengaduan
+        Route::get('pengaduan/search',[PengaduanController::class,'search'])->name('pengaduan.search');
+        
+    // Rating
+        Route::get('pengaduan/detail/{pengaduan:kode}',[PengaduanController::class,'detail'])->name('pengaduan.detail');
+        Route::post('Pengaduan/detail/{pengaduan:kode}', [PengaduanController::class,'detail_store'])->name('pengaduan.detail.store');
 
