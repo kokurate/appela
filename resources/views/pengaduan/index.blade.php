@@ -80,28 +80,29 @@
 
 
 
-  <form action="{{ route('pengaduan.verify-email') }}" method="post" >
-    @csrf
-    
-    <img class="mb-4" src="/example/sign-in/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Verifikasi email</h1>
+    <form action="{{ route('pengaduan.verify-email') }}" method="post" >
+      @csrf
+      
+      <img class="mb-4" src="/example/sign-in/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+      <h1 class="h3 mb-3 fw-normal">Verifikasi email</h1>
 
-    <div class="form-floating">
-        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Email" required autofocus value="{{ old('email') }}"  oninput="this.value = this.value.replace(/[^a-zA-Z0-9#-+_.]/g, '').replace(/(\..*)\./g, '$1');" />
-        <label for="email">Email address</label>
-          @error('email')
-              <div class="invalid-feedback">
-                  {{ $message }}
-              </div>
-          @enderror
-      </div>
-  
+      <div class="form-floating">
+          <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Email" required autofocus value="{{ old('email') }}"  oninput="this.value = this.value.replace(/[^a-zA-Z0-9#-+_.]/g, '').replace(/(\..*)\./g, '$1');" />
+          <label for="email">Email address</label>
+            @error('email')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
+        </div>
     
-    <button class="w-100 btn btn-lg btn-primary" type="submit" >Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-  </form>
-</main>
+      
+      <button class="w-100 btn btn-lg btn-primary" type="submit" >Sign in</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+    </form>
+  </main>
 
+  @include('sweetalert::alert')
 
     
   </body>

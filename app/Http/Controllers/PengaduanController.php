@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use RealRashid\SweetAlert\Facades\Alert;
+
 use App\Http\Requests\PengaduanRequest;
 use App\Http\Requests\Resend_emailRequest;
 use App\Http\Requests\VerifyRequest;
@@ -19,6 +21,10 @@ use Illuminate\Support\Facades\DB;
 class PengaduanController extends Controller
 {
     public function index(){
+        Alert::success('Success Title', 'Success Message');
+        // alert()->success('SuccessAlert','Lorem ipsum dolor sit amet.');
+
+
         return view('pengaduan.index');
     }
 
