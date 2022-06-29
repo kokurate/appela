@@ -117,6 +117,8 @@ class PengaduanController extends Controller
         ]);
         // Validasi
             $validatedData = $request->validate($rules);
+
+            
         // Kalo image ada isi, store(), kalo nda kasih nilai null
             if($request->file('visitor_image_2')){
                 $validatedData['visitor_image_2'] = $request->file('visitor_image_2')
@@ -165,9 +167,10 @@ class PengaduanController extends Controller
             ];
 
     // Kirim Email
-       Mail::to($pengaduan->email)->send(new SendMailVisitor ($data)); 
+       Mail::to($pengaduan->email)->send(new SendMailVisitor ($data));
+       Alert::success('Pengaduan berhasil dibuat', 'Silahkan cek email anda untuk melihat kode pengaduan');
        return redirect()->route('pengaduan.search')
-                        ->with('success', 'Pengaduan Berhasil dibuat. Silahkan cek email anda untuk melihat kode pengaduan');
+                        ->with('berhasil', 'Pengaduan Berhasil dibuat. Silahkan cek email anda untuk melihat kode pengaduan');
     }
 
 // ========================================================================================== 
