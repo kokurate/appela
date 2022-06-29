@@ -18,7 +18,7 @@
     <div class="col-lg-7 text-center rounded shadow-lg p-3 mb-5 bg-body">
       <img src="/logo.jpg" alt="logo unima" class="rounded mx-auto d-block my-2" width="100px">
       <h4 style="color:rgb(99, 99, 99)" >Buat Pengaduan</h4>
-      <p class="my-2" style="color: red" >simbol * wajib diisi</p>
+      <p class="my-2" style="color: #ff0000" >simbol * wajib diisi</p>
       <hr class="mb-6">
       <!-- Open Form -->
       <div class="d-flex justify-content-center">
@@ -31,7 +31,7 @@
               </div> 
             <!-- Nama -->
               <div class="mb-3">
-                <label for="nama" class="form-label">Nama</label>
+                <label for="nama" class="form-label"><span style="color: #ff0000">*</span> Nama</label>
                 <input type="text" 
                 class="form-control  @error('nama') is-invalid @enderror" 
                 id="nama" name="nama" 
@@ -46,7 +46,7 @@
               </div> 
             <!-- Judul -->
               <div class="mb-3">
-                <label for="judul" class="form-label">Judul</label>
+                <label for="judul" class="form-label"><span style="color: #ff0000">*</span> Judul</label>
                 <input type="text" 
                 class="form-control @error('judul') is-invalid @enderror" 
                 id="judul" name="judul" 
@@ -61,7 +61,7 @@
               </div>
             <!-- Isi Pengaduan -->
               <div class="mb-3">
-                <label for="isi" class="form-label">isi</label>
+                <label for="isi" class="form-label"><span style="color: #ff0000">*</span> isi</label>
                 @error('isi')
                   <p class="text-danger">{{ $message }}</p>
                 @enderror
@@ -74,7 +74,7 @@
               </div>  
             <!-- Tujuan Pengaduan -->
               <div class="mb-3">
-                <label for="tujuan" class="form-label">Tujuan Pengaduan</label>
+                <label for="tujuan" class="form-label"><span style="color: #ff0000">*</span> Tujuan Pengaduan</label>
                 <select class="form-select" name="tujuan_id" >
                   <option selected>Pilih Tujuan Pengaduan Anda</option>
                 @foreach ($tujuan as $t)
@@ -93,7 +93,7 @@
               </div>  
             <!-- Upload Image  1-->
               <div class="mb-3">
-                <label for="visitor_image_1" class="form-label" >Image</label>
+                <label for="visitor_image_1" class="form-label" ><span style="color: #ff0000">*</span> Image</label>
                 {{-- Deklarasi Javascript untuk preview --}}
                 <img class="img-preview-visitor-1 img-fluid mb-3 col-sm-3">
                 <input 

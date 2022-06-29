@@ -78,10 +78,11 @@
 
           </div>
       </div>
+<!-- Id aktivasi email disini karena dia ta makan header-->
+    <div id="aktivasi-email"></div>
   </section>
 
   <hr>
-
 
       <!-- Start Footer Area -->
       <footer class="footer mt-0">
@@ -90,7 +91,7 @@
                   <div class="row align-items-center justify-content-center">
                       <div class="col-lg-4 col-12">
                           <div class="download-button">
-                              <div id="aktivasi-email" class="single-footer newsletter">
+                              <div class="single-footer newsletter">
                                   <h3>Aktivasi Email Anda
                                       <hr width="75%">
                                   </h3>
@@ -121,6 +122,8 @@
                                             @enderror
                                               
                                         <br>
+<!-- Id kirim ulang email disini karena dia t makan header di atas so itu nd dapa lia -->
+                                  <div id="kirim-ulang-link"></div>
                                         <div class="button ">
                                             <button class="btn" ><i class="lni lni-key"></i> Aktivasi Email! </button>
                                         </div>
@@ -132,7 +135,7 @@
 
                         
                                 <hr width="75%" >
-                              <h3 id="kirim-ulang-link" class="buat-pengaduan" style="margin-bottom: 10px">Kirim Ulang Link</h3>
+                              <h3 class="buat-pengaduan" style="margin-bottom: 10px">Kirim Ulang Link</h3>
                               <p>Jika tidak ada pesan yang masuk di email anda. Silahkan kirim ulang dengan klik button di bawah ini</p>
                               <br>
                               <div class="button mb-25">
@@ -178,7 +181,7 @@
 @endsection
 
 
-<!-- For Sweet Alert -->
+<!-- For Sweet Alert 2-->
 @section('javascript')
   @error('email')
     <script>
