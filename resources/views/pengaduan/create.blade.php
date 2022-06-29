@@ -1,6 +1,60 @@
 @extends('pengaduan.layouts.master')
+
+@section('header')
+
+@endsection
+
 @section('content')
-    <div class="container my-5">
+<div class="container my-2">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-6 text-center rounded shadow-lg p-3 mb-5 bg-body">
+      <img src="/logo.jpg" alt="logo unima" class="rounded mx-auto d-block my-2" width="100px">
+      <h4 style="color:rgb(99, 99, 99)" >Buat Pengaduan</h4>
+      <p class="my-2" style="color: red" >simbol * wajib diisi</p>
+      <hr class="mb-6">
+      <!-- Open Form -->
+      <div class="d-flex justify-content-center">
+        <di v class="col-11 text-left">
+          <form method="post" action="{{ $token }}" enctype="multipart/form-data">
+            @csrf
+            <!-- Email -->
+              <div class="mb-3">
+                <h5 style="color:rgb(99, 99, 99) ">Email : {{ $pengaduan->email }}</h5>
+              </div> 
+            <!-- Nama -->
+              <div class="mb-3">
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" 
+                class="form-control  @error('nama') is-invalid @enderror" 
+                id="nama" name="nama" 
+                value="{{ old('nama') }}"
+                required >
+                @error('nama')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+                @enderror
+              </div> 
+              <!-- Judul -->
+              <div class="mb-3">
+                <label for="judul" class="form-label">Judul</label>
+                <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul" name="judul" required  value="{{ old('judul') }}" >
+                @error('judul')
+                <div class="invalid-feedback">
+                  {{ $message }}
+                </div>
+                @enderror
+              </div>
+
+          </form>
+        </di> <!-- End Col 6 -->
+      </div> <!-- End-flex justify-content-center-->
+    </div> <!-- End col = text-center rounded shadow-lg p-3 mb-5 bg-body  -->
+  </div> <!-- End Row = d-flex justify-content-center-->
+</div> <!-- End Container -->
+
+
+    <div class="container my-5 card">
         <h3>Ini halaman {{ $title }}</h3>
 
       <div class="col-lg-8">
