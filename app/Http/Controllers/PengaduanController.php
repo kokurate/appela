@@ -17,6 +17,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class PengaduanController extends Controller
 {
@@ -106,17 +107,36 @@ class PengaduanController extends Controller
     } 
 
     public function store(Pengaduan $pengaduan, Request $request){
-        $rules = ([   
+        $validator = Validator::make($request->all(),[
             'nama' => 'required',
             'judul' => 'required|max:255',
+            'isi' => 'required',
             'tujuan_id' => 'required|in:1,2,3,4,5,6,7',
             'visitor_image_1' => 'required|image|file|max:1024',
             'visitor_image_2' => '|image|file|max:1024',
             'visitor_image_3' => '|image|file|max:1024',
-            'isi' => 'required',
+        ],
+        [
+            'nama.required' => 'Nama harus diisi',
+            'judul.required' => 'Judul Harus diisi',
+            'tujuan_id.required' => 'Pilih Tujuan Pengaduan',
+            'tujuan_id.in' => 'Pilih Tujuan Pengaduan',
+            'isi.required' => 'Isi tidak boleh kosong',
+            'visitor_image_1.required' => 'Gambar 1 tidak boleh kosong',
+            'visitor_image_1.image' => 'Gambar 1 harus format gambar',
+            'visitor_image_1.max' => 'Gambar 1 tidak boleh lebih dari 1MB',
+            'visitor_image_2.image' => 'Gambar 2 harus format gambar',
+            'visitor_image_2.max' => 'Gambar 2 tidak boleh lebih dari 1MB',
+            'visitor_image_3.image' => 'Gambar 3 harus format gambar',
+            'visitor_image_3.max' => 'Gambar 3 tidak boleh lebih dari 1MB',
         ]);
+        // Kalo error kase alert error
+            if($validator->fails()){
+                return back()->with('toast_error', $validator->errors()->all()[0])->withInput()->withErrors($validator);
+            }
         // Validasi
-            $validatedData = $request->validate($rules);
+            // $validatedData = $request->validate($rules);
+            $validatedData = $validator->validated();
 
             
         // Kalo image ada isi, store(), kalo nda kasih nilai null
