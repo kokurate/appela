@@ -1,0 +1,58 @@
+.apply-process-2 {
+    background-color: #ffffff;
+    padding: 50px 0;
+}
+
+.apply-process-2 .process-item-2 {
+    padding-left: 92px;
+    position: relative;
+    padding-right: 25px;
+}
+
+.apply-process-2 .process-item-2 i {
+    font-size: 30px;
+    color: rgb(36, 36, 36);
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 65px;
+    width: 65px;
+    border: 1px dashed rgb(0, 0, 0);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 62px;
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.apply-process-2 .process-item-2:hover i {
+    background-color: rgb(121, 114, 218);
+    color: hwb(0 0% 100%);
+    border-color: transparent;
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+
+.apply-process-2 .process-item-2 h4 {
+    font-size: 18px;
+    color: rgb(0, 0, 0);
+    position: relative;
+    display: block;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+}
+
+.apply-process-2 .process-item-2 h4::before {
+    position: absolute;
+    content: "";
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 50px;
+    background-color: rgb(0, 0, 0);
+}
+
+.apply-process-2 .process-item-2 p {
+    color: rgb(0, 0, 0);
+    display: block;
+}

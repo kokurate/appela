@@ -21,11 +21,13 @@ use Illuminate\Support\Facades\DB;
 class PengaduanController extends Controller
 {
     public function index(){
-        Alert::success('Success Title', 'Success Message');
+        // Alert::success('Success Title', 'Success Message');
         // alert()->success('SuccessAlert','Lorem ipsum dolor sit amet.');
-
-
-        return view('pengaduan.index');
+        return view('pengaduan.index',[
+            'title' => 'Pengaduan',
+            'page_title_1' => 'Sebelum membuat pengaduan, mohon untuk  dibaca',
+            'page_title_2' => '  dengan seksama ketentuan untuk membuat aduan.',
+        ]);
     }
 
 // =============================================================================== 
@@ -43,15 +45,20 @@ class PengaduanController extends Controller
             ];
         // Send to email
         Mail::to($validated['email'])->send(new VerifyAlternative($data));
+        Alert::success('Registrasi Email Berhasil', 'Silahkan cek email anda untuk membuat pengaduan');
         return redirect()
             ->route('pengaduan.check')
-            ->with('success', 'Registrasi Email berhasil. Silahkan cek email anda untuk membuat pengaduan');
+            ->with('berhasil', 'Registrasi Email berhasil. Silahkan cek email anda untuk membuat pengaduan');
     }
 
 // ===================================================================================
     // Halaman resending email dan landing page saat berhasil registrasi email
     public function check(){
-        return view('pengaduan.check');
+        return view('pengaduan.check',[
+            'title' => 'Kirim Ulang Link',
+            'page_title_1' => 'Jika tidak ada email yang masuk tapi kalian sudah mendaftarkannya.',
+            'page_title_2' => 'Silahkan daftarkan kembali email anda',
+        ]);
     }
 
     // Saat mereka memasukkan email mereka and click the button
@@ -64,8 +71,9 @@ class PengaduanController extends Controller
         $post=  Pengaduan::where('email', $validated['email'])->first();
             // Tampilkan error
                   if(is_null($post)) {
+                    Alert::error('Opps...', 'Email belum terdaftar');
                       return redirect()->route('pengaduan.check')
-                                       ->with('error','Email belum terverifikasi');
+                                       ->with('gagal','Email belum terdaftar');
                   }
             //Kalo sesuai update token   
                   else{
@@ -79,8 +87,9 @@ class PengaduanController extends Controller
                 ];
             // Kirim ke email
                 Mail::to($validated['email'])->send(new VerifyAlternative($data));
+                Alert::success('Kirim Ulang Email Berhasil', 'Link baru sudah dikirimkan. Silahkan cek email anda untuk membuat pengaduan');
             return redirect()->route('pengaduan.check')
-                             ->with('success','Link baru sudah dikirimkan. Silahkan cek email anda untuk membuat pengaduan');
+                             ->with('berhasil','Link baru sudah dikirimkan. Silahkan cek email anda untuk membuat pengaduan');
     }
 
 // =====================================================================================
@@ -88,6 +97,8 @@ class PengaduanController extends Controller
     public function create(Pengaduan $pengaduan , Request $request){
         return view('pengaduan.create',[
             'title' => 'Buat Pengaduan',
+            'page_title_1' => 'Masukkan pengaduan anda di bawah ini',
+            'page_title_2' => '',
             'tujuan' => Tujuan::all(), // Untuk pangge tujuan pengaduan
             'token' => $request->url(), // request->url is to take the request from url
             "pengaduan" =>$pengaduan->load('tujuan')
@@ -179,6 +190,8 @@ class PengaduanController extends Controller
             // Kalau ada request yang berisi search didalam filter maka ambil datanya (get)
             // "kode" => Pengaduan::filter(request(['search']))->paginate(5)->withQueryString(),
             "kode" => $cari->paginate(5)->withQueryString(), // Ambil filter dari model Pengaduan, apapun yang ada di query string sebelumnya bawa
+            'page_title_1' => 'Masukkan kode pengaduan yang masuk',
+            'page_title_2' => 'di email kalian untuk melihat detail pengaduan',
         ])->with('i', ($request->input('page', 1) - 1) * $pagination); // code for paginate       
     }
 

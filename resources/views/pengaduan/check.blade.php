@@ -1,111 +1,104 @@
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Signin Template · Bootstrap v5.0</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
-
-    
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    {{-- Css --}}
-    <link rel="stylesheet" href="/example/sign-in/signin.css">
-
-    <!-- Favicons -->
-<link rel="apple-touch-icon" href="/example/sign-in/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/example/sign-in/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/example/sign-in/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/example/sign-in/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="/example/sign-in/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
-<link rel="icon" href="/example/sign-in/assets/img/favicons/favicon.ico">
-<meta name="theme-color" content="#7952b3">
-
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
-  </head>
-  <body class="text-center">
-    
- 
-
-<main class="form-signin">
+@extends('pengaduan.layouts.master')
+@section('content')
 
       {{-- Flash data --}}
-  @if(session()->has('success'))
+  @if(session()->has('berhasil'))
   <div class="alert alert-success alert-dismissible fade show" role="alert">
-      {{ session('success') }}
+      {{ session('berhasil') }}
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 @endif
 
-{{-- @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
+
+  {{-- Flash data --}}
+  @if(session()->has('gagal'))
+  <div class="alert alert-danger d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+      {{ session('gagal') }}
     </div>
-@endif --}}
+  </div>
+  @endif
 
- {{-- Flash data --}}
- @if(session()->has('error'))
- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-     {{ session('error') }}
-     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
- </div>
-@endif
-
-
-
-
-
-  <form action="{{ route('pengaduan.resend_email') }}" method="post">
-    @csrf
-    
-    <img class="mb-4" src="/example/sign-in/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Landing Page After Registration</h1>
-
-    <div class="form-floating">
-        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Email" required autofocus value="{{ old('email') }}"  oninput="this.value = this.value.replace(/[^a-zA-Z0-9#-+_.]/g, '').replace(/(\..*)\./g, '$1');" />
-        <label for="email">Email address</label>
-          @error('email')
-              <div class="invalid-feedback">
-                  {{ $message }}
+<!-- Start Footer Area -->
+<footer class="footer mt-0">
+  <div class="footer-top">
+      <div class="container">
+          <div class="row align-items-center justify-content-center">
+              <div class="col-lg-4 col-12">
+                  <div class="download-button">
+                      <div id="aktivasi-email" class="single-footer newsletter">
+                          <h3>Kirim Ulang Email
+                              <hr width="75%">
+                          </h3>
+                          <p class="d-flex text-left">Jika kalian sudah mendaftarkan email kalian tetapi tidak ada pesan yang masuuk di email. Silahkan meminta untuk mengirimkan ulang dengan memasukkan email yang kalian sudah registrasikan </p>
+                            <div class="row my-0">
+                                <form action="{{ route('pengaduan.resend_email') }}" method="post" class=" form-inline">
+                                  @csrf
+                                    <div class="input-group-text">
+                                        <div class="col-8">
+                                        
+                                            <input type="text" 
+                                            name="email" 
+                                            value="{{ old('email') }}"
+                                            placeholder="Email unima anda" 
+                                            class="common-input"
+                                            onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Email Anda'" 
+                                            oninput="this.value = this.value.replace(/[^a-zA-Z0-9#-+_.]/g, '').replace(/(\..*)\./g, '$1');" required >
+                                        </div>
+                                        <div class="col-4 my-0">
+                                                <span  id="basic-addon2" style="color: black;">@unima.ac.id</span>
+                                        </div>
+                                    </div>
+                                    @error('email')
+                                    <div class="is-invalid">
+                                        <p style="color: red">{{ $message }}</p>
+                                    </div>
+                                    @enderror
+                                      
+                                <br>
+                                <div class="button ">
+                                    <button class="btn" ><i class="lni lni-key"></i> Resend Email </button>
+                                </div>
+                            </form>
+                          </div>
+                
+                        <br>
+                      </div>
+                  </div>
               </div>
-          @enderror
+
+              <!-- Supaya ada space kasih seolah-olah ditengah ada isi -->
+              <div class="col-lg-2 col-12">
+              </div>
+
+
+              <div class="col-lg-4 col-12">
+                  <div class="download-text">
+                      {{-- <h3 class="">You Are Ready To Go >></h3> --}}
+                      <img src="/logoappela.png" class="img-fluid  " alt="Responsive image" width="1000px" >
+                    
+                  </div>
+                  <h3>Tentang APPELA</h3>
+                  <div class="contact-address mt-2">
+                      <p>Aplikasi Pengaduan Layanan <strong>(APPELA)</strong> merupakan aplikasi yang menangani pengaduan-pengaduan terhadap layanan yang disediakan oleh Pusat Komputer, Universitas Negeri Manado  </p>
+                      <ul class="contact-address text-left mt-2">
+                          <li><strong>Alamat:</strong> Jl. Kampus Unima, Kelurahan Tonsaru, Kecamatan Tondano Selatan</li>
+                          <li><strong>Email:</strong> puskom@unima.ac.id</li>
+                          <li><strong>Jam Kerja:</strong> Senin - Jumat 8:30 AM - 6:30 PM</li>
+                      </ul>
+                  </div>
+
+
+
+              
+              </div>
+
+                
+          </div>
       </div>
-  
-    
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Resend Pengaduan</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-  </form>
-</main>
-
-
-    
-  </body>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-</html>
+  </div>
+</footer>  
+<!--/ End Footer Middle -->
+  @endsection

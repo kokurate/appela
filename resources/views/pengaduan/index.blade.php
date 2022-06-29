@@ -1,112 +1,193 @@
+@extends('pengaduan.layouts.master')
+@section('content')
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Signin Template · Bootstrap v5.0</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
-
-    
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    {{-- Css --}}
-    <link rel="stylesheet" href="/example/sign-in/signin.css">
-
-    <!-- Favicons -->
-<link rel="apple-touch-icon" href="/example/sign-in/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/example/sign-in/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/example/sign-in/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/example/sign-in/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="/example/sign-in/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
-<link rel="icon" href="/example/sign-in/assets/img/favicons/favicon.ico">
-<meta name="theme-color" content="#7952b3">
+<!-- Start Pricing Table Area -->
+  <br>
+      <div class="container mt-15">
+          <div class="row">
+              <div class="col-12">
+                  <div class="section-title">
+                      <h2 class="wow fadeInUp" data-wow-delay=".4s">Cara Membuat Pengaduan melalui APPELA</h2>
+                      <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
+                          Ipsum available, but the majority have suffered alteration in some form.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
 
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+    <!-- Start Apply Process Area -->
+    <section class="apply-process section">
+      <div class="container my-0">
+          <div class="row">
+              <div class="col-lg-4 col-md-4 col-12">
+                  <div class="process-item">
+                      <i class="lni lni-delivery"></i>
+                      <h4>1. Aktivasi Email</h4>
+                      <p>Langkah pertama yang harus dilakukan adalah registrasi dan aktivasikan email.
+                          Email yang bisa digunakan hanyalah email UNIMA dengan domain "@unima.ac.id" diluar domain ini tidak akan bisa membuat pengaduan.
+                      </p>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-12">
+                  <div class="process-item">
+                      <i class="lni lni-pencil-alt"></i>
+                      <h4>2. Buat Pengaduan</h4>
+                      <p>Selanjutnya anda bisa membuat pengaduan dengan memasukkan data-data yang diperlukan di dalam form yang ada melalui link yang sudah dikirimkan ke email yang anda registrasikan sebelumnya</p>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-4 col-12">
+                  <div class="process-item">
+                      <i class="lni lni-lock"></i>
+                      <h4>3. Cek Email</h4>
+                      <p>Setelah anda berhasil membuat pengaduan. Anda akan mendapatkan kode pengaduan yang dikirimkan ke email anda. Demi alasan keamanan data pengaduan, jangan diberikan kepada siapapun kode pengaduan ini</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!--/ End Apply Process Area -->
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
-  </head>
-  <body class="text-center">
-    
- 
-
-<main class="form-signin">
-
-      {{-- Flash data --}}
-  @if(session()->has('success'))
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-      {{ session('success') }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-@endif
-
-{{-- @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif --}}
-
- {{-- Flash data --}}
- @if(session()->has('error'))
- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-     {{ session('error') }}
-     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
- </div>
-@endif
-
-
-
-
-
-    <form action="{{ route('pengaduan.verify-email') }}" method="post" >
-      @csrf
-      
-      <img class="mb-4" src="/example/sign-in/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h1 class="h3 mb-3 fw-normal">Verifikasi email</h1>
-
-      <div class="form-floating">
-          <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Email" required autofocus value="{{ old('email') }}"  oninput="this.value = this.value.replace(/[^a-zA-Z0-9#-+_.]/g, '').replace(/(\..*)\./g, '$1');" />
-          <label for="email">Email address</label>
-            @error('email')
-                <div class="invalid-feedback">
-                    {{ $message }}
+    <section class="apply-process-2 section">
+      <div class="container my-10">
+          <div class="row my-10">
+              <div class="col-lg-4 col-md-4 col-12">
+                  <div class="process-item-2">
+                  <i class="lni lni-search"></i>
+                  <h4>4. Cari Pengaduan</h4>
+                  <p>Masukkan kode pengaduan yang dikirimkan ke email kalian sebelumnya untuk melihat detail pengaduan kalian</p>
+                  </div>
+                  <br>
+              </div>
+              {{--  --}}
+              <div class="col-lg-4 col-md-4 col-12">
+                  <div class="process-item-2">
+                  <i class="lni lni-revenue"></i>
+                  <h4>5. Berikan Tanggapan</h4>
+                  <p>Setelah pengaduan kalian diselesaikan, jangan lupa untuk memberikan tanggapan dan juga rating</p>
+                    </div>
+                    <br>
                 </div>
-            @enderror
-        </div>
-    
-      
-      <button class="w-100 btn btn-lg btn-primary" type="submit" >Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-    </form>
-  </main>
+              <div class="col-lg-4 col-md-4 col-12">
+                  <div class="process-item-2">
+                  <i class="lni lni-arrow-down-circle"></i>
+                  <h4>Silahkan registrasi terlebih dahulu email anda di bawah ini</h4>
+                  <p></p>
+                    </div>
+                </div>
 
-  @include('sweetalert::alert')
+          </div>
+      </div>
+  </section>
 
-    
-  </body>
+  <hr>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-</html>
+      <!-- Start Footer Area -->
+      <footer class="footer mt-0">
+          <div class="footer-top">
+              <div class="container">
+                  <div class="row align-items-center justify-content-center">
+                      <div class="col-lg-4 col-12">
+                          <div class="download-button">
+                              <div id="aktivasi-email" class="single-footer newsletter">
+                                  <h3>Aktivasi Email Anda
+                                      <hr width="75%">
+                                  </h3>
+                                  <p>Aktifkan email anda jika ingin membuat pengaduan</p>
+                                    <div class="row my-0">
+                                        <form action="{{ route('pengaduan.verify-email') }}" method="post" class=" form-inline">
+                                          @csrf
+                                            <div class="input-group-text">
+                                                <div class="col-8">
+                                                
+                                                    <input type="text" 
+                                                    name="email" 
+                                                    value="{{ old('email') }}"
+                                                    placeholder="Email unima anda" 
+                                                    class="common-input"
+                                                    onfocus="this.placeholder = ''"
+                                                    onblur="this.placeholder = 'Email Anda'" 
+                                                    oninput="this.value = this.value.replace(/[^a-zA-Z0-9#-+_.]/g, '').replace(/(\..*)\./g, '$1');" required >
+                                                </div>
+                                                <div class="col-4 my-0">
+                                                        <span  id="basic-addon2" style="color: black;">@unima.ac.id</span>
+                                                </div>
+                                            </div>
+                                            @error('email')
+                                            <div class="is-invalid">
+                                                <p style="color: red" class="d-flex text-left">{{ $message }}</p>
+                                            </div>
+                                            @enderror
+                                              
+                                        <br>
+                                        <div class="button ">
+                                            <button class="btn" ><i class="lni lni-key"></i> Aktivasi Email! </button>
+                                        </div>
+                                    </form>
+                                  </div>
+                        
+                              
+                                <br>
+
+                        
+                                <hr width="75%" >
+                              <h3 id="kirim-ulang-link" class="buat-pengaduan" style="margin-bottom: 10px">Kirim Ulang Link</h3>
+                              <p>Jika tidak ada pesan yang masuk di email anda. Silahkan kirim ulang dengan klik button di bawah ini</p>
+                              <br>
+                              <div class="button mb-25">
+                                  <a class="btn" href="{{ route('pengaduan.check') }}"><i class="lni lni-circle-plus"></i>Resend Link</a>
+                              
+                              </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <!-- Supaya ada space kasih seolah-olah ditengah ada isi -->
+                      <div class="col-lg-2 col-12">
+                      </div>
+
+
+                      <div class="col-lg-4 col-12">
+                          <div class="download-text">
+                              {{-- <h3 class="">You Are Ready To Go >></h3> --}}
+                              <img src="/logoappela.png" class="img-fluid  " alt="Responsive image" width="1000px" >
+                            
+                          </div>
+                          <h3>Tentang APPELA</h3>
+                          <div class="contact-address mt-2">
+                              <p>Aplikasi Pengaduan Layanan <strong>(APPELA)</strong> merupakan aplikasi yang menangani pengaduan-pengaduan terhadap layanan yang disediakan oleh Pusat Komputer, Universitas Negeri Manado  </p>
+                              <ul class="contact-address text-left mt-2">
+                                  <li><strong>Alamat:</strong> Jl. Kampus Unima, Kelurahan Tonsaru, Kecamatan Tondano Selatan</li>
+                                  <li><strong>Email:</strong> puskom@unima.ac.id</li>
+                                  <li><strong>Jam Kerja:</strong> Senin - Jumat 8:30 AM - 6:30 PM</li>
+                              </ul>
+                          </div>
+
+
+
+                      
+                      </div>
+
+                        
+                  </div>
+              </div>
+          </div>
+    </footer>  
+    <!--/ End Footer Middle -->
+@endsection
+
+
+<!-- For Sweet Alert -->
+@section('javascript')
+  @error('email')
+    <script>
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Email ini sedang melakukan Pengaduan. Tunggu pengaduan selesai untuk membuat pengaduan kembali',
+        footer: '<a href="#aktivasi-email">Cek Kesalahan</a>'
+      })
+    </script>
+  @enderror
+@endsection
