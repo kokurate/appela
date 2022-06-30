@@ -1,114 +1,123 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
+
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Signin Template · Bootstrap v5.0</title>
+    <!--===============================================================================================-->
+    <!-- <link rel="icon" type="image/png" href="/templates/login/images/icons/favicon.ico" /> -->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/templates/login/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/templates/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/templates/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/templates/login/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/templates/login/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/templates/login/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/templates/login/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/templates/login/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="/templates/login/css/util.css">
+    <link rel="stylesheet" type="text/css" href="/templates/login/css/main.css">
+    <!--===============================================================================================-->
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+    <!-- bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-    
+</head>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<body>
 
-    {{-- Css --}}
-    <link rel="stylesheet" href="/example/sign-in/signin.css">
-
-    <!-- Favicons -->
-<link rel="apple-touch-icon" href="/example/sign-in/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/example/sign-in/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/example/sign-in/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/example/sign-in/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="/example/sign-in/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
-<link rel="icon" href="/example/sign-in/assets/img/favicons/favicon.ico">
-<meta name="theme-color" content="#7952b3">
+    <div class="limiter">
+        <div class="container-login100" style="background-image: url('/templates/login/images/1.jpg');">
+            <!-- <img src="/templates/login/images/bg-01.jpg" style="background-image: ;"> -->
+            <div class="wrap-login100 p-t-30 p-b-50">
+                <span class="login100-form-title p-b-41">
+                   APPELA Login
+                </span>
 
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+                {{-- Flash data --}}
+                @if(session()->has('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+                
+                {{-- Flash data --}}
+                @if(session()->has('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
 
-    
-    <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
-  </head>
-  <body class="text-center">
-    
- 
+                <form action="{{ route('authenticate') }}" method="post" class="login100-form validate-form p-b-33 p-t-5" enctype="multipart/form-data">
+                    @csrf
 
-<main class="form-signin">
+                    <!-- email -->
+                    <div class="wrap-input100 validate-input" data-validate="Masukkan email">
+                        <input type="email" class="input100" name="email" placeholder="Masukkan Email" value="{{ old('email') }}">
+                        <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+                    </div>
 
-      {{-- Flash data --}}
-  @if(session()->has('success'))
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-      {{ session('success') }}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-@endif
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                        <input type="password" name="password" class="input100  " placeholder="Masukkan Password" autocomplete="off">
 
-{{-- @if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
+                        <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+                    </div>
+                    <br>
+                    <div class="container-login100-form-btn m-t-32">
+                        <button type="submit" class="login100-form-btn">
+                            Login
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <a href="/" class="badge badge-outline-dark  m-t-32" style="color: black;">Kembali Ke Home</a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-@endif --}}
-
- {{-- Flash data --}}
- @if(session()->has('error'))
- <div class="alert alert-danger alert-dismissible fade show" role="alert">
-     {{ session('error') }}
-     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
- </div>
-@endif
 
 
+    <div id="dropDownSelect1"></div>
 
+    <!--===============================================================================================-->
+    <script src="/templates/login/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/templates/login/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/templates/login/vendor/bootstrap/js/popper.js"></script>
+    <script src="/templates/login/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/templates/login/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="/templates/login/vendor/daterangepicker/moment.min.js"></script>
+    <script src="/templates/login/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="/templates/login/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="/templates/login/js/main.js"></script>
 
+    <!-- Script fade down pesan gagal -->
+    <script>
+        window.setTimeout(function() {
+            $(".alert").fadeTo(500, 0).slideUp(500, function() {
+                $(this).remove();
+            });
+        }, 3000);
+    </script>
 
-  <form action="{{ route('authenticate') }}" method="post">
-    @csrf
-    
-    <img class="mb-4" src="/example/sign-in/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
-    <div class="form-floating">
-        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Email" required autofocus value="{{ old('email') }}">
-        <label for="email">Email address</label>
-          @error('email')
-              <div class="invalid-feedback">
-                  {{ $message }}
-              </div>
-          @enderror
-      </div>
-  
-      <div class="form-floating">
-        <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
-        <label for="password">Password</label>
-      </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-  </form>
-</main>
-
-
-    
-  </body>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
 
 </html>

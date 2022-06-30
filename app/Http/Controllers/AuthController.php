@@ -24,6 +24,9 @@ class AuthController extends Controller
             // 'email' => 'required|email:dns',
             'email' => 'required|',
             'password' => 'required'
+        ],
+        [
+            'email.required' => 'Email harus diisi',
         ]);
         // $credentials =  $request->only('email','password');
             // Jika login berhasil
