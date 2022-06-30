@@ -186,7 +186,7 @@
                         @enderror
                         <div class=" d-block mt-2" style="width: 75%">
                           <label for="exampleFormControlTextarea1" class="form-label">Tanggapan kepada petugas</label>
-                          <textarea class="form-control @error('komentar') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="komentar"  value="{{ old('komentar') }}"></textarea>
+                          <textarea class="form-control @error('komentar') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="komentar" >{{ old('komentar') }}</textarea>
                         </div>
                         <div class="d-block float-left mt-3">
                               <button type="submit" class="btn btn-primary">Tambah Rating</button>
