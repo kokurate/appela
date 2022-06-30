@@ -43,19 +43,20 @@
                    APPELA Login
                 </span>
 
+                @include('sweetalert::alert')
 
                 {{-- Flash data --}}
-                @if(session()->has('success'))
+                @if(session()->has('berhasil'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ session('success') }}
+                    {{ session('berhasil') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
                 
                 {{-- Flash data --}}
-                @if(session()->has('error'))
+                @if(session()->has('gagal'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('error') }}
+                    {{ session('gagal') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif

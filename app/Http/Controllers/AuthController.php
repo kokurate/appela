@@ -42,10 +42,12 @@ class AuthController extends Controller
                     return redirect()->intended('jaringan');
                 }
                 // Jika tidak semua maka akan dikembalikan ke halaman route
-                return redirect()->intended('login')->with('error', 'Login Gagal');
+                toast('Login Gagal','error');
+                return redirect()->intended('login')->with('gagal', 'Login Gagal');
         } else
         // Jika tidak login maka kembalikan ke halaman login
-        return back()->with('error', 'Login Gagal');
+        toast('Login Gagal','error');
+        return back()->with('gagal', 'Login Gagal');
 
 
     }
@@ -57,8 +59,8 @@ class AuthController extends Controller
         
         $request->session()->regenerateToken();
 
-        $request->session()->flash('success', 'Anda Berhasil Keluar');
-        
+        $request->session()->flash('berhasil', 'Anda Berhasil Keluar');
+        toast('Anda berhasil keluar','success');
         return redirect()->route('login');
     
     }
