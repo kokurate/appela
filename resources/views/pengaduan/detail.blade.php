@@ -186,7 +186,10 @@
                         @enderror
                         <div class=" d-block mt-2" style="width: 75%">
                           <label for="exampleFormControlTextarea1" class="form-label">Tanggapan kepada petugas</label>
-                          <textarea class="form-control @error('komentar') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="komentar" >{{ old('komentar') }}</textarea>
+                          <textarea class="form-control @error('komentar') is-invalid @enderror" id="exampleFormControlTextarea1" rows="5" name="komentar" >{{ old('komentar') }}</textarea>
+                          @error('komentar')
+                            <p style="color: rgb(255, 0, 0)">{{ $message }}</p>
+                          @enderror
                         </div>
                         <div class="d-block float-left mt-3">
                               <button type="submit" class="btn btn-primary">Tambah Rating</button>
@@ -247,6 +250,9 @@
                 <div class="tab-pane fade show active" id="tabs-text-1" role="tabpanel" aria-labelledby="tabs-text-1-tab">
                   Pengaduan diupdate : <b style="color: rgb(255, 0, 0);">{{ $pengaduan->updated_at }}</b>
                   <hr class="my-2">
+                  @if($pengaduan->keterangan == NULL)
+                      <p> Petugas belum memberikan tanggapan</p>
+                  @endif
                    <p class="description">{{ $pengaduan->keterangan }}</p>
                 </div>
                 <!-- Isi Tab 2 -->
