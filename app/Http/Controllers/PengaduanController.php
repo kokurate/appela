@@ -220,7 +220,7 @@ class PengaduanController extends Controller
 
     public function detail(Pengaduan $pengaduan){
         return view('pengaduan.detail',[
-            "title" => "Detail Pengaduan User",
+            "title" => "Detail Pengaduan",
             // Lazy Eager Loading
             "pengaduan" =>$pengaduan->load('tujuan'),
             'log' => Catatan::where('pengaduan_id', $pengaduan->id)->get()->load('pengaduan'),
@@ -229,20 +229,41 @@ class PengaduanController extends Controller
 
     // ================================== For Rating ========================================
     public function detail_store(Pengaduan $pengaduan, Request $request){
-        $validatedata = $request->validate([
-            'rating' => 'required'
+        //yang lama
+        // $validatedata = $request->validate([
+        //         'rating' => 'required',
+        //         'komentar' => 'required'
+        //     ],
+        //     [
+        //         'rating.required' => 'Rating harus diisi',
+        //         'komentar.required' => 'Komentar harus diisi'
+        //     ]);
+
+
+        $validator = Validator::make($request->all(),[
+            'rating' => 'required',
+            'komentar' => 'required'
         ],
         [
             'rating.required' => 'Rating harus diisi',
+            'komentar.required' => 'Komentar harus diisi'
         ]);
+        // Kalo error kase alert error
+            if($validator->fails()){
+                return back()->with('toast_error', $validator->errors()->all()[0])->withInput()->withErrors($validator);
+            }
+        // Validasi
+            // $validatedData = $request->validate($rules);
+            $validatedData = $validator->validated();
 
     // kalo request komentar tidak sama dengan null (ada isi)
-        if($request->komentar !=  null ){
-            // ambe depe data
-            $validatedata['komentar'] = $request->komentar;
-        }
+        // if($request->komentar !=  null ){
+        //     // ambe depe data
+        //     $validatedata['komentar'] = $request->komentar;
+        // }
+
     // Update rating
-    Pengaduan::where('id' , $pengaduan->id)->update($validatedata);
+    Pengaduan::where('id' , $pengaduan->id)->update($validatedData);
 
         // Setup Activity Log
             $activitylog = [

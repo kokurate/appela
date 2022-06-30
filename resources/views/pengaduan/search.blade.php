@@ -25,23 +25,22 @@
        
           {{-- Kalau search[kode] === kode tampilkan datanya --}}
           @if ($kode->count())
-                        <table class="table table-hover">
+                    <div class="d-flex text-center">
+                        <table class="table table-hover justify-content-center">
                         <tr>
                             <th>#</th>
-                            <th>judul</th>
                             <th>kode</th>
                             <th>Detail</th>
                         </tr>
                     @foreach ($kode as $k )
                         <tr>
                             <th scope="row">{{ ++$i }}</th>
-                            <td>{{ $k->judul }}</td>
                             <td>{{ $k->kode }}</td>
                             <td><a href="/pengaduan/detail/{{ $k->kode }}">detail</a></td>
                         </tr>
                     @endforeach
                         </table>
-                    
+                    </div>
              {{-- Kalau tidak sama tampilkan ini --}}
              @else 
              <p class="text-center fs-4">Tidak ada pengaduan</p>

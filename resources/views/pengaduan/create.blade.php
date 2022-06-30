@@ -97,8 +97,7 @@
                 {{-- Deklarasi Javascript untuk preview --}}
                 <img class="img-preview-visitor-1 img-fluid mb-3 col-sm-3">
                 <input 
-                class="form-control 
-                @error('visitor_image_1') is-invalid @enderror" 
+                class="form-control @error('visitor_image_1') is-invalid @enderror" 
                 type="file" id="visitor_image_1" 
                 name="visitor_image_1" 
                 onchange="previewVisitor_image_1();">
