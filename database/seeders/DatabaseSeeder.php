@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
 
 
     // Create a 20 fresh data from factory
-        Pengaduan::factory(50)->create();
+        // Pengaduan::factory(50)->create();
 
 
     }

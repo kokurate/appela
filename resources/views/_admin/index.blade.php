@@ -1,110 +1,292 @@
+@extends('_layouts.master')
+@section('content')
+  
+    <div class="container-fluid py-4">
+    <!-- Card Section --> 
+      <div class="row">
+        <!--  Jaringan -->
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <a href="{{ route('jaringan.index') }}">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
+                    <h5 class="font-weight-bolder">{{ $jaringan }}</h5>
+                    <p class="mb-0">
+                      <strong>Jaringan</strong>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="fa fa-solid fa-wifi text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+        <!-- Server -->
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <a href="#">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
+                    <h5 class="font-weight-bolder">{{ $server }}</h5>
+                    <p class="mb-0">
+                      <strong>Server</strong>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                    <i class="fa fa-server text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+        <!-- Sistem Informasi -->
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+        <a href="#">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
+                    <h5 class="font-weight-bolder">{{ $sistem_informasi }}</h5>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                    <i class="fa fa-book-open text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="numbers">
+                        <p class="mb-0">
+                          <strong>Sistem Informasi</strong>
+                        </p>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+        <!-- Website UNIMA -->
+        <div class="col-xl-3 col-sm-6">
+            <a href="#">
+            <div class="card">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="numbers">
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
+                                <h5 class="font-weight-bolder">{{ $website_unima }}</h5>
+                                <p class="mb-0">
+                                <strong>Website unima</strong>
+                                </p>
+                            </div>
+                        </div>
+                            <div class="col-4 text-end">
+                            <div class="icon icon-shape bg-gradient-secondary shadow-warning text-center rounded-circle">
+                                <i class="ni ni-world-2 text-lg opacity-10" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+        <!-- Learning Management System -->
+        <div class="col-xl-4 col-sm-6 mt-3">
+            <a href="#">
+            <div class="card">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="numbers">
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
+                                <h5 class="font-weight-bolder">{{ $lms }}</h5>
+                            </div>
+                        </div>
+                        <div class="col-4 text-end">
+                            <div class="icon icon-shape bg-gradient-info shadow-warning text-center rounded-circle">
+                                <i class="fa fa-school text-lg opacity-10" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="numbers">
+                                <p class="mb-0">
+                                <strong>Learning Management System</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>
+        </div>
+        <!-- Ijazah -->
+        <div class="col-xl-4 col-sm-6 mt-3">
+            <a href="#">
+            <div class="card">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="numbers">
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
+                                <h5 class="font-weight-bolder">{{ $ijazah }}</h5>
+                            </div>
+                        </div>
+                        <div class="col-4 text-end">
+                            <div class="icon icon-shape bg-gradient-dark shadow-warning text-center rounded-circle">
+                                <i class="fa fa-graduation-cap text-lg opacity-10" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="numbers">
+                                <p class="mb-0">
+                                <strong>Ijazah</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </a>    
+        </div>
+        <!-- Slip -->
+        <div class="col-xl-4 col-sm-6 mt-3">
+        <a href="#">
+            <div class="card">
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="numbers">
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
+                                <h5 class="font-weight-bolder">{{ $slip }}</h5>
+                            </div>
+                        </div>
+                            <div class="col-4 text-end">
+                                <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                                    <i class="fas fa-envelope-open-text text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="numbers">
+                                    <p class="mb-0">
+                                    <strong>Slip</strong>
+                                    </p>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </div>     
+    <!-- End Row  Card Section-->
 
-{{-- <p>{{ auth()->user()->level = 'ADMIN'}}</p> --}}
+      <div class="row mt-4">
+        <div class="col-lg-7 mb-lg-0 mb-4">
+          <div class="card ">
+            <div class="card-header pb-0 p-3">
+              <div class="d-flex justify-content-between">
+                <h6 class="mb-2">Pengaduan Masuk</h6>
+              </div>
+            </div>
+            <div class="card">
+                <div class="table-responsive">
+                  <table class="table align-items-center mb-0">
+                    <thead>
+                      <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">#</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tujuan</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
+                      </tr>
+                    </thead>
+                        <tbody>
+                        @forelse($pengaduan as $p)
+                            <tr>
+                                <td>
+                                    <p class="mb-0 text-xs ps-3">{{ ++$i }}</p>
+                                </td>
+                                <td>
+                                <p class="text-xs  mb-0">{{ $p->tujuan->nama }}</p>
+                                </td>
+                                <td>
+                                <a href="{{ route('admin.masuk', $p->kode) }}" class="text-secondary  text-xs">
+                                    <i class="fa fa-solid fa-info ps-3"></i>
+                                </a>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center"><p class="font-weight-bold my-2">Tidak ada pengaduan masuk </p></td>
+                            </tr>
+                        @endforelse
+                        </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- Paginate -->
+            <div class="d-flex justify-content-center my-2">{{ $pengaduan->onEachSide(2)->links() }}</div>
+        </div> <!-- End Col -->
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
-  </head>
-  <body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-        <div class="container">
-          <a class="navbar-brand" href="#">APPELA USER</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">detail pengaduan</a>
-              </li>
-
-                {{-- Log Out --}}
-                <ul class="navbar-nav ms-auto">
-
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Welcome, {{ auth()->user()->name }}
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Ubah Password</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <form action="{{ route('logout') }}" method="post">
-                      @csrf
-                      <button type="submit" class="dropdown-item">Log Out</button>
-                    </form>                
-                  </ul>
+        <!-- New Col Category Section-->
+        <div class="col-lg-5">
+          <div class="card">
+            <div class="card-header pb-0 p-3">
+              <h6 class="mb-0">Semua Pengaduan Selesai</h6>
+            </div>
+            <div class="card-body p-3">
+              <ul class="list-group">
+                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                  <div class="d-flex align-items-center">
+                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                      {{-- <i class="ni ni-check-bold text-white opacity-10"></i> --}}
+                      <i class="fa fa-solid fa-check"></i>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <h6 class="mb-1 text-dark text-sm">Selesai</h6>
+                      <span class="text-xs font-weight-bold">{{ $selesai }}</span>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <a href="#" class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></a>
+                  </div>
                 </li>
-
+                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                  <div class="d-flex align-items-center">
+                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                      {{-- <i class="ni ni-fat-remove opacity-10"></i> --}}
+                      <i class="fa fa-regular fa-remove"></i>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <h6 class="mb-1 text-dark text-sm">Ditolak</h6>
+                      <span class="text-xs font-weight-bold">{{ $ditolak }}</span>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <a href="#"  class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></a>
+                  </div>
+                </li>          
               </ul>
-            </ul>
+            </div>
           </div>
         </div>
-      </nav>
-
-        <div class="container my-5">
-        <h3 class="my-5">Ini halaman  {{ $title }}</h3>
-    
-      {{-- Count Tujuan --}}
-          <a href="{{ route('jaringan.index') }}">Jaringan</a>    <strong>  {{ $jaringan }} </strong> <br>
-          <a href="{{ route('admin.server.index') }}">server</a>  <strong>  {{ $server }} </strong> <br>
-          <a href="{{ route('admin.sistem_informasi.index') }}">sistem_informasi</a>  <strong>  {{ $sistem_informasi }} </strong> <br>
-          <a href="{{ route('admin.website_unima.index') }}">website_unima</a>  <strong>  {{ $website_unima }} </strong> <br>
-          <a href="{{ route('admin.lms.index') }}">lms</a>  <strong>  {{ $lms }} </strong> <br>
-          <a href="{{ route('admin.ijazah.index') }}">ijazah</a>  <strong>  {{ $ijazah }} </strong> <br>
-          <a href="{{ route('admin.slip.index') }}">slip</a> <strong>  {{ $slip }} </strong> <br>
-
-
-        <h4> Only Pengaduan masuk</h4>
-        <br>
-      {{-- Flash Message --}}
-          @if(session()->has('success'))
-            <div class="alert alert-success" role="alert">
-          {{ session('success') }}
-            </div>
-          @endif
-
-
-          @foreach ($pengaduan as $p)
-            <article class="mb-5 border-bottom">
-                <span><strong>{{ $p->tujuan->nama }}</strong></span>
-                {{-- <a href="/admin/detail/{{ $p->kode }}">{{ $p->kode }}</a> --}}
-                <a href="/admin/masuk/{{ $p->kode }}">{{ $p->kode }}</a>
-          
-                
-                <form action="{{ route('admin.destroy', $p->kode) }}" method="post" class="d-inline">
-                  @method('delete')
-                  @csrf
-                  <button class="badge bg-danger border-0" onclick="return confirm('Yakin mau hapus data ?')">delete</button>
-
-                </form>
-
-                <h6 class="btn btn-primary">{{ $p->status }}</h6>
-                <h4>{{ $p->judul }}</h4>
-                <p>{!! $p->isi !!}</p>
-            </article>
-          @endforeach
-
-
-
-        </div>
-
-
-
-
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    </body>
-    </html>
+      </div>
+@endsection
+ 

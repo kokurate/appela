@@ -14,22 +14,26 @@ use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
+      $pagination = 10;
       return view('_admin.index',[
         // Count 
-        'jaringan' => Pengaduan::where('tujuan_id','1')->count(),
-        'server' => Pengaduan::where('tujuan_id','2')->count(),
-        'sistem_informasi' => Pengaduan::where('tujuan_id','3')->count(),
-        'website_unima' => Pengaduan::where('tujuan_id','4')->count(),
-        'lms' => Pengaduan::where('tujuan_id','5')->count(),
-        'ijazah' => Pengaduan::where('tujuan_id','6')->count(),
-        'slip' => Pengaduan::where('tujuan_id','7')->count(),
-
-        "title" => "Admin Index",
+        'jaringan' => Pengaduan::where('tujuan_id','1')->where('status','Pengaduan Sedang Diproses')->count(),
+        'server' => Pengaduan::where('tujuan_id','2')->Where('status','Pengaduan Sedang Diproses')->count(),
+        'sistem_informasi' => Pengaduan::where('tujuan_id','3')->Where('status','Pengaduan Sedang Diproses')->count(),
+        'website_unima' => Pengaduan::where('tujuan_id','4')->Where('status','Pengaduan Sedang Diproses')->count(),
+        'lms' => Pengaduan::where('tujuan_id','5')->Where('status','Pengaduan Sedang Diproses')->count(),
+        'ijazah' => Pengaduan::where('tujuan_id','6')->Where('status','Pengaduan Sedang Diproses')->count(),
+        'slip' => Pengaduan::where('tujuan_id','7')->Where('status','Pengaduan Sedang Diproses')->count(),
+                    
+        'url' => $request->path(),
+        // "title" => "Admin Index",
         // Tidak perlu lagi pake with karena sudah didefinisikan withnya di dalam model pengaduan
         // pengaduans karena banyak
-        "pengaduan" => Pengaduan::where('status', 'Pengaduan Masuk')->get()->load('tujuan')
-        ]);
+        "pengaduan" => Pengaduan::where('status', 'Pengaduan Masuk')->orderBy('id','ASC')->paginate(10)->withQueryString(),
+        'selesai' => Pengaduan::where('status','Pengaduan Selesai')->count(),
+        'ditolak' => Pengaduan::where('status','Pengaduan Ditolak')->count(),
+        ])->with('i', ($request->input('page', 1) - 1) * $pagination); // code for paginate  
     }
 
     public function detail(Pengaduan $pengaduan)
