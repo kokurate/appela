@@ -27,7 +27,7 @@ class AdminController extends Controller
         'slip' => Pengaduan::where('tujuan_id','7')->Where('status','Pengaduan Sedang Diproses')->count(),
                     
         'url' => $request->path(),
-        // "title" => "Admin Index",
+        "title" => "Admin Dashboard",
         // Tidak perlu lagi pake with karena sudah didefinisikan withnya di dalam model pengaduan
         // pengaduans karena banyak
         "pengaduan" => Pengaduan::where('status', 'Pengaduan Masuk')->orderBy('id','ASC')->paginate(10)->withQueryString(),
@@ -77,7 +77,8 @@ class AdminController extends Controller
 // =============================== Pengaduan Masuk ===============================
     public function masuk(Pengaduan $pengaduan, Request $request){
       return view('_admin.masuk',[
-        'title' => "Pengaduan Masuk Proses",
+        'url' => $request->path(),
+        'title' => "Pengaduan Masuk",
         'pengaduan' => $pengaduan,
         'tujuan' => Tujuan::all()
       ]);
@@ -88,7 +89,7 @@ class AdminController extends Controller
         'status' => 'required'
       ],
       [
-        'status.required' => 'Field ini tidak boleh kosong'
+        'status.required' => 'Update tidak boleh kosong'
       ]);
 
       // Sebelum update Cek dlu kalo misalnya ditolak kase validasi keterangan(tanggapan)
@@ -99,7 +100,7 @@ class AdminController extends Controller
           ],
         [
           'keterangan.required' => 'Tanggapan harus diisi',
-          'status.required' => 'Field ini tidak boleh kosong'
+          'status.required' => 'Update harus diisi'
         ]);
       }
 
@@ -147,7 +148,7 @@ class AdminController extends Controller
         'tujuan_id' => 'required'
        ],
        [
-        'tujuan_id.required' => 'Field ini harus diisi'
+        'tujuan_id.required' => 'Tujuan ini harus diisi'
        ]);
           $tujuan = $request->tujuan_id;
             // buat kondisi untuk menamakan tujuan 

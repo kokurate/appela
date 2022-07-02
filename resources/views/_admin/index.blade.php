@@ -201,7 +201,7 @@
       <div class="row mt-4">
         <div class="col-lg-7 mb-lg-0 mb-4">
           <div class="card ">
-            <div class="card-header pb-0 p-3">
+            <div class="card-header bg-gradient-secondary pb-0 p-3">
               <div class="d-flex justify-content-between">
                 <h6 class="mb-2">Pengaduan Masuk</h6>
               </div>
@@ -211,9 +211,9 @@
                   <table class="table align-items-center mb-0">
                     <thead>
                       <tr>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">#</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Tujuan</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
+                        <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ">#</th>
+                        <th class="text-uppercase text-dark text-xxs font-weight-bolder  ps-2">Tujuan</th>
+                        <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
                       </tr>
                     </thead>
                         <tbody>
@@ -223,7 +223,7 @@
                                     <p class="mb-0 text-xs ps-3">{{ ++$i }}</p>
                                 </td>
                                 <td>
-                                <p class="text-xs  mb-0">{{ $p->tujuan->nama }}</p>
+                                <p class="text-xs  mb-0"><strong>{{ $p->tujuan->nama }}</strong></p>
                                 </td>
                                 <td>
                                 <a href="{{ route('admin.masuk', $p->kode) }}" class="text-secondary  text-xs">
@@ -248,8 +248,8 @@
         <!-- New Col Category Section-->
         <div class="col-lg-5">
           <div class="card">
-            <div class="card-header pb-0 p-3">
-              <h6 class="mb-0">Semua Pengaduan Selesai</h6>
+            <div class="card-header bg-gradient-secondary pb-0 p-3">
+              <h6 class="mb-2">Semua Pengaduan Selesai</h6>
             </div>
             <div class="card-body p-3">
               <ul class="list-group">

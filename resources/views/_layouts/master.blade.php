@@ -21,7 +21,7 @@
   {{-- <link rel="apple-touch-icon" sizes="76x76" href="/templates/auth/assets/img/apple-icon.png"> --}}
   <link rel="icon" type="image/png" href="/favicon.ico">
   <title>
-   ADMIN
+   {{ $title }}
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -37,9 +37,9 @@
 </head> 
 
 <!-- ===== Side Bar ====  -->
-    
 <body class="g-sidenav-show   bg-gray-100">
-    <div class="min-height-300 bg-primary position-absolute w-100"></div>
+    <!-- Background Top -->
+    <div class="min-height-300 bg-primary opacity-8 position-absolute w-100"></div>
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
       <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -181,7 +181,7 @@
                 <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;">Pages</a></li>
                 <li class="breadcrumb-item text-sm text-white active" aria-current="page">{{ $url }}</li>
               </ol>
-              <h4 class="font-weight-bolder text-dark active mb-0">Dashboard</h4>
+              <h4 class="font-weight-bolder text-dark active mb-0">{{ $title }}</h4>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
               <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -252,13 +252,14 @@
 
         <!-- ==================================== Section- =========================== -->
         @yield('content')
+        @include('sweetalert::alert')
 
 
 
-             <!-- Footer -->
-      <footer class="footer pt-3  mt-5">
+    <!-- Footer -->
+      <footer class="footer pt-3  mt-5 mb-2  ">
         <div class="container-fluid">
-          <div class="row align-items-center justify-content-lg-between">
+          <div class="row align-items-center justify-content-lg-between ">
             <div class="col-lg-6">
                 <div class="text-center text-sm text-muted text-lg-start">
                     © <script>
@@ -280,7 +281,6 @@
           </div>
         </div>
       </footer>
-    </div>
   </main>
 
   <!-- Configurator -->
@@ -368,6 +368,9 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="/templates/auth/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+
+  <!-- ========================================= Section ===========================-->
+  @yield('javascript')
 </body>
 
 </html>

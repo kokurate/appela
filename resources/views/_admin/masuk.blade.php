@@ -1,169 +1,166 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('_layouts.master')
+@section('content')
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
-  </head>
-  <body>
-
-  
-            <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-                <div class="container">
-                <a class="navbar-brand" href="#">APPELA USER</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">detail pengaduan</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Welcome, {{ auth()->user()->name }}
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Ubah Password</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <form action="{{ route('logout') }}" method="post">
-                            @csrf
-                            <button type="submit" class="dropdown-item">Log Out</button>
-                        </form>                
-                        </ul>
-                    </li>
-                    
-                    </ul>
-                </div>
-                </div>
-            </nav>
-     
-
-
-    <div class="row justify-content-between">
-            <div class="col-5 text-center">
-
-            {{-- Flash Message --}}
-            @if(session()->has('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            <div class="container my-5">
-            <h3 class="my-5">Ini halaman  {{ $title }}</h3>
-            <div style="max-height:350px overflow:hidden;">
-                <img src="{{ asset('storage/'. $pengaduan->visitor_image_1) }}" class="img-thumbnail" width="250px">
-                <img src="{{ asset('storage/'. $pengaduan->visitor_image_2) }}" class="img-thumbnail" width="250px" onerror="this.style.display='none'">
-                <img src="{{ asset('storage/'. $pengaduan->visitor_image_3) }}" class="img-thumbnail" width="250px" onerror="this.style.display='none'">
+<div class="container-fluid py-4">
+    <!-- Back -->
+        <a href="{{ route('admin.index') }}">
+            <div class="btn btn-light">
+                <i class="ni ni-bold-left"></i>
             </div>
-        <span>Tujuan Pengaduan <strong>{{ $pengaduan->tujuan->nama }}</strong></span>
-            <p class="btn btn-primary">{{ $pengaduan->status }}</p>
-            <h6>{{ $pengaduan->kode }}</h6>
-            <h5>{{ $pengaduan->judul }}</h5>
-    
-            {{-- Nyanda pake escaping HTML Specialchars --}}
-            {!! $pengaduan->isi !!}
-            <br>
-
-
-
-            <a href="/admin">back to post</a>
-            </div>
+        </a>
+    <div class="row">
+        <div class="text-center">
+            <h5 class="btn bg-gradient-light text-dark">Tujuan Pengaduan : {{ $pengaduan->tujuan->nama }}</h5>
+        </div>
     </div>
-
-    {{-- Proses Pengaduan --}}
-        <div class="col-md-6 ">
-
-        <form class="mt-5" method="post" action="/admin/masuk/{{ $pengaduan->kode }}">
-            @csrf
-            <div class="col-5">
-                @error('status')
-                <div class="alert alert-danger" role="alert">
-                {{ $message }}
+    <div class="row">
+        <!-- =========== Section Left ============ -->
+        <div class="col-md-6 my-2">
+            <div class="card">
+                <div class="card-header pb-0 p-3">
+                    <h4 class="text-dark text-center font-weight-bold text-uppercase">Data Pengaduan</h4>
                 </div>
-                @enderror
-            </div>
-  
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Pengaduan Sedang Diverifikasi" onclick="show(1)">
-                <label class="form-check-label" for="flexRadioDefault1">
-                  Update Pengaduan
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="Pengaduan Ditolak" onclick="show(0)" {{ old('status') == 'Pengaduan Ditolak' ? 'checked' : ''}}>
-                <label class="form-check-label" for="flexRadioDefault2">Tolak Pengaduan</label>
-
-                     {{-- Alasan --}}
-                <div class="mb-3" id="show_tanggapan">
-                    <label for="exampleFormControlTextarea1" class="form-label">Tanggapan</label>
-                    <textarea class="form-control @error('keterangan') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="keterangan"></textarea>
-                    <div class="col-5">
-                        @error('keterangan')
-                        <div class="alert alert-danger" role="alert">
-                        {{ $message }}
+                    <nav>
+                        <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"><i class="ni ni-single-02"></i> Profile</button>
+                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="ni ni-folder-17"></i> Pengaduan</button>
+                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="ni ni-tag"></i> Gambar</button>
                         </div>
-                        @enderror
+                    </nav>
+                    <div class="card-body">
+                        <div class="tab-content" id="nav-tabContent">
+                            <!-- Isi Tab 1-->
+                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <p class="font-weight-bolder">Status : {{ $pengaduan->status }}</p>
+                                <hr>
+                                <p class="font-weight-bold">Email : {{ $pengaduan->email }}</p>
+                                <p class="font-weight-bold">Nama : {{ $pengaduan->nama }}</p>
+                            </div>
+                            
+                            <!-- Isi tab 2 -->
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                <h5>{{ $pengaduan->judul }}</h5>
+                                <p>{!! $pengaduan->isi !!}</p>
+                            </div>
+                            
+                            <!-- Isi tab 3-->
+                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                <div style="max-height:350px overflow:hidden;" class="d-block text-center">
+                                    <img src="{{ asset('storage/'. $pengaduan->visitor_image_1) }}" class="img-thumbnail my-1" width="250px">
+                                    <img src="{{ asset('storage/'. $pengaduan->visitor_image_2) }}" class="img-thumbnail my-1" width="250px" onerror="this.style.display='none'">
+                                    <img src="{{ asset('storage/'. $pengaduan->visitor_image_3) }}" class="img-thumbnail my-1" width="250px" onerror="this.style.display='none'">
+                                </div>
+                            </div>
+                        </div>
                     </div>
+            </div> <!-- End Card -->
+        </div>   <!-- End Col -->
+
+        <!-- ============ Section Right =========== -->
+        <div class="col-md-6 my-2">
+            <div class="card">
+                <div class="card-header pb-0 p-3">
+                    <h4 class="text-dark text-center font-weight-bold text-uppercase">Data Pengaduan</h4>
                 </div>
-              </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+                    <nav>
+                        <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-update-tab" data-bs-toggle="tab" data-bs-target="#nav-update" type="button" role="tab" aria-controls="nav-update" aria-selected="true"><i class="ni ni-fat-add"></i> Update</button>
+                            <button class="nav-link" id="nav-tujuan-tab" data-bs-toggle="tab" data-bs-target="#nav-tujuan" type="button" role="tab" aria-controls="nav-tujuan" aria-selected="false"><i class="ni ni-ungroup"></i> Ubah Tujuan Pengaduan</button>
+                        </div>
+                    </nav>
+                    <div class="card-body">
+                        <div class="tab-content" id="nav-tabContent">
+                            <!-- Isi Tab 1-->
+                            <div class="tab-pane fade show active" id="nav-update" role="tabpanel" aria-labelledby="nav-update-tab">
+                                <form class="mt-1" method="post" action="{{ route('admin.masuk.store',$pengaduan->kode)}}">
+                                    @csrf
+                                    <div class="col-md-12">
+                                        @error('status')
+                                        <div class="text-danger" role="alert">
+                                        {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                          
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="status" id="flexRadioDefault1" value="Pengaduan Sedang Diverifikasi" onclick="show(1)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                          Update Pengaduan
+                                        </label>
+                                      </div>
+                                      <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="status" id="flexRadioDefault2" value="Pengaduan Ditolak" onclick="show(0)" {{ old('status') == 'Pengaduan Ditolak' ? 'checked' : ''}}>
+                                        <label class="form-check-label" for="flexRadioDefault2">Tolak Pengaduan</label>
+                        
+                                             {{-- Alasan --}}
+                                        <div class="mb-3" id="show_tanggapan">
+                                            <label for="exampleFormControlTextarea1" class="form-label">Tanggapan</label>
+                                            <textarea class="form-control @error('keterangan') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3" name="keterangan"></textarea>
+                                            <div class="col-12">
+                                                @error('keterangan')
+                                                <div class="text-danger" role="alert">
+                                                {{ $message }}
+                                                </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                      </div>
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                  </form>
+                            </div>
+                            
+                            <!-- Isi tab 2 -->
+                            <div class="tab-pane fade" id="nav-tujuan" role="tabpanel" aria-labelledby="nav-tujuan-tab">
+                                <form class="mt-1" method="post" action="{{ route('admin.tujuan.store', $pengaduan->kode) }}">
+                                        @csrf
+                            
+                                      
+                                            @error('tujuan_id')
+                                            <div class="text-danger my-2 text-center" role="alert">
+                                            {{ $message }}
+                                            </div>
+                                            @enderror
+                                            
+                                            @foreach ($tujuan as $tujuan)
+                                                {{-- tujuan(all) tidak sama dengan tujuan->nama skrng, tampilkan selain yang bukan--}}
+                                                @if ($tujuan->nama != $pengaduan->tujuan->nama )
+                                                    <div class="form-check">
+                                                        <!-- <div class="row"> -->
+                                                        <!--    <div class="col-4"></div> -->
 
-          <hr>
-
-
-        <form class="mt-5" method="post" action="/admin/tujuan/{{ $pengaduan->kode }}">
-            @csrf
-
-            <div class="col-5">
-                @error('tujuan_id')
-                <div class="alert alert-danger" role="alert">
-                {{ $message }}
-                </div>
-                @enderror
-                 
-                @foreach ($tujuan as $tujuan)
-                    {{-- tujuan(all) tidak sama dengan tujuan->nama skrng, tampilkan selain yang bukan--}}
-                    @if ($tujuan->nama != $pengaduan->tujuan->nama )
-                        {{-- {{ $tujuan->nama }} --}}
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="tujuan_id" id="{{ $tujuan->nama }}" value="{{ $tujuan->id }}">
-                            <label class="form-check-label" for="{{ $tujuan->nama }}">
-                              {{ $tujuan->nama }}
-                            </label>
-                          </div>
-                    @endif
-                @endforeach
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+                                                            <div class="d-block text-center">
+                                                                <input class="btn-check" type="radio" name="tujuan_id" id="{{ $tujuan->nama }}" value="{{ $tujuan->id }}">
+                                                                <label class="btn btn-outline-primary" for="{{ $tujuan->nama }}">
+                                                                {{ $tujuan->nama }}
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    <!-- </div> -->
+                                                @endif
+                                            @endforeach
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-primary">Ubah Tujuan Pengaduan</button>
+                                            </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+            </div> <!-- End Card -->
 
         </div>
+    </div> <!-- End Row-->
+</div> <!-- End Container  -->
+@endsection
 
-    </div> 
-    {{-- End Row  --}}
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-          {{-- Javascript buat show tanggapan kalo pilih Tolak --}}
-          <script>
-            function show(x){
-                if (x==0)
-                document.getElementById('show_tanggapan').style.display='block';
-                else
-                document.getElementById('show_tanggapan').style.display="none";
-                return;
-            }
-        </script>
-
-    </body>
-    </html>
+@section('javascript')
+     {{-- Javascript buat show tanggapan kalo pilih Tolak --}}
+     <script>
+        function show(x){
+            if (x==0)
+            document.getElementById('show_tanggapan').style.display='block';
+            else
+            document.getElementById('show_tanggapan').style.display="none";
+            return;
+        }
+    </script>
+@endsection
