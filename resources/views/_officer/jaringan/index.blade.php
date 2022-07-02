@@ -12,7 +12,7 @@
                     <div class="col-8">
                     <div class="numbers">
                         <p class="text-sm mb-0 text-uppercase font-weight-bold">Selesai</p>
-                        <h5 class="font-weight-bolder">2</h5>
+                        <h5 class="font-weight-bolder">{{ $selesai }}</h5>
                         <p class="mb-0">
                         <!-- <strong>Jaringan</strong> -->
                         </p>
@@ -37,7 +37,7 @@
                     <div class="col-8">
                     <div class="numbers">
                         <p class="text-sm mb-0 text-uppercase font-weight-bold">Ditolak</p>
-                        <h5 class="font-weight-bolder">2</h5>
+                        <h5 class="font-weight-bolder">{{ $ditolak }}</h5>
                         <p class="mb-0">
                         <!-- <strong>Server</strong> -->
                         </p>
@@ -62,7 +62,7 @@
                     <div class="col-8">
                     <div class="numbers">
                         <p class="text-sm mb-0 text-uppercase font-weight-bold">Dengan Rating</p>
-                        <h5 class="font-weight-bolder">2</h5>
+                        <h5 class="font-weight-bolder">{{ $rating }}</h5>
                     </div>
                     </div>
                     <div class="col-4 text-end">
@@ -199,4 +199,5 @@
             </div> <!-- Col-->
         </div> <!-- End Row --> 
     </div>  <!-- End Container-->
+
 @endsection

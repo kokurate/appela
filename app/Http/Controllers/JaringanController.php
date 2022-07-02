@@ -18,7 +18,11 @@ class JaringanController extends Controller
      $current_left = $request->input('masuk') ? $request->input('masuk') : 1;
      $current_right = $request->input('masuk') ? $request->input('proses') : 1;
         return view('_officer.jaringan.index',[
-  
+          // ================================== Count ============================
+            'selesai' => Pengaduan::where('status','Pengaduan Selesai')->where('tujuan_id' , 1)->count(),
+            'ditolak' => Pengaduan::where('status','Pengaduan Ditolak')->where('tujuan_id' , 1)->count(),
+            'rating' => Pengaduan::whereNotNull(['rating', 'komentar'])->where('tujuan_id', 1)->count(),
+    
           // =================================== Jaringan Verifikasi (Masuk) ==================================================== 
           'current_left' => $current_left,
           'jaringan_masuk_count' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
