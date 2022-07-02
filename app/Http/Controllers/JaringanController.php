@@ -14,33 +14,31 @@ use Illuminate\Support\Facades\Mail;
 class JaringanController extends Controller
 {
     public function index(Request $request){
-     // Kalo mo ubah paginasi ubah juga variabelnya like this 15->all
-     $paginationleft = 15;
-     $paginationright = 2;
-
+     // Kalo mo ubah paginasi ubah juga variabelnya di view
+     $current_left = $request->input('masuk') ? $request->input('masuk') : 1;
+     $current_right = $request->input('masuk') ? $request->input('proses') : 1;
         return view('_officer.jaringan.index',[
   
           // =================================== Jaringan Verifikasi (Masuk) ==================================================== 
+          'current_left' => $current_left,
           'jaringan_masuk_count' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
                                       ->where('tujuan_id','1')
                                       ->count(),
           'jaringan_masuk' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
-                                  ->where('tujuan_id','1')
-                                  ->paginate(15)->withQueryString(), 
+                                  ->where('tujuan_id','1')->orderBy('id','ASC')
+                                  ->paginate(10,['*'],'masuk')->withQueryString(), 
 
         // =================================== Jaringan Proses ===============================================
+        'current_right' => $current_right,
         'jaringan_proses_count' => Pengaduan::where('status','Pengaduan Sedang Diproses')
                                     ->where('tujuan_id','1')
                                     ->count(),
         'jaringan_proses' => Pengaduan::where('status','Pengaduan Sedang Diproses')
-                                    ->where('tujuan_id','1')
-                                    ->paginate(2)->withQueryString(),
-
-
+                                    ->where('tujuan_id','1')->orderBy('id','ASC')
+                                    ->paginate(10,['*'],'proses')->withQueryString(),
         'title' => 'Jaringan',
         'url' => $request->path(),
-        ])->with('left', ($request->input('page', 1) - 1) * $paginationleft)
-          ->with('right', ($request->input('page', 1) - 1) * $paginationright); // code for paginate     ;
+        ]);   
       }
 
     public function detail(Pengaduan $pengaduan, ){

@@ -3,7 +3,7 @@
     <div class="container my-3">
         <!-- Card Section --> 
         <div class="row">
-            <!--  Jaringan -->
+            <!--  Selesai -->
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
             <a href="#">
             <div class="card">
@@ -28,7 +28,7 @@
             </div>
             </a>
             </div>
-            <!-- Server -->
+            <!-- Ditolak -->
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
             <a href="#">
             <div class="card">
@@ -53,7 +53,7 @@
             </div>
             </a>
             </div>
-            <!-- Sistem Informasi -->
+            <!-- Dengan Rating -->
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
             <a href="#">
             <div class="card">
@@ -104,10 +104,17 @@
                                 </tr>
                               </thead>
                                   <tbody>
+                                    <!-- Logic cuurent itu isi halaman -->
+                                        <!-- 
+                                        hal 1 = 1-1=0, 10*0=0, 1+0=1
+                                        hal 2 = 2-1=1, 10*1=10, 1+10=11
+                                        dst
+                                    -->
+                                    <?php $left = 1 + (10 * ($current_left - 1)); ?>
                                   @forelse($jaringan_masuk as $p)
                                       <tr>
                                           <td>
-                                              <p class="mb-0 text-xs ps-3">{{ ++$left }}</p>
+                                              <p class="mb-0 text-xs ps-3">{{ $left++ }}</p>
                                           </td>
                                           <td>
                                             <p class="text-xs  mb-0"><strong>{{ $p->email }}</strong></p>
@@ -153,10 +160,17 @@
                                 </tr>
                               </thead>
                                   <tbody>
+                                      <!-- Logic cuurent itu isi halaman -->
+                                        <!-- 
+                                        hal 1 = 1-1=0, 10*0=0, 1+0=1
+                                        hal 2 = 2-1=1, 10*1=10, 1+10=11
+                                        dst
+                                    -->
+                                    <?php $right = 1 + (10 * ($current_right - 1)); ?>
                                   @forelse($jaringan_proses as $p)
                                       <tr>
                                           <td>
-                                              <p class="mb-0 text-xs ps-3">{{ ++$right }}</p>
+                                              <p class="mb-0 text-xs ps-3">{{ $right++}}</p>
                                           </td>
                                           <td>
                                             <p class="text-xs  mb-0"><strong>{{ $p->email }}</strong></p>
