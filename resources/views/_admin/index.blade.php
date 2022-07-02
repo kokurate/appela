@@ -238,8 +238,8 @@
                         @endforelse
                         </tbody>
                   </table>
-                </div>
-              </div>
+                </div> <!-- End Table -->
+              </div> <!-- End Card-->
             </div>
             <!-- Paginate -->
             <div class="d-flex justify-content-center my-2">{{ $pengaduan->onEachSide(2)->links() }}</div>

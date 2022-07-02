@@ -15,17 +15,32 @@ class JaringanController extends Controller
 {
     public function index(Request $request){
      // Kalo mo ubah paginasi ubah juga variabelnya like this 15->all
-     $pagination = 15;
+     $paginationleft = 15;
+     $paginationright = 2;
 
         return view('_officer.jaringan.index',[
-          'title' => 'Ini halaman jaringan setelah login',
-          'jaringancount' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
+  
+          // =================================== Jaringan Verifikasi (Masuk) ==================================================== 
+          'jaringan_masuk_count' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
                                       ->where('tujuan_id','1')
                                       ->count(),
-          'pengaduan' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
+          'jaringan_masuk' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
                                   ->where('tujuan_id','1')
                                   ->paginate(15)->withQueryString(), 
-        ])->with('i', ($request->input('page', 1) - 1) * $pagination); // code for paginate     ;
+
+        // =================================== Jaringan Proses ===============================================
+        'jaringan_proses_count' => Pengaduan::where('status','Pengaduan Sedang Diproses')
+                                    ->where('tujuan_id','1')
+                                    ->count(),
+        'jaringan_proses' => Pengaduan::where('status','Pengaduan Sedang Diproses')
+                                    ->where('tujuan_id','1')
+                                    ->paginate(2)->withQueryString(),
+
+
+        'title' => 'Jaringan',
+        'url' => $request->path(),
+        ])->with('left', ($request->input('page', 1) - 1) * $paginationleft)
+          ->with('right', ($request->input('page', 1) - 1) * $paginationright); // code for paginate     ;
       }
 
     public function detail(Pengaduan $pengaduan, ){

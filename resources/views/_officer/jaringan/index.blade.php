@@ -1,124 +1,188 @@
-
-<h1>Ini halaman jaringan setelah login</h1>
-
-<p>{{ auth()->user()->level }}</p>
-
-
-{{-- <p>{{ auth()->user()->level = 'ADMIN'}}</p> --}}
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
-  </head>
-  <body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
-        <div class="container">
-          <a class="navbar-brand" href="#">APPELA USER</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">detail pengaduan</a>
-              </li>
-
-                {{-- Log Out --}}
-                <ul class="navbar-nav ms-auto">
-
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Welcome, {{ auth()->user()->name }}
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Ubah Password</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <form action="{{ route('logout') }}" method="post">
-                      @csrf
-                      <button type="submit" class="dropdown-item">Log Out</button>
-                    </form>                
-                  </ul>
-                </li>
-
-              </ul>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
-        <div class="container my-5">
-        <h3 class="my-5">Ini halaman  {{ $title }}</h3>
-    
-
-        <h4> Only Pengaduan jaringan</h4>
-        <br>
-      {{-- Flash Message --}}
-          @if(session()->has('success'))
-            <div class="alert alert-success" role="alert">
-          {{ session('success') }}
-            </div>
-          @endif
-
-
-      
-
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Nama</th>
-                  <th scope="col">Status</th>
-                  <th scope="col">Aksi</th>
-                </tr>
-              </thead>
-              
-              {{-- Count --}}
-              <h3 class="btn btn-secondary">Pengaduan Jaringan = <strong>{{ $jaringancount }}</strong></h3>
-
-            @foreach ($pengaduan as $pengaduanjaringan)
-              <tbody>
-                <tr>
-                  <th scope="row">{{ ++$i }}</th>
-                  <td>{{ $pengaduanjaringan->nama }}</td>
-                  <td>{{ $pengaduanjaringan->status }}</td>
-                  <td>
-                    {{-- Detail --}}
-                    <a href="{{ route('jaringan.detail', $pengaduanjaringan->kode) }}">detail</a>
-                    
-                    {{-- Delete --}}
-                    <form action="{{ route('admin.destroy', $pengaduanjaringan->kode) }}" method="post" class="d-inline">
-                      @method('delete')
-                      @csrf
-                      <button class="badge bg-danger border-0" onclick="return confirm('Yakin mau hapus data ?')">delete</button>
-    
-                    </form>
-                  </td>
-                </tr>
-              </tbody>
-            @endforeach
-            </table>
-                <div class="d-flex justify-content-center">
-                  {{ $pengaduan->onEachSide(2)->links() }}
+@extends('_layouts.master')
+@section('content')
+    <div class="container my-3">
+        <!-- Card Section --> 
+        <div class="row">
+            <!--  Jaringan -->
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <a href="#">
+            <div class="card">
+                <div class="card-body p-3">
+                <div class="row">
+                    <div class="col-8">
+                    <div class="numbers">
+                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Selesai</p>
+                        <h5 class="font-weight-bolder">2</h5>
+                        <p class="mb-0">
+                        <!-- <strong>Jaringan</strong> -->
+                        </p>
+                    </div>
+                    </div>
+                    <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                        <i class="fa fa-solid fa-check text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                    </div>
                 </div>
-        </div>
+                </div>
+            </div>
+            </a>
+            </div>
+            <!-- Server -->
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <a href="#">
+            <div class="card">
+                <div class="card-body p-3">
+                <div class="row">
+                    <div class="col-8">
+                    <div class="numbers">
+                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Ditolak</p>
+                        <h5 class="font-weight-bolder">2</h5>
+                        <p class="mb-0">
+                        <!-- <strong>Server</strong> -->
+                        </p>
+                    </div>
+                    </div>
+                    <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                        <i class="fa fa-remove text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </a>
+            </div>
+            <!-- Sistem Informasi -->
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <a href="#">
+            <div class="card">
+                <div class="card-body p-3">
+                <div class="row">
+                    <div class="col-8">
+                    <div class="numbers">
+                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Dengan Rating</p>
+                        <h5 class="font-weight-bolder">2</h5>
+                    </div>
+                    </div>
+                    <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                        <i class="fa fa-star text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="numbers">
+                            <p class="mb-0">
+                            <!-- <strong>Sistem Informasi</strong> -->
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </a>
+            </div>
+        </div> <!-- End Row  Card Section-->  
 
+        <div class="row my-4">
+            <div class="col-md-6">
+                <div class="card my-3">
+                    <div class="card-header pb-0 p-3 bg-gradient-light ">
+                        <h4 class="text-dark text-center font-weight-bold text-uppercase">Verifikasi Pengaduan Masuk</h4>
+                        <h4 class="text-dark text-center font-weight-bold text-uppercase">({{ $jaringan_masuk_count }})</h4>
+                        <!-- <hr class="bg-primary border-2 border-top border-primary" > -->
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table align-items-center mb-0">
+                              <thead>
+                                <tr>
+                                  <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ">#</th>
+                                  <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
+                                  <th class="text-uppercase text-dark text-xxs font-weight-bolder  ps-2">Tujuan</th>
+                                  <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
+                                </tr>
+                              </thead>
+                                  <tbody>
+                                  @forelse($jaringan_masuk as $p)
+                                      <tr>
+                                          <td>
+                                              <p class="mb-0 text-xs ps-3">{{ ++$left }}</p>
+                                          </td>
+                                          <td>
+                                            <p class="text-xs  mb-0"><strong>{{ $p->email }}</strong></p>
+                                          </td>
+                                          <td>
+                                            <p class="text-xs  mb-0">{{ $p->tujuan->nama }}</p>
+                                          </td>
+                                          <td>
+                                            <a href="{{ route('jaringan.update', $p->kode) }}" class="text-secondary  text-xs">
+                                                <i class="fa fa-solid fa-info ps-3"></i>
+                                            </a>
+                                          </td>
+                                      </tr>
+                                  @empty
+                                      <tr>
+                                          <td colspan="4" class="text-center"><p class="font-weight-bold my-2">Tidak ada pengaduan masuk </p></td>
+                                      </tr>
+                                  @endforelse
+                                  </tbody>
+                            </table>
+                          </div> <!-- End Table -->
+                    </div> <!-- Card Body-->
+                    <!-- Paginate -->
+                    <div class="d-flex justify-content-center my-2">{{ $jaringan_masuk->onEachSide(2)->links() }}</div>
+                </div> <!-- End Card-->
+            </div> <!-- End Col-->
 
-
-
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    </body>
-    </html>
+            <div class="col-md-6">
+                <div class="card my-3">
+                    <div class="card-header pb-0 p-3 bg-gradient-light">
+                        <h4 class="text-dark text-center font-weight-bold text-uppercase">Proses Pengaduan</h4>
+                        <h4 class="text-dark text-center font-weight-bold text-uppercase">({{ $jaringan_proses_count }})</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table align-items-center mb-0">
+                              <thead>
+                                <tr>
+                                  <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ">#</th>
+                                  <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
+                                  <th class="text-uppercase text-dark text-xxs font-weight-bolder  ps-2">Tujuan</th>
+                                  <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2">Action</th>
+                                </tr>
+                              </thead>
+                                  <tbody>
+                                  @forelse($jaringan_proses as $p)
+                                      <tr>
+                                          <td>
+                                              <p class="mb-0 text-xs ps-3">{{ ++$right }}</p>
+                                          </td>
+                                          <td>
+                                            <p class="text-xs  mb-0"><strong>{{ $p->email }}</strong></p>
+                                          </td>
+                                          <td>
+                                            <p class="text-xs  mb-0">{{ $p->tujuan->nama }}</p>
+                                          </td>
+                                          <td>
+                                            <a href="{{ route('jaringan.proses', $p->kode) }}" class="text-secondary  text-xs">
+                                                <i class="fa fa-solid fa-info ps-3"></i>
+                                            </a>
+                                          </td>
+                                      </tr>
+                                  @empty
+                                      <tr>
+                                          <td colspan="4" class="text-center"><p class="font-weight-bold my-2">Tidak ada pengaduan masuk </p></td>
+                                      </tr>
+                                  @endforelse
+                                  </tbody>
+                            </table>
+                          </div> <!-- End Table -->
+                    </div> <!-- Card Body --> 
+                    <!-- Paginate -->
+                    <div class="d-flex justify-content-center my-2">{{ $jaringan_proses->onEachSide(2)->links() }}</div>
+                </div> <!-- Card -->
+            </div> <!-- Col-->
+        </div> <!-- End Row --> 
+    </div>  <!-- End Container-->
+@endsection

@@ -32,7 +32,7 @@
                             <!-- Isi Tab 1-->
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <p class="font-weight-bolder">Status : {{ $pengaduan->status }}</p>
-                                <hr>
+                                <hr class="bg-primary border-2 border-top border-primary" >
                                 <p class="font-weight-bold">Email : {{ $pengaduan->email }}</p>
                                 <p class="font-weight-bold">Nama : {{ $pengaduan->nama }}</p>
                             </div>
