@@ -3,7 +3,7 @@
 
 <div class="container-fluid py-4">
     <!-- Back -->
-        <a href="{{ route('admin.index') }}">
+        <a href="{{ url()->previous() }}">
             <div class="btn btn-light">
                 <i class="ni ni-bold-left"></i>
             </div>
@@ -60,7 +60,7 @@
         <div class="col-md-6 my-2">
             <div class="card">
                 <div class="card-header pb-0 p-3">
-                    <h4 class="text-dark text-center font-weight-bold text-uppercase">Data Pengaduan</h4>
+                    <h4 class="text-dark text-center font-weight-bold text-uppercase">Update Pengaduan</h4>
                 </div>
                     <nav>
                         <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">

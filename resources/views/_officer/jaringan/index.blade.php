@@ -1,6 +1,13 @@
 @extends('_layouts.master')
 @section('content')
     <div class="container my-3">
+         <!-- Back -->
+         <a href="{{ url()->previous() }}">
+            <div class="btn btn-light">
+                <i class="ni ni-bold-left"></i>
+            </div>
+        </a>
+
         <!-- Card Section --> 
         <div class="row">
             <!--  Selesai -->
@@ -123,7 +130,7 @@
                                             <p class="text-xs  mb-0">{{ $p->tujuan->nama }}</p>
                                           </td>
                                           <td>
-                                            <a href="{{ route('jaringan.update', $p->kode) }}" class="text-secondary  text-xs">
+                                            <a href="{{ route('jaringan.detail', $p->kode) }}" class="text-secondary  text-xs">
                                                 <i class="fa fa-solid fa-info ps-3"></i>
                                             </a>
                                           </td>
@@ -179,7 +186,7 @@
                                             <p class="text-xs  mb-0">{{ $p->tujuan->nama }}</p>
                                           </td>
                                           <td>
-                                            <a href="{{ route('jaringan.proses', $p->kode) }}" class="text-secondary  text-xs">
+                                            <a href="{{ route('jaringan.detail', $p->kode) }}" class="text-secondary  text-xs">
                                                 <i class="fa fa-solid fa-info ps-3"></i>
                                             </a>
                                           </td>

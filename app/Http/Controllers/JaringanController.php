@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Mail\SendMailVisitor;
+use App\Models\Catatan;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class JaringanController extends Controller
 {
@@ -45,11 +47,13 @@ class JaringanController extends Controller
         ]);   
       }
 
-    public function detail(Pengaduan $pengaduan, ){
+    public function detail(Pengaduan $pengaduan, Request $request){
       return view('_officer.jaringan.detail',[
-        'title' => "Ini halaman detail jaringan",
+        'title' => "Detail",
+        'url' => $request->path(),
         'tujuan' => Tujuan::all(),
         'pengaduan' => $pengaduan,
+        'log' => Catatan::where('pengaduan_id', $pengaduan->id)->get()->load('pengaduan')
       ]);
     }
 
@@ -67,7 +71,7 @@ class JaringanController extends Controller
           'status' => 'required'
         ],
         [
-          'status.required' => 'Field ini tidak boleh kosong'
+          'status.required' => 'Status tidak boleh kosong'
         ]);
 
       // Sebelum update Cek dlu kalo misalnya ditolak kase validasi keterangan(tanggapan)
@@ -78,7 +82,7 @@ class JaringanController extends Controller
        ],
       [
         'keterangan.required' => 'Tanggapan harus diisi',
-        'status.required' => 'Field ini tidak boleh kosong'
+        'status.required' => 'Status tidak boleh kosong'
       ]);
     }
 
@@ -108,7 +112,7 @@ class JaringanController extends Controller
       ];
     // Kirim Email
        Mail::to($pengaduan->email)->send(new SendMailVisitor ($data)); 
-       return redirect()->route('jaringan.detail', $pengaduan->kode)
+       return redirect()->back()
                           ->with('success', 'Pengaduan Berhasil Diupdate');
     }
 
@@ -122,15 +126,29 @@ class JaringanController extends Controller
     }
 
     public function proses_store(Pengaduan $pengaduan, Request $request){
-        $validatedData = $request->validate([   
+      $validator = Validator::make($request->all() ,[   
           'keterangan' => 'required',
           'petugas_image_1' => '|image|file|max:1024',
           'petugas_image_2' => '|image|file|max:1024',
           'petugas_image_3' => '|image|file|max:1024',
           ],
         [
-          'keterangan.required' => 'Tanggapan harus diisi'
+          'keterangan.required' => 'Tanggapan harus diisi',
+          'petugas_image_1.image' => 'Gambar 1 harus format gambar',
+          'petugas_image_1.max' => 'Gambar 1 tidak boleh lebih dari 1MB',
+          'petugas_image_2.image' => 'Gambar 2 harus format gambar',
+          'petugas_image_2.max' => 'Gambar 2 tidak boleh lebih dari 1MB',
+          'petugas_image_3.image' => 'Gambar 3 harus format gambar',
+          'petugas_image_3.max' => 'Gambar 3 tidak boleh lebih dari 1MB',
         ]);
+
+         // Kalo error kase alert error
+         if($validator->fails()){
+          return back()->with('toast_error', $validator->errors()->all()[0])->withInput()->withErrors($validator);
+      }
+    // Validasi
+      $validatedData = $validator->validated();
+
     // Kalo image ada isi, store(), kalo nda kasih nilai null
       if($request->file('petugas_image_1')){
           $validatedData['petugas_image_1'] = $request->file('petugas_image_1')->store('image');
@@ -166,7 +184,7 @@ class JaringanController extends Controller
     ];
   // Kirim Email
      Mail::to($pengaduan->email)->send(new SendMailVisitor ($data)); 
-  return redirect()->route('jaringan.detail', $pengaduan->kode)
+  return redirect()->back()
                    ->with('success', 'Pengaduan Berhasil Diselesaikan');
     }
 }

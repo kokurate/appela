@@ -34,12 +34,16 @@
   <link href="/templates/auth/assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="/templates/auth/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+
+
+  @yield('header')
+
 </head> 
 
 <!-- ===== Side Bar ====  -->
 <body class="g-sidenav-show   bg-gray-100">
     <!-- Background Top -->
-    <div class="min-height-300 bg-primary opacity-8 position-absolute w-100"></div>
+    <div class="min-height-300 bg-gradient-primary  position-absolute w-100"></div>
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
       <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -371,6 +375,9 @@
 
   <!-- ========================================= Section ===========================-->
   @yield('javascript')
+
+
+    
 </body>
 
 </html>
