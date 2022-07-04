@@ -87,6 +87,9 @@ $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbo
                 route::get('/admin/masuk/{pengaduan:kode}',[AdminController::class,'masuk'])->name('admin.masuk'); 
                 route::post('/admin/masuk/{pengaduan:kode}',[AdminController::class,'masuk_store'])->name('admin.masuk.store'); 
 
+            // Email ke petugas
+                route::post('/admin/email-to-petugas/{pengaduan:kode}',[AdminController::class,'email_petugas'])->name('email.petugas');
+
             // Edit Tujuan
                 // route::get('/admin/tujuan/edit/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
                 route::post('/admin/tujuan/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 

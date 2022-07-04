@@ -14,6 +14,7 @@ class Pengaduan extends Model
     // Field yang tidak boleh diisi 
     protected $guarded = ['id']; 
     protected $with = ['tujuan']; 
+    
 
 
     // public function getRouteKeyName()
@@ -31,7 +32,7 @@ class Pengaduan extends Model
      public function catatan(){
         return $this->hasMany(Catatan::class);
     }
-    
+
     
     public function scopeFilter ($query, array $filters ){
 

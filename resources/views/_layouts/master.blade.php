@@ -56,107 +56,116 @@
       <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
           <!-- Dashboard -->
-          <li class="nav-item">
-            <a class="nav-link active" href="{{ route('admin.index') }}">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="ni ni-key-25 text-primary text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Dashboard Admin</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Dashboard</span>
-            </a>
-          </li>
-          <!-- Jaringan -->
-          <li class="nav-item">
-            <a class="nav-link " href="{{ route('jaringan.index') }}">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                  {{-- <i class="material-icons text-warning text-sm opacity-10">wifi</i> --}}
-                <i class="fa fa-solid fa-wifi text-warning text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Jaringan</span>
-            </a>
-          </li>
-          <!-- Server -->
-          <li class="nav-item">
-            <a class="nav-link " href="#">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fa fa-server text-success text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Server</span>
-            </a>
-          </li>
-          <!-- Sistem Informasi -->
-          <li class="nav-item">
-            <a class="nav-link " href="#">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fa fa-book-open text-info text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Sistem Informasi</span>
-            </a>
-          </li>
-          <!-- Website Unima -->
-          <li class="nav-item">
-            <a class="nav-link " href="#">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Website UNIMA</span>
-            </a>
-          </li>
-          <!-- Learning Management System -->
-          <li class="nav-item">
-            <a class="nav-link " href="#">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fa fa-school text-danger text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">LMS</span>
-            </a>
-          </li>
-          <!-- Ijazah -->
-          <li class="nav-item">
-            <a class="nav-link " href="#">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fa fa-graduation-cap text-danger text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Ijazah</span>
-            </a>
-          </li>
-          <!-- Slip -->
-          <li class="nav-item">
-            <a class="nav-link " href="#">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fas fa-envelope-open-text text-danger text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Slip</span>
-            </a>
-          </li>
-  
-          <li class="nav-item mt-3">
-            <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Admin pages</h6>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="/templates/auth/pages/profile.html">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Admin</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="/templates/auth/pages/sign-in.html">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fa fa-file-export text-warning text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Export</span>
-            </a>
-          </li>
+            <!-- Dashboard Admin-->
+            @if(auth()->user()->level == 'admin')
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ route('admin.index') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-key-25 text-primary text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Dashboard Admin</span>
+                </a>
+              </li>
+            @endif
+
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                </div>
+                <span class="nav-link-text ms-1">Dashboard</span>
+              </a>
+            </li>
+            <!-- Jaringan -->
+            <li class="nav-item">
+              <a class="nav-link " href="{{ route('jaringan.index') }}">
+                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    {{-- <i class="material-icons text-warning text-sm opacity-10">wifi</i> --}}
+                  <i class="fa fa-solid fa-wifi text-warning text-sm opacity-10"></i>
+                </div>
+                <span class="nav-link-text ms-1">Jaringan</span>
+              </a>
+            </li>
+            <!-- Server -->
+            <li class="nav-item">
+              <a class="nav-link " href="#">
+                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa fa-server text-success text-sm opacity-10"></i>
+                </div>
+                <span class="nav-link-text ms-1">Server</span>
+              </a>
+            </li>
+            <!-- Sistem Informasi -->
+            <li class="nav-item">
+              <a class="nav-link " href="#">
+                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa fa-book-open text-info text-sm opacity-10"></i>
+                </div>
+                <span class="nav-link-text ms-1">Sistem Informasi</span>
+              </a>
+            </li>
+            <!-- Website Unima -->
+            <li class="nav-item">
+              <a class="nav-link " href="#">
+                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+                </div>
+                <span class="nav-link-text ms-1">Website UNIMA</span>
+              </a>
+            </li>
+            <!-- Learning Management System -->
+            <li class="nav-item">
+              <a class="nav-link " href="#">
+                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa fa-school text-danger text-sm opacity-10"></i>
+                </div>
+                <span class="nav-link-text ms-1">LMS</span>
+              </a>
+            </li>
+            <!-- Ijazah -->
+            <li class="nav-item">
+              <a class="nav-link " href="#">
+                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="fa fa-graduation-cap text-danger text-sm opacity-10"></i>
+                </div>
+                <span class="nav-link-text ms-1">Ijazah</span>
+              </a>
+            </li>
+            <!-- Slip -->
+            <li class="nav-item">
+              <a class="nav-link " href="#">
+                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="fas fa-envelope-open-text text-danger text-sm opacity-10"></i>
+                </div>
+                <span class="nav-link-text ms-1">Slip</span>
+              </a>
+            </li>
+
+          <!-- Dashboard Admin-->
+          @if(auth()->user()->level == 'admin')
+              <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Admin pages</h6>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="/templates/auth/pages/profile.html">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Admin</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="/templates/auth/pages/sign-in.html">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-file-export text-warning text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Export</span>
+                </a>
+              </li>
+          @endif
+
         </ul>
+
       </div>
       <div class="sidenav-footer mx-3 ">
         <div class="card card-plain shadow-none" id="sidenavCard">

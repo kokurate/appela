@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMailOfficer;
 use App\Models\Catatan;
 use App\Models\Pengaduan;
 use App\Models\Tujuan;
@@ -10,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Mail\SendMailVisitor;
+use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
@@ -171,5 +174,52 @@ class AdminController extends Controller
     DB::table('catatans')->insert($activitylog);
     Pengaduan::where('id', $pengaduan->id)->update($validateData);
   return back()->with('success', 'Tujuan Pengaduan Berhasil Diupdate');
+  }
+
+  // ===================================== Email Ke Petugas ==============================
+  public function email_petugas(Pengaduan $pengaduan, Request $request){
+
+    // dd($pengaduan->toArray());
+
+   $users = [];
+    if($pengaduan->tujuan_id == 1){$users = User::where('level', 'jaringan')->get();}
+    elseif($pengaduan->tujuan_id == 2){$users = User::where('level', 'server')->get();}
+    else {
+     return back()->with('toast_error','Email petugas tidak ada');
+    }    
+
+    // Message to email
+    $data = [
+      'content' => 'Ada pengaduan yang masuk di ' . $pengaduan->tujuan->nama ,
+      'url' => 'http://127.0.0.1:8000/login',
+  ];
+
+  // Loop data petugas
+    foreach($users as $user){
+      Mail::to($user->email)->send(new SendMailOfficer($data));
+    }
+
+      $tujuan = $request->tujuan_id;
+      // buat kondisi untuk menamakan tujuan 
+      if($tujuan == 1){$tujuan = 'Jaringan';}
+      elseif($tujuan == 2){$tujuan = 'Server';}
+      elseif($tujuan == 3){$tujuan = 'Sistem Informasi';}
+      elseif($tujuan == 4){$tujuan = 'Website unima';}
+      elseif($tujuan == 5){$tujuan = 'Learning Management System';}
+      elseif($tujuan == 6){$tujuan = 'Ijazah';}
+      elseif($tujuan == 7){$tujuan = 'Slip';}
+
+    // Activity Log
+    $activitylog = [
+      'pengaduan_id' => $pengaduan->id,
+      'opener' => 'Send',
+      'user' => auth()->user()->name  ,
+      'do' => 'Mengirim Email ke Petugas : ' . $tujuan,
+      'updated_at' => Carbon::now()->toDateTimeString(),
+    ];
+    DB::table('catatans')->insert($activitylog);
+
+    // return response()->json(['success'=>'Berhasil Kirim Email ke petugas.']);
+    return back()->with('toast_success','Berhasil Kirim Email ke petugas.');
   }
 }

@@ -66,6 +66,7 @@
                         <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-update-tab" data-bs-toggle="tab" data-bs-target="#nav-update" type="button" role="tab" aria-controls="nav-update" aria-selected="true"><i class="ni ni-fat-add"></i> Update</button>
                             <button class="nav-link" id="nav-tujuan-tab" data-bs-toggle="tab" data-bs-target="#nav-tujuan" type="button" role="tab" aria-controls="nav-tujuan" aria-selected="false"><i class="ni ni-ungroup"></i> Ubah Tujuan Pengaduan</button>
+                            <button class="nav-link" id="nav-email-tab" data-bs-toggle="tab" data-bs-target="#nav-email" type="button" role="tab" aria-controls="nav-email" aria-selected="false"><i class="ni ni-email-83"></i> Email</button>
                         </div>
                     </nav>
                     <div class="card-body">
@@ -142,6 +143,21 @@
                                                 <button type="submit" class="btn btn-primary">Ubah Tujuan Pengaduan</button>
                                             </div>
                                 </form>
+                            </div>
+
+                            <!-- Isi Tab 3-->
+                            <div class="tab-pane fade" id="nav-email" role="tabpanel" aria-labelledby="nav-email-tab">
+                                <p class="font-weight-bolder">Kirim Email ke petugas  {{ $pengaduan->tujuan->nama }}</p>
+                                <hr class="bg-primary border-2 border-top border-primary" >
+
+                                <form class="mt-1" method="post" action="{{ route('email.petugas',$pengaduan->kode) }}">
+                                    @csrf
+                                    <input type="hidden" value="{{ $pengaduan->tujuan_id }}" name="tujuan_id">
+                                        <div class="text-center">
+                                            <button type="submit" class="btn btn-primary">Kirim Email Ke petugas</button>
+                                        </div>
+                            </form>
+
                             </div>
                         </div>
                     </div>
