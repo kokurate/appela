@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Pengaduan;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Contracts\Support\Responsable;
 use Maatwebsite\Excel\Concerns\Exportable;
@@ -16,6 +17,8 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Events\AfterSheet;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Color;
 
 class PengaduansExport implements 
                                 FromView,
@@ -42,6 +45,8 @@ class PengaduansExport implements
                                         ->WhereMonth('updated_at', $this->month)
                                         ->with('tujuan')->get(),
             'i' => 1,
+            'month' => DateTime::createFromFormat('!m', $this->month)->format('F'),
+            'year' => Carbon::now()->year,
         ]);
     } 
 
@@ -57,7 +62,16 @@ class PengaduansExport implements
                                 'color' => ['argb' => '000000'],
                             ],
                         ]
+                        ]);
+                $event->sheet->getStyle('A1:G1')->applyFromArray([
+                    'font' => ['size' =>16, 'bold' => true],
                 ]);
+
+                $event->sheet->getStyle('A1:G1')->getFill()->applyFromArray([
+                    'fillType' => 'solid','rotation' => 0, 'color' => ['rgb' => 'ff4800'],
+                ]);
+
+
             }
         ];
     }

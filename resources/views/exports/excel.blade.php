@@ -1,9 +1,15 @@
      <table>
          <thead>
-             <tr><br></tr>
-             <tr><br></tr>
+             <tr style="text-align: center">
+                <th colspan="7" rowspan="2" style="text-align: center"><strong>EXPORT PENGADUAN, {{ $month }} {{ $year }}</strong></th>
+            </tr>
+            <tr>
+                <th></th>
+            </tr>
+            
 
             <tr class="text-center">
+                
                 <th>#</th>
                 <th>Pengaduan Dibuat</th>
                 <th>Kode</th>
@@ -15,7 +21,7 @@
             </thead>
             <tbody>
 
-            @foreach($pengaduan as $p)
+            @forelse($pengaduan as $p)
 
                 <tr>
                     <td>{{ $i++ }}</td>
@@ -26,6 +32,10 @@
                     <td>{{ $p->status }}</td>
                     <td>{{ $p->judul }}</td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="5" style="text-align: center"><strong>Belum Ada Pengaduan</strong></td>
+                </tr>
+            @endforelse
             </tbody>
         </table>
