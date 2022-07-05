@@ -144,7 +144,7 @@
               <div class="tab-content" id="myTabContent">
                 <!-- Isi Tab 1-->
                 <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
-                  Pengaduan dibuat : <b style="color: rgb(255, 0, 0);">{{ $pengaduan->published_at }}</b>
+                  Pengaduan dibuat : <b style="color: rgb(255, 0, 0);">{{ $pengaduan->published_at->diffForHumans() }}</b>
                   <hr class="my-2">
                   <div class="description">
                     {!! $pengaduan->isi !!}
@@ -248,7 +248,7 @@
               <div class="tab-content" id="myTabContent">
                 <!-- Isi Tab 1 -->
                 <div class="tab-pane fade show active" id="tabs-text-1" role="tabpanel" aria-labelledby="tabs-text-1-tab">
-                  Pengaduan diupdate : <b style="color: rgb(255, 0, 0);">{{ $pengaduan->updated_at }}</b>
+                  Pengaduan diupdate : <b style="color: rgb(255, 0, 0);">{{ $pengaduan->updated_at->diffForHumans() }}</b>
                   <hr class="my-2">
                   @if($pengaduan->keterangan == NULL)
                       <p> Petugas belum memberikan tanggapan</p>

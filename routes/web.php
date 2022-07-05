@@ -1,9 +1,11 @@
 <?php
 
+use App\Exports\PengaduansExport;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JaringanController;
 use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\PengaduansExportController;
 use App\Http\Middleware\Cek_Login;
 use App\Models\Pengaduan;
 use App\Models\Tujuan;
@@ -93,6 +95,9 @@ $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbo
             // Edit Tujuan
                 // route::get('/admin/tujuan/edit/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
                 route::post('/admin/tujuan/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
+
+            // Export
+                Route::get('/admin/export/excel', [PengaduansExportController::class,'excel'])->name('export.excel');
 
                 //  ========================================== Belum beking dia pe controller
                 // Server all
