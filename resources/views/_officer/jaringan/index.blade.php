@@ -8,18 +8,19 @@
             </div>
         </a>
 
+        
         <!-- Card Section --> 
         <div class="row">
-            <!--  Selesai -->
+            <!--  Semua -->
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <a href="#">
+            <a href="{{ route('jaringan.section.semua') }}">
             <div class="card">
                 <div class="card-body p-3">
                 <div class="row">
                     <div class="col-8">
                     <div class="numbers">
-                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Selesai</p>
-                        <h5 class="font-weight-bolder">{{ $selesai }}</h5>
+                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Semua</p>
+                        <h5 class="font-weight-bolder">{{ $semua }}</h5>
                         <p class="mb-0">
                         <!-- <strong>Jaringan</strong> -->
                         </p>
@@ -27,7 +28,7 @@
                     </div>
                     <div class="col-4 text-end">
                     <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                        <i class="fa fa-solid fa-check text-lg opacity-10" aria-hidden="true"></i>
+                        <i class="fa fa-solid fa-globe text-lg opacity-10" aria-hidden="true"></i>
                     </div>
                     </div>
                 </div>
@@ -36,60 +37,64 @@
             </a>
             </div>
             <!-- Ditolak -->
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <a href="#">
-            <div class="card">
-                <div class="card-body p-3">
-                <div class="row">
-                    <div class="col-8">
-                    <div class="numbers">
-                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Ditolak</p>
-                        <h5 class="font-weight-bolder">{{ $ditolak }}</h5>
-                        <p class="mb-0">
-                        <!-- <strong>Server</strong> -->
-                        </p>
-                    </div>
-                    </div>
-                    <div class="col-4 text-end">
-                    <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                        <i class="fa fa-remove text-lg opacity-10" aria-hidden="true"></i>
-                    </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-            </a>
-            </div>
-            <!-- Dengan Rating -->
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <a href="#">
-            <div class="card">
-                <div class="card-body p-3">
-                <div class="row">
-                    <div class="col-8">
-                    <div class="numbers">
-                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Dengan Rating</p>
-                        <h5 class="font-weight-bolder">{{ $rating }}</h5>
-                    </div>
-                    </div>
-                    <div class="col-4 text-end">
-                    <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                        <i class="fa fa-star text-lg opacity-10" aria-hidden="true"></i>
-                    </div>
-                    </div>
-                    <div class="row">
-                        <div class="numbers">
-                            <p class="mb-0">
-                            <!-- <strong>Sistem Informasi</strong> -->
-                            </p>
+            {{-- <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <a href="#">
+                    <div class="card">
+                        <div class="card-body p-3">
+                        <div class="row">
+                            <div class="col-8">
+                            <div class="numbers">
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Ditolak</p>
+                                <h5 class="font-weight-bolder">{{ $ditolak }}</h5>
+                                <p class="mb-0">
+                                <!-- <strong>Server</strong> -->
+                                </p>
+                            </div>
+                            </div>
+                            <div class="col-4 text-end">
+                            <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                                <i class="fa fa-remove text-lg opacity-10" aria-hidden="true"></i>
+                            </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
-                </div>
-                </div>
+                </a>
+            </div>  --}}
+
+            <!-- Dengan Rating -->
+            {{-- <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <a href="#">
+                    <div class="card">
+                        <div class="card-body p-3">
+                        <div class="row">
+                            <div class="col-8">
+                            <div class="numbers">
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Dengan Rating</p>
+                                <h5 class="font-weight-bolder">{{ $rating }}</h5>
+                            </div>
+                            </div>
+                            <div class="col-4 text-end">
+                            <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                                <i class="fa fa-star text-lg opacity-10" aria-hidden="true"></i>
+                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="numbers">
+                                    <p class="mb-0">
+                                    <!-- <strong>Sistem Informasi</strong> -->
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </a>
             </div>
-            </a>
-            </div>
+             --}}
         </div> <!-- End Row  Card Section-->  
+     
+
 
         <div class="row my-4">
             <div class="col-md-6">

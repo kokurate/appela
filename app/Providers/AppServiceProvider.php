@@ -2,8 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+
+
+
 
 
 class AppServiceProvider extends ServiceProvider
@@ -27,5 +32,17 @@ class AppServiceProvider extends ServiceProvider
     {
         // Default using Tailwind
         Paginator::useBootstrap();
+
+        // admin
+        Gate::define('admin', function (User $user){
+            return $user->level == 'admin';
+        });
+
+        // Jaringan
+        Gate::define('jaringan', function (User $user){
+            return $user->level == 'jaringan';
+        });
+
+
     }
 }

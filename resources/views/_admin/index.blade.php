@@ -12,7 +12,7 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
                     <h5 class="font-weight-bolder">{{ $jaringan }}</h5>
                     <p class="mb-0">
                       <strong>Jaringan</strong>
@@ -37,7 +37,7 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
                     <h5 class="font-weight-bolder">{{ $server }}</h5>
                     <p class="mb-0">
                       <strong>Server</strong>
@@ -62,7 +62,7 @@
               <div class="row">
                 <div class="col-8">
                   <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
                     <h5 class="font-weight-bolder">{{ $sistem_informasi }}</h5>
                   </div>
                 </div>
@@ -91,7 +91,7 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
                                 <h5 class="font-weight-bolder">{{ $website_unima }}</h5>
                                 <p class="mb-0">
                                 <strong>Website unima</strong>
@@ -116,7 +116,7 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
                                 <h5 class="font-weight-bolder">{{ $lms }}</h5>
                             </div>
                         </div>
@@ -145,7 +145,7 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
                                 <h5 class="font-weight-bolder">{{ $ijazah }}</h5>
                             </div>
                         </div>
@@ -174,7 +174,7 @@
                     <div class="row">
                         <div class="col-8">
                             <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
+                                <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
                                 <h5 class="font-weight-bolder">{{ $slip }}</h5>
                             </div>
                         </div>

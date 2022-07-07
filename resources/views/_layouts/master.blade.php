@@ -43,7 +43,7 @@
 <!-- ===== Side Bar ====  -->
 <body class="g-sidenav-show   bg-gray-100">
     <!-- Background Top -->
-    <div class="min-height-300 bg-gradient-primary  position-absolute w-100"></div>
+    <div class="min-height-300 bg-primary  position-absolute w-100"></div>
     <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
       <div class="sidenav-header">
         <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -57,7 +57,7 @@
         <ul class="navbar-nav">
           <!-- Dashboard -->
             <!-- Dashboard Admin-->
-            @if(auth()->user()->level == 'admin')
+            @can('admin')
               <li class="nav-item">
                 <a class="nav-link active" href="{{ route('admin.index') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -66,83 +66,90 @@
                   <span class="nav-link-text ms-1">Dashboard Admin</span>
                 </a>
               </li>
-            @endif
+            @endcan
 
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-                </div>
-                <span class="nav-link-text ms-1">Dashboard</span>
-              </a>
-            </li>
-            <!-- Jaringan -->
-            <li class="nav-item">
-              <a class="nav-link " href="{{ route('jaringan.index') }}">
-                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    {{-- <i class="material-icons text-warning text-sm opacity-10">wifi</i> --}}
-                  <i class="fa fa-solid fa-wifi text-warning text-sm opacity-10"></i>
-                </div>
-                <span class="nav-link-text ms-1">Jaringan</span>
-              </a>
-            </li>
-            <!-- Server -->
-            <li class="nav-item">
-              <a class="nav-link " href="#">
-                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa fa-server text-success text-sm opacity-10"></i>
-                </div>
-                <span class="nav-link-text ms-1">Server</span>
-              </a>
-            </li>
-            <!-- Sistem Informasi -->
-            <li class="nav-item">
-              <a class="nav-link " href="#">
-                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa fa-book-open text-info text-sm opacity-10"></i>
-                </div>
-                <span class="nav-link-text ms-1">Sistem Informasi</span>
-              </a>
-            </li>
-            <!-- Website Unima -->
-            <li class="nav-item">
-              <a class="nav-link " href="#">
-                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
-                </div>
-                <span class="nav-link-text ms-1">Website UNIMA</span>
-              </a>
-            </li>
-            <!-- Learning Management System -->
-            <li class="nav-item">
-              <a class="nav-link " href="#">
-                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa fa-school text-danger text-sm opacity-10"></i>
-                </div>
-                <span class="nav-link-text ms-1">LMS</span>
-              </a>
-            </li>
-            <!-- Ijazah -->
-            <li class="nav-item">
-              <a class="nav-link " href="#">
-                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="fa fa-graduation-cap text-danger text-sm opacity-10"></i>
-                </div>
-                <span class="nav-link-text ms-1">Ijazah</span>
-              </a>
-            </li>
-            <!-- Slip -->
-            <li class="nav-item">
-              <a class="nav-link " href="#">
-                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="fas fa-envelope-open-text text-danger text-sm opacity-10"></i>
-                </div>
-                <span class="nav-link-text ms-1">Slip</span>
-              </a>
-            </li>
+            <!-- Buat Kondisi untuk tiap sidebar nav Dashboard-->
+            @can('jaringan')
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('jaringan.index') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Dashboard</span>
+                </a>
+              </li>
+            @endcan
 
-          <!-- Dashboard Admin-->
-          @if(auth()->user()->level == 'admin')
+            <!-- Admin can access all the dasboard-->
+            @can('admin')
+                <!-- Jaringan -->
+                <li class="nav-item">
+                  <a class="nav-link " href="{{ route('jaringan.index') }}">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        {{-- <i class="material-icons text-warning text-sm opacity-10">wifi</i> --}}
+                      <i class="fa fa-solid fa-wifi text-warning text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Jaringan</span>
+                  </a>
+                </li>
+                <!-- Server -->
+                <li class="nav-item">
+                  <a class="nav-link " href="#">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                      <i class="fa fa-server text-success text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Server</span>
+                  </a>
+                </li>
+                <!-- Sistem Informasi -->
+                <li class="nav-item">
+                  <a class="nav-link " href="#">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                      <i class="fa fa-book-open text-info text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Sistem Informasi</span>
+                  </a>
+                </li>
+                <!-- Website Unima -->
+                <li class="nav-item">
+                  <a class="nav-link " href="#">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                      <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Website UNIMA</span>
+                  </a>
+                </li>
+                <!-- Learning Management System -->
+                <li class="nav-item">
+                  <a class="nav-link " href="#">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                      <i class="fa fa-school text-danger text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">LMS</span>
+                  </a>
+                </li>
+                <!-- Ijazah -->
+                <li class="nav-item">
+                  <a class="nav-link " href="#">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                      <i class="fa fa-graduation-cap text-danger text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Ijazah</span>
+                  </a>
+                </li>
+                <!-- Slip -->
+                <li class="nav-item">
+                  <a class="nav-link " href="#">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                      <i class="fas fa-envelope-open-text text-danger text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Slip</span>
+                  </a>
+                </li>
+            @endcan
+
+          <!-- Admin Pages -->
+          @can('admin')
               <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Admin pages</h6>
               </li>
@@ -162,7 +169,7 @@
                   <span class="nav-link-text ms-1">Export</span>
                 </a>
               </li>
-          @endif
+          @endcan
 
         </ul>
 

@@ -123,7 +123,11 @@ $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbo
                 
                 // Proses (Pengaduan Sedang Diproses)
                 route::get('jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses'])->name('jaringan.proses');
-                route::post('jaringan/jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses_store'])->name('jaringan.proses.store');
+                route::post('jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses_store'])->name('jaringan.proses.store');
+           
+            // All
+                route::get('jaringan/section/semua',[JaringanController::class,'section_semua'])->name('jaringan.section.semua');
+
             }));
 
   
