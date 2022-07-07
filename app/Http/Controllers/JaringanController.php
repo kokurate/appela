@@ -47,7 +47,7 @@ class JaringanController extends Controller
 
     public function detail(Pengaduan $pengaduan, Request $request){
       return view('_officer.jaringan.detail',[
-        'title' => "Detail",
+        'title' => "Detail Jaringan",
         'url' => $request->path(),
         'tujuan' => Tujuan::all(),
         'pengaduan' => $pengaduan,
@@ -57,13 +57,6 @@ class JaringanController extends Controller
 
 // ====================================================================================
 // Update disini masih ada 2 opsi, ditolak dan diproses
-    public function update(Pengaduan $pengaduan){
-      return view('_officer.jaringan.update',[
-        'title' => 'Ini halaman proses jaringan',
-        'pengaduan' => $pengaduan,
-      ]);
-    }
-
     public function update_store(Pengaduan $pengaduan, Request $request){
       $validateData = $request->validate([
           'status' => 'required'
@@ -116,13 +109,6 @@ class JaringanController extends Controller
 
 // ====================================================================================
 // proses disini sudah pasti selesai
-    public function proses(Pengaduan $pengaduan){
-      return view('_officer.jaringan.proses',[
-        'title' => 'Ini halaman jaringan proses',
-        'pengaduan' => $pengaduan,
-      ]);
-    }
-
     public function proses_store(Pengaduan $pengaduan, Request $request){
       $validator = Validator::make($request->all() ,[   
           'keterangan' => 'required',
@@ -186,7 +172,7 @@ class JaringanController extends Controller
                    ->with('success', 'Pengaduan Berhasil Diselesaikan');
     }
 
-    // ========================= Jaringan Selesai ====================
+    // ========================= Jaringan Section Semua ====================
   public function section_semua(Request $request){
 
     $pagination = 10;

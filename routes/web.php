@@ -4,6 +4,7 @@ use App\Exports\PengaduansExport;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JaringanController;
+use App\Http\Controllers\ServerController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PengaduansExportController;
 use App\Http\Middleware\Cek_Login;
@@ -69,6 +70,11 @@ $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbo
     Route::post('authenticate',[AuthController::class,'authenticate'])->name('authenticate');
     Route::post('logout',[AuthController::class,'logout'])->name('logout');
 
+
+   // Edit Tujuan bisa diakses semua
+        // route::get('/admin/tujuan/edit/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
+            route::post('/admin/tujuan/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
+
 // Route Group untuk yang login
     // =============================== Admin Page ================================= 
         Route::group(['middleware' => ['auth','cek_level:admin,petugas']], (function (){
@@ -95,9 +101,9 @@ $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbo
             // Email ke petugas
                 route::post('/admin/email-to-petugas/{pengaduan:kode}',[AdminController::class,'email_petugas'])->name('email.petugas');
 
-            // Edit Tujuan
+            // Edit Tujuan pindah keatas karena bisa diakses semua
                 // route::get('/admin/tujuan/edit/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
-                route::post('/admin/tujuan/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
+                // route::post('/admin/tujuan/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
 
             // Export
                 Route::get('/admin/export/excel', [PengaduansExportController::class,'excel'])->name('export.excel');
@@ -105,18 +111,7 @@ $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbo
             // Admin Section
                 // Semua
                 route::get('admin/section/semua',[AdminController::class,'section_semua'])->name('admin.section.semua');
-
-
-
-                //  ========================================== Belum beking dia pe controller
-                // Server all
-                route::get('admin/server',[AdminController::class,'server'])->name('admin.server.index');
-
-                route::get('admin/sistem-informasi',[AdminController::class,'jaringan'])->name('admin.sistem_informasi.index');
-                route::get('admin/website-unima',[AdminController::class,'jaringan'])->name('admin.website_unima.index');
-                route::get('admin/learning-management-system',[AdminController::class,'jaringan'])->name('admin.lms.index');
-                route::get('admin/ijazah',[AdminController::class,'jaringan'])->name('admin.ijazah.index');
-                route::get('admin/slip',[AdminController::class,'jaringan'])->name('admin.slip.index');
+                
             }));
              
 
@@ -124,20 +119,37 @@ $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbo
         Route::group(['middleware' => ['auth','cek_level:jaringan,admin']], (function (){
             // Route::middleware(['auth','cek_level:jaringan,admin'])->group (function (){
             // index & detail jaringan
-                route::get('/jaringan',[JaringanController::class,'index'])->name('jaringan.index');
+                route::get('jaringan',[JaringanController::class,'index'])->name('jaringan.index');
                 route::get('jaringan/detail/{pengaduan:kode}',[JaringanController::class,'detail'])->name('jaringan.detail');
 
                 // Update (Pengaduan Sedang Diverifikasi)
-                route::get('jaringan/update/{pengaduan:kode}',[JaringanController::class,'update'])->name('jaringan.update');
                 route::post('jaringan/update/{pengaduan:kode}',[JaringanController::class,'update_store'])->name('jaringan.update.store');
                 
                 // Proses (Pengaduan Sedang Diproses)
-                route::get('jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses'])->name('jaringan.proses');
                 route::post('jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses_store'])->name('jaringan.proses.store');
            
             // Section
                 // Semua
                 route::get('jaringan/section/semua',[JaringanController::class,'section_semua'])->name('jaringan.section.semua');
+
+            }));
+
+
+    // =================================== Server Page ==================================
+        Route::group(['middleware' => ['auth','cek_level:server,admin']], (function (){
+            // index & detail Server
+                route::get('server',[ServerController::class,'index'])->name('server.index');
+                route::get('server/detail/{pengaduan:kode}',[ServerController::class,'detail'])->name('server.detail');
+
+                // Update (Pengaduan Sedang Diverifikasi)
+                route::post('server/update/{pengaduan:kode}',[ServerController::class,'update_store'])->name('server.update.store');
+                
+                // Proses (Pengaduan Sedang Diproses)
+                route::post('server/proses/{pengaduan:kode}',[ServerController::class,'proses_store'])->name('server.proses.store');
+           
+            // Section
+                // Semua
+                route::get('server/section/semua',[ServerController::class,'section_semua'])->name('server.section.semua');
 
             }));
 

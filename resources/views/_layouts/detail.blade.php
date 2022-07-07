@@ -15,11 +15,18 @@
 @section('content')
  <div class="container my-2">
     <!-- Back -->
-    <a href="{{ route('jaringan.index') }}">
-        <div class="btn btn-light">
-            <i class="ni ni-bold-left"></i>
-        </div>
-    </a>
+    <!-- =========== Section Gate ========-->
+        <a href="
+        @can('admin') {{ route('admin.index') }}
+        @elsecan('jaringan') {{ route('jaringan.index') }}
+        @elsecan('server') {{ route('server.index') }}
+        @endcan
+        ">
+            <div class="btn btn-light">
+                <i class="ni ni-bold-left"></i>
+            </div>
+        </a>
+ 
     <div class="row">
         <div class="text-center">
                 <h5 class="btn bg-gradient-light text-dark">Tujuan Pengaduan : {{ $pengaduan->tujuan->nama }}</h5>

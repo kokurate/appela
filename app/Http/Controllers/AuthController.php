@@ -46,6 +46,12 @@ class AuthController extends Controller
                     $request->session()->regenerate();
                     return redirect()->intended('jaringan');
                 }
+                elseif ($user->level == 'server'){
+                    $request->session()->regenerate();
+                    return redirect()->intended('server');
+                }
+
+
                 // Jika tidak semua maka akan dikembalikan ke halaman route
                 toast('Login Gagal','error');
                 return redirect()->intended('login')->with('gagal', 'Login Gagal');

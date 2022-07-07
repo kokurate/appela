@@ -13,7 +13,10 @@
         <div class="row">
             <!--  Semua -->
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <a href="{{ route('jaringan.section.semua') }}">
+            <!-- ================== Section Gate =============  -->
+            @can('jaringan') <a href="{{ route('jaringan.section.semua') }}">
+            @elsecan('server') <a href="{{ route('server.section.semua') }}">
+            @endcan
             <div class="card">
                 <div class="card-body p-3">
                 <div class="row">
@@ -135,9 +138,16 @@
                                             <p class="text-xs  mb-0">{{ $p->tujuan->nama }}</p>
                                           </td>
                                           <td>
-                                            <a href="{{ route('jaringan.detail', $p->kode) }}" class="text-secondary  text-xs">
-                                                <i class="fa fa-solid fa-info ps-3"></i>
-                                            </a>
+                                            <!-- =============================== Section Gate ===================-->
+                                            @can('jaringan')
+                                                <a href="{{ route('jaringan.detail', $p->kode) }}" class="text-secondary  text-xs">
+                                                    <i class="fa fa-solid fa-info ps-3"></i>
+                                                </a>
+                                            @elsecan('server')
+                                                <a href="{{ route('server.detail', $p->kode) }}" class="text-secondary  text-xs">
+                                                    <i class="fa fa-solid fa-info ps-3"></i>
+                                                </a>
+                                            @endcan
                                           </td>
                                       </tr>
                                   @empty
@@ -191,9 +201,16 @@
                                             <p class="text-xs  mb-0">{{ $p->tujuan->nama }}</p>
                                           </td>
                                           <td>
-                                            <a href="{{ route('jaringan.detail', $p->kode) }}" class="text-secondary  text-xs">
-                                                <i class="fa fa-solid fa-info ps-3"></i>
-                                            </a>
+                                            <!-- ======================== Section Gate ===================== -->
+                                            @can('jaringan')
+                                                <a href="{{ route('jaringan.detail', $p->kode) }}" class="text-secondary  text-xs">
+                                                    <i class="fa fa-solid fa-info ps-3"></i>
+                                                </a>
+                                            @elsecan('server')
+                                                <a href="{{ route('server.detail', $p->kode) }}" class="text-secondary  text-xs">
+                                                    <i class="fa fa-solid fa-info ps-3"></i>
+                                                </a>
+                                            @endcan
                                           </td>
                                       </tr>
                                   @empty

@@ -23,7 +23,13 @@
                         <div class="tab-content" id="nav-tabContent">
                             <!-- Isi Tab 1-->
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                <form class="mt-2" method="post" action="{{ route('jaringan.update.store', $pengaduan->kode) }}">
+                                <!-- =================== Section Gate =================== -->
+                                    <form class="mt-2" method="post" action="
+                                    @can('jaringan') {{ route('jaringan.update.store', $pengaduan->kode) }}
+                                    @elsecan('server') {{ route('server.update.store', $pengaduan->kode) }}
+                                    @endcan
+                                    ">
+                                    
                                     @csrf
                                         @error('status')
                                         <div class="text-danger" role="alert">
@@ -59,8 +65,6 @@
                             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                                 <form class="mt-1" method="post" action="{{ route('admin.tujuan.store', $pengaduan->kode) }}">
                                     @csrf
-                        
-                                  
                                         @error('tujuan_id')
                                         <div class="text-danger my-2 text-center" role="alert">
                                         {{ $message }}
@@ -183,7 +187,15 @@
                     </div>
                     <div class="card-body">
                         <div class="tab-content" id="nav-tabContent">
-                                <form method="post" action="{{ route('jaringan.proses.store', $pengaduan->kode) }}" enctype="multipart/form-data">
+                            <!-- ================================= Section Gate =========================== -->
+                           
+                                <form method="post" action="
+                                @can('jaringan') {{ route('jaringan.proses.store', $pengaduan->kode) }}
+                                @elsecan('server') {{ route('server.proses.store', $pengaduan->kode) }}
+                                @endcan
+                                " 
+                                enctype="multipart/form-data">
+                            
                                     {{-- Using enctype so this form can handle file --}}
                                 @csrf
                                 
@@ -242,7 +254,7 @@
                                         @enderror
                                     </div>
                                     <div class="d-flex justify-content-center mt-3">
-                                        <button type="submit" class="btn btn-primary ">Buat Pengaduan</button>
+                                        <button type="submit" class="btn btn-primary ">Proses Pengaduan</button>
                                     </div>
                                 </form>
                         </div> <!-- End Tab-content-->

@@ -59,7 +59,7 @@
             <!-- Dashboard Admin-->
             @can('admin')
               <li class="nav-item">
-                <a class="nav-link active" href="{{ route('admin.index') }}">
+                <a class="nav-link {{ Request::is('admin') ? 'active bg-gradient-light' : '' }}" href="{{ route('admin.index') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-key-25 text-primary text-sm opacity-10"></i>
                   </div>
@@ -80,20 +80,29 @@
             <!-- Buat Kondisi untuk tiap sidebar nav Dashboard-->
             @can('jaringan')
               <li class="nav-item">
-                <a class="nav-link" href="{{ route('jaringan.index') }}">
+                <a class="nav-link active" href="{{ route('jaringan.index') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                   </div>
                   <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
               </li>
+            @elsecan('server')
+            <li class="nav-item">
+              <a class="nav-link active" href="{{ route('server.index') }}">
+                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                  <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                </div>
+                <span class="nav-link-text ms-1">Dashboard</span>
+              </a>
+            </li>
             @endcan
 
             <!-- Admin can access all the dasboard-->
             @can('admin')
                 <!-- Jaringan -->
                 <li class="nav-item">
-                  <a class="nav-link " href="{{ route('jaringan.index') }}">
+                  <a class="nav-link {{ Request::is('jaringan*') ? 'active bg-gradient-light' : '' }} " href="{{ route('jaringan.index') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         {{-- <i class="material-icons text-warning text-sm opacity-10">wifi</i> --}}
                       <i class="fa fa-solid fa-wifi text-warning text-sm opacity-10"></i>
@@ -103,7 +112,7 @@
                 </li>
                 <!-- Server -->
                 <li class="nav-item">
-                  <a class="nav-link " href="#">
+                  <a class="nav-link {{ Request::is('server*') ? 'active bg-gradient-light' : '' }} " href="{{ route('server.index') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                       <i class="fa fa-server text-success text-sm opacity-10"></i>
                     </div>
@@ -163,7 +172,7 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Admin pages</h6>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="{{ route('admin.pages') }}">
+                <a class="nav-link {{ Request::is('admin/pages*') ? 'active bg-gradient-light' : '' }}" href="{{ route('admin.pages') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
                   </div>
