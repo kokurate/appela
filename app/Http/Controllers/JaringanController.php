@@ -194,10 +194,11 @@ class JaringanController extends Controller
 
     if(request('search')){
       $pengaduan->where('kode','like','%' . request('search') . '%')
-                ->orWhere('nama','like','%' . request('search') . '%')
+                ->orWhere('used_email','like','%' . request('search') . '%')
                 ->orWhere('nama','like','%' . request('search') . '%')
                 ->orWhere('judul','like','%' . request('search') . '%')
                 ->orWhere('isi','like','%' . request('search') . '%')
+                ->orWhere('status','like','%' . request('search') . '%')
                 ;
     }
 

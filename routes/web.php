@@ -102,8 +102,9 @@ $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbo
             // Export
                 Route::get('/admin/export/excel', [PengaduansExportController::class,'excel'])->name('export.excel');
 
- 
-
+            // Admin Section
+                // Semua
+                route::get('admin/section/semua',[AdminController::class,'section_semua'])->name('admin.section.semua');
 
 
 
@@ -133,7 +134,8 @@ $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbo
                 route::get('jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses'])->name('jaringan.proses');
                 route::post('jaringan/proses/{pengaduan:kode}',[JaringanController::class,'proses_store'])->name('jaringan.proses.store');
            
-            // All
+            // Section
+                // Semua
                 route::get('jaringan/section/semua',[JaringanController::class,'section_semua'])->name('jaringan.section.semua');
 
             }));

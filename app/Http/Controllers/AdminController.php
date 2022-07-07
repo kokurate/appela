@@ -33,18 +33,23 @@ class AdminController extends Controller
         "title" => "Admin Dashboard",
         // Tidak perlu lagi pake with karena sudah didefinisikan withnya di dalam model pengaduan
         // pengaduans karena banyak
-        "pengaduan" => Pengaduan::where('status', 'Pengaduan Masuk')->orderBy('id','ASC')->paginate(10)->withQueryString(),
+        "pengaduan" => Pengaduan::where('status', 'Pengaduan Masuk')->orderBy('id','ASC')->paginate($pagination)->withQueryString(),
         'selesai' => Pengaduan::where('status','Pengaduan Selesai')->count(),
         'ditolak' => Pengaduan::where('status','Pengaduan Ditolak')->count(),
+        'semua' => Pengaduan::all()->count(),
         ])->with('i', ($request->input('page', 1) - 1) * $pagination); // code for paginate  
     }
 
-    public function detail(Pengaduan $pengaduan)
+    public function detail(Pengaduan $pengaduan, Request $request)
     {
-        return view('_admin/detail',[
-            "title" => "Detail Pengaduan Admin",
-            // Lazy Eager Loading
-            "pengaduan" =>$pengaduan->load('tujuan')
+        return view('_layouts/detail',[
+            "title" => "Detail",
+            'url' => $request->path(),
+            'tujuan' => Tujuan::all(),
+            'pengaduan' => $pengaduan,
+            // Lazy Eager Loading,
+          'log' => Catatan::where('pengaduan_id', $pengaduan->id)->get()->load('pengaduan')
+            
         ]);     
     }
     
@@ -233,6 +238,39 @@ class AdminController extends Controller
       'title' => 'Admin Page',
       'url' => $request->path(),
       'users' => User::paginate($pagination),
+    ])->with('i', ($request->input('page', 1) - 1) * $pagination); // code for paginate   
+  }
+
+
+  //  ================================ Section ==============================
+  // Semua Pengaduan 
+  public function section_semua(Request $request, Pengaduan $pengaduan){
+
+    $pagination = 10;
+
+    $pengaduan = Pengaduan::orderBy('updated_at','DESC');
+
+    if(request('search')){
+      $pengaduan->where('kode','like','%' . request('search') . '%')
+                ->orWhere('used_email','like','%' . request('search') . '%')
+                ->orWhere('nama','like','%' . request('search') . '%')
+                ->orWhere('tujuan_id','like','%' . request('search') . '%')
+                ->orWhere('judul','like','%' . request('search') . '%')
+                ->orWhere('isi','like','%' . request('search') . '%')
+                ->orWhere('status','like','%' . request('search') . '%')
+                ;
+    }
+
+
+    return view('_admin.semua',[
+      'title' => 'Admin Semua',
+      'url' => $request->path(),
+      'semua' => Pengaduan::all()->count(),
+      'selesai' => Pengaduan::where('status','Pengaduan Selesai')->count(),
+      'ditolak' => Pengaduan::where('status','Pengaduan Ditolak')->count(),
+      'rating' => Pengaduan::whereNotNull(['rating', 'komentar'])->count(),
+      'pengaduan' => $pengaduan->paginate($pagination)->withQueryString(),
+
     ])->with('i', ($request->input('page', 1) - 1) * $pagination); // code for paginate   
   }
 }

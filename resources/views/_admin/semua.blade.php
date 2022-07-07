@@ -93,7 +93,7 @@
                 <div class="card-header pb-0">
                     <h6>Semua Pengaduan : {{ $semua }}</h6>
                     <div class="col-md-6">
-                        <form action="{{ route('jaringan.section.semua') }}">                                
+                        <form action="{{ route('admin.section.semua') }}">                                
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="search" value="{{ request('search') }}" placeholder="Cari" aria-describedby="button-addon2">
                                 <button class="btn btn-outline-primary mb-0" type="submit" id="button-addon2">Cari Pengaduan</button>
@@ -107,12 +107,14 @@
                             <thead>
                                 <tr>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+                                <th class="text-secondary opacity-7"></th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
-                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tujuan</th>
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">status</th>
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">rating</th>
-                                <th class="text-secondary opacity-7"></th>
+                                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Detail</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -124,19 +126,37 @@
                                             </div>
                                         </td>
 
-                                        <!-- Email-->
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $p->used_email }}</p>
-                                            </td>
+                                         <!-- Action-->
+                                         <td class="align-middle">
+                                            <form action="{{ route('admin.destroy', $p->kode) }}" method="post" >
+                                                @method('delete')
+                                                @csrf
+                                                <button type="submit" class="border-0 " onclick="return confirm('Yakin mau hapus data ?')">
+                                                    <div class="d-flex justify-content-center badge bg-danger">
+                                                        <i class="fa fa-solid fa-trash"></i>
+                                                    </div>
+                                                </button>
+                                            </form>
+                                        </td>
 
                                         <!-- Kode-->
                                             <td>
                                                 <p class="text-xs font-weight-bold mb-0">{{ $p->kode }}</p>
                                             </td>
 
-                                        <!-- Nama -->
-                                            <td class="align-middle text-center text-sm">
+                                        <!-- Nama-->
+                                            <td>
                                                 <p class="text-xs font-weight-bold mb-0">{{ $p->nama }}</p>
+                                            </td>
+
+                                        <!-- Email-->
+                                            <td>
+                                                <p class="text-xs font-weight-bold mb-0">{{ $p->used_email }}</p>
+                                            </td>
+
+                                        <!-- Tujuan -->
+                                            <td class="align-middle text-center text-sm">
+                                                <p class="text-xs font-weight-bold mb-0">{{ $p->tujuan->nama }}</p>
                                             </td>
 
                                         <!-- Status -->
@@ -154,27 +174,27 @@
                                                 </td>
                                             @endif
 
-                                        <!-- Action-->
-                                            <td class="align-middle">
-                                                <a href="{{ route('jaringan.detail', $p->kode) }}" class="text-secondary  text-xs">
-                                                    <i class="fa fa-solid fa-info ps-3"></i>
-                                                </a>
-                                            </td>
+                                         <!-- Detail-->
+                                         <td class="align-middle">
+                                            <a href="{{ route('admin.detail', $p->kode) }}" class="text-secondary  text-xs">
+                                                <i class="fa fa-solid fa-info ps-4"></i>
+                                            </a>
+                                        </td>
+
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="4" class="text-center"><p class="font-weight-bold my-2">Tidak ada pengaduan </p></td>
+                                        <td colspan="8" class="text-center"><p class="font-weight-bold my-2">Tidak ada pengaduan </p></td>
                                     </tr>
                                 @endforelse
                             </tbody>
                         </table>
                         <!-- Pagination Section -->
-                        <div class="d-flex justify-content-center my-2">{{ $pengaduan->onEachSide(2)->links() }}</div>
+                        <div class="d-flex justify-content-center my-3">{{ $pengaduan->onEachSide(2)->links() }}</div>
                     </div>
                 </div>
             </div>
         </div>
     </div> <!-- Row -->
 </div> <!-- Container -->
-
 @endsection

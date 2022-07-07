@@ -253,6 +253,24 @@
             </div>
             <div class="card-body p-3">
               <ul class="list-group">
+
+                <!-- Semua -->
+                <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                  <div class="d-flex align-items-center">
+                    <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
+                      <i class="fa fa-regular fa-globe"></i>
+                    </div>
+                    <div class="d-flex flex-column">
+                      <h6 class="mb-1 text-dark text-sm">Semua</h6>
+                      <span class="text-xs font-weight-bold">{{ $semua }}</span>
+                    </div>
+                  </div>
+                  <div class="d-flex">
+                    <a href="{{ route('admin.section.semua') }}"  class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></a>
+                  </div>
+                </li>   
+
+                <!-- Selesai-->
                 <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                   <div class="d-flex align-items-center">
                     <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
@@ -264,10 +282,12 @@
                       <span class="text-xs font-weight-bold">{{ $selesai }}</span>
                     </div>
                   </div>
-                  <div class="d-flex">
+                  <!-- <div class="d-flex">
                     <a href="#" class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></a>
-                  </div>
+                  </div> -->
                 </li>
+
+                <!-- Ditolak -->
                 <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
                   <div class="d-flex align-items-center">
                     <div class="icon icon-shape icon-sm me-3 bg-gradient-dark shadow text-center">
@@ -279,10 +299,10 @@
                       <span class="text-xs font-weight-bold">{{ $ditolak }}</span>
                     </div>
                   </div>
-                  <div class="d-flex">
+                  <!-- <div class="d-flex">
                     <a href="#"  class="btn btn-link btn-icon-only btn-rounded btn-sm text-dark icon-move-right my-auto"><i class="ni ni-bold-right" aria-hidden="true"></i></a>
-                  </div>
-                </li>          
+                  </div> -->
+                </li>                 
               </ul>
             </div>
           </div>

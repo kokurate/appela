@@ -39,7 +39,7 @@
                         <div class="col-xl-2 mt-md-0 mt-4 mx-2">
                             <div class="card">
                                 <div class="card-header mx-4 p-3 text-center">
-                                    <div class="icon icon-shape icon-lg bg-gradient-warning shadow text-center border-radius-lg">
+                                    <div class="icon icon-shape icon-lg bg-warning shadow text-center border-radius-lg">
                                         <i class="fa fa-star opacity-10"></i>
                                     </div>
                                 </div>
