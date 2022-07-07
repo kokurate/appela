@@ -4,7 +4,7 @@
 
 <div class="container-fluid py-4">
       <!-- Back -->
-    <a href="{{ route('jaringan.index') }}">
+    <a href="{{ route('admin.index') }}">
         <div class="btn btn-light">
             <i class="ni ni-bold-left"></i>
         </div>
@@ -107,7 +107,7 @@
                             <thead>
                                 <tr>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
-                                <th class="text-secondary opacity-7"></th>
+                                @can('admin')<th class="text-secondary opacity-7"></th>@endcan
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
@@ -126,18 +126,20 @@
                                             </div>
                                         </td>
 
-                                         <!-- Action-->
-                                         <td class="align-middle">
-                                            <form action="{{ route('admin.destroy', $p->kode) }}" method="post" >
-                                                @method('delete')
-                                                @csrf
-                                                <button type="submit" class="border-0 " onclick="return confirm('Yakin mau hapus data ?')">
-                                                    <div class="d-flex justify-content-center badge bg-danger">
-                                                        <i class="fa fa-solid fa-trash"></i>
-                                                    </div>
-                                                </button>
-                                            </form>
-                                        </td>
+                                        @can('admin')
+                                            <!-- Action-->
+                                            <td class="align-middle">
+                                                <form action="{{ route('admin.destroy', $p->kode) }}" method="post" >
+                                                    @method('delete')
+                                                    @csrf
+                                                    <button type="submit" class="border-0 " onclick="return confirm('Yakin mau hapus data ?')">
+                                                        <div class="d-flex justify-content-center badge bg-danger">
+                                                            <i class="fa fa-solid fa-trash"></i>
+                                                        </div>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        @endcan
 
                                         <!-- Kode-->
                                             <td>

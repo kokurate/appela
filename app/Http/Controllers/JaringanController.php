@@ -25,19 +25,19 @@ class JaringanController extends Controller
     
           // =================================== Jaringan Verifikasi (Masuk) ==================================================== 
           'current_left' => $current_left,
-          'jaringan_masuk_count' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
+          'pengaduan_masuk_count' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
                                       ->where('tujuan_id','1')
                                       ->count(),
-          'jaringan_masuk' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
+          'pengaduan_masuk' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
                                   ->where('tujuan_id','1')->orderBy('id','ASC')
                                   ->paginate(10,['*'],'masuk')->withQueryString(), 
 
         // =================================== Jaringan Proses ===============================================
         'current_right' => $current_right,
-        'jaringan_proses_count' => Pengaduan::where('status','Pengaduan Sedang Diproses')
+        'pengaduan_proses_count' => Pengaduan::where('status','Pengaduan Sedang Diproses')
                                     ->where('tujuan_id','1')
                                     ->count(),
-        'jaringan_proses' => Pengaduan::where('status','Pengaduan Sedang Diproses')
+        'pengaduan_proses' => Pengaduan::where('status','Pengaduan Sedang Diproses')
                                     ->where('tujuan_id','1')->orderBy('id','ASC')
                                     ->paginate(10,['*'],'proses')->withQueryString(),
         'title' => 'Jaringan',

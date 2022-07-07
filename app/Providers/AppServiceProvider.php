@@ -39,6 +39,11 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // Jaringan
+        Gate::define('petugas', function (User $user){
+            return $user->level == 'petugas';
+        });
+
+        // Jaringan
         Gate::define('jaringan', function (User $user){
             return $user->level == 'jaringan';
         });

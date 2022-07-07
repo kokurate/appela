@@ -38,6 +38,10 @@ class AuthController extends Controller
                     $request->session()->regenerate(); //pake regenerate session supaya terhindar serangan yang memanfaatkan session, taso lupa apa dpe nama serangan
                     return redirect()->intended('admin');
                 }
+                elseif ($user->level == 'petugas'){
+                    $request->session()->regenerate();
+                    return redirect()->intended('admin');
+                }
                 elseif ($user->level == 'jaringan'){
                     $request->session()->regenerate();
                     return redirect()->intended('jaringan');

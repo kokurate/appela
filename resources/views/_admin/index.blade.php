@@ -2,206 +2,208 @@
 @section('content')
   
     <div class="container-fluid py-4">
-    <!-- Card Section --> 
-      <div class="row">
-        <!--  Jaringan -->
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-        <a href="{{ route('jaringan.index') }}">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
-                    <h5 class="font-weight-bolder">{{ $jaringan }}</h5>
-                    <p class="mb-0">
-                      <strong>Jaringan</strong>
-                    </p>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                    <i class="fa fa-solid fa-wifi text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-        </div>
-        <!-- Server -->
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-        <a href="#">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
-                    <h5 class="font-weight-bolder">{{ $server }}</h5>
-                    <p class="mb-0">
-                      <strong>Server</strong>
-                    </p>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                    <i class="fa fa-server text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </a>
-        </div>
-        <!-- Sistem Informasi -->
-        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-        <a href="#">
-          <div class="card">
-            <div class="card-body p-3">
-              <div class="row">
-                <div class="col-8">
-                  <div class="numbers">
-                    <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
-                    <h5 class="font-weight-bolder">{{ $sistem_informasi }}</h5>
-                  </div>
-                </div>
-                <div class="col-4 text-end">
-                  <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                    <i class="fa fa-book-open text-lg opacity-10" aria-hidden="true"></i>
-                  </div>
-                </div>
-                <div class="row">
-                    <div class="numbers">
+    @can('admin')
+      <!-- Card Section --> 
+        <div class="row">
+            <!--  Jaringan -->
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <a href="{{ route('jaringan.index') }}">
+              <div class="card">
+                <div class="card-body p-3">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="numbers">
+                        <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                        <h5 class="font-weight-bolder">{{ $jaringan }}</h5>
                         <p class="mb-0">
-                          <strong>Sistem Informasi</strong>
+                          <strong>Jaringan</strong>
                         </p>
+                      </div>
                     </div>
+                    <div class="col-4 text-end">
+                      <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                        <i class="fa fa-solid fa-wifi text-lg opacity-10" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </a>
-        </div>
-        <!-- Website UNIMA -->
-        <div class="col-xl-3 col-sm-6">
-            <a href="#">
-            <div class="card">
-                <div class="card-body p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
-                                <h5 class="font-weight-bolder">{{ $website_unima }}</h5>
-                                <p class="mb-0">
-                                <strong>Website unima</strong>
-                                </p>
-                            </div>
-                        </div>
-                            <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-secondary shadow-warning text-center rounded-circle">
-                                <i class="ni ni-world-2 text-lg opacity-10" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             </a>
-        </div>
-        <!-- Learning Management System -->
-        <div class="col-xl-4 col-sm-6 mt-3">
-            <a href="#">
-            <div class="card">
-                <div class="card-body p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
-                                <h5 class="font-weight-bolder">{{ $lms }}</h5>
-                            </div>
-                        </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-info shadow-warning text-center rounded-circle">
-                                <i class="fa fa-school text-lg opacity-10" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="numbers">
-                                <p class="mb-0">
-                                <strong>Learning Management System</strong>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
+            <!-- Server -->
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <a href="#">
+              <div class="card">
+                <div class="card-body p-3">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="numbers">
+                        <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                        <h5 class="font-weight-bolder">{{ $server }}</h5>
+                        <p class="mb-0">
+                          <strong>Server</strong>
+                        </p>
+                      </div>
+                    </div>
+                    <div class="col-4 text-end">
+                      <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                        <i class="fa fa-server text-lg opacity-10" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </a>
-        </div>
-        <!-- Ijazah -->
-        <div class="col-xl-4 col-sm-6 mt-3">
+            </div>
+            <!-- Sistem Informasi -->
+            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
             <a href="#">
-            <div class="card">
+              <div class="card">
                 <div class="card-body p-3">
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="numbers">
+                        <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                        <h5 class="font-weight-bolder">{{ $sistem_informasi }}</h5>
+                      </div>
+                    </div>
+                    <div class="col-4 text-end">
+                      <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                        <i class="fa fa-book-open text-lg opacity-10" aria-hidden="true"></i>
+                      </div>
+                    </div>
                     <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
-                                <h5 class="font-weight-bolder">{{ $ijazah }}</h5>
-                            </div>
+                        <div class="numbers">
+                            <p class="mb-0">
+                              <strong>Sistem Informasi</strong>
+                            </p>
                         </div>
-                        <div class="col-4 text-end">
-                            <div class="icon icon-shape bg-gradient-dark shadow-warning text-center rounded-circle">
-                                <i class="fa fa-graduation-cap text-lg opacity-10" aria-hidden="true"></i>
-                            </div>
-                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+            </div>
+            <!-- Website UNIMA -->
+            <div class="col-xl-3 col-sm-6">
+                <a href="#">
+                <div class="card">
+                    <div class="card-body p-3">
                         <div class="row">
-                            <div class="numbers">
-                                <p class="mb-0">
-                                <strong>Ijazah</strong>
-                                </p>
+                            <div class="col-8">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                                    <h5 class="font-weight-bolder">{{ $website_unima }}</h5>
+                                    <p class="mb-0">
+                                    <strong>Website unima</strong>
+                                    </p>
+                                </div>
+                            </div>
+                                <div class="col-4 text-end">
+                                <div class="icon icon-shape bg-gradient-secondary shadow-warning text-center rounded-circle">
+                                    <i class="ni ni-world-2 text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                </a>
             </div>
-            </a>    
-        </div>
-        <!-- Slip -->
-        <div class="col-xl-4 col-sm-6 mt-3">
-        <a href="#">
-            <div class="card">
-                <div class="card-body p-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="numbers">
-                                <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
-                                <h5 class="font-weight-bolder">{{ $slip }}</h5>
+            <!-- Learning Management System -->
+            <div class="col-xl-4 col-sm-6 mt-3">
+                <a href="#">
+                <div class="card">
+                    <div class="card-body p-3">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                                    <h5 class="font-weight-bolder">{{ $lms }}</h5>
+                                </div>
                             </div>
-                        </div>
                             <div class="col-4 text-end">
-                                <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
-                                    <i class="fas fa-envelope-open-text text-lg opacity-10" aria-hidden="true"></i>
+                                <div class="icon icon-shape bg-gradient-info shadow-warning text-center rounded-circle">
+                                    <i class="fa fa-school text-lg opacity-10" aria-hidden="true"></i>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="numbers">
                                     <p class="mb-0">
-                                    <strong>Slip</strong>
+                                    <strong>Learning Management System</strong>
                                     </p>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <!-- Ijazah -->
+            <div class="col-xl-4 col-sm-6 mt-3">
+                <a href="#">
+                <div class="card">
+                    <div class="card-body p-3">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                                    <h5 class="font-weight-bolder">{{ $ijazah }}</h5>
+                                </div>
+                            </div>
+                            <div class="col-4 text-end">
+                                <div class="icon icon-shape bg-gradient-dark shadow-warning text-center rounded-circle">
+                                    <i class="fa fa-graduation-cap text-lg opacity-10" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="numbers">
+                                    <p class="mb-0">
+                                    <strong>Ijazah</strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </a>    
+            </div>
+            <!-- Slip -->
+            <div class="col-xl-4 col-sm-6 mt-3">
+            <a href="#">
+                <div class="card">
+                    <div class="card-body p-3">
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="numbers">
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                                    <h5 class="font-weight-bolder">{{ $slip }}</h5>
+                                </div>
+                            </div>
+                                <div class="col-4 text-end">
+                                    <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                                        <i class="fas fa-envelope-open-text text-lg opacity-10" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="numbers">
+                                        <p class="mb-0">
+                                        <strong>Slip</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        </a>
-    </div>     
-    <!-- End Row  Card Section-->
+            </a>
+        </div>     
+        <!-- End Row  Card Section-->
+    @endcan
 
       <div class="row mt-4">
         <div class="col-lg-7 mb-lg-0 mb-4">
           <div class="card ">
-            <div class="card-header bg-gradient-secondary pb-0 p-3">
+            <div class="card-header bg-gradient-light pb-0 p-3">
               <div class="d-flex justify-content-between">
                 <h6 class="mb-2">Pengaduan Masuk</h6>
               </div>
@@ -248,7 +250,7 @@
         <!-- New Col Category Section-->
         <div class="col-lg-5">
           <div class="card">
-            <div class="card-header bg-gradient-secondary pb-0 p-3">
+            <div class="card-header bg-gradient-light pb-0 p-3">
               <h6 class="mb-2">Semua Pengaduan Selesai</h6>
             </div>
             <div class="card-body p-3">

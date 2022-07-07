@@ -71,7 +71,7 @@ $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbo
 
 // Route Group untuk yang login
     // =============================== Admin Page ================================= 
-        Route::group(['middleware' => ['auth','cek_level:admin']], (function (){
+        Route::group(['middleware' => ['auth','cek_level:admin,petugas']], (function (){
             // Route::middleware(['auth','cek_level:admin'])->group (function (){
             
             // Register Admin yang lain || Controller Auth
@@ -119,6 +119,7 @@ $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbo
                 route::get('admin/slip',[AdminController::class,'jaringan'])->name('admin.slip.index');
             }));
              
+
     // =================================== Jaringan Page ==================================
         Route::group(['middleware' => ['auth','cek_level:jaringan,admin']], (function (){
             // Route::middleware(['auth','cek_level:jaringan,admin'])->group (function (){
