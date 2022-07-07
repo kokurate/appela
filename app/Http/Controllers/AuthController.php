@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -74,21 +75,50 @@ class AuthController extends Controller
     public function store(Request $request){
         // Ambil semua request terus validasi
         // request()->all();
-        $validatedData = $request->validate([
+        $validator = Validator::make ($request->all(),[
+            'level' => 'required|in:petugas,jaringan,server,sistem_informasi,website_unima,lms,ijazah,slip',
             'name' => 'required|max:255',
             // 'phone' => ['required', 'min:10', 'max:15','numeric', 'unique:users' ],
-            'phone' => 'required|numeric|unique:users|digits_between:12,15',
             'email' => 'required|email:dns|unique:users',
-            'password' => 'required|min:5|max:255',
+            'phone' => 'required|numeric|unique:users|digits_between:12,15',
+            'password' => 'required|min:8|max:255',
             // 'level' => 'required|in:Petugas,Jaringan,Server,Sistem Informasi,Website UNIMA,Learning Management System,Ijazah,Slip',
-            'level' => 'required|in:petugas,jaringan,server,sistem_informasi,website_unima,lms,ijazah,slip',
+        ],
+        [
+            'name.required' => 'Nama harus diisi',
+            'name.max' => 'Nama maksimal 255 karakter',
+            'phone.numeric' => 'Nomor Handphone harus angka',
+            'phone.unique' => 'Nomor handphone sudah terdaftar',
+            'phone.digits_between' => 'Nomor handphone minimal 12 maksimal 15',
+            'phone.digits_between' => 'Nomor handphone minimal 12 maksimal 15',
+            'password.min' => 'Password minimal 8 karakter',
+            'password.max' => 'Password maksimal 255 karakter',
+            'password.required' => 'Password harus diisi',
+            'level.required' => 'Level Admin harus diisi',
+            'level.in' => 'Level Admin harus diisi',
+            // 'level.required' 
         ]);
+
+        // Kalo error kase alert error
+             if($validator->fails()){
+                return back()->with('toast_error', $validator->errors()->all()[0])->withInput()->withErrors($validator);
+             }
+
+        // Validasi
+        $validatedData = $validator->validate();
         // Jika data lolos Enkripsi password 
         // $validatedData['password'] = bcrypt($validatedData['password']);
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::create($validatedData);
         // $request->session()->flash('success','Registrasi berhasil');
-        return redirect()->route('register')->with('success','Registrasi berhasil');
+        return redirect()->back()->with('success','Registrasi berhasil');
+    }
+
+    public function destroy(User $user){
+
+        User::destroy($user->id);
+
+        return back()->with('success','Data berhasil dihapus');
     }
 
 }

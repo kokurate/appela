@@ -154,7 +154,7 @@
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Admin pages</h6>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="/templates/auth/pages/profile.html">
+                <a class="nav-link " href="{{ route('admin.pages') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
                   </div>
@@ -230,12 +230,14 @@
                      <i class="fa fa-cog cursor-pointer"></i> 
                   </a>
                   <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
-                    <li class="mb-2">
+                    
+                    <!-- Ubah Password-->
+                    {{-- <li class="mb-2">
                       <a class="dropdown-item border-radius-md" href="javascript:;">
                         <div class="d-flex py-1">
                           <div class="my-auto">
-                            {{-- <img src="/templates/auth/assets/img/team-2.jpg" class="avatar avatar-sm  me-3 "> --}}
-                            {{-- <i class="fa fa-solid fa-lock avatar avatar-sm  me-3 text-secondary "></i> --}}
+                            <!-- <img src="/templates/auth/assets/img/team-2.jpg" class="avatar avatar-sm  me-3 "> -->
+                            <!-- <i class="fa fa-solid fa-lock avatar avatar-sm  me-3 text-secondary "></i> -->
                           </div>
                           <div class="d-flex flex-column justify-content-center">
                             <h6 class="text-sm font-weight-normal mb-1">
@@ -244,7 +246,9 @@
                           </div>
                         </div>
                       </a>
-                    </li>
+                    </li>  --}}
+                    <!-- End Ubah Password-->
+
                     <li class="mb-2">
                       <a class="dropdown-item border-radius-md" href="javascript:;">
                         <div class="d-flex py-1">

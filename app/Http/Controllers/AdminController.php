@@ -222,4 +222,17 @@ class AdminController extends Controller
     // return response()->json(['success'=>'Berhasil Kirim Email ke petugas.']);
     return back()->with('toast_success','Berhasil Kirim Email ke petugas.');
   }
+
+
+
+  //  =============== Admin Pages =====================================
+  public function pages(Request $request){
+    $pagination = 10;
+
+    return view('_admin.pages',[
+      'title' => 'Admin Page',
+      'url' => $request->path(),
+      'users' => User::paginate($pagination),
+    ])->with('i', ($request->input('page', 1) - 1) * $pagination); // code for paginate   
+  }
 }

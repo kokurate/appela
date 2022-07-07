@@ -77,7 +77,10 @@ $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbo
             // Register Admin yang lain || Controller Auth
                 Route::get('register', [AuthController::class, 'register'])->name('register');
                 Route::post('register', [AuthController::class, 'store'])->name('register.store');
-            
+            // Admin Pages
+                Route::get('/admin/pages',[AdminController::class,'pages'])->name('admin.pages');
+                Route::delete('/auth/destroy/{user:email}',[AuthController::class,'destroy'])->name('auth.destroy');
+
             // Hapus data pengaduan 
                 Route::delete('admin/destroy/{pengaduan:kode}',[AdminController::class,'destroy'])->name('admin.destroy');    
 
@@ -98,6 +101,11 @@ $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbo
 
             // Export
                 Route::get('/admin/export/excel', [PengaduansExportController::class,'excel'])->name('export.excel');
+
+ 
+
+
+
 
                 //  ========================================== Belum beking dia pe controller
                 // Server all
