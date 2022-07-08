@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+
 
 use App\Models\Pengaduan;
 use App\Models\Tujuan;
@@ -14,50 +14,50 @@ use App\Models\Catatan;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
-class ServerController extends Controller
+class SistemInformasiController extends Controller
 {
     public function index(Request $request){
         // Kalo mo ubah paginasi ubah juga variabelnya di view
         $current_left = $request->input('masuk') ? $request->input('masuk') : 1;
         $current_right = $request->input('proses') ? $request->input('proses') : 1;
-
-           return view('_officer.server.index',[
+           return view('_officer.sistem_informasi.index',[
              // ================================== Count ============================
-               'semua' => Pengaduan::where('tujuan_id' , 2)->count(),
+               'semua' => Pengaduan::where('tujuan_id' , 3)->count(),
        
              // =================================== Jaringan Verifikasi (Masuk) ==================================================== 
              'current_left' => $current_left,
              'pengaduan_masuk_count' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
-                                         ->where('tujuan_id','2')
+                                         ->where('tujuan_id','3')
                                          ->count(),
              'pengaduan_masuk' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
-                                     ->where('tujuan_id','2')->orderBy('id','ASC')
+                                     ->where('tujuan_id','3')->orderBy('id','ASC')
                                      ->paginate(10,['*'],'masuk')->withQueryString(), 
    
            // =================================== Jaringan Proses ===============================================
            'current_right' => $current_right,
            'pengaduan_proses_count' => Pengaduan::where('status','Pengaduan Sedang Diproses')
-                                       ->where('tujuan_id','2')
+                                       ->where('tujuan_id','3')
                                        ->count(),
            'pengaduan_proses' => Pengaduan::where('status','Pengaduan Sedang Diproses')
-                                       ->where('tujuan_id','2')->orderBy('id','ASC')
+                                       ->where('tujuan_id','3')->orderBy('id','ASC')
                                        ->paginate(10,['*'],'proses')->withQueryString(),
-           'title' => 'Server',
+           'title' => 'Sistem Informasi',
            'url' => $request->path(),
            ]);   
          }
 
+
     public function detail(Pengaduan $pengaduan, Request $request){
-            return view('_officer.server.detail',[
-              'title' => "Detail Server",
+            return view('_officer.sistem_informasi.detail',[
+              'title' => "Detail Sistem Informasi",
               'url' => $request->path(),
               'tujuan' => Tujuan::all(),
               'pengaduan' => $pengaduan,
               'log' => Catatan::where('pengaduan_id', $pengaduan->id)->get()->load('pengaduan')
             ]);
           }
-    
-    // ====================================================================================
+
+// ====================================================================================
 // Update disini masih ada 2 opsi, ditolak dan diproses
 public function update_store(Pengaduan $pengaduan, Request $request){
     $validateData = $request->validate([
@@ -175,11 +175,11 @@ public function update_store(Pengaduan $pengaduan, Request $request){
     }
 
     
-     // ========================= Server Section Semua ====================
+    // ========================= Jaringan Section Semua ====================
   public function section_semua(Request $request){
 
     $pagination = 10;
-    $pengaduan = Pengaduan::where('tujuan_id' , 2)->orderBy('id','DESC');
+    $pengaduan = Pengaduan::where('tujuan_id' , 3)->orderBy('id','DESC');
 
     if(request('search')){
       $pengaduan->where('kode','like','%' . request('search') . '%')
@@ -191,16 +191,18 @@ public function update_store(Pengaduan $pengaduan, Request $request){
                 ;
     }
 
-    return view('_officer.server.semua',[
-      'title' => 'Server',
+    return view('_officer.sistem_informasi.semua',[
+      'title' => 'Sistem Informasi',
       'url' => $request->path(),
       'pengaduan' => $pengaduan->paginate($pagination)->withQueryString(),
-      'selesai' => Pengaduan::where('status','Pengaduan Selesai')->where('tujuan_id' , 2)->count(),
-      'ditolak' => Pengaduan::where('status','Pengaduan Ditolak')->where('tujuan_id' , 2)->count(),
-      'rating' => Pengaduan::whereNotNull(['rating', 'komentar'])->where('tujuan_id', 2)->count(),
-      'semua' => Pengaduan::where('tujuan_id' , 2)->count(),
+      'selesai' => Pengaduan::where('status','Pengaduan Selesai')->where('tujuan_id' , 3)->count(),
+      'ditolak' => Pengaduan::where('status','Pengaduan Ditolak')->where('tujuan_id' , 3)->count(),
+      'rating' => Pengaduan::whereNotNull(['rating', 'komentar'])->where('tujuan_id', 3)->count(),
+      'semua' => Pengaduan::where('tujuan_id' , 3)->count(),
   ])->with('i', ($request->input('page', 1) - 1) * $pagination); // code for paginate   
 
   }
+
+
 
 }

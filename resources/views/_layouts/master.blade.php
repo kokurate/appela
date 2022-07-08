@@ -78,7 +78,7 @@
             @endcan
 
             <!-- Buat Kondisi untuk tiap sidebar nav Dashboard-->
-            @can('jaringan')
+            @can('jaringanDashboard')
               <li class="nav-item">
                 <a class="nav-link active" href="{{ route('jaringan.index') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -87,15 +87,60 @@
                   <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
               </li>
-            @elsecan('server')
-            <li class="nav-item">
-              <a class="nav-link active" href="{{ route('server.index') }}">
-                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                  <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-                </div>
-                <span class="nav-link-text ms-1">Dashboard</span>
-              </a>
-            </li>
+            @elsecan('serverDashboard')
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ route('server.index') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Dashboard</span>
+                </a>
+              </li>
+            @elsecan('sistem_informasiDashboard')
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ route('sistem_informasi.index') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Dashboard</span>
+                </a>
+              </li>
+            @elsecan('website_unimaDashboard')
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ route('website_unima.index') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Dashboard</span>
+                </a>
+              </li>
+            @elsecan('lmsDashboard')
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ route('lms.index') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Dashboard</span>
+                </a>
+              </li>
+            @elsecan('ijazahDashboard')
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ route('ijazah.index') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Dashboard</span>
+                </a>
+              </li>
+            @elsecan('slipDashboard')
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ route('slip.index') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Dashboard</span>
+                </a>
+              </li>
             @endcan
 
             <!-- Admin can access all the dasboard-->
@@ -121,7 +166,7 @@
                 </li>
                 <!-- Sistem Informasi -->
                 <li class="nav-item">
-                  <a class="nav-link " href="#">
+                  <a class="nav-link  {{ Request::is('sistem-informasi*') ? 'active bg-gradient-light' : '' }}" href="{{ route('sistem_informasi.index') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                       <i class="fa fa-book-open text-info text-sm opacity-10"></i>
                     </div>
@@ -130,7 +175,7 @@
                 </li>
                 <!-- Website Unima -->
                 <li class="nav-item">
-                  <a class="nav-link " href="#">
+                  <a class="nav-link {{ Request::is('website-unima*') ? 'active bg-gradient-light' : '' }}" href="{{ route('website_unima.index') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                       <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
                     </div>
@@ -139,7 +184,7 @@
                 </li>
                 <!-- Learning Management System -->
                 <li class="nav-item">
-                  <a class="nav-link " href="#">
+                  <a class="nav-link {{ Request::is('learning-management-system*') ? 'active bg-gradient-light' : '' }}" href="{{ route('lms.index') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                       <i class="fa fa-school text-danger text-sm opacity-10"></i>
                     </div>
@@ -148,7 +193,7 @@
                 </li>
                 <!-- Ijazah -->
                 <li class="nav-item">
-                  <a class="nav-link " href="#">
+                  <a class="nav-link {{ Request::is('ijazah*') ? 'active bg-gradient-light' : '' }}" href="{{ route('ijazah.index') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                       <i class="fa fa-graduation-cap text-danger text-sm opacity-10"></i>
                     </div>
@@ -157,7 +202,7 @@
                 </li>
                 <!-- Slip -->
                 <li class="nav-item">
-                  <a class="nav-link " href="#">
+                  <a class="nav-link {{ Request::is('slip*') ? 'active bg-gradient-light' : '' }}" href="{{ route('slip.index') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                       <i class="fas fa-envelope-open-text text-danger text-sm opacity-10"></i>
                     </div>

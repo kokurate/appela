@@ -17,10 +17,21 @@
     <!-- Back -->
     <!-- =========== Section Gate ========-->
         <a href="
-        @can('admin') {{ route('admin.index') }}
-        @elsecan('jaringan') {{ route('jaringan.index') }}
-        @elsecan('server') {{ route('server.index') }}
-        @endcan
+        @if(Request::is('jaringan*'))
+            @can('jaringan') {{ route('jaringan.index') }} @endcan
+        @elseif(Request::is('server*'))
+            @can('server') {{ route('server.index') }}  @endcan
+        @elseif(Request::is('sistem-informasi*'))
+            @can('sistem_informasi') {{ route('sistem_informasi.index') }}  @endcan
+        @elseif(Request::is('website-unima*'))
+            @can('website_unima') {{ route('website_unima.index') }}  @endcan
+        @elseif(Request::is('learning-management-system*'))
+            @can('lms') {{ route('lms.index') }}  @endcan
+        @elseif(Request::is('ijazah*'))
+            @can('ijazah') {{ route('ijazah.index') }}  @endcan
+        @elseif(Request::is('slip*'))
+            @can('slip') {{ route('slip.index') }}  @endcan  
+        @endif
         ">
             <div class="btn btn-light">
                 <i class="ni ni-bold-left"></i>
@@ -74,7 +85,7 @@
     @endif
 
 
-    <!-- ============= Require ================ -->
+    <!-- ============================================ Require ======================================== -->
     <div class="row">
         @include('_layouts.detail_action')
 

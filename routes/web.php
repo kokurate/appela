@@ -3,10 +3,15 @@
 use App\Exports\PengaduansExport;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\IjazahController;
 use App\Http\Controllers\JaringanController;
+use App\Http\Controllers\LearningManagementSystemController;
 use App\Http\Controllers\ServerController;
+use App\Http\Controllers\SistemInformasiController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PengaduansExportController;
+use App\Http\Controllers\SlipController;
+use App\Http\Controllers\WebsiteUnimaController;
 use App\Http\Middleware\Cek_Login;
 use App\Models\Pengaduan;
 use App\Models\Tujuan;
@@ -153,9 +158,103 @@ $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbo
 
             }));
 
+    // =================================== Sistem Informasi Page ==================================
+        Route::group(['middleware' => ['auth','cek_level:sistem_informasi,admin']], (function (){
+            // index & detail Server
+                route::get('sistem-informasi',[SistemInformasiController::class,'index'])->name('sistem_informasi.index');
+                route::get('sistem-informasi/detail/{pengaduan:kode}',[SistemInformasiController::class,'detail'])->name('sistem_informasi.detail');
+
+                // Update (Pengaduan Sedang Diverifikasi)
+                route::post('sistem-informasi/update/{pengaduan:kode}',[SistemInformasiController::class,'update_store'])->name('sistem_informasi.update.store');
+                
+                // Proses (Pengaduan Sedang Diproses)
+                route::post('sistem-informasi/proses/{pengaduan:kode}',[SistemInformasiController::class,'proses_store'])->name('sistem_informasi.proses.store');
+           
+            // Section
+                // Semua
+                route::get('sistem-informasi/section/semua',[SistemInformasiController::class,'section_semua'])->name('sistem_informasi.section.semua');
+
+            }));
+    // =================================== Website Unima Informasi Page ==================================
+        Route::group(['middleware' => ['auth','cek_level:website_unima,admin']], (function (){
+            // index & detail Server
+                route::get('website-unima',[WebsiteUnimaController::class,'index'])->name('website_unima.index');
+                route::get('website-unima/detail/{pengaduan:kode}',[WebsiteUnimaController::class,'detail'])->name('website_unima.detail');
+
+                // Update (Pengaduan Sedang Diverifikasi)
+                route::post('website-unima/update/{pengaduan:kode}',[WebsiteUnimaController::class,'update_store'])->name('website_unima.update.store');
+                
+                // Proses (Pengaduan Sedang Diproses)
+                route::post('website-unima/proses/{pengaduan:kode}',[WebsiteUnimaController::class,'proses_store'])->name('website_unima.proses.store');
+           
+            // Section
+                // Semua
+                route::get('website-unima/section/semua',[WebsiteUnimaController::class,'section_semua'])->name('website_unima.section.semua');
+
+            }));
+
+
+    // =================================== Learning Management System  Page ==================================
+        Route::group(['middleware' => ['auth','cek_level:lms,admin']], (function (){
+            // index & detail Server
+                route::get('learning-management-system',[LearningManagementSystemController::class,'index'])->name('lms.index');
+                route::get('learning-management-system/detail/{pengaduan:kode}',[LearningManagementSystemController::class,'detail'])->name('lms.detail');
+
+                // Update (Pengaduan Sedang Diverifikasi)
+                route::post('learning-management-system/update/{pengaduan:kode}',[LearningManagementSystemController::class,'update_store'])->name('lms.update.store');
+                
+                // Proses (Pengaduan Sedang Diproses)
+                route::post('learning-management-system/proses/{pengaduan:kode}',[LearningManagementSystemController::class,'proses_store'])->name('lms.proses.store');
+           
+            // Section
+                // Semua
+                route::get('learning-management-system/section/semua',[LearningManagementSystemController::class,'section_semua'])->name('lms.section.semua');
+
+            }));
+    // =================================== Ijazah  Page ==================================
+        Route::group(['middleware' => ['auth','cek_level:ijazah,admin']], (function (){
+            // index & detail Server
+                route::get('ijazah',[IjazahController::class,'index'])->name('ijazah.index');
+                route::get('ijazah/detail/{pengaduan:kode}',[IjazahController::class,'detail'])->name('ijazah.detail');
+
+                // Update (Pengaduan Sedang Diverifikasi)
+                route::post('ijazah/update/{pengaduan:kode}',[IjazahController::class,'update_store'])->name('ijazah.update.store');
+                
+                // Proses (Pengaduan Sedang Diproses)
+                route::post('ijazah/proses/{pengaduan:kode}',[IjazahController::class,'proses_store'])->name('ijazah.proses.store');
+           
+            // Section
+                // Semua
+                route::get('ijazah/section/semua',[IjazahController::class,'section_semua'])->name('ijazah.section.semua');
+
+            }));
+
+
+    // =================================== Slip  Page ==================================
+        Route::group(['middleware' => ['auth','cek_level:slip,admin']], (function (){
+            // index & detail Server
+                route::get('slip',[SlipController::class,'index'])->name('slip.index');
+                route::get('slip/detail/{pengaduan:kode}',[SlipController::class,'detail'])->name('slip.detail');
+
+                // Update (Pengaduan Sedang Diverifikasi)
+                route::post('slip/update/{pengaduan:kode}',[SlipController::class,'update_store'])->name('slip.update.store');
+                
+                // Proses (Pengaduan Sedang Diproses)
+                route::post('slip/proses/{pengaduan:kode}',[SlipController::class,'proses_store'])->name('slip.proses.store');
+           
+            // Section
+                // Semua
+                route::get('slip/section/semua',[SlipController::class,'section_semua'])->name('slip.section.semua');
+
+            }));
+
+            
   
 
-// ======== POV Visitor ===========
+
+
+
+    // ======== POV Visitor ===========
 
     // Pengaduan Email Verifying alternative 
         // Verifikasi email (to create pengaduan)

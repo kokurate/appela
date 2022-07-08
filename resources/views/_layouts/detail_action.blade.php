@@ -25,9 +25,21 @@
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                 <!-- =================== Section Gate =================== -->
                                     <form class="mt-2" method="post" action="
-                                    @can('jaringan') {{ route('jaringan.update.store', $pengaduan->kode) }}
-                                    @elsecan('server') {{ route('server.update.store', $pengaduan->kode) }}
-                                    @endcan
+                                    @if(Request::is('jaringan*'))
+                                        @can('jaringan') {{ route('jaringan.update.store', $pengaduan->kode) }}   @endcan
+                                    @elseif(Request::is('server*'))
+                                        @can('server') {{ route('server.update.store', $pengaduan->kode) }}   @endcan
+                                    @elseif(Request::is('sistem-informasi*'))
+                                        @can('sistem_informasi') {{ route('sistem_informasi.update.store', $pengaduan->kode) }}   @endcan
+                                    @elseif(Request::is('website-unima*'))
+                                        @can('website_unima') {{ route('website_unima.update.store', $pengaduan->kode) }}   @endcan
+                                    @elseif(Request::is('learning-management-system*'))
+                                        @can('lms') {{ route('lms.update.store', $pengaduan->kode) }}   @endcan
+                                    @elseif(Request::is('ijazah*'))
+                                        @can('ijazah') {{ route('ijazah.update.store', $pengaduan->kode) }}   @endcan 
+                                    @elseif(Request::is('slip*'))
+                                        @can('slip') {{ route('slip.update.store', $pengaduan->kode) }}   @endcan 
+                                    @endif
                                     ">
                                     
                                     @csrf
@@ -190,9 +202,21 @@
                             <!-- ================================= Section Gate =========================== -->
                            
                                 <form method="post" action="
-                                @can('jaringan') {{ route('jaringan.proses.store', $pengaduan->kode) }}
-                                @elsecan('server') {{ route('server.proses.store', $pengaduan->kode) }}
-                                @endcan
+                                @if(Request::is('jaringan*'))
+                                    @can('jaringan') {{ route('jaringan.proses.store', $pengaduan->kode) }}  @endcan
+                                @elseif(Request::is('server*'))
+                                    @can('server') {{ route('server.proses.store', $pengaduan->kode) }}  @endcan
+                                @elseif(Request::is('sistem-informasi*'))
+                                    @can('sistem_informasi') {{ route('sistem_informasi.proses.store', $pengaduan->kode) }}   @endcan
+                                @elseif(Request::is('website-unima*'))
+                                    @can('website_unima') {{ route('website_unima.proses.store', $pengaduan->kode) }}   @endcan
+                                @elseif(Request::is('learning-management-system*'))
+                                    @can('lms') {{ route('lms.proses.store', $pengaduan->kode) }}   @endcan
+                                @elseif(Request::is('ijazah*'))
+                                    @can('ijazah') {{ route('ijazah.proses.store', $pengaduan->kode) }}   @endcan
+                                @elseif(Request::is('slip*'))
+                                    @can('slip') {{ route('slip.proses.store', $pengaduan->kode) }}   @endcan
+                                @endif
                                 " 
                                 enctype="multipart/form-data">
                             

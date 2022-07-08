@@ -50,6 +50,26 @@ class AuthController extends Controller
                     $request->session()->regenerate();
                     return redirect()->intended('server');
                 }
+                elseif ($user->level == 'sistem_informasi'){
+                    $request->session()->regenerate();
+                    return redirect()->intended('sistem-informasi');
+                }
+                elseif ($user->level == 'website_unima'){
+                    $request->session()->regenerate();
+                    return redirect()->intended('website-unima');
+                }
+                elseif ($user->level == 'lms'){
+                    $request->session()->regenerate();
+                    return redirect()->intended('learning-management-system');
+                }
+                elseif ($user->level == 'ijazah'){
+                    $request->session()->regenerate();
+                    return redirect()->intended('ijazah');
+                }
+                elseif ($user->level == 'slip'){
+                    $request->session()->regenerate();
+                    return redirect()->intended('slip');
+                }
 
 
                 // Jika tidak semua maka akan dikembalikan ke halaman route

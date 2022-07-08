@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 
 use App\Models\Pengaduan;
@@ -14,50 +13,82 @@ use App\Models\Catatan;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
-class ServerController extends Controller
+
+class IjazahController extends Controller
 {
     public function index(Request $request){
         // Kalo mo ubah paginasi ubah juga variabelnya di view
         $current_left = $request->input('masuk') ? $request->input('masuk') : 1;
         $current_right = $request->input('proses') ? $request->input('proses') : 1;
-
-           return view('_officer.server.index',[
+           return view('_officer.ijazah.index',[
              // ================================== Count ============================
-               'semua' => Pengaduan::where('tujuan_id' , 2)->count(),
+               'semua' => Pengaduan::where('tujuan_id' , 6)->count(),
        
              // =================================== Jaringan Verifikasi (Masuk) ==================================================== 
              'current_left' => $current_left,
              'pengaduan_masuk_count' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
-                                         ->where('tujuan_id','2')
+                                         ->where('tujuan_id','6')
                                          ->count(),
              'pengaduan_masuk' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
-                                     ->where('tujuan_id','2')->orderBy('id','ASC')
+                                     ->where('tujuan_id','6')->orderBy('id','ASC')
                                      ->paginate(10,['*'],'masuk')->withQueryString(), 
    
            // =================================== Jaringan Proses ===============================================
            'current_right' => $current_right,
            'pengaduan_proses_count' => Pengaduan::where('status','Pengaduan Sedang Diproses')
-                                       ->where('tujuan_id','2')
+                                       ->where('tujuan_id','6')
                                        ->count(),
            'pengaduan_proses' => Pengaduan::where('status','Pengaduan Sedang Diproses')
-                                       ->where('tujuan_id','2')->orderBy('id','ASC')
+                                       ->where('tujuan_id','6')->orderBy('id','ASC')
                                        ->paginate(10,['*'],'proses')->withQueryString(),
-           'title' => 'Server',
+           'title' => 'Ijazah',
            'url' => $request->path(),
            ]);   
          }
 
+         
     public function detail(Pengaduan $pengaduan, Request $request){
-            return view('_officer.server.detail',[
-              'title' => "Detail Server",
+        return view('_officer.ijazah.detail',[
+              'title' => "Detail Ijazah",
               'url' => $request->path(),
               'tujuan' => Tujuan::all(),
               'pengaduan' => $pengaduan,
               'log' => Catatan::where('pengaduan_id', $pengaduan->id)->get()->load('pengaduan')
             ]);
           }
-    
-    // ====================================================================================
+
+          
+    // ========================= Ijazah Section Semua ====================
+  public function section_semua(Request $request){
+
+    $pagination = 10;
+    $pengaduan = Pengaduan::where('tujuan_id' , 6)->orderBy('id','DESC');
+
+    if(request('search')){
+      $pengaduan->where('kode','like','%' . request('search') . '%')
+                ->orWhere('used_email','like','%' . request('search') . '%')
+                ->orWhere('nama','like','%' . request('search') . '%')
+                ->orWhere('judul','like','%' . request('search') . '%')
+                ->orWhere('isi','like','%' . request('search') . '%')
+                ->orWhere('status','like','%' . request('search') . '%')
+                ;
+    }
+
+    return view('_officer.ijazah.semua',[
+      'title' => 'Ijazah',
+      'url' => $request->path(),
+      'pengaduan' => $pengaduan->paginate($pagination)->withQueryString(),
+      'selesai' => Pengaduan::where('status','Pengaduan Selesai')->where('tujuan_id' , 6)->count(),
+      'ditolak' => Pengaduan::where('status','Pengaduan Ditolak')->where('tujuan_id' , 6)->count(),
+      'rating' => Pengaduan::whereNotNull(['rating', 'komentar'])->where('tujuan_id', 6)->count(),
+      'semua' => Pengaduan::where('tujuan_id' , 6)->count(),
+  ])->with('i', ($request->input('page', 1) - 1) * $pagination); // code for paginate   
+
+  }
+
+  
+
+// ====================================================================================
 // Update disini masih ada 2 opsi, ditolak dan diproses
 public function update_store(Pengaduan $pengaduan, Request $request){
     $validateData = $request->validate([
@@ -174,33 +205,5 @@ public function update_store(Pengaduan $pengaduan, Request $request){
                     ->with('success', 'Pengaduan Berhasil Diselesaikan');
     }
 
-    
-     // ========================= Server Section Semua ====================
-  public function section_semua(Request $request){
-
-    $pagination = 10;
-    $pengaduan = Pengaduan::where('tujuan_id' , 2)->orderBy('id','DESC');
-
-    if(request('search')){
-      $pengaduan->where('kode','like','%' . request('search') . '%')
-                ->orWhere('used_email','like','%' . request('search') . '%')
-                ->orWhere('nama','like','%' . request('search') . '%')
-                ->orWhere('judul','like','%' . request('search') . '%')
-                ->orWhere('isi','like','%' . request('search') . '%')
-                ->orWhere('status','like','%' . request('search') . '%')
-                ;
-    }
-
-    return view('_officer.server.semua',[
-      'title' => 'Server',
-      'url' => $request->path(),
-      'pengaduan' => $pengaduan->paginate($pagination)->withQueryString(),
-      'selesai' => Pengaduan::where('status','Pengaduan Selesai')->where('tujuan_id' , 2)->count(),
-      'ditolak' => Pengaduan::where('status','Pengaduan Ditolak')->where('tujuan_id' , 2)->count(),
-      'rating' => Pengaduan::whereNotNull(['rating', 'komentar'])->where('tujuan_id', 2)->count(),
-      'semua' => Pengaduan::where('tujuan_id' , 2)->count(),
-  ])->with('i', ($request->input('page', 1) - 1) * $pagination); // code for paginate   
-
-  }
 
 }

@@ -6,9 +6,21 @@
       <!-- Back -->
     <!-- ============================== Section Gate =============================== -->
     <a href="
-    @can('jaringan') {{ route('jaringan.index') }}
-    @elsecan('server') {{ route('server.index') }}
-    @endcan
+    @if(Request::is('jaringan*'))
+        @can('jaringan') {{ route('jaringan.index') }} @endcan
+    @elseif(Request::is('server*'))
+        @can('server') {{ route('server.index') }} @endcan
+    @elseif(Request::is('sistem-informasi*'))
+        @can('sistem_informasi') {{ route('sistem_informasi.index') }} @endcan
+    @elseif(Request::is('website-unima*'))
+        @can('website_unima') {{ route('website_unima.index') }} @endcan
+    @elseif(Request::is('learning-management-system*'))
+        @can('lms') {{ route('lms.index') }} @endcan
+    @elseif(Request::is('ijazah*'))
+        @can('ijazah') {{ route('ijazah.index') }} @endcan
+    @elseif(Request::is('slip*'))
+        @can('slip') {{ route('slip.index') }} @endcan
+    @endif
     ">
         <div class="btn btn-light">
             <i class="ni ni-bold-left"></i>
@@ -100,9 +112,21 @@
                     <div class="col-md-6">
                         <!-- ====================== Section Gate ============================ -->
                         <form action="
-                        @can('jaringan') {{ route('jaringan.section.semua') }}
-                        @elsecan('server') {{ route('server.section.semua') }}
-                        @endcan
+                        @if(Request::is('jaringan*'))
+                            @can('jaringan') {{ route('jaringan.section.semua') }} @endcan
+                        @elseif(Request::is('server*'))
+                            @can('server') {{ route('server.section.semua') }} @endcan
+                        @elseif(Request::is('sistem-informasi*'))
+                            @can('sistem_informasi') {{ route('sistem_informasi.section.semua') }} @endcan
+                        @elseif(Request::is('website-unima*'))
+                            @can('website_unima') {{ route('website_unima.section.semua') }} @endcan
+                        @elseif(Request::is('learning-management-system*'))
+                            @can('lms') {{ route('lms.section.semua') }} @endcan
+                        @elseif(Request::is('ijazah*'))
+                            @can('ijazah') {{ route('ijazah.section.semua') }} @endcan
+                        @elseif(Request::is('slip*'))
+                            @can('slip') {{ route('slip.section.semua') }} @endcan
+                        @endif
                         ">                                
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" name="search" value="{{ request('search') }}" placeholder="Cari" aria-describedby="button-addon2">

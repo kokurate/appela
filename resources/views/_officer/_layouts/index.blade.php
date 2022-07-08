@@ -14,9 +14,21 @@
             <!--  Semua -->
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
             <!-- ================== Section Gate =============  -->
-            @can('jaringan') <a href="{{ route('jaringan.section.semua') }}">
-            @elsecan('server') <a href="{{ route('server.section.semua') }}">
-            @endcan
+            @if(Request::is('jaringan*'))
+                @can('jaringan') <a href="{{ route('jaringan.section.semua') }}"> @endcan
+            @elseif(Request::is('server*'))
+                @can('server') <a href="{{ route('server.section.semua') }}"> @endcan
+            @elseif(Request::is('sistem-informasi*'))
+                @can('sistem_informasi') <a href="{{ route('sistem_informasi.section.semua') }}"> @endcan
+            @elseif(Request::is('website-unima*'))
+                @can('website_unima') <a href="{{ route('website_unima.section.semua') }}"> @endcan
+            @elseif(Request::is('learning-management-system*'))
+                @can('lms') <a href="{{ route('lms.section.semua') }}"> @endcan
+            @elseif(Request::is('ijazah*'))
+                @can('ijazah') <a href="{{ route('ijazah.section.semua') }}"> @endcan
+            @elseif(Request::is('slip*'))
+                @can('slip') <a href="{{ route('slip.section.semua') }}"> @endcan
+            @endif
             <div class="card">
                 <div class="card-body p-3">
                 <div class="row">
@@ -98,7 +110,7 @@
         </div> <!-- End Row  Card Section-->  
      
 
-
+ <!--  =========================== Left ==================-->
         <div class="row my-4">
             <div class="col-md-6">
                 <div class="card my-3">
@@ -139,15 +151,27 @@
                                           </td>
                                           <td>
                                             <!-- =============================== Section Gate ===================-->
-                                            @can('jaringan')
-                                                <a href="{{ route('jaringan.detail', $p->kode) }}" class="text-secondary  text-xs">
+                                           
+                                                <a href="
+                                                @if(Request::is('jaringan*'))
+                                                    @can('jaringan') {{ route('jaringan.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('server*'))    
+                                                    @can('server') {{ route('server.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('sistem-informasi*'))    
+                                                    @can('sistem_informasi') {{ route('sistem_informasi.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('website-unima*'))    
+                                                    @can('website_unima') {{ route('website_unima.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('learning-management-system*'))    
+                                                    @can('lms') {{ route('lms.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('ijazah*'))    
+                                                    @can('ijazah') {{ route('ijazah.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('slip*'))    
+                                                    @can('slip') {{ route('slip.detail', $p->kode) }} @endcan
+                                                @endif
+                                                " 
+                                                class="text-secondary  text-xs">
                                                     <i class="fa fa-solid fa-info ps-3"></i>
                                                 </a>
-                                            @elsecan('server')
-                                                <a href="{{ route('server.detail', $p->kode) }}" class="text-secondary  text-xs">
-                                                    <i class="fa fa-solid fa-info ps-3"></i>
-                                                </a>
-                                            @endcan
                                           </td>
                                       </tr>
                                   @empty
@@ -164,6 +188,9 @@
                 </div> <!-- End Card-->
             </div> <!-- End Col-->
 
+
+
+    <!--  =========================== Right ==================-->
             <div class="col-md-6">
                 <div class="card my-3">
                     <div class="card-header pb-0 p-3 bg-gradient-light">
@@ -202,20 +229,33 @@
                                           </td>
                                           <td>
                                             <!-- ======================== Section Gate ===================== -->
-                                            @can('jaringan')
-                                                <a href="{{ route('jaringan.detail', $p->kode) }}" class="text-secondary  text-xs">
+                                            
+                                                <a href="
+                                                @if(Request::is('jaringan*'))
+                                                    @can('jaringan') {{ route('jaringan.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('server*'))
+                                                    @can('server') {{ route('server.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('sistem-informasi*'))
+                                                    @can('sistem_informasi') {{ route('sistem_informasi.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('website-unima*'))
+                                                    @can('website_unima') {{ route('website_unima.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('learning-management-system*'))
+                                                    @can('lms') {{ route('lms.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('ijazah*'))
+                                                    @can('ijazah') {{ route('ijazah.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('slip*'))
+                                                    @can('slip') {{ route('slip.detail', $p->kode) }} @endcan
+                                                    
+                                                @endif
+                                                " 
+                                                class="text-secondary  text-xs">
                                                     <i class="fa fa-solid fa-info ps-3"></i>
                                                 </a>
-                                            @elsecan('server')
-                                                <a href="{{ route('server.detail', $p->kode) }}" class="text-secondary  text-xs">
-                                                    <i class="fa fa-solid fa-info ps-3"></i>
-                                                </a>
-                                            @endcan
                                           </td>
                                       </tr>
                                   @empty
                                       <tr>
-                                          <td colspan="4" class="text-center"><p class="font-weight-bold my-2">Tidak ada pengaduan masuk </p></td>
+                                          <td colspan="4" class="text-center"><p class="font-weight-bold my-2">Tidak ada pengaduan yang sedang diproses </p></td>
                                       </tr>
                                   @endforelse
                                   </tbody>
