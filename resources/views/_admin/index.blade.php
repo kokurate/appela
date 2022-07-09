@@ -13,7 +13,7 @@
                   <div class="row">
                     <div class="col-8">
                       <div class="numbers">
-                        <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
                         <h5 class="font-weight-bolder">{{ $jaringan }}</h5>
                         <p class="mb-0">
                           <strong>Jaringan</strong>
@@ -32,13 +32,13 @@
             </div>
             <!-- Server -->
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <a href="#">
+            <a href="{{ route('server.index') }}">
               <div class="card">
                 <div class="card-body p-3">
                   <div class="row">
                     <div class="col-8">
                       <div class="numbers">
-                        <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
                         <h5 class="font-weight-bolder">{{ $server }}</h5>
                         <p class="mb-0">
                           <strong>Server</strong>
@@ -57,13 +57,13 @@
             </div>
             <!-- Sistem Informasi -->
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-            <a href="#">
+            <a href="{{ route('sistem_informasi.index') }}">
               <div class="card">
                 <div class="card-body p-3">
                   <div class="row">
                     <div class="col-8">
                       <div class="numbers">
-                        <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
                         <h5 class="font-weight-bolder">{{ $sistem_informasi }}</h5>
                       </div>
                     </div>
@@ -86,13 +86,13 @@
             </div>
             <!-- Website UNIMA -->
             <div class="col-xl-3 col-sm-6">
-                <a href="#">
+                <a href="{{ route('website_unima.index') }}">
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
                                     <h5 class="font-weight-bolder">{{ $website_unima }}</h5>
                                     <p class="mb-0">
                                     <strong>Website unima</strong>
@@ -111,13 +111,13 @@
             </div>
             <!-- Learning Management System -->
             <div class="col-xl-4 col-sm-6 mt-3">
-                <a href="#">
+                <a href="{{ route('lms.index') }}">
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
                                     <h5 class="font-weight-bolder">{{ $lms }}</h5>
                                 </div>
                             </div>
@@ -140,13 +140,13 @@
             </div>
             <!-- Ijazah -->
             <div class="col-xl-4 col-sm-6 mt-3">
-                <a href="#">
+                <a href="{{ route('ijazah.index') }}">
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
                                     <h5 class="font-weight-bolder">{{ $ijazah }}</h5>
                                 </div>
                             </div>
@@ -169,13 +169,13 @@
             </div>
             <!-- Slip -->
             <div class="col-xl-4 col-sm-6 mt-3">
-            <a href="#">
+            <a href="{{ route('slip.index') }}">
                 <div class="card">
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-uppercase font-weight-bold"></p>
+                                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p>
                                     <h5 class="font-weight-bolder">{{ $slip }}</h5>
                                 </div>
                             </div>

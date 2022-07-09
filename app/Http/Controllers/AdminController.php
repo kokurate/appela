@@ -21,13 +21,13 @@ class AdminController extends Controller
       $pagination = 10;
       return view('_admin.index',[
         // Count 
-        'jaringan' => Pengaduan::where('tujuan_id','1')->where('status','Pengaduan Sedang Diproses')->orWhere('status','Pengaduan Sedang Diverifikasi')->count(),
-        'server' => Pengaduan::where('tujuan_id','2')->Where('status','Pengaduan Sedang Diproses')->orWhere('status','Pengaduan Sedang Diverifikasi')->count(),
-        'sistem_informasi' => Pengaduan::where('tujuan_id','3')->Where('status','Pengaduan Sedang Diproses')->orWhere('status','Pengaduan Sedang Diverifikasi')->count(),
-        'website_unima' => Pengaduan::where('tujuan_id','4')->Where('status','Pengaduan Sedang Diproses')->orWhere('status','Pengaduan Sedang Diverifikasi')->count(),
-        'lms' => Pengaduan::where('tujuan_id','5')->Where('status','Pengaduan Sedang Diproses')->orWhere('status','Pengaduan Sedang Diverifikasi')->count(),
-        'ijazah' => Pengaduan::where('tujuan_id','6')->Where('status','Pengaduan Sedang Diproses')->orWhere('status','Pengaduan Sedang Diverifikasi')->count(),
-        'slip' => Pengaduan::where('tujuan_id','7')->Where('status','Pengaduan Sedang Diproses')->orWhere('status','Pengaduan Sedang Diverifikasi')->count(),
+        'jaringan' => Pengaduan::where('tujuan_id','1')->where('status','Pengaduan Sedang Diproses')->count(),
+        'server' => Pengaduan::where('tujuan_id','2')->Where('status','Pengaduan Sedang Diproses')->count(),
+        'sistem_informasi' => Pengaduan::where('tujuan_id','3')->Where('status','Pengaduan Sedang Diproses')->count(),
+        'website_unima' => Pengaduan::where('tujuan_id','4')->Where('status','Pengaduan Sedang Diproses')->count(),
+        'lms' => Pengaduan::where('tujuan_id','5')->Where('status','Pengaduan Sedang Diproses')->count(),
+        'ijazah' => Pengaduan::where('tujuan_id','6')->Where('status','Pengaduan Sedang Diproses')->count(),
+        'slip' => Pengaduan::where('tujuan_id','7')->Where('status','Pengaduan Sedang Diproses')->count(),
                     
         'url' => $request->path(),
         "title" => "Admin Dashboard",

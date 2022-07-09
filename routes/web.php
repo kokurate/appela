@@ -18,7 +18,6 @@ use App\Models\Tujuan;
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,37 +31,44 @@ use Carbon\Carbon;
 
 Route::get('/', function () {
   
+    $pengaduan = Pengaduan::latest()->take(5)->get();
+
+// if(Pengaduan::whereNotNull('status')){
     // ======== Chart Pie Total Pengaduan ======================= 
-  $jaringan = Pengaduan::where('tujuan_id','1')->count();
-  $server = Pengaduan::where('tujuan_id', '2' )->count();
-  $si = Pengaduan::where('tujuan_id', '3' )->count();
-  $web_unima = Pengaduan::where('tujuan_id', '4' )->count();
-  $lms = Pengaduan::where('tujuan_id', '5' )->count();
-  $ijazah = Pengaduan::where('tujuan_id', '6' )->count();
-  $slip = Pengaduan::where('tujuan_id', '7' )->count();
+    $jaringan = Pengaduan::where('tujuan_id','1')->count();
+    $server = Pengaduan::where('tujuan_id', '2' )->count();
+    $si = Pengaduan::where('tujuan_id', '3' )->count();
+    $web_unima = Pengaduan::where('tujuan_id', '4' )->count();
+    $lms = Pengaduan::where('tujuan_id', '5' )->count();
+    $ijazah = Pengaduan::where('tujuan_id', '6' )->count();
+    $slip = Pengaduan::where('tujuan_id', '7' )->count();
 
-// Chart Pengaduan bar
-// Cari pake tahun ini whereYear('updated_at', Carbon::now()->year)
-// Cari pake bulan ini whereMonth('updated_at', Carbon::now()->month)
-$masuk = Pengaduan::where('status','Pengaduan Masuk')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
-$diverifikasi = Pengaduan::where('status','Pengaduan Sedang Diverifikasi')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count() ;
-$diproses = Pengaduan::where('status','Pengaduan Sedang Diproses')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
-$ditolak = Pengaduan::where('status','Pengaduan Ditolak')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
-$selesai = Pengaduan::where('status','Pengaduan Selesai')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
+    // Chart Pengaduan bar
+    // Cari pake tahun ini whereYear('updated_at', Carbon::now()->year)
+    // Cari pake bulan ini whereMonth('updated_at', Carbon::now()->month)
 
-// Chart Pengaduan Bulan ini
-$current_jaringan = Pengaduan::where('tujuan_id','1')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
-$current_server = Pengaduan::where('tujuan_id','2')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
-$current_si = Pengaduan::where('tujuan_id','3')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
-$current_webunima = Pengaduan::where('tujuan_id','4')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
-$current_lms = Pengaduan::where('tujuan_id','5')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
-$current_ijazah = Pengaduan::where('tujuan_id','6')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
-$current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
+    $masuk = Pengaduan::where('status','Pengaduan Masuk')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
+    $diverifikasi = Pengaduan::where('status','Pengaduan Sedang Diverifikasi')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count() ;
+    $diproses = Pengaduan::where('status','Pengaduan Sedang Diproses')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
+    $ditolak = Pengaduan::where('status','Pengaduan Ditolak')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
+    $selesai = Pengaduan::where('status','Pengaduan Selesai')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
 
-    return view('welcome',compact(
+
+    // Chart Pengaduan Bulan ini
+
+    $current_jaringan = Pengaduan::where('tujuan_id','1')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
+    $current_server = Pengaduan::where('tujuan_id','2')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
+    $current_si = Pengaduan::where('tujuan_id','3')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
+    $current_webunima = Pengaduan::where('tujuan_id','4')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
+    $current_lms = Pengaduan::where('tujuan_id','5')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
+    $current_ijazah = Pengaduan::where('tujuan_id','6')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
+    $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
+// } //endif
+
+    return view('landing_page',compact(
         'jaringan','server','si','web_unima','lms','ijazah','slip',
         'masuk','diverifikasi','diproses','ditolak','selesai',
-        'current_jaringan','current_server','current_si','current_webunima','current_lms','current_ijazah','current_slip'
+        'current_jaringan','current_server','current_si','current_webunima','current_lms','current_ijazah','current_slip','pengaduan'
     ));
 });
 

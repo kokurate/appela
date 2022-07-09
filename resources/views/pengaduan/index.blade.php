@@ -8,8 +8,9 @@
               <div class="col-12">
                   <div class="section-title">
                       <h2 class="wow fadeInUp" data-wow-delay=".4s">Cara Membuat Pengaduan melalui APPELA</h2>
-                      <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
+                      <!-- <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
                           Ipsum available, but the majority have suffered alteration in some form.</p>
+                      -->
                   </div>
               </div>
           </div>

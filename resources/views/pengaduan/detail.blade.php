@@ -144,7 +144,7 @@
               <div class="tab-content" id="myTabContent">
                 <!-- Isi Tab 1-->
                 <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
-                  Pengaduan dibuat : <b style="color: rgb(255, 0, 0);">{{ $pengaduan->published_at->diffForHumans() }}</b>
+                  Pengaduan dibuat : <b style="color: rgb(255, 0, 0);">{{ \Carbon\Carbon::parse($pengaduan->published_at)->diffForHumans() }}</b>
                   <hr class="my-2">
                   <div class="description">
                     {!! $pengaduan->isi !!}
@@ -268,14 +268,22 @@
                 </div>
                 <!-- Isi Tab 3 -->
                 <div class="tab-pane fade" id="tabs-text-3" role="tabpanel" aria-labelledby="tabs-text-3-tab">
-                  <p class="description">
-                    @foreach ($log as $activity)
-                    <span style="color: rgb(23, 114, 23)">{{ $activity->opener }}</span>
-                    {{ $activity->user }}
-                    {{ $activity->do }} <br>
+                  <ul class="list-group">
+                    @foreach($log as $activitylog)
+                        <li class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg">
+                            <div class="d-flex align-items-center">
+                                <button class="btn btn-icon-only btn-rounded btn-dark mb-0 me-3 btn-sm d-flex align-items-center justify-content-center"><i class="fas fa-exclamation"></i></button>
+                                    <div class="d-flex flex-column">
+                                        <h6 class="mb-1 text-dark text-sm">{{ $activitylog->user }}</h6>
+                                        <span class="text-xs">{{ $activitylog->do }}</span>
+                                    </div>
+                            </div>
+                            <div class="d-flex align-items-center text-dark text-sm font-weight-bold">
+                            {{ $activitylog->opener }}
+                            </div>
+                        </li>
                     @endforeach
-                  </p>
-                </div>
+                </ul>
               </div>
             </div>
           </div>
