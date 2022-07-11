@@ -134,7 +134,7 @@
                 href="#tabs-icons-text-3" 
                 role="tab" 
                 aria-controls="tabs-icons-text-3" 
-                aria-selected="false"><i class="fa fa-info mr-2"></i>Keterangan</a>
+                aria-selected="false"><i class="fa fa-info mr-2"></i>Feedback & Rating</a>
               </li>
             </ul>
           </div> <!-- Nav-wrapper -->
@@ -192,7 +192,7 @@
                           @enderror
                         </div>
                         <div class="d-block float-left mt-3">
-                              <button type="submit" class="btn btn-primary">Tambah Rating</button>
+                              <button type="submit" class="btn btn-primary">Tambah Feedback</button>
                         </div>
                       </form>
                       @else

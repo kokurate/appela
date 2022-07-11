@@ -12,7 +12,7 @@
                         <div class="nav nav-tabs justify-content-center my-1" id="nav-tab" role="tablist">
                         {{-- @if($pengaduan->status == 'Pengaduan Sedang Diverifikasi')  --}}
                             <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true"><i class="ni ni-folder-17"></i> Masuk</button>
-                            <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="ni ni-settings"></i> Tujuan</button>
+                           <!-- <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false"><i class="ni ni-settings"></i> Tujuan</button> -->
                             {{-- <button class="nav-link" id="nav-add-tab" data-bs-toggle="tab" data-bs-target="#nav-add" type="button" role="tab" aria-controls="nav-add" aria-selected="false"><i class="ni ni-settings"></i> Tujuan</button> --}}
                         {{-- @elseif($pengaduan->status == 'Pengaduan Sedang Diproses') --}}
                             {{-- <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><i class="ni ni-send"></i> Proses</button> --}}
@@ -74,7 +74,7 @@
                             </div>
                     
                             <!-- Isi tab 2-->
-                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            {{-- <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                                 <form class="mt-1" method="post" action="{{ route('admin.tujuan.store', $pengaduan->kode) }}">
                                     @csrf
                                         @error('tujuan_id')
@@ -84,7 +84,7 @@
                                         @enderror
                                         
                                         @foreach ($tujuan as $tujuan)
-                                            {{-- tujuan(all) tidak sama dengan tujuan->nama skrng, tampilkan selain yang bukan--}}
+                                            <!-- tujuan(all) tidak sama dengan tujuan->nama skrng, tampilkan selain yang bukan-->
                                             @if ($tujuan->nama != $pengaduan->tujuan->nama )
                                                 <div class="form-check">
                                                     <!-- <div class="row"> -->
@@ -104,7 +104,7 @@
                                             <button type="submit" class="btn btn-primary">Ubah Tujuan Pengaduan</button>
                                         </div>
                                 </form>
-                            </div>
+                            </div> --}}
 
                             <!-- Isi tab 3-->
                             <!-- <div class="tab-pane fade" id="nav-add" role="tabpanel" aria-labelledby="nav-add-tab">

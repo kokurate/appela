@@ -293,14 +293,12 @@ $dataPoints_status = array(
         <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
           <div class="swiper-wrapper">
 
-
-
           @forelse($pengaduan as $p)
             @if($p->judul  === null)
               <div class="swiper-slide">
                 <div class="testimonial-item">
                   <img src="/logo.jpg" class="testimonial-img bg-light" alt="">
-                  {{-- <h3>Belum ada pengaduan</h3> --}}
+                  <h3>Belum ada pengaduan</h3>
                 </div>
               </div><!-- End testimonial item -->
             @else
