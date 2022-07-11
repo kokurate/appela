@@ -24,8 +24,8 @@
               <div class="col-lg-4 col-md-4 col-12">
                   <div class="process-item">
                       <i class="lni lni-delivery"></i>
-                      <h4>1. Aktivasi Email</h4>
-                      <p>Langkah pertama yang harus dilakukan adalah registrasi dan aktivasikan email.
+                      <h4>1. Verifikasi Email</h4>
+                      <p>Langkah pertama yang harus dilakukan adalah registrasikan email.
                           Email yang bisa digunakan hanyalah email UNIMA dengan domain "@unima.ac.id" diluar domain ini tidak akan bisa membuat pengaduan.
                       </p>
                   </div>
@@ -93,10 +93,10 @@
                       <div class="col-lg-4 col-12">
                           <div class="download-button">
                               <div class="single-footer newsletter">
-                                  <h3>Aktivasi Email Anda
+                                  <h3>Registrasi Email Anda
                                       <hr width="75%">
                                   </h3>
-                                  <p>Aktifkan email anda jika ingin membuat pengaduan</p>
+                                  <p>Registrasi email anda jika ingin membuat pengaduan</p>
                                     <div class="row my-0">
                                         <form action="{{ route('pengaduan.verify-email') }}" method="post" class=" form-inline">
                                           @csrf
@@ -126,7 +126,7 @@
 <!-- Id kirim ulang email disini karena dia t makan header di atas so itu nd dapa lia -->
                                   <div id="kirim-ulang-link"></div>
                                         <div class="button ">
-                                            <button class="btn" ><i class="lni lni-key"></i> Aktivasi Email! </button>
+                                            <button class="btn" ><i class="lni lni-key"></i> Registrasi Email! </button>
                                         </div>
                                     </form>
                                   </div>

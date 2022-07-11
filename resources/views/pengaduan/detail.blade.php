@@ -253,7 +253,7 @@
                   @if($pengaduan->keterangan == NULL)
                       <p> Petugas belum memberikan tanggapan</p>
                   @endif
-                   <p class="description">{{ $pengaduan->keterangan }}</p>
+                   <p class="description">{!! $pengaduan->keterangan !!}</p>
                 </div>
                 <!-- Isi Tab 2 -->
                 <div class="tab-pane fade" id="tabs-text-2" role="tabpanel" aria-labelledby="tabs-text-2-tab">

@@ -12,9 +12,6 @@ $dataPoints_status = array(
 	array("label"=> "selesai", "y"=>  $selesai ),
 );
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -164,7 +161,6 @@ $dataPoints_status = array(
               <!-- Pengaduan Saat ini -->
               <div class="mt-2 col-sm-6">
                   <div class="pengaduan" id="pengaduan" style="height: 370px; width: 100%;">
-                      <p>test</p>
                   </div>
               </div>
           </div> <!-- End Row-->
@@ -300,18 +296,27 @@ $dataPoints_status = array(
 
 
           @forelse($pengaduan as $p)
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <img src="/logo.jpg" class="testimonial-img bg-light" alt="">
-                <h3>{{ $p->updated_at->diffForHumans() }}</h3>
-                <h4>{{ $p->tujuan->nama }}</h4>
-                <p>
-                  <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  {{ $p->judul }}
-                  <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                </p>
-              </div>
-            </div><!-- End testimonial item -->
+            @if($p->tujuan->nama === NULL)
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <img src="/logo.jpg" class="testimonial-img bg-light" alt="">
+                  <h3>Belum ada pengaduan</h3>
+                </div>
+              </div><!-- End testimonial item -->
+            @else
+              <div class="swiper-slide">
+                <div class="testimonial-item">
+                  <img src="/logo.jpg" class="testimonial-img bg-light" alt="">
+                  <h3>{{ $p->updated_at->diffForHumans() }}</h3>
+                  <h4>{{ $p->tujuan->nama }}</h4>
+                  <p>
+                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+                    {{ $p->judul }}
+                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+                  </p>
+                </div>
+              </div><!-- End testimonial item -->
+            @endif
           @empty
             <h3 class="text-center">Belum ada pengaduan</h3>
           @endforelse
