@@ -56,7 +56,7 @@
                                 <ul id="nav" class="navbar-nav ml-auto">
                                   <!-- Class active put inside <a class="active"> -->
                                     <li class="nav-item"><a href="/">Home</a></li>
-                                    <li class="nav-item"><a href="{{ route('pengaduan.index', '#aktivasi-email') }}">Aktivasi Email</a></li>
+                                    <li class="nav-item"><a href="{{ route('pengaduan.index', '#aktivasi-email') }}">Registrasi Email</a></li>
                                     <li class="nav-item"><a href="{{ route('pengaduan.index', '#kirim-ulang-link') }}">Kirim Ulang Link</a></li>
                                 </ul>
                             </div>
