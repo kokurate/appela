@@ -273,4 +273,50 @@ class AdminController extends Controller
 
     ])->with('i', ($request->input('page', 1) - 1) * $pagination); // code for paginate   
   }
+  
+
+  // ===================== Rating Average =======================
+  public function rating_average(Request $request){
+  
+    // Total rating / jumlah rating
+    // $jaringan = Pengaduan::where('tujuan_id',1)->sum('rating');
+    $jaringan = Pengaduan::where('tujuan_id',1)->avg('rating');
+    $server = Pengaduan::where('tujuan_id',2)->avg('rating');
+    $sistem_informasi = Pengaduan::where('tujuan_id',3)->avg('rating');
+    $website_unima = Pengaduan::where('tujuan_id',4)->avg('rating');
+    $lms = Pengaduan::where('tujuan_id',5)->avg('rating');
+    $ijazah = Pengaduan::where('tujuan_id',6)->avg('rating');
+    $slip = Pengaduan::where('tujuan_id',7)->avg('rating');
+
+    // Current
+    $count_jaringan = Pengaduan::select('rating')->where('tujuan_id',1)->count() ;
+    $count_server = Pengaduan::select('rating')->where('tujuan_id',2)->count() ;
+    $count_sistem_informasi = Pengaduan::select('rating')->where('tujuan_id',3)->count() ;
+    $count_website_unima = Pengaduan::select('rating')->where('tujuan_id',4)->count() ;
+    $count_lms = Pengaduan::select('rating')->where('tujuan_id',5)->count() ;
+    $count_ijazah = Pengaduan::select('rating')->where('tujuan_id',6)->count() ;
+    $count_slip = Pengaduan::select('rating')->where('tujuan_id',7)->count() ;
+
+
+   
+    // 'jaringan' => $jaringan /5 ,
+    return view('_admin.rating_average',[
+      'title' => 'Rating Average',
+      'url' => $request->path(),
+      'jaringan' => $jaringan ,
+      'server' => $server ,
+      'sistem_informasi' => $sistem_informasi ,
+      'website_unima' => $website_unima ,
+      'lms' => $lms ,
+      'ijazah' => $ijazah ,
+      'slip' => $slip ,
+      'count_jaringan' => $count_jaringan,
+      'count_server' => $count_server,
+      'count_sistem_informasi' => $count_sistem_informasi,
+      'count_website_unima' => $count_website_unima,
+      'count_lms' => $count_lms,
+      'count_ijazah' => $count_ijazah,
+      'count_slip' => $count_slip,
+    ]);
+  }
 }

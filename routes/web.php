@@ -123,6 +123,10 @@ Route::get('/', function () {
                 // Semua
                 route::get('admin/section/semua',[AdminController::class,'section_semua'])->name('admin.section.semua');
                 
+            // Rating Average
+                route::get('admin/rating-average',[AdminController::class,'rating_average'])->name('rating.average')->middleware('auth','cek_level:admin');
+
+
             }));
              
 
