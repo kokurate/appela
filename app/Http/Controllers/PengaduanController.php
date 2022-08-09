@@ -36,9 +36,11 @@ class PengaduanController extends Controller
     public function verify(VerifyRequest $request)
     {
         // Verify using VerifyRequest
-            $validated = array_merge($request->validated(), ['token' => Str::random(127)]);
+            $validated = array_merge($request->validated(), ['token' => Str::random(127),'tujuan_id'=>8]);
         // Buat 
             Pengaduan::create($validated);
+        // Beking tujuan id palsu
+
         // Setup the email message
             $data = [
                 'content' => 'Untuk membuat pengaduan silahkan klik button di bawah ini',
@@ -47,6 +49,8 @@ class PengaduanController extends Controller
         // Send to email
         Mail::to($validated['email'])->send(new VerifyAlternative($data));
         Alert::success('Registrasi Email Berhasil', 'Silahkan cek email anda untuk membuat pengaduan');
+
+       
         return redirect()
             ->route('pengaduan.check')
             ->with('berhasil', 'Registrasi Email berhasil. Silahkan cek email anda untuk membuat pengaduan');
@@ -79,7 +83,7 @@ class PengaduanController extends Controller
             //Kalo sesuai update token   
                   else{
                     Pengaduan::where('email', $validated['email'])
-                              ->update(['token' => $newtoken ]);
+                              ->update(['token' => $newtoken, 'tujuan_id' => 8 ]);
                   }   
             // Setup email message   
                 $data =[
@@ -100,7 +104,15 @@ class PengaduanController extends Controller
             'title' => 'Buat Pengaduan',
             'page_title_1' => 'Masukkan pengaduan anda di bawah ini',
             'page_title_2' => '',
-            'tujuan' => Tujuan::all(), // Untuk pangge tujuan pengaduan
+            // 'tujuan' => Tujuan::all(), // Untuk pangge tujuan pengaduan
+            'tujuan' => Tujuan::where('id',1)
+                         ->orwhere('id',2)       
+                         ->orwhere('id',3)       
+                         ->orwhere('id',4)       
+                         ->orwhere('id',5)       
+                         ->orwhere('id',6)       
+                         ->orwhere('id',7)            
+                        ->get(), // Untuk pangge tujuan pengaduan
             'token' => $request->url(), // request->url is to take the request from url
             "pengaduan" =>$pengaduan->load('tujuan')
         ]);
@@ -165,6 +177,12 @@ class PengaduanController extends Controller
                 elseif($tujuan == 5){$tujuan = 'Learning Management System';}
                 elseif($tujuan == 6){$tujuan = 'Ijazah';}
                 elseif($tujuan == 7){$tujuan = 'Slip';}
+
+            // Hapus data 1 
+                if (Pengaduan::Where('id', '1')){
+                    Pengaduan::where('id', '1')->delete();
+                    // Tujuan::where('id','8')->delete();
+                }
 
         // Activity Log setup 
             $activitylog = [

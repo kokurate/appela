@@ -298,7 +298,7 @@ $dataPoints_status = array(
               <div class="swiper-slide">
                 <div class="testimonial-item">
                   <img src="/logo.jpg" class="testimonial-img bg-light" alt="">
-                  <h3>Belum ada pengaduan</h3>
+                  <h3>Belum membuat pengaduan</h3>
                 </div>
               </div><!-- End testimonial item -->
             @else

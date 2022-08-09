@@ -99,7 +99,7 @@ Route::get('/', function () {
                 Route::delete('/auth/destroy/{user:email}',[AuthController::class,'destroy'])->name('auth.destroy');
 
             // Hapus data pengaduan 
-                Route::delete('admin/destroy/{pengaduan:kode}',[AdminController::class,'destroy'])->name('admin.destroy');    
+                Route::delete('admin/destroy/{pengaduan:id}',[AdminController::class,'destroy'])->name('admin.destroy');    
 
             // index & detail
                 Route::get('admin',[AdminController::class,'index'])->name('admin.index');    

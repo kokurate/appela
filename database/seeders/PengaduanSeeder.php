@@ -15,14 +15,15 @@ class PengaduanSeeder extends Seeder
     public function run()
     {
         Pengaduan::create([
-                // 'judul' => 'Gangguan wifi',
-                // 'kode' => 'kode1',
+                'id' => '1',
+                // 'judul' => 'Belum ada Pengaduan',
+                'kode' => '-',
                 // 'email' => '18210152@unima.ac.id',
                 // 'status' => 'Pengaduan Masuk',
                 // 'nama' => 'Fredrik Sanger',
                 // 'isi' => '<p>'. implode('</p><p>', $this->faker->Paragraphs(mt_rand(4,7))).'</p>',
                 // 'isi' => '    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p><p> Aperiam debitis quo ipsa, explicabo ab ad velit nemo eligendi repellat voluptate ratione magnam deleniti possimus laboriosam blanditiis quidem non dolor excepturi adipisci aliquid quae dolorem.</p>',
-                // 'tujuan_id' => 8,
+                'tujuan_id' => 8,
                 // 'token' =>1 ,
                 'created_at' => null ,
                 'updated_at' => null ,

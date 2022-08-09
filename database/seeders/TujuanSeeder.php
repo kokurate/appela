@@ -37,5 +37,8 @@ class TujuanSeeder extends Seeder
         Tujuan::create([
             'nama' => 'Slip' // 7
         ]);
+        Tujuan::create([
+            'nama' => '-' // 8
+        ]);
     }
 }

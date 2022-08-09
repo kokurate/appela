@@ -129,7 +129,7 @@
                                         @can('admin')
                                             <!-- Action-->
                                             <td class="align-middle">
-                                                <form action="{{ route('admin.destroy', $p->kode) }}" method="post" >
+                                                <form action="{{ route('admin.destroy', $p->id) }}" method="post" >
                                                     @method('delete')
                                                     @csrf
                                                     <button type="submit" class="border-0 " onclick="return confirm('Yakin mau hapus data ?')">
