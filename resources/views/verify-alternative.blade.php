@@ -1,5 +1,5 @@
 @component('mail::message')
-Selamat Datang Di APPELA PUSKOM
+Selamat Datang Di APL Pusat Komputer
 
 {{ $data['content'] }}
 

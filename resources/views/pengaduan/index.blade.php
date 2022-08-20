@@ -7,7 +7,7 @@
           <div class="row">
               <div class="col-12">
                   <div class="section-title">
-                      <h2 class="wow fadeInUp" data-wow-delay=".4s">Cara Membuat Pengaduan melalui APPELA</h2>
+                      <h2 class="wow fadeInUp" data-wow-delay=".4s">Cara Membuat Pengaduan melalui APL</h2>
                       <!-- <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
                           Ipsum available, but the majority have suffered alteration in some form.</p>
                       -->
@@ -158,9 +158,9 @@
                               <img src="/logoappela.png" class="img-fluid  " alt="Responsive image" width="1000px" >
                             
                           </div>
-                          <h3>Tentang APPELA</h3>
+                          <h3>Tentang APL</h3>
                           <div class="contact-address mt-2">
-                              <p>Aplikasi Pengaduan Layanan <strong>(APPELA)</strong> merupakan aplikasi yang menangani pengaduan-pengaduan terhadap layanan yang disediakan oleh Pusat Komputer, Universitas Negeri Manado  </p>
+                              <p>Aplikasi Pengaduan Layanan <strong>(APL)</strong> merupakan aplikasi yang menangani pengaduan-pengaduan terhadap layanan yang disediakan oleh Pusat Komputer, Universitas Negeri Manado  </p>
                               <ul class="contact-address text-left mt-2">
                                   <li><strong>Alamat:</strong> Jl. Kampus Unima, Kelurahan Tonsaru, Kecamatan Tondano Selatan</li>
                                   <li><strong>Email:</strong> puskom@unima.ac.id</li>

@@ -80,9 +80,9 @@
                       <img src="/logoappela.png" class="img-fluid  " alt="Responsive image" width="1000px" >
                     
                   </div>
-                  <h3>Tentang APPELA</h3>
+                  <h3>Tentang APL</h3>
                   <div class="contact-address mt-2">
-                      <p>Aplikasi Pengaduan Layanan <strong>(APPELA)</strong> merupakan aplikasi yang menangani pengaduan-pengaduan terhadap layanan yang disediakan oleh Pusat Komputer, Universitas Negeri Manado  </p>
+                      <p>Aplikasi Pengaduan Layanan <strong>(APL)</strong> merupakan aplikasi yang menangani pengaduan-pengaduan terhadap layanan yang disediakan oleh Pusat Komputer, Universitas Negeri Manado  </p>
                       <ul class="contact-address text-left mt-2">
                           <li><strong>Alamat:</strong> Jl. Kampus Unima, Kelurahan Tonsaru, Kecamatan Tondano Selatan</li>
                           <li><strong>Email:</strong> puskom@unima.ac.id</li>

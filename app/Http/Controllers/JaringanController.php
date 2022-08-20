@@ -98,7 +98,7 @@ class JaringanController extends Controller
     // Setup Email Message
        $data =[
         'header' => 'Update Pengaduan ',
-        'content' => 'Untuk melihat detail pengaduan silahkan cek appela puskom ',
+        'content' => 'Untuk melihat detail pengaduan silahkan cek APL Pusat Komputer ',
         'status' =>   'Status pengaduan saat ini '.$validateData['status'] ,
       ];
     // Kirim Email
@@ -163,7 +163,7 @@ class JaringanController extends Controller
   // Setup Email Message
       $data =[
         'header' => 'Update Pengaduan ',
-        'content' => 'Untuk melihat detail pengaduan silahkan cek appela puskom ',
+        'content' => 'Untuk melihat detail pengaduan silahkan cek APL Pusat Komputer ',
         'status' =>   'Status pengaduan saat ini '.$validatedData['status'] ,
     ];
   // Kirim Email

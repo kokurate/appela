@@ -199,7 +199,7 @@ class PengaduanController extends Controller
 
     // Setup Email message 
         $data =[
-            'header' => 'Selamat datang di APPELA Puskom ',
+            'header' => 'Selamat datang di APL Pusat Komputer ',
             'content' => 'Gunakan kode berikut untuk cek detail pengaduan anda',
             'status' =>   $validatedData['kode'] ,
             ];

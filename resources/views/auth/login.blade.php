@@ -40,7 +40,7 @@
             <!-- <img src="/templates/login/images/bg-01.jpg" style="background-image: ;"> -->
             <div class="wrap-login100 p-t-30 p-b-50">
                 <span class="login100-form-title p-b-41">
-                   APPELA Login
+                   Login
                 </span>
 
                 @include('sweetalert::alert')

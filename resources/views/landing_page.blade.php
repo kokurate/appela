@@ -60,7 +60,7 @@ $dataPoints_status = array(
     <div class="container d-flex align-items-center justify-content-between">
 
       <div class="logo">
-        <h1><a href="/"><span>APPELA PUSKOM</span></a></h1>
+        <h1><a href="/"><span>APL PUSKOM</span></a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
       </div>
@@ -108,15 +108,16 @@ $dataPoints_status = array(
             <h2 class="mb-5">Universitas Negeri Manado</h2>
             <div class="text-center text-lg-start">
               <!-- <a href="#about" class="btn-get-started scrollto btn btn-info px-2 py-2">Tentang Appela</a> -->
-              <a href="#about" class="btn btn-success px-2 py-2">Tentang Appela</a>
+              <a href="#about" class="btn btn-success px-2 py-2">Tentang APL</a>
               <a href="{{ route('pengaduan.index') }}" class="btn btn-danger px-2 py-2">Buat Pengaduan</a>
               <a href="{{ route('pengaduan.search') }}" class="btn btn-info px-2 py-2">Cari Pengaduan</a>
-              <h2 class="my-3"><span>APPELA Puskom</span></h2>
+              <!-- <h2 class="my-3"><span>APPELA Puskom</span></h2> -->
             </div>
           </div>
         </div>
         <div class="col-lg-4 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="300">
-          <img src="/templates/visitor/homepage/assets/img/hero-img.png" class="img-fluid animated" alt="">
+          <!-- <img src="/templates/visitor/homepage/assets/img/hero-img.png" class="img-fluid animated" alt=""> -->
+          <img src="/logo.png" class="img-fluid animated" alt="logo"> 
         </div>
       </div>
     </div>
@@ -137,6 +138,52 @@ $dataPoints_status = array(
     </svg>
 
   </section><!-- End Hero -->
+
+  <main id="main">
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container-fluid">
+
+        <div class="row">
+
+          <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch" data-aos="fade-right">
+            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+            <!-- <h4>Cara Membuat Pengaduan</h4> -->
+          </div>
+
+          <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5" data-aos="fade-left">
+            <h3>Tentang</h3>
+            <p><strong>APL</strong> merupakan singkatan dari Aplikasi Pengaduan Layanan. APL adalah sarana kepada civitas akademik Universitas Negeri Manado untuk menampung pengaduan terhadap layanan yang disediakan oleh Pusat Komputer.</p>
+            <p><strong>Pengaduan</strong> dalam hal ini selain penyampaian informasi yang berisi keluhan terkait layanan Pusat Komputer juga bisa merupakan keluhan pribadi, misalnya untuk mereset akun Learning Management System yang sudah lupa password.</p>
+            <p>Tujuan dibuatnya APL supaya meningkatkan partisipasi Civitas Akademik dalam peningkatan layanan Pusat Komputer dan juga sebagai sarana untuk melaporkan pengaduan pribadi yang bisa diakses kapan saja dan di mana saja, selama kita terkoneksi dengan internet  </p>
+            <p><strong>Saat ini ada 7 layanan yang tersedia</strong></p>
+
+            <!-- Grid with icon
+            <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
+              <div class="icon"><i class="bx bx-fingerprint"></i></div>
+              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
+              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            </div>
+
+            <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
+              <div class="icon"><i class="bx bx-gift"></i></div>
+              <h4 class="title"><a href="">Nemo Enim</a></h4>
+              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+            </div>
+
+            <div class="icon-box" data-aos="zoom-in" data-aos-delay="300">
+              <div class="icon"><i class="bx bx-atom"></i></div>
+              <h4 class="title"><a href="">Dine Pad</a></h4>
+              <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
+            </div>
+            -->
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
 
   <!-- ====================== Chart ========================== -->
   <section id="counts" class="counts pt-5" >   
@@ -169,55 +216,7 @@ $dataPoints_status = array(
   </section>
 
   <!-- End Chart-->
-  
 
-
-
-
-
-  <main id="main">
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container-fluid">
-
-        <div class="row">
-
-          <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch" data-aos="fade-right">
-            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
-            <!-- <h4>Cara Membuat Pengaduan</h4> -->
-          </div>
-
-          <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5" data-aos="fade-left">
-            <h3>Tentang APPELA</h3>
-            <p><strong>APPELA</strong> merupakan singkatan dari Aplikasi Pengaduan Layanan. APPELA adalah sarana kepada civitas akademik Universitas Negeri Manado untuk menampung pengaduan terhadap layanan yang disediakan oleh Pusat Komputer.</p>
-            <p>Tujuan dibuatnya APPELA supaya meningkatkan partisipasi Civitas Akademik dalam peningkatan layanan Pusat Komputer dan juga sebagai sarana untuk melaporkan pengaduan pribadi yang bisa diakses kapan saja dan di mana saja, selama kita terkoneksi dengan internet  </p>
-            <p><strong>Saat ini ada 7 layanan yang tersedia</strong></p>
-
-            <!-- Grid with icon
-            <div class="icon-box" data-aos="zoom-in" data-aos-delay="100">
-              <div class="icon"><i class="bx bx-fingerprint"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-            </div>
-
-            <div class="icon-box" data-aos="zoom-in" data-aos-delay="200">
-              <div class="icon"><i class="bx bx-gift"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-            </div>
-
-            <div class="icon-box" data-aos="zoom-in" data-aos-delay="300">
-              <div class="icon"><i class="bx bx-atom"></i></div>
-              <h4 class="title"><a href="">Dine Pad</a></h4>
-              <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
-            </div>
-            -->
-
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End About Section -->
 
     <!-- ======= Features Section ======= -->
     <section id="features" class="features">
@@ -298,7 +297,7 @@ $dataPoints_status = array(
               <div class="swiper-slide">
                 <div class="testimonial-item">
                   <img src="/logo.jpg" class="testimonial-img bg-light" alt="">
-                  <h3>Belum membuat pengaduan</h3>
+                  <!-- <h3>Belum membuat pengaduan</h3> -->
                 </div>
               </div><!-- End testimonial item -->
             @else
@@ -343,10 +342,10 @@ $dataPoints_status = array(
         <div class="faq-list">
           <ul>
             <li data-aos="fade-up">
-              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Apa itu APPELA ?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Apa itu APL ?<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
                 <p>
-                  APPELA merupakan singkatan dari Aplikasi Pengaduan Layanan. APPELA adalah sarana kepada civitas akademik Universitas Negeri Manado untuk menampung pengaduan terhadap layanan yang disediakan oleh Pusat Komputer.
+                  APL merupakan singkatan dari Aplikasi Pengaduan Layanan. APL adalah sarana kepada civitas akademik Universitas Negeri Manado untuk menampung pengaduan terhadap layanan yang disediakan oleh Pusat Komputer.
                 </p>
               </div>
             </li>
@@ -422,7 +421,7 @@ $dataPoints_status = array(
 
           <div class="col-lg-4 col-md-6">
             <div class="footer-info">
-              <h3>APPELA Puskom</h3>
+              <h3>APL Puskom</h3>
               <p class="pb-3"><em>Jln. Kampus Unima, Kelurahan Tonsaru, Kecamatan Tondano Selatan</em></p>
               <p>
                 Jam Kerja <br>
@@ -473,7 +472,7 @@ $dataPoints_status = array(
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>Bootslander</span></strong>. All Rights Reserved
+        Design by <strong><span>Bootslander</span></strong>.
       </div>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
