@@ -37,6 +37,12 @@ class PengaduanController extends Controller
     {
         // Verify using VerifyRequest
             $validated = array_merge($request->validated(), ['token' => Str::random(127),'tujuan_id'=>8]);
+
+            // // Testing function for captcha
+            // Validator::make($request,[
+            //     'captcha' => ['required','captcha'],
+            // ]);
+
         // Buat 
             Pengaduan::create($validated);
         // Beking tujuan id palsu
@@ -54,6 +60,11 @@ class PengaduanController extends Controller
         return redirect()
             ->route('pengaduan.check')
             ->with('berhasil', 'Registrasi Email berhasil. Silahkan cek email anda untuk membuat pengaduan');
+    }
+
+    public function reload()
+    {
+        return response()->json(['captcha'=> captcha_img()]);
     }
 
 // ===================================================================================

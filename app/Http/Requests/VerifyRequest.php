@@ -27,13 +27,17 @@ class VerifyRequest extends FormRequest
     {
         return [
             'email' => ['required', Rule::unique('pengaduans')],
+            'captcha'=> ['required','captcha']
         ];
     }
 
     public function messages()
     {
       return [
-        'email.unique' => 'Email ini sedang melakukan Pengaduan. Tunggu pengaduan selesai untuk membuat pengaduan kembali ' 
+        'email.unique' => 'Email ini sedang melakukan Pengaduan. Tunggu pengaduan selesai untuk membuat pengaduan kembali ',
+        'email.required' => 'Email harus diisi ',
+        'captcha.required' => 'Captcha harus diisi',
+        'captcha.captcha' => 'Captcha tidak valid'
       ];
     }
 

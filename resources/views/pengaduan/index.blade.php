@@ -1,5 +1,12 @@
 @extends('pengaduan.layouts.master')
+
+@section('header')
+<script
+  src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+@endsection
+
 @section('content')
+
 
 <!-- Start Pricing Table Area -->
   <br>
@@ -24,7 +31,7 @@
               <div class="col-lg-4 col-md-4 col-12">
                   <div class="process-item">
                       <i class="lni lni-delivery"></i>
-                      <h4>1. Verifikasi Email</h4>
+                      <h4>1. Registrasi Email</h4>
                       <p>Langkah pertama yang harus dilakukan adalah registrasikan email.
                           Email yang bisa digunakan hanyalah email UNIMA dengan domain "@unima.ac.id" diluar domain ini tidak akan bisa membuat pengaduan.
                       </p>
@@ -40,7 +47,7 @@
               <div class="col-lg-4 col-md-4 col-12">
                   <div class="process-item">
                       <i class="lni lni-lock"></i>
-                      <h4>3. Cek Email</h4>
+                      <h4>3. Notifikasi</h4>
                       <p>Setelah anda berhasil membuat pengaduan. Anda akan mendapatkan kode pengaduan yang dikirimkan ke email anda. Demi alasan keamanan data pengaduan, jangan diberikan kepada siapapun kode pengaduan ini</p>
                   </div>
               </div>
@@ -123,9 +130,31 @@
                                             @enderror
                                               
                                         <br>
-<!-- Id kirim ulang email disini karena dia t makan header di atas so itu nd dapa lia -->
+
+                                        <!-- Captcha here-->
+                                        <div class="row my-3">
+                                            <label for="captcha" class="col-md-4 col-form-label text-md-center">Captcha</label>
+                                            <div class="col-md-6">
+                                                <span id="captcha-img">
+                                                        {!! captcha_img() !!}
+                                                </span>
+                                            </div>
+                                            <div class="col-md-2 mb-2 mt-n5">
+                                                <button id="reload" class="btn btn-danger">&#x21bb;</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row my-2">
+                                                <label for="captcha" class="col-md-5  text-md-center p-0 my-3">Enter Captcha</label>
+                                            <div class="col-md-6">
+                                                <input type="text" name="captcha" placeholder="Enter Captcha">
+                                            </div>
+                                        </div>
+                                      
+
+                                <!-- Id kirim ulang email disini karena dia t makan header di atas so itu nd dapa lia -->
                                   <div id="kirim-ulang-link"></div>
-                                        <div class="button ">
+                                        <div class="button mt-3">
                                             <button class="btn" ><i class="lni lni-key"></i> Registrasi Email! </button>
                                         </div>
                                     </form>
@@ -194,4 +223,34 @@
       })
     </script>
   @enderror
+
+  {{-- @error('captcha')
+    <script>
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Captcha harus diisi',
+        footer: '<a href="#aktivasi-email">Cek Kesalahan</a>'
+      })
+    </script>
+  @enderror --}}
+
+
+    <script >
+        // when click will directing to something page
+        $('#reload').click(function (e){
+            e.preventDefault();
+            $.ajax({
+
+                type:'GET',
+                url:'reload',
+                success:function(res){
+                    $('#captcha-img').html(res.captcha); 
+                }
+
+            });
+
+        });
+    </script>
+
 @endsection
