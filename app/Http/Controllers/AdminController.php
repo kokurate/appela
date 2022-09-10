@@ -88,7 +88,15 @@ class AdminController extends Controller
         'url' => $request->path(),
         'title' => "Pengaduan Masuk",
         'pengaduan' => $pengaduan,
-        'tujuan' => Tujuan::all()
+        'tujuan' => Tujuan::where('id','1')
+                          ->orWhere('id','2')
+                          ->orWhere('id','3')
+                          ->orWhere('id','4')
+                          ->orWhere('id','5')
+                          ->orWhere('id','6')
+                          ->orWhere('id','7')
+                          ->get()
+                          
       ]);
     }
 

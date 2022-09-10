@@ -36,8 +36,15 @@ class PengaduanController extends Controller
     public function verify(VerifyRequest $request)
     {
         // Verify using VerifyRequest
-            $validated = array_merge($request->validated(), ['token' => Str::random(127),'tujuan_id'=>8]);
-
+            $validated = array_merge($request->validated(), 
+            ['token' => Str::random(127),
+            'tujuan_id'=>8,
+            'kode' => Str::random(10),
+            'used_email' => $request->email,
+            'status' => 'Registrasi Email',
+            'judul' => 'Visitor '. $request->email .' meregistrasikan email. Belum Membuat Pengaduan',
+            ]);
+            
             // // Testing function for captcha
             // Validator::make($request,[
             //     'captcha' => ['required','captcha'],
@@ -94,7 +101,7 @@ class PengaduanController extends Controller
             //Kalo sesuai update token   
                   else{
                     Pengaduan::where('email', $validated['email'])
-                              ->update(['token' => $newtoken, 'tujuan_id' => 8 ]);
+                              ->update(['token' => $newtoken,]);
                   }   
             // Setup email message   
                 $data =[
