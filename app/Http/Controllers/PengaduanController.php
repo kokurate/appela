@@ -49,10 +49,22 @@ class PengaduanController extends Controller
             // Validator::make($request,[
             //     'captcha' => ['required','captcha'],
             // ]);
-
+           
         // Buat 
-            Pengaduan::create($validated);
+            $pengaduan = Pengaduan::create($validated);
         // Beking tujuan id palsu
+     
+        // Setup Activity Log
+        $id = $pengaduan->id;
+        $activitylog = [
+            'pengaduan_id' => $id,
+            'opener' => 'Register',
+            'user' => $request->email  ,
+            'do' => 'Meregistrasikan email' ,
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ];
+      // Insert Activity Log
+        DB::table('catatans')->insert($activitylog);
 
         // Setup the email message
             $data = [
@@ -102,7 +114,25 @@ class PengaduanController extends Controller
                   else{
                     Pengaduan::where('email', $validated['email'])
                               ->update(['token' => $newtoken,]);
+                
+                // I'm trying to make the log but its not fix yet
+                    //     $pengaduan = Pengaduan::where('id',$validated['email'])->first();
+                    // // Setup Activity Log
+                    //     $id = $pengaduan;
+                    //   $activitylog = [
+                    //         'pengaduan_id' => $id,
+                    //         'opener' => 'Resend',
+                    //         'user' => $request->email  ,
+                    //         'do' => 'Kirim ulang email' ,
+                    //         'updated_at' => Carbon::now()->toDateTimeString(),
+                    //     ];
+                    //     // Insert Activity Log
+                    //     DB::table('catatans')->insert($activitylog);
+                    
                   }   
+
+           
+            
             // Setup email message   
                 $data =[
                     'content' => 'Ini adalah link baru anda untuk membuat pengaduan. Silahkan klik button di bawah ini untuk membuat pengaduan ',
