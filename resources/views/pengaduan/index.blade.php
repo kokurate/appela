@@ -132,16 +132,18 @@
                                         <br>
 
                                         <!-- Captcha here-->
-                                        <div class="row my-3">
-                                            <label for="captcha" class="col-md-4 col-form-label text-md-center">Captcha</label>
+                                        <div class="row justify-content-start my-3">
+                                            <div class="col card text-center d-flex">
+                                                <label for="captcha" class="">Captcha</label>
+                                                <button id="reload" class="mb-2 btn btn-danger">&#x21bb;</button>
+                                            </div>
+                                         
                                             <div class="col-md-6">
-                                                <span id="captcha-img">
+                                                <span id="captcha-img" class="mt-4">
                                                         {!! captcha_img() !!}
                                                 </span>
                                             </div>
-                                            <div class="col-md-2 mb-2 mt-n5">
-                                                <button id="reload" class="btn btn-danger">&#x21bb;</button>
-                                            </div>
+                                            
                                         </div>
 
                                         <div class="row my-2">
