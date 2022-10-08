@@ -29,7 +29,7 @@ class SendMailOfficer extends Mailable
     public function build()
     {
         return $this->markdown('notification-email-officer')
-                    ->subject('Notifikasi appela puskom')
+                    ->subject('Notifikasi APL puskom')
                     ->with('data', $this->data);
     }
 }

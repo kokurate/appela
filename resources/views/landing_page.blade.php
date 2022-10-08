@@ -19,7 +19,7 @@ $dataPoints_status = array(
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>APPELA Puskom </title>
+  <title>APL Puskom </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -531,7 +531,7 @@ $dataPoints_status = array(
                   type: 'pie'
               },
               title: {
-                  text: 'Total Pengaduan di Appela Puskom'
+                  text: 'Total Pengaduan di APL Puskom'
               },
               tooltip: {
                   pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -607,7 +607,7 @@ $dataPoints_status = array(
               text: '<b>Pengaduan bulan ini</b>'
           },
           subtitle: {
-              text: 'appela puskom'
+              text: 'APL puskom'
           },
           xAxis: {
               categories: [

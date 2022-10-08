@@ -45,7 +45,7 @@
                     <div class="col-lg-12">
                         <nav class="navbar navbar-expand-lg">
                             <a class="navbar-brand logo" href="/">
-                                <img class="logo1" src="/logoappela.png"  width="" alt="Appela Puskom" />
+                                <img class="logo1" src="/logoappela.png"  width="" alt="APL Puskom" />
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

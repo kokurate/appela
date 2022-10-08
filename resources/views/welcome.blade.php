@@ -58,7 +58,7 @@ $dataPoints_status = array(
         <div class="container my-2">
             <h1>Hello, world!</h1>
             <div class="card chart-container ">
-                <h4 class="justify-content-center">Total Pengaduan di Appela Puskom</h4>
+                <h4 class="justify-content-center">Total Pengaduan di APL Puskom</h4>
                 <div class="chart has-fixed-height" id="chart_all"></div>
             </div>
             <div class="row">
@@ -113,7 +113,7 @@ $dataPoints_status = array(
                 type: 'pie'
             },
             title: {
-                text: 'Total Pengaduan di Appela Puskom'
+                text: 'Total Pengaduan di APL Puskom'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -189,7 +189,7 @@ $dataPoints_status = array(
             text: '<b>Pengaduan bulan ini</b>'
         },
         subtitle: {
-            text: 'appela puskom'
+            text: 'APL puskom'
         },
         xAxis: {
             categories: [

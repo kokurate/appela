@@ -200,3 +200,7 @@
     </div> <!-- Row -->
 </div> <!-- Container -->
 @endsection
+
+@section('javascript')
+
+@endsection

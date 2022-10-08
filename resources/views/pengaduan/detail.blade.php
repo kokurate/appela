@@ -47,7 +47,7 @@
                           <div class="col-6 collapse-brand">
                               <a href="/">
                                   <img src="logo.jpg">
-                                  APPELA Puskom
+                                  APL Puskom
                               </a>
                           </div>
                           <div class="col-6 collapse-close">

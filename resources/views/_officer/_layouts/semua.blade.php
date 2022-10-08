@@ -141,8 +141,8 @@
                             <thead>
                                 <tr>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kode</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Kode</th>
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">status</th>
                                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">rating</th>
@@ -190,7 +190,26 @@
 
                                         <!-- Action-->
                                             <td class="align-middle">
-                                                <a href="{{ route('jaringan.detail', $p->kode) }}" class="text-secondary  text-xs">
+                                                
+                                                <!-- =============================== Section Gate ===================-->
+                                                <a href="
+                                                @if(Request::is('jaringan*'))
+                                                    @can('jaringan') {{ route('jaringan.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('server*'))    
+                                                    @can('server') {{ route('server.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('sistem-informasi*'))    
+                                                    @can('sistem_informasi') {{ route('sistem_informasi.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('website-unima*'))    
+                                                    @can('website_unima') {{ route('website_unima.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('learning-management-system*'))    
+                                                    @can('lms') {{ route('lms.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('ijazah*'))    
+                                                    @can('ijazah') {{ route('ijazah.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('slip*'))    
+                                                    @can('slip') {{ route('slip.detail', $p->kode) }} @endcan
+                                                @endif
+                                                " 
+                                                class="text-secondary  text-xs">
                                                     <i class="fa fa-solid fa-info ps-3"></i>
                                                 </a>
                                             </td>

@@ -297,13 +297,13 @@ class AdminController extends Controller
     $slip = Pengaduan::where('tujuan_id',7)->avg('rating');
 
     // Current
-    $count_jaringan = Pengaduan::select('rating')->where('tujuan_id',1)->count() ;
-    $count_server = Pengaduan::select('rating')->where('tujuan_id',2)->count() ;
-    $count_sistem_informasi = Pengaduan::select('rating')->where('tujuan_id',3)->count() ;
-    $count_website_unima = Pengaduan::select('rating')->where('tujuan_id',4)->count() ;
-    $count_lms = Pengaduan::select('rating')->where('tujuan_id',5)->count() ;
-    $count_ijazah = Pengaduan::select('rating')->where('tujuan_id',6)->count() ;
-    $count_slip = Pengaduan::select('rating')->where('tujuan_id',7)->count() ;
+    $count_jaringan = Pengaduan::whereNotNull('rating')->where('tujuan_id',1)->count() ;
+    $count_server = Pengaduan::whereNotNull('rating')->where('tujuan_id',2)->count() ;
+    $count_sistem_informasi = Pengaduan::whereNotNull('rating')->where('tujuan_id',3)->count() ;
+    $count_website_unima = Pengaduan::whereNotNull('rating')->where('tujuan_id',4)->count() ;
+    $count_lms = Pengaduan::whereNotNull('rating')->where('tujuan_id',5)->count() ;
+    $count_ijazah = Pengaduan::whereNotNull('rating')->where('tujuan_id',6)->count() ;
+    $count_slip = Pengaduan::whereNotNull('rating')->where('tujuan_id',7)->count() ;
 
 
    

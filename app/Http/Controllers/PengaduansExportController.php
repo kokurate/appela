@@ -18,7 +18,7 @@ class PengaduansExportController extends Controller
 
     public function excel(Excel $excel)
     {
-        return $this->excel->download(new PengaduanMultiSheetExport(2022),'pengaduan.xlsx');
+        return $this->excel->download(new PengaduanMultiSheetExport(2022),'Data Pengaduan.xlsx');
     }
 }
     

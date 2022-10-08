@@ -30,7 +30,7 @@ class SendMailVisitor extends Mailable
     public function build()
     {
         return $this->markdown('notification-email-visitor')
-                    ->subject('Pemberitahuan appela puskom')
+                    ->subject('Pemberitahuan APL puskom')
                     ->with('data', $this->data);
     }
 }
