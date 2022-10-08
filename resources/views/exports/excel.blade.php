@@ -8,15 +8,15 @@
             </tr>
             
 
-            <tr class="text-center">
+            <tr>
                 
-                <th>#</th>
-                <th>Pengaduan Dibuat</th>
-                <th>Kode</th>
-                <th>Email</th>
-                <th>Tujuan</th>
-                <th>Status</th>
-                <th>Judul</th>
+                <th style="text-align: center">#</th>
+                <th style="text-align: center">Pengaduan Dibuat</th>
+                <th style="text-align: center">Kode</th>
+                <th style="text-align: center">Email</th>
+                <th style="text-align: center">Tujuan</th>
+                <th style="text-align: center">Status</th>
+                <th style="text-align: center">Judul</th>
             </tr>
             </thead>
             <tbody>
@@ -24,17 +24,17 @@
             @forelse($pengaduan as $p)
 
                 <tr>
-                    <td>{{ $i++ }}</td>
-                    <td>{{ $p->created_at->toDateString() }}</td>
-                    <td>{{ $p->kode }}</td>
-                    <td>{{ $p->used_email }}</td>
-                    <td>{{ $p->tujuan->nama }}</td>
-                    <td>{{ $p->status }}</td>
-                    <td>{{ $p->judul }}</td>
+                    <td style="border: 1px solid black">{{ $i++ }}</td>
+                    <td style="border: 1px solid black">{{ $p->created_at->toDateString() }}</td>
+                    <td style="border: 1px solid black">{{ $p->kode }}</td>
+                    <td style="border: 1px solid black">{{ $p->used_email }}</td>
+                    <td style="border: 1px solid black">{{ $p->tujuan->nama }}</td>
+                    <td style="border: 1px solid black">{{ $p->status }}</td>
+                    <td style="border: 1px solid black">{{ $p->judul }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7" style="text-align: center"><strong>Belum Ada Pengaduan</strong></td>
+                    <td colspan="7" style="text-align: center; border: 1px solid black"><strong>Belum Ada Pengaduan</strong></td>
                 </tr>
             @endforelse
             </tbody>

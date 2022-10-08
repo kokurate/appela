@@ -54,22 +54,46 @@ class PengaduansExport implements
     {
         return [
             AfterSheet::class => function (AfterSheet $event){
-                $event->sheet->getStyle('A3:G3')->applyFromArray([
-                    'font' => ['bold' => true],
+                $event->sheet->getStyle('A1:G2')->applyFromArray([
+                    'font' => ['bold' => true,
+                                'size' =>16,
+                                ],
                     'borders' => [
                             'outline' => [
-                                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
+                                // 'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
+                                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
                                 'color' => ['argb' => '000000'],
                             ],
                         ]
-                        ]);
-                $event->sheet->getStyle('A1:G1')->applyFromArray([
-                    'font' => ['size' =>16, 'bold' => true],
+                ]);
+              
+                $event->sheet->getStyle('A3:G3')->applyFromArray([
+                    'font' => ['bold' => true,
+                                'size' =>12,
+                                ],
+                    'borders' => [
+                        'allBorders' => [
+                            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                            'color' => ['argb' => '000000'],
+                        ],
+                    ],
                 ]);
 
-                $event->sheet->getStyle('A1:G1')->getFill()->applyFromArray([
-                    'fillType' => 'solid','rotation' => 0, 'color' => ['rgb' => 'ff4800'],
-                ]);
+                // $event->sheet->getStyle('A3:G200')->applyFromArray([
+                //     'borders' => [
+                //         'allBorders' => [
+                //             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                //             'color' => ['argb' => '000000'],
+                //         ],
+                //     ],
+                // ]);
+
+                // $event->sheet->getStyle('A1:G1')->getFill()->applyFromArray([
+                //     'fillType' => 'solid','rotation' => 0, 'color' => ['rgb' => 'c2bfbe'],
+                // ]);
+                // $event->sheet->getStyle('A3:G3')->getFill()->applyFromArray([
+                //     'fillType' => 'solid','rotation' => 0, 'color' => ['rgb' => 'd6d3d2'],
+                // ]);
 
 
             }
