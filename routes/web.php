@@ -65,6 +65,8 @@ Route::get('/', function () {
     $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
 // } //endif
 
+    app('App\Http\Controllers\HelperController')->automatically_delete_data();
+
     return view('landing_page',compact(
         'jaringan','server','si','web_unima','lms','ijazah','slip',
         'masuk','diverifikasi','diproses','ditolak','selesai',

@@ -18,7 +18,11 @@ use Illuminate\Support\Facades\Mail;
 class AdminController extends Controller
 {
     public function index(Request $request){
+      
+      app('App\Http\Controllers\HelperController')->automatically_delete_data();
+
       $pagination = 10;
+
       return view('_admin.index',[
         // Count 
         'jaringan' => Pengaduan::where('tujuan_id','1')->where('status','Pengaduan Sedang Diproses')->count(),

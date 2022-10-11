@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\PengaduanController;
+
 
 class AuthController extends Controller
 {
@@ -16,6 +18,9 @@ class AuthController extends Controller
     }
 
     public function index(){
+    // Automatically delete data who are over 10 minutes
+        app('App\Http\Controllers\HelperController')->automatically_delete_data();
+        
         return view('auth.login');
     }
 

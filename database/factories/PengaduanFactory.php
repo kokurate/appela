@@ -19,7 +19,7 @@ class PengaduanFactory extends Factory
             'judul' => $this->faker->sentence(mt_rand(4,10)),
             'kode' => $this->faker->slug(),
             'email' => $this->faker->unique()->safeEmail(),
-            'status' => 'Pengaduan Sedang Diverifikasi',
+            'status' => 'Registrasi Email',
             'nama' => $this->faker->name(),
             // 'isi' => '<p>'. implode('</p><p>', $this->faker->Paragraphs(mt_rand(4,7))).'</p>',
             'isi' => collect($this->faker->Paragraphs(mt_rand(4,7)))

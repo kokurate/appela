@@ -21,7 +21,25 @@ use Illuminate\Support\Facades\Validator;
 
 class PengaduanController extends Controller
 {
-    public function index(){
+    // public function automatically_delete_data(){
+    //     $stale_pengaduan = Pengaduan::where('created_at', '<', Carbon::now()->addMinutes(1))
+    //     ->where('status','Registrasi Email')
+    //     ->get();
+
+    //     foreach ($stale_pengaduan as $pengaduan) {
+    //     $pengaduan->delete();
+    //     }
+
+    //   }
+
+
+   
+      public function index(){
+        // Automatically delete data who are over 10 minutes
+        app('App\Http\Controllers\HelperController')->automatically_delete_data();
+
+
+
         // Alert::success('Success Title', 'Success Message');
         // alert()->success('SuccessAlert','Lorem ipsum dolor sit amet.');
         return view('pengaduan.index',[
@@ -68,17 +86,19 @@ class PengaduanController extends Controller
 
         // Setup the email message
             $data = [
+                'important' => 'Harap segera membuat pengaduan. Batas pembuatan pengaduan yaitu 10 menit',
+                'note' => 'Jika setelah 10 menit belum membuat pengaduan. Maka anda diharuskan meregistrasikan kembali email anda',
                 'content' => 'Untuk membuat pengaduan silahkan klik button di bawah ini',
                 'url' => 'http://127.0.0.1:8000/pengaduan/create/' . $validated['token'],
             ];
         // Send to email
         Mail::to($validated['email'])->send(new VerifyAlternative($data));
-        Alert::success('Registrasi Email Berhasil', 'Silahkan cek email anda untuk membuat pengaduan');
+        Alert::success('Batas pembuatan pengaduan yaitu 10 Menit', 'Silahkan cek email anda untuk membuat pengaduan');
 
        
         return redirect()
             ->route('pengaduan.check')
-            ->with('berhasil', 'Registrasi Email berhasil. Silahkan cek email anda untuk membuat pengaduan');
+            ->with('berhasil', 'Registrasi Email berhasil. Silahkan cek email anda untuk membuat pengaduan. Batas pembuatan pengaduan yaitu 10 Menit');
     }
 
     public function reload()
@@ -89,6 +109,10 @@ class PengaduanController extends Controller
 // ===================================================================================
     // Halaman resending email dan landing page saat berhasil registrasi email
     public function check(){
+    // Automatically delete data who are over 10 minutes
+        app('App\Http\Controllers\HelperController')->automatically_delete_data();
+
+
         return view('pengaduan.check',[
             'title' => 'Kirim Ulang Link',
             'page_title_1' => 'Jika tidak ada email yang masuk tapi kalian sudah mendaftarkannya.',
@@ -135,12 +159,14 @@ class PengaduanController extends Controller
             
             // Setup email message   
                 $data =[
-                    'content' => 'Ini adalah link baru anda untuk membuat pengaduan. Silahkan klik button di bawah ini untuk membuat pengaduan ',
-                    'url' => 'http://127.0.0.1:8000/pengaduan/create/'. $newtoken,
+                'important' => 'Harap segera membuat pengaduan. Batas pembuatan pengaduan yaitu 10 menit',
+                'note' => 'Jika setelah 10 menit belum membuat pengaduan. Maka anda diharuskan meregistrasikan kembali email anda',
+                'content' => 'Ini adalah link baru anda untuk membuat pengaduan. Silahkan klik button di bawah ini untuk membuat pengaduan ',
+                'url' => 'http://127.0.0.1:8000/pengaduan/create/'. $newtoken,
                 ];
             // Kirim ke email
                 Mail::to($validated['email'])->send(new VerifyAlternative($data));
-                Alert::success('Kirim Ulang Email Berhasil', 'Link baru sudah dikirimkan. Silahkan cek email anda untuk membuat pengaduan');
+                Alert::success('Batas pembuatan pengaduan yaitu 10 Menit', 'Link baru sudah dikirimkan. Silahkan cek email anda untuk membuat pengaduan');
             return redirect()->route('pengaduan.check')
                              ->with('berhasil','Link baru sudah dikirimkan. Silahkan cek email anda untuk membuat pengaduan');
     }
@@ -148,6 +174,10 @@ class PengaduanController extends Controller
 // =====================================================================================
 // Create Pengaduan
     public function create(Pengaduan $pengaduan , Request $request){
+    // Automatically delete data who are over 10 minutes
+        app('App\Http\Controllers\HelperController')->automatically_delete_data();
+
+
         return view('pengaduan.create',[
             'title' => 'Buat Pengaduan',
             'page_title_1' => 'Masukkan pengaduan anda di bawah ini',
@@ -261,6 +291,10 @@ class PengaduanController extends Controller
 
 // ========================================================================================== 
     public function search(Request $request){
+  // Automatically delete data who are over 10 minutes
+    app('App\Http\Controllers\HelperController')->automatically_delete_data();
+
+
         // Kalo mo ubah paginasi ubah juga variabelnya like this 5->all
         $pagination = 5;
         $search = request('kode');
@@ -285,6 +319,11 @@ class PengaduanController extends Controller
     }
 
     public function detail(Pengaduan $pengaduan){
+  // Automatically delete data who are over 10 minutes
+    app('App\Http\Controllers\HelperController')->automatically_delete_data();
+
+
+
         return view('pengaduan.detail',[
             "title" => "Detail Pengaduan",
             // Lazy Eager Loading

@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Validator;
 class JaringanController extends Controller
 {
     public function index(Request $request){
+    app('App\Http\Controllers\HelperController')->automatically_delete_data();
+
      // Kalo mo ubah paginasi ubah juga variabelnya di view
      $current_left = $request->input('masuk') ? $request->input('masuk') : 1;
      $current_right = $request->input('proses') ? $request->input('proses') : 1;
