@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PengaduanExportAll;
 use App\Exports\PengaduanMultiSheetExport;
 use App\Exports\PengaduansExport;
 use Illuminate\Http\Request;
@@ -16,9 +17,18 @@ class PengaduansExportController extends Controller
         $this->excel = $excel;
     }
 
-    public function excel(Excel $excel)
+    public function excel_monthly(Excel $excel)
     {
-        return $this->excel->download(new PengaduanMultiSheetExport(2022),'Data Pengaduan.xlsx');
+        return 
+        $this->excel->download(new PengaduanMultiSheetExport(2022),'Data Pengaduan Bulanan.xlsx');
+
     }
+
+    public function excel_all()
+    {
+        return
+        $this->excel->download(new PengaduanExportAll,'Data Pengaduan.xlsx');
+    }
+
 }
     

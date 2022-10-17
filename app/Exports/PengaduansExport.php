@@ -40,7 +40,7 @@ class PengaduansExport implements
 
     public function view(): View
     {
-        return view('exports.excel', [
+        return view('exports.excel_monthly', [
             'pengaduan' => Pengaduan::WhereYear('updated_at', $this->year)
                                         ->WhereMonth('updated_at', $this->month)
                                         ->with('tujuan')->get(),
@@ -64,7 +64,8 @@ class PengaduansExport implements
                                 'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
                                 'color' => ['argb' => '000000'],
                             ],
-                        ]
+                        ],
+                    // 'alignment' => ['Valignment' => 'middle']
                 ]);
               
                 $event->sheet->getStyle('A3:G3')->applyFromArray([
@@ -88,9 +89,9 @@ class PengaduansExport implements
                 //     ],
                 // ]);
 
-                // $event->sheet->getStyle('A1:G1')->getFill()->applyFromArray([
-                //     'fillType' => 'solid','rotation' => 0, 'color' => ['rgb' => 'c2bfbe'],
-                // ]);
+                $event->sheet->getStyle('A1:G1')->getFill()->applyFromArray([
+                    'fillType' => 'solid','rotation' => 0, 'color' => ['rgb' => 'ababab'],
+                ]);
                 // $event->sheet->getStyle('A3:G3')->getFill()->applyFromArray([
                 //     'fillType' => 'solid','rotation' => 0, 'color' => ['rgb' => 'd6d3d2'],
                 // ]);

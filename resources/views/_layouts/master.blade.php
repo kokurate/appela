@@ -225,11 +225,19 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="{{ route('export.excel') }}">
+                <a class="nav-link " href="{{ route('export.excel_all') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa fa-file-all text-warning text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Export Semua</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{{ route('export.excel_monthly') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="fa fa-file-export text-warning text-sm opacity-10"></i>
                   </div>
-                  <span class="nav-link-text ms-1">Export</span>
+                  <span class="nav-link-text ms-1">Export Bulanan</span>
                 </a>
               </li>
               <li class="nav-item">

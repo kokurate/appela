@@ -119,7 +119,8 @@ Route::get('/', function () {
                 // route::post('/admin/tujuan/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
 
             // Export
-                Route::get('/admin/export/excel', [PengaduansExportController::class,'excel'])->name('export.excel');
+                Route::get('/admin/export/excel-monthly', [PengaduansExportController::class,'excel_monthly'])->name('export.excel_monthly');
+                Route::get('/admin/export/excel-all', [PengaduansExportController::class,'excel_all'])->name('export.excel_all');
 
             // Admin Section
                 // Semua
