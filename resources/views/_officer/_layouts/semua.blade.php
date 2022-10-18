@@ -20,6 +20,8 @@
         @can('ijazah') {{ route('ijazah.index') }} @endcan
     @elseif(Request::is('slip*'))
         @can('slip') {{ route('slip.index') }} @endcan
+    @elseif(Request::is('lain-lain*'))
+        @can('lain_lain') {{ route('lain_lain.index') }} @endcan
     @endif
     ">
         <div class="btn btn-light">
@@ -126,6 +128,8 @@
                             @can('ijazah') {{ route('ijazah.section.semua') }} @endcan
                         @elseif(Request::is('slip*'))
                             @can('slip') {{ route('slip.section.semua') }} @endcan
+                        @elseif(Request::is('lain-lain*'))
+                            @can('lain_lain') {{ route('lain_lain.section.semua') }} @endcan
                         @endif
                         ">                                
                             <div class="input-group mb-3">
@@ -207,6 +211,8 @@
                                                     @can('ijazah') {{ route('ijazah.detail', $p->kode) }} @endcan
                                                 @elseif(Request::is('slip*'))    
                                                     @can('slip') {{ route('slip.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('lain-lain*'))    
+                                                    @can('lain_lain') {{ route('lain_lain.detail', $p->kode) }} @endcan
                                                 @endif
                                                 " 
                                                 class="text-secondary  text-xs">

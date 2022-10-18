@@ -78,6 +78,11 @@ class AppServiceProvider extends ServiceProvider
             return $user->level == 'slip' || $user->level == 'admin';
         });
 
+        // Lain lain
+        Gate::define('lain_lain', function (User $user){
+            return $user->level == 'lain_lain' || $user->level == 'admin';
+        });
+
     // =============================== Dashboard =============================
     // Jaringan
     Gate::define('jaringanDashboard', function (User $user){
@@ -112,6 +117,11 @@ class AppServiceProvider extends ServiceProvider
     // Slip
     Gate::define('slipDashboard', function (User $user){
         return $user->level == 'slip';
+    });
+
+    // Slip
+    Gate::define('lain_lainDashboard', function (User $user){
+        return $user->level == 'lain_lain';
     });
 
 

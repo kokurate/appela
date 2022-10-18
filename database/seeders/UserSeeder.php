@@ -80,7 +80,7 @@ class UserSeeder extends Seeder
 
     // ijazah
     User::create([
-            'name' => 'ijazah',
+            'name' => 'Ijazah',
             'level' => 'ijazah',
             'email' => 'ijazah@unima.ac.id',
             'phone' => '08092236354891',
@@ -93,6 +93,15 @@ class UserSeeder extends Seeder
             'level' => 'slip',
             'email' => 'slip@unima.ac.id',
             'phone' => '08512436354891',
+            'password' => bcrypt('password'), //password
+        ]);
+
+    // lain-lain
+    User::create([
+            'name' => 'Lain-lain',
+            'level' => 'lain_lain',
+            'email' => 'lain_lain@unima.ac.id',
+            'phone' => '08512436354823',
             'password' => bcrypt('password'), //password
         ]);
 

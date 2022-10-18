@@ -25,6 +25,7 @@
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Email</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No Handphone</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">level</th>
                                     <th class="text-secondary opacity-7"></th>
                                     </tr>
@@ -45,10 +46,15 @@
     
                                             <!-- Nama -->
                                                 <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs font-weight-bold mb-0">{{ $user->nama }}</p>
+                                                    <p class="text-xs font-weight-bold mb-0">{{ $user->name }}</p>
+                                                </td>
+
+                                            <!-- phone -->
+                                                <td class="align-middle text-center text-sm">
+                                                    <p class="text-xs font-weight-bold mb-0">{{ $user->phone }}</p>
                                                 </td>
     
-                                            <!-- Status -->
+                                            <!-- level -->
                                                 <td class="align-middle text-center">
                                                     <span class="text-secondary text-xs font-weight-bold">{{ $user->level }}</span>
                                                 </td>
@@ -100,6 +106,7 @@
                                         <option value="lms" >Learning Management System</option>
                                         <option value="ijazah" >Ijazah</option>
                                         <option value="slip" >Slip</option>
+                                        <option value="lain_lain" >Lain-lain</option>
                                         </select>
                                         @error('level')
                                         <p class="text-danger">Pilih Role</p>

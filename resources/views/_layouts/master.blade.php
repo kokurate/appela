@@ -141,6 +141,15 @@
                   <span class="nav-link-text ms-1">Dashboard</span>
                 </a>
               </li>
+            @elsecan('lain_lainDashboard')
+              <li class="nav-item">
+                <a class="nav-link active" href="{{ route('lain_lain.index') }}">
+                  <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                  </div>
+                  <span class="nav-link-text ms-1">Dashboard</span>
+                </a>
+              </li>
             @endcan
 
             <!-- Admin can access all the dasboard-->
@@ -177,7 +186,7 @@
                 <li class="nav-item">
                   <a class="nav-link {{ Request::is('website-unima*') ? 'active bg-gradient-light' : '' }}" href="{{ route('website_unima.index') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                      <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
+                      <i class="ni ni-world-2 text-primary text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Website UNIMA</span>
                   </a>
@@ -195,7 +204,7 @@
                 <li class="nav-item">
                   <a class="nav-link {{ Request::is('ijazah*') ? 'active bg-gradient-light' : '' }}" href="{{ route('ijazah.index') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                      <i class="fa fa-graduation-cap text-danger text-sm opacity-10"></i>
+                      <i class="fa fa-graduation-cap text-secondary text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Ijazah</span>
                   </a>
@@ -204,9 +213,18 @@
                 <li class="nav-item">
                   <a class="nav-link {{ Request::is('slip*') ? 'active bg-gradient-light' : '' }}" href="{{ route('slip.index') }}">
                     <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                      <i class="fas fa-envelope-open-text text-danger text-sm opacity-10"></i>
+                      <i class="fas fa-envelope-open-text text-dark text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Slip</span>
+                  </a>
+                </li>
+                <!-- Lain lain -->
+                <li class="nav-item">
+                  <a class="nav-link {{ Request::is('lain-lain*') ? 'active bg-gradient-light' : '' }}" href="{{ route('lain_lain.index') }}">
+                    <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                      <i class="fas fa-plus text-success text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Lain lain</span>
                   </a>
                 </li>
             @endcan
@@ -227,7 +245,7 @@
               <li class="nav-item">
                 <a class="nav-link " href="{{ route('export.excel_all') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="fa fa-file-all text-warning text-sm opacity-10"></i>
+                    <i class="fa fa-file text-warning text-sm opacity-10"></i>
                   </div>
                   <span class="nav-link-text ms-1">Export Semua</span>
                 </a>

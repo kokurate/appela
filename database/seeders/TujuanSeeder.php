@@ -40,5 +40,8 @@ class TujuanSeeder extends Seeder
         Tujuan::create([
             'nama' => '-' // 8
         ]);
+        Tujuan::create([
+            'nama' => 'Lain-lain' // 9
+        ]);
     }
 }

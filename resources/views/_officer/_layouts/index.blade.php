@@ -28,6 +28,8 @@
                 @can('ijazah') <a href="{{ route('ijazah.section.semua') }}"> @endcan
             @elseif(Request::is('slip*'))
                 @can('slip') <a href="{{ route('slip.section.semua') }}"> @endcan
+            @elseif(Request::is('lain-lain*'))
+                @can('lain_lain') <a href="{{ route('lain_lain.section.semua') }}"> @endcan
             @endif
             <div class="card">
                 <div class="card-body p-3">
@@ -167,6 +169,8 @@
                                                     @can('ijazah') {{ route('ijazah.detail', $p->kode) }} @endcan
                                                 @elseif(Request::is('slip*'))    
                                                     @can('slip') {{ route('slip.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('lain-lain*'))    
+                                                    @can('lain_lain') {{ route('lain_lain.detail', $p->kode) }} @endcan
                                                 @endif
                                                 " 
                                                 class="text-secondary  text-xs">
@@ -245,6 +249,8 @@
                                                     @can('ijazah') {{ route('ijazah.detail', $p->kode) }} @endcan
                                                 @elseif(Request::is('slip*'))
                                                     @can('slip') {{ route('slip.detail', $p->kode) }} @endcan
+                                                @elseif(Request::is('lain-lain*'))
+                                                    @can('lain_lain') {{ route('lain_lain.detail', $p->kode) }} @endcan
                                                     
                                                 @endif
                                                 " 

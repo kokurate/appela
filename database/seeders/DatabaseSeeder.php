@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
           $this->call(TujuanSeeder::class);
           $this->call(UserSeeder::class);
           $this->call(PengaduanSeeder::class);
-        //   $this->call(PengaduanProsesSeeder::class);
+          $this->call(PengaduanProsesSeeder::class);
 
 
 

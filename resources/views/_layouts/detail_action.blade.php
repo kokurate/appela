@@ -39,6 +39,8 @@
                                         @can('ijazah') {{ route('ijazah.update.store', $pengaduan->kode) }}   @endcan 
                                     @elseif(Request::is('slip*'))
                                         @can('slip') {{ route('slip.update.store', $pengaduan->kode) }}   @endcan 
+                                    @elseif(Request::is('lain-lain*'))
+                                        @can('lain_lain') {{ route('lain_lain.update.store', $pengaduan->kode) }}   @endcan 
                                     @endif
                                     ">
                                     
@@ -216,6 +218,8 @@
                                     @can('ijazah') {{ route('ijazah.proses.store', $pengaduan->kode) }}   @endcan
                                 @elseif(Request::is('slip*'))
                                     @can('slip') {{ route('slip.proses.store', $pengaduan->kode) }}   @endcan
+                                @elseif(Request::is('lain-lain*'))
+                                    @can('lain_lain') {{ route('lain_lain.proses.store', $pengaduan->kode) }}   @endcan
                                 @endif
                                 " 
                                 enctype="multipart/form-data">

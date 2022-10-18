@@ -190,6 +190,7 @@ class PengaduanController extends Controller
                          ->orwhere('id',5)       
                          ->orwhere('id',6)       
                          ->orwhere('id',7)            
+                         ->orwhere('id',9)            
                         ->get(), // Untuk pangge tujuan pengaduan
             'token' => $request->url(), // request->url is to take the request from url
             "pengaduan" =>$pengaduan->load('tujuan')
@@ -201,7 +202,7 @@ class PengaduanController extends Controller
             'nama' => 'required',
             'judul' => 'required|max:255',
             'isi' => 'required',
-            'tujuan_id' => 'required|in:1,2,3,4,5,6,7',
+            'tujuan_id' => 'required|in:1,2,3,4,5,6,7,9',
             'visitor_image_1' => 'required|image|file|max:1024',
             'visitor_image_2' => '|image|file|max:1024',
             'visitor_image_3' => '|image|file|max:1024',
@@ -255,6 +256,7 @@ class PengaduanController extends Controller
                 elseif($tujuan == 5){$tujuan = 'Learning Management System';}
                 elseif($tujuan == 6){$tujuan = 'Ijazah';}
                 elseif($tujuan == 7){$tujuan = 'Slip';}
+                elseif($tujuan == 9){$tujuan = 'Lain-lain';}
 
             // Hapus data 1 
                 if (Pengaduan::Where('id', '1')){

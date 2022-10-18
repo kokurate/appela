@@ -270,6 +270,12 @@ $dataPoints_status = array(
               <h3><a href="https://unima.ac.id/" target="_blank">Website UNIMA</a></h3>
             </div>
           </div>
+          <div class="col-lg-3 col-md-4 mt-4">
+            <div class="icon-box" data-aos="zoom-in" data-aos-delay="50">
+              <i class="bi bi-bag-plus" style="color: #33ff00;"></i>
+              <h3>Lain-lain</h3>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -563,6 +569,7 @@ $dataPoints_status = array(
                       { name: 'Learning Management System', y: {{ $lms }} },
                       { name: 'Ijazah', y: {{ $ijazah }} },
                       { name: 'Slip', y: {{ $slip }} },
+                      { name: 'Lain-lain', y: {{ $lain_lain }} },
                   ]
               }]
           });
@@ -618,6 +625,7 @@ $dataPoints_status = array(
                   'Learning Management System',
                   'Ijazah',
                   'Slip',
+                  'Lain-lain',
               ],
               crosshair: true
           },
@@ -651,6 +659,7 @@ $dataPoints_status = array(
                   {{ $current_lms }},
                   {{ $current_ijazah }},
                   {{ $current_slip }},
+                  {{ $current_lain_lain }},
               ]
 
           },]

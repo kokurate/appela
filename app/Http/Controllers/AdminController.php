@@ -32,6 +32,7 @@ class AdminController extends Controller
         'lms' => Pengaduan::where('tujuan_id','5')->Where('status','Pengaduan Sedang Diproses')->count(),
         'ijazah' => Pengaduan::where('tujuan_id','6')->Where('status','Pengaduan Sedang Diproses')->count(),
         'slip' => Pengaduan::where('tujuan_id','7')->Where('status','Pengaduan Sedang Diproses')->count(),
+        'lain_lain' => Pengaduan::where('tujuan_id','9')->Where('status','Pengaduan Sedang Diproses')->count(),
                     
         'url' => $request->path(),
         "title" => "Admin Dashboard",
@@ -99,6 +100,7 @@ class AdminController extends Controller
                           ->orWhere('id','5')
                           ->orWhere('id','6')
                           ->orWhere('id','7')
+                          ->orWhere('id','9')
                           ->get()
                           
       ]);
@@ -179,6 +181,7 @@ class AdminController extends Controller
             elseif($tujuan == 5){$tujuan = 'Learning Management System';}
             elseif($tujuan == 6){$tujuan = 'Ijazah';}
             elseif($tujuan == 7){$tujuan = 'Slip';}
+            elseif($tujuan == 9){$tujuan = 'Lain-lain';}
     
        // Activity Log
        $activitylog = [
@@ -201,6 +204,12 @@ class AdminController extends Controller
    $users = [];
     if($pengaduan->tujuan_id == 1){$users = User::where('level', 'jaringan')->get();}
     elseif($pengaduan->tujuan_id == 2){$users = User::where('level', 'server')->get();}
+    elseif($pengaduan->tujuan_id == 3){$users = User::where('level', 'sistem_informasi')->get();}
+    elseif($pengaduan->tujuan_id == 4){$users = User::where('level', 'website_unima')->get();}
+    elseif($pengaduan->tujuan_id == 5){$users = User::where('level', 'lms')->get();}
+    elseif($pengaduan->tujuan_id == 6){$users = User::where('level', 'ijazah')->get();}
+    elseif($pengaduan->tujuan_id == 7){$users = User::where('level', 'slip')->get();}
+    elseif($pengaduan->tujuan_id == 9){$users = User::where('level', 'lain_lain')->get();}
     else {
      return back()->with('toast_error','Email petugas tidak ada');
     }    
@@ -225,6 +234,7 @@ class AdminController extends Controller
       elseif($tujuan == 5){$tujuan = 'Learning Management System';}
       elseif($tujuan == 6){$tujuan = 'Ijazah';}
       elseif($tujuan == 7){$tujuan = 'Slip';}
+      elseif($tujuan == 9){$tujuan = 'Lain-lain';}
 
     // Activity Log
     $activitylog = [
@@ -299,6 +309,7 @@ class AdminController extends Controller
     $lms = Pengaduan::where('tujuan_id',5)->avg('rating');
     $ijazah = Pengaduan::where('tujuan_id',6)->avg('rating');
     $slip = Pengaduan::where('tujuan_id',7)->avg('rating');
+    $lain_lain = Pengaduan::where('tujuan_id',9)->avg('rating');
 
     // Current
     $count_jaringan = Pengaduan::whereNotNull('rating')->where('tujuan_id',1)->count() ;
@@ -308,6 +319,7 @@ class AdminController extends Controller
     $count_lms = Pengaduan::whereNotNull('rating')->where('tujuan_id',5)->count() ;
     $count_ijazah = Pengaduan::whereNotNull('rating')->where('tujuan_id',6)->count() ;
     $count_slip = Pengaduan::whereNotNull('rating')->where('tujuan_id',7)->count() ;
+    $count_lain_lain = Pengaduan::whereNotNull('rating')->where('tujuan_id',9)->count() ;
 
 
    
@@ -322,6 +334,7 @@ class AdminController extends Controller
       'lms' => $lms ,
       'ijazah' => $ijazah ,
       'slip' => $slip ,
+      'lain_lain' => $lain_lain ,
       'count_jaringan' => $count_jaringan,
       'count_server' => $count_server,
       'count_sistem_informasi' => $count_sistem_informasi,
@@ -329,6 +342,7 @@ class AdminController extends Controller
       'count_lms' => $count_lms,
       'count_ijazah' => $count_ijazah,
       'count_slip' => $count_slip,
+      'count_lain_lain' => $count_lain_lain,
     ]);
   }
 }

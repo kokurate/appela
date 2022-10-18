@@ -26,8 +26,8 @@ class PengaduanFactory extends Factory
                     ->map(fn($p) => "<p>$p</p>")
                     ->implode(''), //jpin pakai kutip
                     // collect dijadikan array lalu dibungkus dengan tag p ditengah"nya kasih faker
-            // 'tujuan_id' => mt_rand(1,7),
-            'tujuan_id' => 1,
+            'tujuan_id' => mt_rand(1,9),
+            // 'tujuan_id' => 1,
             'token' =>Str::random(255) ,
         ];
     }

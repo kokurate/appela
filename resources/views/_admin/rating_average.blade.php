@@ -6,35 +6,34 @@
         
         <!--  Jaringan -->
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+            <div class="card">
+                <div class="card-body p-3">
+                <div class="row">
+                    <div class="col-8">
+                    <div class="numbers">
+                        <!-- <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p> -->
+                        @if($jaringan === null)
+                            <h5 class="font-weight-bolder"><i class="fa fa-star text-warning"></i> 0</h5>
+                        @else 
+                            <h5 class="font-weight-bolder"><i class="fa fa-star text-warning"></i> {{ $jaringan }}</h5>
+                        @endif
+                            <p>dari {{ $count_jaringan }} user</p>
+                            <p class="mb-0">
+                            <strong>Jaringan</strong>
+                            </p>
+                    
+                    </div>
+                    </div>
+                    <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                        <i class="fa fa-solid fa-wifi text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
 
-        <div class="card">
-            <div class="card-body p-3">
-            <div class="row">
-                <div class="col-8">
-                <div class="numbers">
-                    <!-- <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p> -->
-                    @if($jaringan === null)
-                        <h5 class="font-weight-bolder"><i class="fa fa-star text-warning"></i> 0</h5>
-                    @else 
-                        <h5 class="font-weight-bolder"><i class="fa fa-star text-warning"></i> {{ $jaringan }}</h5>
-                    @endif
-                        <p>dari {{ $count_jaringan }} user</p>
-                        <p class="mb-0">
-                        <strong>Jaringan</strong>
-                        </p>
-                   
-                </div>
-                </div>
-                <div class="col-4 text-end">
-                <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                    <i class="fa fa-solid fa-wifi text-lg opacity-10" aria-hidden="true"></i>
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-  
-        </div>
         <!-- Server -->
         <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
        
@@ -227,6 +226,36 @@
                                 </div>
                             </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  Lain-lain -->
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 mt-3">
+            <div class="card">
+                <div class="card-body p-3">
+                <div class="row">
+                    <div class="col-8">
+                    <div class="numbers">
+                        <!-- <p class="text-sm mb-0 text-uppercase font-weight-bold">Diproses</p> -->
+                        @if($lain_lain === null)
+                            <h5 class="font-weight-bolder"><i class="fa fa-star text-warning"></i> 0</h5>
+                        @else 
+                            <h5 class="font-weight-bolder"><i class="fa fa-star text-warning"></i> {{ $lain_lain }}</h5>
+                        @endif
+                            <p>dari {{ $count_lain_lain }} user</p>
+                            <p class="mb-0">
+                            <strong>Lain-lain</strong>
+                            </p>
+                    
+                    </div>
+                    </div>
+                    <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                        <i class="fa fa-solid fa-plus text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>

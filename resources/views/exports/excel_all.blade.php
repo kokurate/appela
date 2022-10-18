@@ -67,6 +67,13 @@
         <td style="border: 1px solid black; text-align: center; ">{{ $count_slip }} </td>
     </tr>
 
+    <!-- A11 -->
+    <tr>
+        <td></td>
+        <td style="border: 1px solid black; text-align: center; ">Lain-lain</td>
+        <td style="border: 1px solid black; text-align: center; ">{{ $count_lain_lain }} </td>
+    </tr>
+
     {{-- <td style="border: 1px solid black; text-align: center; ">Server</td>
     <td style="border: 1px solid black; text-align: center; ">Sistem Informasi</td>
     <td style="border: 1px solid black; text-align: center; ">Website Unima</td>
@@ -77,23 +84,23 @@
     </thead>
       
 
-    <!-- A11-->
+    <!-- A12-->
     <tr>
         <th></th>
     </tr>
 
-    <!-- A12-->
+    <!-- A13-->
     <thead>
         <tr>
             <th rowspan="2" colspan="7" style="text-align: center; font-size:16px; border: 1px solid black"><strong>Data Pengaduan ({{ $count_pengaduan }})</strong></th>
         </tr>
 
-        <!-- A13 -->
+        <!-- A14 -->
         <tr>
             <th></th>
         </tr>
 
-        <!-- A14 -->
+        <!-- A15 -->
         <tr>
             <th style="border: 1px solid black; text-align: center; ">#</th>
             <th style="border: 1px solid black; text-align: center; ">Dibuat</th>
@@ -104,7 +111,7 @@
             <th style="border: 1px solid black; text-align: center; ">Judul</th>
         </tr>
     </thead>
-    <!-- A15 -->
+    <!-- A16 -->
         <tbody>
             @forelse($pengaduan as $p)
                 <tr>

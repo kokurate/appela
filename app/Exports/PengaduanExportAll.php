@@ -29,14 +29,16 @@ class PengaduanExportAll implements
                                     ->orWhere('tujuan_id',4)
                                     ->orWhere('tujuan_id',5)
                                     ->orWhere('tujuan_id',6)
-                                    ->orWhere('tujuan_id',7)->count(),
+                                    ->orWhere('tujuan_id',7)
+                                    ->orWhere('tujuan_id',9)->count(),
             'pengaduan' => Pengaduan::where('tujuan_id',1)
                                     ->orWhere('tujuan_id',2)
                                     ->orWhere('tujuan_id',3)
                                     ->orWhere('tujuan_id',4)
                                     ->orWhere('tujuan_id',5)
                                     ->orWhere('tujuan_id',6)
-                                    ->orWhere('tujuan_id',7)->get(),
+                                    ->orWhere('tujuan_id',7)
+                                    ->orWhere('tujuan_id',9)->get(),
             'count_jaringan' => Pengaduan::where('tujuan_id', 1)->count(),
             'count_server' => Pengaduan::where('tujuan_id', 2)->count(),
             'count_sistem_informasi' => Pengaduan::where('tujuan_id', 3)->count(),
@@ -44,7 +46,7 @@ class PengaduanExportAll implements
             'count_lms' => Pengaduan::where('tujuan_id', 5)->count(),
             'count_ijazah' => Pengaduan::where('tujuan_id', 6)->count(),
             'count_slip' => Pengaduan::where('tujuan_id', 7)->count(),
-            // 'count_lainlain' => Pengaduan::where('tujuan_id', 9)->count(),
+            'count_lain_lain' => Pengaduan::where('tujuan_id', 9)->count(),
             'i' => 1,
             
         ]);
@@ -61,7 +63,7 @@ class PengaduanExportAll implements
                                 ],
                 ]);
 
-                $event->sheet->getStyle('A14:G14')->applyFromArray([
+                $event->sheet->getStyle('A15:G15')->applyFromArray([
                     'font' => ['bold' => true,
                                 'size' =>12,
                                 ],
@@ -72,7 +74,7 @@ class PengaduanExportAll implements
                     'fillType' => 'solid','rotation' => 0, 'color' => ['rgb' => 'ababab'],
                 ]);
 
-                $event->sheet->getStyle('A12')->getFill()->applyFromArray([
+                $event->sheet->getStyle('A13')->getFill()->applyFromArray([
                     'fillType' => 'solid','rotation' => 0, 'color' => ['rgb' => 'ababab'],
                 ]);
 

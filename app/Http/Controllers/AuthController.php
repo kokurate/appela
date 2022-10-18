@@ -75,6 +75,10 @@ class AuthController extends Controller
                     $request->session()->regenerate();
                     return redirect()->intended('slip');
                 }
+                elseif ($user->level == 'lain_lain'){
+                    $request->session()->regenerate();
+                    return redirect()->intended('lain-lain');
+                }
 
 
                 // Jika tidak semua maka akan dikembalikan ke halaman route
@@ -111,7 +115,7 @@ class AuthController extends Controller
         // Ambil semua request terus validasi
         // request()->all();
         $validator = Validator::make ($request->all(),[
-            'level' => 'required|in:petugas,jaringan,server,sistem_informasi,website_unima,lms,ijazah,slip',
+            'level' => 'required|in:petugas,jaringan,server,sistem_informasi,website_unima,lms,ijazah,slip,lain_lain',
             'name' => 'required|max:255',
             // 'phone' => ['required', 'min:10', 'max:15','numeric', 'unique:users' ],
             'email' => 'required|email:dns|unique:users',

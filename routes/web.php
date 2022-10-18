@@ -12,6 +12,7 @@ use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PengaduansExportController;
 use App\Http\Controllers\SlipController;
 use App\Http\Controllers\WebsiteUnimaController;
+use App\Http\Controllers\LainlainController;
 use App\Http\Middleware\Cek_Login;
 use App\Models\Pengaduan;
 use App\Models\Tujuan;
@@ -42,13 +43,14 @@ Route::get('/', function () {
     $lms = Pengaduan::where('tujuan_id', '5' )->count();
     $ijazah = Pengaduan::where('tujuan_id', '6' )->count();
     $slip = Pengaduan::where('tujuan_id', '7' )->count();
+    $lain_lain = Pengaduan::where('tujuan_id', '9' )->count();
 
     // Chart Pengaduan bar
     // Cari pake tahun ini whereYear('updated_at', Carbon::now()->year)
     // Cari pake bulan ini whereMonth('updated_at', Carbon::now()->month)
 
     $masuk = Pengaduan::where('status','Pengaduan Masuk')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
-    $diverifikasi = Pengaduan::where('status','Pengaduan Sedang Diverifikasi')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count() ;
+    $diverifikasi = Pengaduan::where('status','Pengaduan Sedang Diverifikasi')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count() ;
     $diproses = Pengaduan::where('status','Pengaduan Sedang Diproses')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
     $ditolak = Pengaduan::where('status','Pengaduan Ditolak')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
     $selesai = Pengaduan::where('status','Pengaduan Selesai')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
@@ -63,14 +65,15 @@ Route::get('/', function () {
     $current_lms = Pengaduan::where('tujuan_id','5')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
     $current_ijazah = Pengaduan::where('tujuan_id','6')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
     $current_slip = Pengaduan::where('tujuan_id','7')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
+    $current_lain_lain = Pengaduan::where('tujuan_id','9')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
 // } //endif
 
     app('App\Http\Controllers\HelperController')->automatically_delete_data();
 
     return view('landing_page',compact(
-        'jaringan','server','si','web_unima','lms','ijazah','slip',
+        'jaringan','server','si','web_unima','lms','ijazah','slip','lain_lain',
         'masuk','diverifikasi','diproses','ditolak','selesai',
-        'current_jaringan','current_server','current_si','current_webunima','current_lms','current_ijazah','current_slip','pengaduan'
+        'current_jaringan','current_server','current_si','current_webunima','current_lms','current_ijazah','current_slip','current_lain_lain', 'pengaduan'
     ));
 });
 
@@ -261,6 +264,25 @@ Route::get('/', function () {
 
             }));
 
+
+    // =================================== Lain-lain  Page ==================================
+        Route::group(['middleware' => ['auth','cek_level:lain_lain,admin']], (function (){
+            // index & detail Server
+                route::get('lain-lain',[LainlainController::class,'index'])->name('lain_lain.index');
+                route::get('lain-lain/detail/{pengaduan:kode}',[LainlainController::class,'detail'])->name('lain_lain.detail');
+
+                // Update (Pengaduan Sedang Diverifikasi)
+                route::post('lain-lain/update/{pengaduan:kode}',[LainlainController::class,'update_store'])->name('lain_lain.update.store');
+                
+                // Proses (Pengaduan Sedang Diproses)
+                route::post('lain-lain/proses/{pengaduan:kode}',[LainlainController::class,'proses_store'])->name('lain_lain.proses.store');
+           
+            // Section
+                // Semua
+                route::get('lain-lain/section/semua',[LainlainController::class,'section_semua'])->name('lain_lain.section.semua');
+
+            }));
+
             
   
 
@@ -271,7 +293,7 @@ Route::get('/', function () {
 
     // Pengaduan Email Verifying alternative 
         //  Resend Captcha for verify email
-        Route::get('/reload', [PengaduanController::class, 'reload']);
+        Route::get('/pengaduan/reload', [PengaduanController::class, 'reload']);
 
         // Verifikasi email (to create pengaduan)
         Route::get('pengaduan', [PengaduanController::class,'index'])->name('pengaduan.index');

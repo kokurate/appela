@@ -33,7 +33,7 @@ class PengaduanProsesSeeder extends Seeder
             'nama' => 'Muhammad Rasyid',
             // 'isi' => '<p>'. implode('</p><p>', $this->faker->Paragraphs(mt_rand(4,7))).'</p>',
             'isi' => '    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p><p> Aperiam debitis quo ipsa, explicabo ab ad velit nemo eligendi repellat voluptate ratione magnam deleniti possimus laboriosam blanditiis quidem non dolor excepturi adipisci aliquid quae dolorem.</p>',
-            'tujuan_id' =>1,
+            'tujuan_id' =>2,
             'token' =>22323233 ,
         ]);
 
@@ -45,7 +45,7 @@ class PengaduanProsesSeeder extends Seeder
             'nama' => 'Robby Liu',
             // 'isi' => '<p>'. implode('</p><p>', $this->faker->Paragraphs(mt_rand(4,7))).'</p>',
             'isi' => '    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p><p> Aperiam debitis quo ipsa, explicabo ab ad velit nemo eligendi repellat voluptate ratione magnam deleniti possimus laboriosam blanditiis quidem non dolor excepturi adipisci aliquid quae dolorem.</p>',
-            'tujuan_id' => 1,
+            'tujuan_id' => 9,
             'token' =>3232323 ,
         ]);
 
@@ -57,7 +57,7 @@ class PengaduanProsesSeeder extends Seeder
             'nama' => 'Robby Liu',
             // 'isi' => '<p>'. implode('</p><p>', $this->faker->Paragraphs(mt_rand(4,7))).'</p>',
             'isi' => '    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p><p> Aperiam debitis quo ipsa, explicabo ab ad velit nemo eligendi repellat voluptate ratione magnam deleniti possimus laboriosam blanditiis quidem non dolor excepturi adipisci aliquid quae dolorem.</p>',
-            'tujuan_id' => 1,
+            'tujuan_id' => 7,
             'token' =>442 ,
         ]);
     }
