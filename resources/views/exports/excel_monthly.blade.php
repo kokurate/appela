@@ -11,7 +11,7 @@
             <tr>
                 
                 <th style="text-align: center">#</th>
-                <th style="text-align: center">Pengaduan Dibuat</th>
+                <th style="text-align: center">Dibuat</th>
                 <th style="text-align: center">Kode</th>
                 <th style="text-align: center">Email</th>
                 <th style="text-align: center">Tujuan</th>

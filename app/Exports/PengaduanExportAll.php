@@ -28,7 +28,7 @@ class PengaduanExportAll implements
                                     ->orWhere('tujuan_id',3)
                                     ->orWhere('tujuan_id',4)
                                     ->orWhere('tujuan_id',5)
-                                    ->orWhere('tujuan_id',6)
+                                    ->orWhere('tujuan_id',6)    
                                     ->orWhere('tujuan_id',7)
                                     ->orWhere('tujuan_id',9)->count(),
             'pengaduan' => Pengaduan::where('tujuan_id',1)

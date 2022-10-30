@@ -293,7 +293,7 @@ Route::get('/', function () {
 
     // Pengaduan Email Verifying alternative 
         //  Resend Captcha for verify email
-        Route::get('/pengaduan/reload', [PengaduanController::class, 'reload']);
+        Route::get('reload', [PengaduanController::class, 'reload']);
 
         // Verifikasi email (to create pengaduan)
         Route::get('pengaduan', [PengaduanController::class,'index'])->name('pengaduan.index');

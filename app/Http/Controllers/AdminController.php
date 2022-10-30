@@ -21,18 +21,54 @@ class AdminController extends Controller
       
       app('App\Http\Controllers\HelperController')->automatically_delete_data();
 
-      $pagination = 10;
-
+      $pagination = 10; 
+      // get the data and make optional condition to get the total data
+      // Jaringan 
+        $get_1_proses = Pengaduan::Where('tujuan_id',1)->Where('status','Pengaduan Sedang Diproses')->count();
+        $get_1_verifikasi = Pengaduan::Where('tujuan_id',1)->Where('status','Pengaduan Sedang Diverifikasi')->count();
+      // Server
+        $get_2_proses = Pengaduan::Where('tujuan_id',2)->Where('status','Pengaduan Sedang Diproses')->count();
+        $get_2_verifikasi = Pengaduan::Where('tujuan_id',2)->Where('status','Pengaduan Sedang Diverifikasi')->count();
+      // Sistem Informasi
+        $get_3_proses = Pengaduan::Where('tujuan_id',3)->Where('status','Pengaduan Sedang Diproses')->count();
+        $get_3_verifikasi = Pengaduan::Where('tujuan_id',3)->Where('status','Pengaduan Sedang Diverifikasi')->count();
+      // Website Unima
+        $get_4_proses = Pengaduan::Where('tujuan_id',4)->Where('status','Pengaduan Sedang Diproses')->count();
+        $get_4_verifikasi = Pengaduan::Where('tujuan_id',4)->Where('status','Pengaduan Sedang Diverifikasi')->count();
+      // LMS
+        $get_5_proses = Pengaduan::Where('tujuan_id',5)->Where('status','Pengaduan Sedang Diproses')->count();
+        $get_5_verifikasi = Pengaduan::Where('tujuan_id',5)->Where('status','Pengaduan Sedang Diverifikasi')->count();
+      // Ijazah
+        $get_6_proses = Pengaduan::Where('tujuan_id',6)->Where('status','Pengaduan Sedang Diproses')->count();
+        $get_6_verifikasi = Pengaduan::Where('tujuan_id',6)->Where('status','Pengaduan Sedang Diverifikasi')->count();
+      // Slip
+        $get_7_proses = Pengaduan::Where('tujuan_id',7)->Where('status','Pengaduan Sedang Diproses')->count();
+        $get_7_verifikasi = Pengaduan::Where('tujuan_id',7)->Where('status','Pengaduan Sedang Diverifikasi')->count();
+      // Lain lain
+        $get_9_proses = Pengaduan::Where('tujuan_id',9)->Where('status','Pengaduan Sedang Diproses')->count();
+        $get_9_verifikasi = Pengaduan::Where('tujuan_id',9)->Where('status','Pengaduan Sedang Diverifikasi')->count();
       return view('_admin.index',[
         // Count 
-        'jaringan' => Pengaduan::where('tujuan_id','1')->where('status','Pengaduan Sedang Diproses')->count(),
-        'server' => Pengaduan::where('tujuan_id','2')->Where('status','Pengaduan Sedang Diproses')->count(),
-        'sistem_informasi' => Pengaduan::where('tujuan_id','3')->Where('status','Pengaduan Sedang Diproses')->count(),
-        'website_unima' => Pengaduan::where('tujuan_id','4')->Where('status','Pengaduan Sedang Diproses')->count(),
-        'lms' => Pengaduan::where('tujuan_id','5')->Where('status','Pengaduan Sedang Diproses')->count(),
-        'ijazah' => Pengaduan::where('tujuan_id','6')->Where('status','Pengaduan Sedang Diproses')->count(),
-        'slip' => Pengaduan::where('tujuan_id','7')->Where('status','Pengaduan Sedang Diproses')->count(),
-        'lain_lain' => Pengaduan::where('tujuan_id','9')->Where('status','Pengaduan Sedang Diproses')->count(),
+        // =================   Testing ================
+        // 'jaringan' => Pengaduan::Where(function ($query){
+        //                 $query->Where('tujuan_id', 1)->orWhere('status','Pengaduan Sedang Diproses')
+        //                 ->orWhere('status','Pengaduan Sedang Diverifikasi');
+        //               })
+        //               // ->orWhere(function ($query){
+        //               //   $query->Where('tujuan_id', 1)->orWhere('status','Pengaduan Sedang Diverifikasi');
+        //               // }),
+        // 'jaringan' => Pengaduan::where('tujuan_id',1)->orwhere([['status','Pengaduan Sedang Diverifikasi'],['status','Pengaduan Sedang Diproses']]),
+        // 'jaringan' => Pengaduan::where('tujuan_id','1')->orwhere('status','Pengaduan Sedang Diproses')->count(),
+        // ===================================
+        
+        'jaringan' => $get_1_proses + $get_1_verifikasi ,
+        'server' => $get_2_proses + $get_2_verifikasi ,
+        'sistem_informasi' => $get_3_proses + $get_3_verifikasi,
+        'website_unima' => $get_4_proses + $get_4_verifikasi,
+        'lms' => $get_5_proses + $get_5_verifikasi,
+        'ijazah' => $get_6_proses + $get_6_verifikasi,
+        'slip' => $get_7_proses + $get_7_verifikasi,
+        'lain_lain' => $get_9_proses + $get_9_verifikasi,
                     
         'url' => $request->path(),
         "title" => "Admin Dashboard",
@@ -270,7 +306,15 @@ class AdminController extends Controller
 
     $pagination = 10;
 
-    $pengaduan = Pengaduan::orderBy('updated_at','DESC');
+    $pengaduan = Pengaduan::where('tujuan_id',1)
+                          ->orWhere('tujuan_id',2)
+                          ->orWhere('tujuan_id',3)
+                          ->orWhere('tujuan_id',4)
+                          ->orWhere('tujuan_id',5)
+                          ->orWhere('tujuan_id',6)
+                          ->orWhere('tujuan_id',7)
+                          ->orWhere('tujuan_id',9)
+                          ->orderBy('updated_at','DESC');
 
     if(request('search')){
       $pengaduan->where('kode','like','%' . request('search') . '%')

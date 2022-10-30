@@ -43,6 +43,7 @@ class PengaduansExport implements
         return view('exports.excel_monthly', [
             'pengaduan' => Pengaduan::WhereYear('updated_at', $this->year)
                                         ->WhereMonth('updated_at', $this->month)
+                                        ->where('tujuan_id' ,'!=', 8)
                                         ->with('tujuan')->get(),
             'i' => 1,
             'month' => DateTime::createFromFormat('!m', $this->month)->format('F'),
