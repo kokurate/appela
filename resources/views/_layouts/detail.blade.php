@@ -89,7 +89,9 @@
 
     <!-- ============================================ Require ======================================== -->
     <div class="row">
-        @include('_layouts.detail_action')
+        @can('except_petugas')
+            @include('_layouts.detail_action')  
+        @endcan
 
         <!-- Data Pengaduan Section-->
         <div class="col-md-6 my-3">

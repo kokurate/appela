@@ -33,6 +33,19 @@ class AppServiceProvider extends ServiceProvider
         // Default using Tailwind
         Paginator::useBootstrap();
 
+        // except petugas
+        Gate::define('except_petugas', function (User $user){
+            return $user->level == 'admin' || 
+                    $user->level == 'jaringan'|| 
+                    $user->level == 'server'|| 
+                    $user->level == 'sistem_informasi'|| 
+                    $user->level == 'website_unima'|| 
+                    $user->level == 'lms'|| 
+                    $user->level == 'ijazah'|| 
+                    $user->level == 'slip'|| 
+                    $user->level == 'lain_lain' ;
+        });
+
         // admin
         Gate::define('admin', function (User $user){
             return $user->level == 'admin';
