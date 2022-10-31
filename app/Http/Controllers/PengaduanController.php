@@ -36,7 +36,7 @@ class PengaduanController extends Controller
    
       public function index(){
         // Automatically delete data who are over 10 minutes
-        app('App\Http\Controllers\HelperController')->automatically_delete_data();
+        // app('App\Http\Controllers\HelperController')->automatically_delete_data();
 
 
 
@@ -110,7 +110,7 @@ class PengaduanController extends Controller
     // Halaman resending email dan landing page saat berhasil registrasi email
     public function check(){
     // Automatically delete data who are over 10 minutes
-        app('App\Http\Controllers\HelperController')->automatically_delete_data();
+        // app('App\Http\Controllers\HelperController')->automatically_delete_data();
 
 
         return view('pengaduan.check',[
@@ -175,7 +175,7 @@ class PengaduanController extends Controller
 // Create Pengaduan
     public function create(Pengaduan $pengaduan , Request $request){
     // Automatically delete data who are over 10 minutes
-        app('App\Http\Controllers\HelperController')->automatically_delete_data();
+        // app('App\Http\Controllers\HelperController')->automatically_delete_data();
 
 
         return view('pengaduan.create',[
@@ -294,7 +294,7 @@ class PengaduanController extends Controller
 // ========================================================================================== 
     public function search(Request $request){
   // Automatically delete data who are over 10 minutes
-    app('App\Http\Controllers\HelperController')->automatically_delete_data();
+    // app('App\Http\Controllers\HelperController')->automatically_delete_data();
 
 
         // Kalo mo ubah paginasi ubah juga variabelnya like this 5->all
@@ -322,7 +322,7 @@ class PengaduanController extends Controller
 
     public function detail(Pengaduan $pengaduan){
   // Automatically delete data who are over 10 minutes
-    app('App\Http\Controllers\HelperController')->automatically_delete_data();
+    // app('App\Http\Controllers\HelperController')->automatically_delete_data();
 
 
 

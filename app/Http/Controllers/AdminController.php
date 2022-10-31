@@ -19,7 +19,7 @@ class AdminController extends Controller
 {
     public function index(Request $request){
       
-      app('App\Http\Controllers\HelperController')->automatically_delete_data();
+      // app('App\Http\Controllers\HelperController')->automatically_delete_data();
 
       $pagination = 10; 
       // get the data and make optional condition to get the total data

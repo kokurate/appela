@@ -36,6 +36,7 @@
                 class="form-control  @error('nama') is-invalid @enderror" 
                 id="nama" name="nama" 
                 value="{{ old('nama') }}"
+                autocomplete="off"
                 required >
                 <!--End Input --> 
                 @error('nama')
@@ -51,6 +52,7 @@
                 class="form-control @error('judul') is-invalid @enderror" 
                 id="judul" name="judul" 
                 value="{{ old('judul') }}" 
+                autocomplete="off"
                 required > 
                 <!--End Input --> 
                 @error('judul')

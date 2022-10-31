@@ -68,7 +68,7 @@ Route::get('/', function () {
     $current_lain_lain = Pengaduan::where('tujuan_id','9')->whereYear('updated_at', Carbon::now()->year)->whereMonth('updated_at', Carbon::now()->month)->count();
 // } //endif
 
-    app('App\Http\Controllers\HelperController')->automatically_delete_data();
+    // app('App\Http\Controllers\HelperController')->automatically_delete_data();
 
     return view('landing_page',compact(
         'jaringan','server','si','web_unima','lms','ijazah','slip','lain_lain',
@@ -81,11 +81,13 @@ Route::get('/', function () {
 // Kalo yang login nda ad akses direct ke sini
     Route::get('cannot-access',[AuthController::class,'cannot_access'])->name('cannot_access');
 
-// Controller Auth
-    Route::get('login',[AuthController::class,'index'])->name('login');
-    Route::post('authenticate',[AuthController::class,'authenticate'])->name('authenticate');
-    Route::post('logout',[AuthController::class,'logout'])->name('logout');
-
+// Pake helper middleware for mo auto delete
+    // Controller Auth
+    Route::group(['middleware' => ['helpermiddleware']], (function (){
+        Route::get('login',[AuthController::class,'index'])->name('login');
+        Route::post('authenticate',[AuthController::class,'authenticate'])->name('authenticate');
+        Route::post('logout',[AuthController::class,'logout'])->name('logout');
+    }));
 
    // Edit Tujuan bisa diakses semua
         // route::get('/admin/tujuan/edit/{pengaduan:kode}',[AdminController::class,'tujuan_store'])->name('admin.tujuan.store'); 
@@ -93,7 +95,7 @@ Route::get('/', function () {
 
 // Route Group untuk yang login
     // =============================== Admin Page ================================= 
-        Route::group(['middleware' => ['auth','cek_level:admin,petugas']], (function (){
+        Route::group(['middleware' => ['auth','cek_level:admin,petugas','helpermiddleware']], (function (){
             // Route::middleware(['auth','cek_level:admin'])->group (function (){
             
             // Register Admin yang lain || Controller Auth
@@ -137,7 +139,7 @@ Route::get('/', function () {
              
 
     // =================================== Jaringan Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:jaringan,admin']], (function (){
+        Route::group(['middleware' => ['auth','cek_level:jaringan,admin','helpermiddleware']], (function (){
             // Route::middleware(['auth','cek_level:jaringan,admin'])->group (function (){
             // index & detail jaringan
                 route::get('jaringan',[JaringanController::class,'index'])->name('jaringan.index');
@@ -157,7 +159,7 @@ Route::get('/', function () {
 
 
     // =================================== Server Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:server,admin']], (function (){
+        Route::group(['middleware' => ['auth','cek_level:server,admin','helpermiddleware']], (function (){
             // index & detail Server
                 route::get('server',[ServerController::class,'index'])->name('server.index');
                 route::get('server/detail/{pengaduan:kode}',[ServerController::class,'detail'])->name('server.detail');
@@ -175,7 +177,7 @@ Route::get('/', function () {
             }));
 
     // =================================== Sistem Informasi Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:sistem_informasi,admin']], (function (){
+        Route::group(['middleware' => ['auth','cek_level:sistem_informasi,admin','helpermiddleware']], (function (){
             // index & detail Server
                 route::get('sistem-informasi',[SistemInformasiController::class,'index'])->name('sistem_informasi.index');
                 route::get('sistem-informasi/detail/{pengaduan:kode}',[SistemInformasiController::class,'detail'])->name('sistem_informasi.detail');
@@ -192,7 +194,7 @@ Route::get('/', function () {
 
             }));
     // =================================== Website Unima Informasi Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:website_unima,admin']], (function (){
+        Route::group(['middleware' => ['auth','cek_level:website_unima,admin','helpermiddleware']], (function (){
             // index & detail Server
                 route::get('website-unima',[WebsiteUnimaController::class,'index'])->name('website_unima.index');
                 route::get('website-unima/detail/{pengaduan:kode}',[WebsiteUnimaController::class,'detail'])->name('website_unima.detail');
@@ -211,7 +213,7 @@ Route::get('/', function () {
 
 
     // =================================== Learning Management System  Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:lms,admin']], (function (){
+        Route::group(['middleware' => ['auth','cek_level:lms,admin','helpermiddleware']], (function (){
             // index & detail Server
                 route::get('learning-management-system',[LearningManagementSystemController::class,'index'])->name('lms.index');
                 route::get('learning-management-system/detail/{pengaduan:kode}',[LearningManagementSystemController::class,'detail'])->name('lms.detail');
@@ -228,7 +230,7 @@ Route::get('/', function () {
 
             }));
     // =================================== Ijazah  Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:ijazah,admin']], (function (){
+        Route::group(['middleware' => ['auth','cek_level:ijazah,admin','helpermiddleware']], (function (){
             // index & detail Server
                 route::get('ijazah',[IjazahController::class,'index'])->name('ijazah.index');
                 route::get('ijazah/detail/{pengaduan:kode}',[IjazahController::class,'detail'])->name('ijazah.detail');
@@ -247,7 +249,7 @@ Route::get('/', function () {
 
 
     // =================================== Slip  Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:slip,admin']], (function (){
+        Route::group(['middleware' => ['auth','cek_level:slip,admin','helpermiddleware']], (function (){
             // index & detail Server
                 route::get('slip',[SlipController::class,'index'])->name('slip.index');
                 route::get('slip/detail/{pengaduan:kode}',[SlipController::class,'detail'])->name('slip.detail');
@@ -266,7 +268,7 @@ Route::get('/', function () {
 
 
     // =================================== Lain-lain  Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:lain_lain,admin']], (function (){
+        Route::group(['middleware' => ['auth','cek_level:lain_lain,admin','helpermiddleware']], (function (){
             // index & detail Server
                 route::get('lain-lain',[LainlainController::class,'index'])->name('lain_lain.index');
                 route::get('lain-lain/detail/{pengaduan:kode}',[LainlainController::class,'detail'])->name('lain_lain.detail');
@@ -295,6 +297,7 @@ Route::get('/', function () {
         //  Resend Captcha for verify email
         Route::get('reload', [PengaduanController::class, 'reload']);
 
+    Route::group(['middleware' => ['helpermiddleware']], (function (){
         // Verifikasi email (to create pengaduan)
         Route::get('pengaduan', [PengaduanController::class,'index'])->name('pengaduan.index');
         Route::post('pengaduan', [PengaduanController::class,'verify'])->name('pengaduan.verify-email');
@@ -303,14 +306,15 @@ Route::get('/', function () {
         Route::get('pengaduan/check', [PengaduanController::class,'check'])->name('pengaduan.check');
         Route::post('pengaduan/check', [PengaduanController::class,'resend_email'])->name('pengaduan.resend_email');
 
-    //  untuk membuat pengaduan harus lewat email yang sudah dimasukkan
+        //  untuk membuat pengaduan harus lewat email yang sudah dimasukkan
         Route::get('pengaduan/create/{pengaduan:token}', [PengaduanController::class,'create'])->name('pengaduan.create');
         Route::post('pengaduan/create/{pengaduan:token}', [PengaduanController::class,'store'])->name('pengaduan.store');
 
-    // Search Pengaduan
+        // Search Pengaduan
         Route::get('pengaduan/search',[PengaduanController::class,'search'])->name('pengaduan.search');
         
-    // Rating
+        // Rating
         Route::get('pengaduan/detail/{pengaduan:kode}',[PengaduanController::class,'detail'])->name('pengaduan.detail');
         Route::post('Pengaduan/detail/{pengaduan:kode}', [PengaduanController::class,'detail_store'])->name('pengaduan.detail.store');
 
+    }));
