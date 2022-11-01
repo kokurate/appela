@@ -89,7 +89,7 @@
 
     <!-- ============================================ Require ======================================== -->
     <div class="row">
-        @can('except_petugas')
+        @can('except_verifikator')
             @include('_layouts.detail_action')  
         @endcan
 

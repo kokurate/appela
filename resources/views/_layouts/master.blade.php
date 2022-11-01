@@ -66,13 +66,13 @@
                   <span class="nav-link-text ms-1">Dashboard Admin</span>
                 </a>
               </li>
-            @elsecan('petugas')
+            @elsecan('verifikator')
             <li class="nav-item">
               <a class="nav-link active" href="{{ route('admin.index') }}">
                 <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="ni ni-key-25 text-primary text-sm opacity-10"></i>
                 </div>
-                <span class="nav-link-text ms-1">Dashboard Petugas</span>
+                <span class="nav-link-text ms-1">Dashboard Verifikator</span>
               </a>
             </li>
             @endcan

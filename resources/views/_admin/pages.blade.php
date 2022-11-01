@@ -98,7 +98,7 @@
                                         <label for="tujuan" class="form-label"></label>
                                         <select class="form-select" name="level" >
                                         <option>Pilih Role</option>
-                                        <option value="petugas" >Petugas</option>
+                                        <option value="verifikator" >Verifikator</option>
                                         <option value="jaringan" >Jaringan</option>
                                         <option value="server" >Server</option>
                                         <option value="sistem_informasi" >Sistem Informasi</option>

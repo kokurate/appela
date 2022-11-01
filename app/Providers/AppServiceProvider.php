@@ -33,8 +33,8 @@ class AppServiceProvider extends ServiceProvider
         // Default using Tailwind
         Paginator::useBootstrap();
 
-        // except petugas
-        Gate::define('except_petugas', function (User $user){
+        // except verifikator
+        Gate::define('except_verifikator', function (User $user){
             return $user->level == 'admin' || 
                     $user->level == 'jaringan'|| 
                     $user->level == 'server'|| 
@@ -51,9 +51,9 @@ class AppServiceProvider extends ServiceProvider
             return $user->level == 'admin';
         });
 
-        // Petugas
-        Gate::define('petugas', function (User $user){
-            return $user->level == 'petugas';
+        // verifikator
+        Gate::define('verifikator', function (User $user){
+            return $user->level == 'verifikator';
         });
 
         // Jaringan

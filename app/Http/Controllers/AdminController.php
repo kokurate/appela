@@ -47,6 +47,8 @@ class AdminController extends Controller
       // Lain lain
         $get_9_proses = Pengaduan::Where('tujuan_id',9)->Where('status','Pengaduan Sedang Diproses')->count();
         $get_9_verifikasi = Pengaduan::Where('tujuan_id',9)->Where('status','Pengaduan Sedang Diverifikasi')->count();
+        if(auth()->user()->level == 'admin'){$tittle = 'Admin';}
+        elseif(auth()->user()->level == 'verifikator'){$tittle = 'Verifikator';}
       return view('_admin.index',[
         // Count 
         // =================   Testing ================
@@ -71,7 +73,7 @@ class AdminController extends Controller
         'lain_lain' => $get_9_proses + $get_9_verifikasi,
                     
         'url' => $request->path(),
-        "title" => "Admin Dashboard",
+        "title" => $tittle ." Dashboard",
         // Tidak perlu lagi pake with karena sudah didefinisikan withnya di dalam model pengaduan
         // pengaduans karena banyak
         "pengaduan" => Pengaduan::where('status', 'Pengaduan Masuk')->orderBy('id','ASC')->paginate($pagination)->withQueryString(),

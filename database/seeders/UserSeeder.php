@@ -24,11 +24,11 @@ class UserSeeder extends Seeder
             'password' => bcrypt('password'), //password
         ]);
 
-    // Petugas
+    // verifikator
     User::create([
-            'name' => 'petugas',
-            'level' => 'petugas',
-            'email' => 'petugas@unima.ac.id',
+            'name' => 'verifikator',
+            'level' => 'verifikator',
+            'email' => 'verifikator@unima.ac.id',
             'phone' => '0254687632159',
             'password' => bcrypt('password'), //password
         ]);

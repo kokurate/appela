@@ -95,7 +95,7 @@ Route::get('/', function () {
 
 // Route Group untuk yang login
     // =============================== Admin Page ================================= 
-        Route::group(['middleware' => ['auth','cek_level:admin,petugas','helpermiddleware']], (function (){
+        Route::group(['middleware' => ['auth','cek_level:admin,verifikator','helpermiddleware']], (function (){
             // Route::middleware(['auth','cek_level:admin'])->group (function (){
             
             // Register Admin yang lain || Controller Auth
