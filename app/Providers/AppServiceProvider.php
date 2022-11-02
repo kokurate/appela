@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         // Default using Tailwind
         Paginator::useBootstrap();
 
-        // except verifikator
+        // except verifikator ini buat proses dan update
         Gate::define('except_verifikator', function (User $user){
             return $user->level == 'admin' || 
                     $user->level == 'petugas'|| 
@@ -69,7 +69,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Jaringan
         Gate::define('jaringan', function (User $user){
-            return $user->level == 'jaringan' || $user->level == 'admin' || $user->can_jaringan == 1;
+            return $user->level == 'jaringan' || $user->level == 'admin';
         });
 
         // Server

@@ -14,6 +14,7 @@
 
 @section('content')
  <div class="container my-2">
+    <br>
     <!-- Back -->
     <!-- =========== Section Gate ========-->
         <a href="
@@ -34,7 +35,7 @@
         @elseif(Request::is('lain-lain*'))
             @can('lain_lain') {{ route('lain_lain.index') }}  @endcan  
         @endif
-        ">
+        " class="mt-10">
             <div class="btn btn-light">
                 <i class="ni ni-bold-left"></i>
             </div>
@@ -42,7 +43,7 @@
  
     <div class="row">
         <div class="text-center">
-                <h5 class="btn bg-gradient-light text-dark">Tujuan Pengaduan : {{ $pengaduan->tujuan->nama }}</h5>
+                <h5 class="btn bg-light text-dark">Tujuan Pengaduan : {{ $pengaduan->tujuan->nama }}</h5>
             @if($pengaduan->status == 'Pengaduan Selesai')
                 <h5 class="btn bg-success text-dark font-weight-bolder">Pengaduan Selesai</h5>
             @elseif ($pengaduan->status == 'Pengaduan Ditolak')

@@ -274,7 +274,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="{{ route('rating.average') }}">
+                <a class="nav-link {{ Request::is('admin/rating-average*') ? 'active bg-gradient-light' : '' }} " href="{{ route('rating.average') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="fa fa-star text-warning text-sm opacity-10"></i>
                   </div>
@@ -306,7 +306,8 @@
 
     <main class="main-content position-relative border-radius-lg ">
         <!-- Navbar -->
-        <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur" data-scroll="false">
+        {{-- <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl mb-3" id="navbarBlur" data-scroll="false"> --}}
+        <nav class="navbar navbar-fixed navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl mb-3 position-sticky bg-white left-auto top-2  z-index-sticky" id="navbarBlur" data-scroll="true">
           <div class="container-fluid py-1 px-3">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
@@ -467,7 +468,8 @@
         <div class="d-flex my-3">
           <h6 class="mb-0">Navbar Fixed</h6>
           <div class="form-check form-switch ps-0 ms-auto my-auto">
-            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
+            {{-- <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)"> --}}
+            <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onblur="navbarFixed(this)">
           </div>
         </div>
         <hr class="horizontal dark my-sm-4">
