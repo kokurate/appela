@@ -68,5 +68,13 @@ class Kernel extends HttpKernel
         'cek_login' => \App\Http\Middleware\Cek_Login::class, // baru
         'cek_level' => \App\Http\Middleware\Cek_Level::class, // baru
         'helpermiddleware' => \App\Http\Middleware\HelperMiddleware::class, // baru
+        'can_jaringan' => \App\Http\Middleware\Can_Jaringan::class, // baru
+        'can_server' => \App\Http\Middleware\Can_Server::class, // baru
+        'can_sistem_informasi' => \App\Http\Middleware\Can_Sistem_Informasi::class, // baru
+        'can_website_unima' => \App\Http\Middleware\Can_Website_Unima::class, // baru
+        'can_lms' => \App\Http\Middleware\Can_LMS::class, // baru
+        'can_ijazah' => \App\Http\Middleware\Can_Ijazah::class, // baru
+        'can_slip' => \App\Http\Middleware\Can_Slip::class, // baru
+        'can_lain_lain' => \App\Http\Middleware\Can_Lain_Lain::class, // baru
     ];
 }

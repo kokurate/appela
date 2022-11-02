@@ -49,6 +49,7 @@ class AdminController extends Controller
         $get_9_verifikasi = Pengaduan::Where('tujuan_id',9)->Where('status','Pengaduan Sedang Diverifikasi')->count();
         if(auth()->user()->level == 'admin'){$tittle = 'Admin';}
         elseif(auth()->user()->level == 'verifikator'){$tittle = 'Verifikator';}
+        elseif(auth()->user()->level == 'petugas'){$tittle = 'Petugas';}
       return view('_admin.index',[
         // Count 
         // =================   Testing ================
@@ -293,6 +294,7 @@ class AdminController extends Controller
   //  =============== Admin Pages =====================================
   public function pages(Request $request){
     $pagination = 10;
+    
 
     return view('_admin.pages',[
       'title' => 'Admin Page',

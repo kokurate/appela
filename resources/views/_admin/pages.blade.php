@@ -91,27 +91,67 @@
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-6">
                             <h1 class="h3 mb-3 fw-normal text-center">Tambah admin</h1>
-                            <form action="{{ route('register') }}" method="post">
+                            <form action="{{ route('register.store') }}" method="post">
                                 @csrf
                                {{-- Tujuan Admin --}}
                                     <div class="mb-3">
                                         <label for="tujuan" class="form-label"></label>
                                         <select class="form-select" name="level" >
                                         <option>Pilih Role</option>
-                                        <option value="verifikator" >Verifikator</option>
-                                        <option value="jaringan" >Jaringan</option>
-                                        <option value="server" >Server</option>
-                                        <option value="sistem_informasi" >Sistem Informasi</option>
-                                        <option value="website_unima" >Website UNIMA</option>
-                                        <option value="lms" >Learning Management System</option>
-                                        <option value="ijazah" >Ijazah</option>
-                                        <option value="slip" >Slip</option>
-                                        <option value="lain_lain" >Lain-lain</option>
+                                        <option value="petugas" onclick="show(0)">Petugas</option>
+                                        <option value="verifikator" onclick="show(1)" >Verifikator</option>
+                                        <option value="jaringan" onclick="show(1)">Jaringan</option>
+                                        <option value="server" onclick="show(1)">Server</option>
+                                        <option value="sistem_informasi" onclick="show(1)">Sistem Informasi</option>
+                                        <option value="website_unima" onclick="show(1)">Website UNIMA</option>
+                                        <option value="lms" onclick="show(1)">Learning Management System</option>
+                                        <option value="ijazah" onclick="show(1)">Ijazah</option>
+                                        <option value="slip" onclick="show(1)">Slip</option>
+                                        <option value="lain_lain" onclick="show(1)">Lain-lain</option>
                                         </select>
                                         @error('level')
                                         <p class="text-danger">Pilih Role</p>
                                         @enderror
                                     </div>  
+
+                                {{-- Checkbox --}}
+                                <div id="show_akses">
+                                    <div class="form-check my-3">
+                                    <label class="custom-control-label" for="customCheck1">Pilih Akses Petugas</label> <br>
+                                        <input type="hidden" name="can_jaringan" value="0"><br>
+                                        <input type="checkbox" name="can_jaringan" value="1"> Jaringan <br>
+
+                                        <input type="hidden" name="can_server" value="0"><br>
+                                        <input type="checkbox" name="can_server" value="1"> Server <br>
+
+                                        <input type="hidden" name="can_sistem_informasi" value="0"><br>
+                                        <input type="checkbox" name="can_sistem_informasi" value="1"> Sistem Informasi <br>
+
+                                        <input type="hidden" name="can_website_unima" value="0"><br>
+                                        <input type="checkbox" name="can_website_unima" value="1"> Website Unima <br>
+
+                                        <input type="hidden" name="can_lms" value="0"><br>
+                                        <input type="checkbox" name="can_lms" value="1"> Learning Management System <br>
+
+                                        <input type="hidden" name="can_ijazah" value="0"><br>
+                                        <input type="checkbox" name="can_ijazah" value="1"> Ijazah <br>
+                                        
+                                        <input type="hidden" name="can_slip" value="0"><br>
+                                        <input type="checkbox" name="can_slip" value="1"> Slip <br>
+
+                                        <input type="hidden" name="can_lain_lain" value="0"><br>
+                                        <input type="checkbox" name="can_lain_lain" value="1"> Lain-lain <br>
+
+                                        {{-- <input type="checkbox" name="can[]" value="1"> Jaringan <br>
+                                        <input type="checkbox" name="can[]" value="1"> Server <br>
+                                        <input type="checkbox" name="can[]" value="1"> Sistem Informasi <br>
+                                        <input type="checkbox" name="can[]" value="1"> Website Unima <br>
+                                        <input type="checkbox" name="can[]" value="1"> Learning Management System <br>
+                                        <input type="checkbox" name="can[]" value="1"> Ijazah <br>
+                                        <input type="checkbox" name="can[]" value="1"> Slip <br>
+                                        <input type="checkbox" name="can[]" value="1"> Lain-lain <br> --}}
+                                    </div>
+                                </div>
                             
                                 {{-- Name --}}
                                 <div class="form-floating my-2">
@@ -166,4 +206,18 @@
         </div>
     </div>
 </div> <!--Container -->
+@endsection
+
+
+@section('javascript')
+     {{-- Javascript buat show tanggapan kalo pilih Tolak --}}
+     <script>
+        function show(x){
+            if (x==0)
+            document.getElementById('show_akses').style.display='block';
+            else
+            document.getElementById('show_akses').style.display='none';
+            return;
+        }
+    </script>
 @endsection

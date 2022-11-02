@@ -33,6 +33,16 @@ class UserSeeder extends Seeder
             'password' => bcrypt('password'), //password
         ]);
 
+    // Petugas
+    User::create([
+            'name' => 'petugas',
+            'level' => 'petugas',
+            'email' => 'petugas@unima.ac.id',
+            'phone' => '0254612122159',
+            'password' => bcrypt('password'), //password
+            'can_jaringan' => 1 
+        ]);
+
     // Jaringan
     User::create([
             'name' => 'jaringan',

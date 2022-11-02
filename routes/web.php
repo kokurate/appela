@@ -95,7 +95,7 @@ Route::get('/', function () {
 
 // Route Group untuk yang login
     // =============================== Admin Page ================================= 
-        Route::group(['middleware' => ['auth','cek_level:admin,verifikator','helpermiddleware']], (function (){
+        Route::group(['middleware' => ['auth','cek_level:admin,verifikator,petugas','helpermiddleware']], (function (){
             // Route::middleware(['auth','cek_level:admin'])->group (function (){
             
             // Register Admin yang lain || Controller Auth
@@ -139,7 +139,7 @@ Route::get('/', function () {
              
 
     // =================================== Jaringan Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:jaringan,admin','helpermiddleware']], (function (){
+        Route::group(['middleware' => ['auth','can_jaringan','helpermiddleware']], (function (){
             // Route::middleware(['auth','cek_level:jaringan,admin'])->group (function (){
             // index & detail jaringan
                 route::get('jaringan',[JaringanController::class,'index'])->name('jaringan.index');
@@ -159,7 +159,7 @@ Route::get('/', function () {
 
 
     // =================================== Server Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:server,admin','helpermiddleware']], (function (){
+        Route::group(['middleware' => ['auth','can_server','helpermiddleware']], (function (){
             // index & detail Server
                 route::get('server',[ServerController::class,'index'])->name('server.index');
                 route::get('server/detail/{pengaduan:kode}',[ServerController::class,'detail'])->name('server.detail');
@@ -177,7 +177,7 @@ Route::get('/', function () {
             }));
 
     // =================================== Sistem Informasi Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:sistem_informasi,admin','helpermiddleware']], (function (){
+        Route::group(['middleware' => ['auth','can_sistem_informasi','helpermiddleware']], (function (){
             // index & detail Server
                 route::get('sistem-informasi',[SistemInformasiController::class,'index'])->name('sistem_informasi.index');
                 route::get('sistem-informasi/detail/{pengaduan:kode}',[SistemInformasiController::class,'detail'])->name('sistem_informasi.detail');
@@ -194,7 +194,7 @@ Route::get('/', function () {
 
             }));
     // =================================== Website Unima Informasi Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:website_unima,admin','helpermiddleware']], (function (){
+        Route::group(['middleware' => ['auth','can_website_unima','helpermiddleware']], (function (){
             // index & detail Server
                 route::get('website-unima',[WebsiteUnimaController::class,'index'])->name('website_unima.index');
                 route::get('website-unima/detail/{pengaduan:kode}',[WebsiteUnimaController::class,'detail'])->name('website_unima.detail');
@@ -213,7 +213,7 @@ Route::get('/', function () {
 
 
     // =================================== Learning Management System  Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:lms,admin','helpermiddleware']], (function (){
+        Route::group(['middleware' => ['auth','can_lms','helpermiddleware']], (function (){
             // index & detail Server
                 route::get('learning-management-system',[LearningManagementSystemController::class,'index'])->name('lms.index');
                 route::get('learning-management-system/detail/{pengaduan:kode}',[LearningManagementSystemController::class,'detail'])->name('lms.detail');
@@ -230,7 +230,7 @@ Route::get('/', function () {
 
             }));
     // =================================== Ijazah  Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:ijazah,admin','helpermiddleware']], (function (){
+        Route::group(['middleware' => ['auth','can_ijazah','helpermiddleware']], (function (){
             // index & detail Server
                 route::get('ijazah',[IjazahController::class,'index'])->name('ijazah.index');
                 route::get('ijazah/detail/{pengaduan:kode}',[IjazahController::class,'detail'])->name('ijazah.detail');
@@ -249,7 +249,7 @@ Route::get('/', function () {
 
 
     // =================================== Slip  Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:slip,admin','helpermiddleware']], (function (){
+        Route::group(['middleware' => ['auth','can_slip','helpermiddleware']], (function (){
             // index & detail Server
                 route::get('slip',[SlipController::class,'index'])->name('slip.index');
                 route::get('slip/detail/{pengaduan:kode}',[SlipController::class,'detail'])->name('slip.detail');
@@ -268,7 +268,7 @@ Route::get('/', function () {
 
 
     // =================================== Lain-lain  Page ==================================
-        Route::group(['middleware' => ['auth','cek_level:lain_lain,admin','helpermiddleware']], (function (){
+        Route::group(['middleware' => ['auth','can_lain_lain','helpermiddleware']], (function (){
             // index & detail Server
                 route::get('lain-lain',[LainlainController::class,'index'])->name('lain_lain.index');
                 route::get('lain-lain/detail/{pengaduan:kode}',[LainlainController::class,'detail'])->name('lain_lain.detail');

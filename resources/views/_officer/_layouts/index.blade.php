@@ -8,6 +8,17 @@
             </div>
         </a>
 
+        <div class="card bg-gradient-default my-2">
+            <div class="card-body">
+              {{-- <h3 class="card-title text-info text-gradient">Testimonial</h3> --}}
+              <blockquote class="blockquote text-white mb-0">
+                <p class="text-dark ms-3">Selamat datang <strong>Petugas</strong> di Aplikasi Pengaduan Layanan. Anda bisa mengakses fungsi-fungsi di bawah ini </p>
+                <p class="text-dark ms-3">Hubungi admin jika ingin menambah hak akses </p>
+                <br>
+                <footer class="blockquote-footer text-gradient text-dark text-sm ms-3">Petugas : {{ auth()->user()->name }}</footer>
+              </blockquote>
+            </div>
+          </div>
         
         <!-- Card Section --> 
         <div class="row">
@@ -32,7 +43,7 @@
                 @can('lain_lain') <a href="{{ route('lain_lain.section.semua') }}"> @endcan
             @endif
             <div class="card">
-                <div class="card-body p-3">
+                <div class="card-body my-2">
                 <div class="row">
                     <div class="col-8">
                     <div class="numbers">

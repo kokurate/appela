@@ -22,6 +22,14 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->boolean('can_jaringan')->default(0);
+            $table->boolean('can_server')->default(0);
+            $table->boolean('can_sistem_informasi')->default(0);
+            $table->boolean('can_website_unima')->default(0);
+            $table->boolean('can_lms')->default(0);
+            $table->boolean('can_ijazah')->default(0);
+            $table->boolean('can_slip')->default(0);
+            $table->boolean('can_lain_lain')->default(0);
             $table->timestamps();
         });
     }

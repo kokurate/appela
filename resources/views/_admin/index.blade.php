@@ -1,6 +1,7 @@
 @extends('_layouts.master')
 @section('content')
   
+
     <div class="container-fluid py-4">
     @can('admin')
       <!-- Card Section --> 
@@ -225,7 +226,8 @@
         </div>     
         <!-- End Row  Card Section-->
     @endcan
-
+    
+    @can('admin_verifikator')
       <div class="row mt-4">
         <div class="col-lg-7 mb-lg-0 mb-4">
           <div class="card ">
@@ -336,5 +338,251 @@
           </div>
         </div>
       </div>
+    @endcan
+
+    @can('petugas')
+      <div class="card bg-gradient-default my-2">
+        <div class="card-body">
+          {{-- <h3 class="card-title text-info text-gradient">Testimonial</h3> --}}
+          <blockquote class="blockquote text-white mb-0">
+            <p class="text-dark ms-3">Selamat datang <strong>Petugas</strong> di Aplikasi Pengaduan Layanan. Anda bisa mengakses fungsi-fungsi di bawah ini </p>
+            <p class="text-dark ms-3">Hubungi admin jika ingin menambah hak akses </p>
+            <br>
+            <footer class="blockquote-footer text-gradient text-dark text-sm ms-3">Petugas : {{ auth()->user()->name }}</footer>
+          </blockquote>
+        </div>
+      </div>
+    @endcan
+
+    <div class="row">
+      @can('jaringan_only')
+        <!--  Jaringan -->
+        <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 my-2">
+        <a href="{{ route('jaringan.index') }}">
+          <div class="card">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-8">
+                  <div class="numbers">
+                    <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
+                    <h5 class="font-weight-bolder">{{ $jaringan }}</h5>
+                    <p class="mb-0">
+                      <strong>Jaringan</strong>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-4 text-end">
+                  <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                    <i class="fa fa-solid fa-wifi text-lg opacity-10" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+      @endcan
+      
+      @can('server_only')
+          <!-- Server -->
+          <div class="col-xl-3 col-sm-6 mb-xl-0 my-2">
+          <a href="{{ route('server.index') }}">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
+                      <h5 class="font-weight-bolder">{{ $server }}</h5>
+                      <p class="mb-0">
+                        <strong>Server</strong>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                      <i class="fa fa-server text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          </div>
+        @endcan
+
+        @can('sistem_informasi_only')
+          <!-- Sistem Informasi -->
+          <div class="col-xl-3 col-sm-6 mb-xl-0 my-2">
+          <a href="{{ route('sistem_informasi.index') }}">
+            <div class="card">
+              <div class="card-body p-3">
+                <div class="row">
+                  <div class="col-8">
+                    <div class="numbers">
+                      <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
+                      <h5 class="font-weight-bolder">{{ $sistem_informasi }}</h5>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                      <i class="fa fa-book-open text-lg opacity-10" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="numbers">
+                          <p class="mb-0">
+                            <strong>Sistem Informasi</strong>
+                          </p>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+          </div>
+        @endcan
+
+        @can('website_unima_only')
+          <!-- Website UNIMA -->
+          <div class="col-xl-3 col-sm-6 my-2">
+              <a href="{{ route('website_unima.index') }}">
+              <div class="card">
+                  <div class="card-body p-3">
+                      <div class="row">
+                          <div class="col-8">
+                              <div class="numbers">
+                                  <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
+                                  <h5 class="font-weight-bolder">{{ $website_unima }}</h5>
+                                  <p class="mb-0">
+                                  <strong>Website unima</strong>
+                                  </p>
+                              </div>
+                          </div>
+                              <div class="col-4 text-end">
+                              <div class="icon icon-shape bg-gradient-secondary shadow-warning text-center rounded-circle">
+                                  <i class="ni ni-world-2 text-lg opacity-10" aria-hidden="true"></i>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </a>
+          </div>
+        @endcan
+
+        @can('lms_only')
+          <!-- Learning Management System -->
+          <div class="col-xl-3 col-sm-6 my-2">
+              <a href="{{ route('lms.index') }}">
+              <div class="card">
+                  <div class="card-body p-3">
+                      <div class="row">
+                          <div class="col-8">
+                              <div class="numbers">
+                                  <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
+                                  <h5 class="font-weight-bolder">{{ $lms }}</h5>
+                                  <p class="mb-0">
+                                  <strong>LMS</strong>
+                                  </p>
+                              </div>
+                          </div>
+                              <div class="col-4 text-end">
+                              <div class="icon icon-shape bg-gradient-info shadow-warning text-center rounded-circle">
+                                  <i class="fa fa-school text-lg opacity-10" aria-hidden="true"></i>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </a>
+          </div>
+        @endcan
+
+        @can('ijazah_only')
+          <!-- Ijazah -->
+          <div class="col-xl-3 col-sm-6 my-2">
+              <a href="{{ route('ijazah.index') }}">
+              <div class="card">
+                  <div class="card-body p-3">
+                      <div class="row">
+                          <div class="col-8">
+                              <div class="numbers">
+                                  <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
+                                  <h5 class="font-weight-bolder">{{ $ijazah }}</h5>
+                                  <p class="mb-0">
+                                  <strong>Ijazah</strong>
+                                  </p>
+                              </div>
+                          </div>
+                              <div class="col-4 text-end">
+                              <div class="icon icon-shape bg-gradient-dark shadow-warning text-center rounded-circle">
+                                  <i class="fa fa-graduation-cap text-lg opacity-10" aria-hidden="true"></i>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </a>
+          </div>
+        @endcan
+
+        @can('slip_only')
+          <!-- Slip -->
+          <div class="col-xl-3 col-sm-6 my-2">
+              <a href="{{ route('slip.index') }}">
+              <div class="card">
+                  <div class="card-body p-3">
+                      <div class="row">
+                          <div class="col-8">
+                              <div class="numbers">
+                                  <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
+                                  <h5 class="font-weight-bolder">{{ $ijazah }}</h5>
+                                  <p class="mb-0">
+                                  <strong>Ijazah</strong>
+                                  </p>
+                              </div>
+                          </div>
+                              <div class="col-4 text-end">
+                              <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                                  <i class="fa fa-envelope-open text-lg opacity-10" aria-hidden="true"></i>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </a>
+          </div>
+        @endcan
+
+        @can('lain_lain_only')
+          <!-- Lain-lain -->
+          <div class="col-xl-3 col-sm-6 my-2">
+              <a href="{{ route('lain_lain.index') }}">
+              <div class="card">
+                  <div class="card-body p-3">
+                      <div class="row">
+                          <div class="col-8">
+                              <div class="numbers">
+                                  <p class="text-sm mb-0 text-uppercase font-weight-bold">Total</p>
+                                  <h5 class="font-weight-bolder">{{ $lain_lain }}</h5>
+                                  <p class="mb-0">
+                                  <strong>Lain-lain</strong>
+                                  </p>
+                              </div>
+                          </div>
+                              <div class="col-4 text-end">
+                              <div class="icon icon-shape bg-gradient-primary shadow-warning text-center rounded-circle">
+                                  <i class="fa fa-plus text-lg opacity-10" aria-hidden="true"></i>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </a>
+          </div>
+        @endcan
+    </div> <!-- End Row -->
+
 @endsection
  

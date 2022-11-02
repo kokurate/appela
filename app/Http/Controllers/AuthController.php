@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\PengaduanController;
+use Illuminate\Support\Facades\DB;
+
 
 
 class AuthController extends Controller
@@ -44,6 +46,10 @@ class AuthController extends Controller
                     return redirect()->intended('admin');
                 }
                 elseif ($user->level == 'verifikator'){
+                    $request->session()->regenerate();
+                    return redirect()->intended('admin');
+                }
+                elseif ($user->level == 'petugas'){
                     $request->session()->regenerate();
                     return redirect()->intended('admin');
                 }
@@ -114,11 +120,13 @@ class AuthController extends Controller
     public function store(Request $request){
         // Ambil semua request terus validasi
         // request()->all();
+        // dd($request);
         $validator = Validator::make ($request->all(),[
-            'level' => 'required|in:verifikator,jaringan,server,sistem_informasi,website_unima,lms,ijazah,slip,lain_lain',
+            'level' => 'required|in:petugas,verifikator,jaringan,server,sistem_informasi,website_unima,lms,ijazah,slip,lain_lain',
             'name' => 'required|max:255',
             // 'phone' => ['required', 'min:10', 'max:15','numeric', 'unique:users' ],
-            'email' => 'required|email:dns|unique:users',
+            // 'email' => 'required|email:dns|unique:users',
+            'email' => 'required|email|unique:users',
             'phone' => 'required|numeric|unique:users|digits_between:12,15',
             'password' => 'required|min:8|max:255',
             // 'level' => 'required|in:Petugas,Jaringan,Server,Sistem Informasi,Website UNIMA,Learning Management System,Ijazah,Slip',
@@ -138,17 +146,65 @@ class AuthController extends Controller
             // 'level.required' 
         ]);
 
+
+      // Sebelum update Cek dlu kalo misalnya role petugas kase required untuk hak akses
+      if($request['level'] == 'petugas'){
+        // $validator = Validator::make ($request->all(),[
+            // $validated_if =$request->validate([
+        $validator_if = $request->validate([
+        //   'can' => 'required|min:1',
+        // 'can_jaringan','can_server','can_sistem_informasi','can_website_unima','can_lms','can_ijazah','can_slip','can_lain_lain' => 'min:1'
+          'can_jaringan' => 'nullable',
+          'can_server' => 'nullable',
+          'can_sistem_informasi' => 'nullable',
+          'can_website_unima' => 'nullable',
+          'can_lms' => 'nullable',
+          'can_ijazah' => 'nullable',
+          'can_slip' => 'nullable',
+          'can_lain_lain' => 'nullable',
+        ],
+      [
+        // 'can.min' => 'Akses harus diisi minimal 1'
+      ]);
+
+    }
+    //   DB::table('users')->insert($validator_if );
+    //   if($request->can == 'jaringan'){ DB::table('catatans')->insert($validator_if );}
+    //   if($request->can_jaringan == 'jaringan'){ $request->can_jaringan = 1 ; $validatedData = $request;}
+    //   if($request->can_jaringan == 'jaringan'){ $validatedData['can_jaringan'] = 1;}
+   
+    // dd($validator);
+    
+
         // Kalo error kase alert error
              if($validator->fails()){
                 return back()->with('toast_error', $validator->errors()->all()[0])->withInput()->withErrors($validator);
              }
-
+      
         // Validasi
         $validatedData = $validator->validate();
+
         // Jika data lolos Enkripsi password 
         // $validatedData['password'] = bcrypt($validatedData['password']);
+        // dd($validatedData);
         $validatedData['password'] = Hash::make($validatedData['password']);
-        User::create($validatedData);
+        User::create($validatedData );
+
+        // if($validated_checkout == 'jaringan'){ DB::table('users')->where('email', $validatedData['email'])->insert(['can_jaringan' =>  1]);}
+        
+        if($request['level'] == 'petugas'){
+            if($validator_if != null){
+                DB::table('users')->where('email', $validatedData['email'])->update($validator_if );
+            }
+        }
+
+        
+        // if($validatedData['can_jaringan']){ $validatedData['can_jaringan'] = 1;}
+        // $id = $user->id;
+        // if($request['can'] == 'jaringan'){ User::where('id', $id)->insert(['can_jaringan' => 1]);}
+        // if($request['can'] == 'server'){ $validatedData = User::create(['can_server' => 1]);}
+     
+
         // $request->session()->flash('success','Registrasi berhasil');
         return redirect()->back()->with('success','Registrasi berhasil');
     }

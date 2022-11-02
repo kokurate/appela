@@ -36,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
         // except verifikator
         Gate::define('except_verifikator', function (User $user){
             return $user->level == 'admin' || 
+                    $user->level == 'petugas'|| 
                     $user->level == 'jaringan'|| 
                     $user->level == 'server'|| 
                     $user->level == 'sistem_informasi'|| 
@@ -51,14 +52,24 @@ class AppServiceProvider extends ServiceProvider
             return $user->level == 'admin';
         });
 
+        // petugas
+        Gate::define('petugas', function (User $user){
+            return $user->level == 'petugas';
+        });
+
         // verifikator
         Gate::define('verifikator', function (User $user){
             return $user->level == 'verifikator';
         });
 
+        // verifikator
+        Gate::define('admin_verifikator', function (User $user){
+            return $user->level == 'verifikator' || $user->level == 'admin';
+        });
+
         // Jaringan
         Gate::define('jaringan', function (User $user){
-            return $user->level == 'jaringan' || $user->level == 'admin';
+            return $user->level == 'jaringan' || $user->level == 'admin' || $user->can_jaringan == 1;
         });
 
         // Server
@@ -137,6 +148,46 @@ class AppServiceProvider extends ServiceProvider
         return $user->level == 'lain_lain';
     });
 
+// ==================================================== Only ================================
+    // Jaringan
+    Gate::define('jaringan_only', function (User $user){
+        return $user->can_jaringan == 1 && $user->level == 'petugas';
+    });
+
+    // server
+    Gate::define('server_only', function (User $user){
+        return $user->can_server == 1 && $user->level == 'petugas';
+    });
+
+    // sistem_informasi
+    Gate::define('sistem_informasi_only', function (User $user){
+        return $user->can_sistem_informasi == 1 && $user->level == 'petugas';
+    });
+
+    // website_unima
+    Gate::define('website_unima_only', function (User $user){
+        return $user->can_website_unima == 1 && $user->level == 'petugas';
+    });
+
+    // lms
+    Gate::define('lms_only', function (User $user){
+        return $user->can_lms == 1 && $user->level == 'petugas';
+    });
+
+    // ijazah
+    Gate::define('ijazah_only', function (User $user){
+        return $user->can_ijazah == 1 && $user->level == 'petugas';
+    });
+
+    // slip
+    Gate::define('slip_only', function (User $user){
+        return $user->can_slip == 1 && $user->level == 'petugas';
+    });
+
+    // lain_lain
+    Gate::define('lain_lain_only', function (User $user){
+        return $user->can_lain_lain == 1 && $user->level == 'petugas';
+    });
 
 
     }
