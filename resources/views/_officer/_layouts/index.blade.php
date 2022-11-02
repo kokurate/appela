@@ -8,7 +8,8 @@
             </div>
         </a>
 
-        <div class="card bg-gradient-default my-2">
+        <!-- 
+            <div class="card bg-gradient-default my-2">
             <div class="card-body">
               {{-- <h3 class="card-title text-info text-gradient">Testimonial</h3> --}}
               <blockquote class="blockquote text-white mb-0">
@@ -19,6 +20,7 @@
               </blockquote>
             </div>
           </div>
+        -->
         
         <!-- Card Section --> 
         <div class="row">

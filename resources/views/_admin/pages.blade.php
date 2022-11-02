@@ -1,4 +1,10 @@
+
+
 @extends('_layouts.master')
+
+@section('header')
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+@endsection
 
 @section('content')
 <div class="container my-2">
@@ -94,20 +100,20 @@
                             <form action="{{ route('register.store') }}" method="post">
                                 @csrf
                                {{-- Tujuan Admin --}}
-                                    <div class="mb-3">
+                                    <div class="mb-3" id="input_tujuan">
                                         <label for="tujuan" class="form-label"></label>
                                         <select class="form-select" name="level" >
                                         <option>Pilih Role</option>
-                                        <option value="petugas" onclick="show(0)">Petugas</option>
-                                        <option value="verifikator" onclick="show(1)" >Verifikator</option>
-                                        <option value="jaringan" onclick="show(1)">Jaringan</option>
-                                        <option value="server" onclick="show(1)">Server</option>
-                                        <option value="sistem_informasi" onclick="show(1)">Sistem Informasi</option>
-                                        <option value="website_unima" onclick="show(1)">Website UNIMA</option>
-                                        <option value="lms" onclick="show(1)">Learning Management System</option>
-                                        <option value="ijazah" onclick="show(1)">Ijazah</option>
-                                        <option value="slip" onclick="show(1)">Slip</option>
-                                        <option value="lain_lain" onclick="show(1)">Lain-lain</option>
+                                        <option value="petugas">Petugas</option>
+                                        <option value="verifikator"  >Verifikator</option>
+                                        <option value="jaringan" >Jaringan</option>
+                                        <option value="server" >Server</option>
+                                        <option value="sistem_informasi" >Sistem Informasi</option>
+                                        <option value="website_unima" >Website UNIMA</option>
+                                        <option value="lms" >Learning Management System</option>
+                                        <option value="ijazah" >Ijazah</option>
+                                        <option value="slip" >Slip</option>
+                                        <option value="lain_lain" >Lain-lain</option>
                                         </select>
                                         @error('level')
                                         <p class="text-danger">Pilih Role</p>
@@ -118,28 +124,28 @@
                                 <div id="show_akses">
                                     <div class="form-check my-3">
                                     <label class="custom-control-label" for="customCheck1">Pilih Akses Petugas</label> <br>
-                                        <input type="hidden" name="can_jaringan" value="0"><br>
+                                        {{-- <input type="hidden" name="can_jaringan" value="0"><br> --}}
                                         <input type="checkbox" name="can_jaringan" value="1"> Jaringan <br>
 
-                                        <input type="hidden" name="can_server" value="0"><br>
+                                        {{-- <input type="hidden" name="can_server" value="0"><br> --}}
                                         <input type="checkbox" name="can_server" value="1"> Server <br>
 
-                                        <input type="hidden" name="can_sistem_informasi" value="0"><br>
+                                        {{-- <input type="hidden" name="can_sistem_informasi" value="0"><br> --}}
                                         <input type="checkbox" name="can_sistem_informasi" value="1"> Sistem Informasi <br>
 
-                                        <input type="hidden" name="can_website_unima" value="0"><br>
+                                        {{-- <input type="hidden" name="can_website_unima" value="0"><br> --}}
                                         <input type="checkbox" name="can_website_unima" value="1"> Website Unima <br>
 
-                                        <input type="hidden" name="can_lms" value="0"><br>
+                                        {{-- <input type="hidden" name="can_lms" value="0"><br> --}}
                                         <input type="checkbox" name="can_lms" value="1"> Learning Management System <br>
 
-                                        <input type="hidden" name="can_ijazah" value="0"><br>
+                                        {{-- <input type="hidden" name="can_ijazah" value="0"><br> --}}
                                         <input type="checkbox" name="can_ijazah" value="1"> Ijazah <br>
                                         
-                                        <input type="hidden" name="can_slip" value="0"><br>
+                                        {{-- <input type="hidden" name="can_slip" value="0"><br> --}}
                                         <input type="checkbox" name="can_slip" value="1"> Slip <br>
 
-                                        <input type="hidden" name="can_lain_lain" value="0"><br>
+                                        {{-- <input type="hidden" name="can_lain_lain" value="0"><br> --}}
                                         <input type="checkbox" name="can_lain_lain" value="1"> Lain-lain <br>
 
                                         {{-- <input type="checkbox" name="can[]" value="1"> Jaringan <br>
@@ -209,15 +215,26 @@
 @endsection
 
 
-@section('javascript')
-     {{-- Javascript buat show tanggapan kalo pilih Tolak --}}
-     <script>
-        function show(x){
-            if (x==0)
-            document.getElementById('show_akses').style.display='block';
-            else
-            document.getElementById('show_akses').style.display='none';
-            return;
-        }
+{{-- @section('javascript')
+@endsection --}}
+
+@push('script')
+    <script>
+    
+    // $('#input_tujuan').filter(':selected').val()
+    // $('#show_akses').hide()
+    // $('#input_tujuan').on('change', function() {
+    //     console.log($(this).find(":selected").val())
+    //     if(val == 'petugas'){$('#show_akses').show()} 
+    //     else{$('#show_akses').hide()}
+    // });
+
+    $('#show_akses').hide()
+    $('#input_tujuan').on('change', function() {
+        const val = $(this).find(":selected").val()
+        if(val == 'petugas'){$('#show_akses').show()} 
+        else{$('#show_akses').hide()}
+    });
+
     </script>
-@endsection
+@endpush

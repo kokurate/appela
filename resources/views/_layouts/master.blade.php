@@ -39,7 +39,6 @@
   @yield('header')
 
 </head> 
-
 <!-- ===== Side Bar ====  -->
 <body class="g-sidenav-show   bg-gray-100">
     <!-- Background Top -->
@@ -59,7 +58,7 @@
             <!-- Dashboard Admin-->
             @can('admin')
               <li class="nav-item">
-                <a class="nav-link {{ Request::is('admin') ? 'active bg-gradient-light' : '' }}" href="{{ route('admin.index') }}">
+                <a class="nav-link {{ Request::is('admin*') ? 'active bg-gradient-light' : '' }}" href="{{ route('admin.index') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="ni ni-key-25 text-primary text-sm opacity-10"></i>
                   </div>
@@ -68,7 +67,7 @@
               </li>
             @elsecan('verifikator')
             <li class="nav-item">
-              <a class="nav-link active" href="{{ route('admin.index') }}">
+              <a class="nav-link {{ Request::is('admin*') ? 'active bg-gradient-light' : '' }}" href="{{ route('admin.index') }}">
                 <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="ni ni-key-25 text-primary text-sm opacity-10"></i>
                 </div>
@@ -77,7 +76,7 @@
             </li>
             @elsecan('petugas')
             <li class="nav-item">
-              <a class="nav-link active" href="{{ route('admin.index') }}">
+              <a class="nav-link {{ Request::is('admin*') ? 'active bg-gradient-light' : '' }}" href="{{ route('admin.index') }}">
                 <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                   <i class="ni ni-key-25 text-primary text-sm opacity-10"></i>
                 </div>
@@ -89,74 +88,81 @@
             <!-- Buat Kondisi untuk tiap sidebar nav Dashboard-->
             @can('jaringanDashboard')
               <li class="nav-item">
-                <a class="nav-link active" href="{{ route('jaringan.index') }}">
+                <a class="nav-link {{ Request::is('jaringan*') ? 'active bg-gradient-light' : '' }}" href="{{ route('jaringan.index') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                    <i class="fa fa-solid fa-wifi text-warning text-primary text-sm opacity-10"></i>
                   </div>
-                  <span class="nav-link-text ms-1">Dashboard</span>
+                  <span class="nav-link-text ms-1">Jaringan</span>
                 </a>
               </li>
-            @elsecan('serverDashboard')
+            @endcan
+            @can('serverDashboard')
               <li class="nav-item">
-                <a class="nav-link active" href="{{ route('server.index') }}">
+                <a class="nav-link {{ Request::is('server*') ? 'active bg-gradient-light' : '' }}" href="{{ route('server.index') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                    <i class="fa fa-server text-success text-sm opacity-10"></i>
                   </div>
-                  <span class="nav-link-text ms-1">Dashboard</span>
+                  <span class="nav-link-text ms-1">Server</span>
                 </a>
               </li>
-            @elsecan('sistem_informasiDashboard')
+            @endcan
+            @can('sistem_informasiDashboard')
               <li class="nav-item">
-                <a class="nav-link active" href="{{ route('sistem_informasi.index') }}">
+                <a class="nav-link {{ Request::is('sistem-informasi*') ? 'active bg-gradient-light' : '' }}" href="{{ route('sistem_informasi.index') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                    <i class="fa fa-book-open text-info text-sm opacity-10"></i>
                   </div>
-                  <span class="nav-link-text ms-1">Dashboard</span>
+                  <span class="nav-link-text ms-1">Sistem Informasi</span>
                 </a>
               </li>
-            @elsecan('website_unimaDashboard')
+            @endcan
+            @can('website_unimaDashboard')
               <li class="nav-item">
-                <a class="nav-link active" href="{{ route('website_unima.index') }}">
+                <a class="nav-link {{ Request::is('website-unima*') ? 'active bg-gradient-light' : '' }}" href="{{ route('website_unima.index') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                    <i class="ni ni-world-2 text-primary text-sm opacity-10"></i>
                   </div>
-                  <span class="nav-link-text ms-1">Dashboard</span>
+                  <span class="nav-link-text ms-1">Website unima</span>
                 </a>
               </li>
-            @elsecan('lmsDashboard')
+            @endcan
+            @can('lmsDashboard')
               <li class="nav-item">
-                <a class="nav-link active" href="{{ route('lms.index') }}">
+                <a class="nav-link {{ Request::is('learning-management-system') ? 'active bg-gradient-light' : '' }}" href="{{ route('lms.index') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                    <i class="fa fa-school text-danger text-sm opacity-10"></i>
                   </div>
-                  <span class="nav-link-text ms-1">Dashboard</span>
+                  <span class="nav-link-text ms-1">LMS</span>
                 </a>
               </li>
-            @elsecan('ijazahDashboard')
+            @endcan
+            @can('ijazahDashboard')
               <li class="nav-item">
-                <a class="nav-link active" href="{{ route('ijazah.index') }}">
+                <a class="nav-link {{ Request::is('ijazah*') ? 'active bg-gradient-light' : '' }}" href="{{ route('ijazah.index') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                    <i class="fa fa-graduation-cap text-secondary text-sm opacity-10"></i>
                   </div>
-                  <span class="nav-link-text ms-1">Dashboard</span>
+                  <span class="nav-link-text ms-1">Ijazah</span>
                 </a>
               </li>
-            @elsecan('slipDashboard')
+            @endcan
+            @can('slipDashboard')
               <li class="nav-item">
-                <a class="nav-link active" href="{{ route('slip.index') }}">
+                <a class="nav-link {{ Request::is('slip*') ? 'active bg-gradient-light' : '' }}" href="{{ route('slip.index') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                    <i class="fas fa-envelope-open-text text-dark text-sm opacity-10"></i>
                   </div>
-                  <span class="nav-link-text ms-1">Dashboard</span>
+                  <span class="nav-link-text ms-1">Slip</span>
                 </a>
               </li>
-            @elsecan('lain_lainDashboard')
+            @endcan
+            @can('lain_lainDashboard')
               <li class="nav-item">
-                <a class="nav-link active" href="{{ route('lain_lain.index') }}">
+                <a class="nav-link {{ Request::is('lain-lain*') ? 'active bg-gradient-light' : '' }}" href="{{ route('lain_lain.index') }}">
                   <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+                    <i class="fas fa-plus text-success text-sm opacity-10"></i>
                   </div>
-                  <span class="nav-link-text ms-1">Dashboard</span>
+                  <span class="nav-link-text ms-1">Lain-lain</span>
                 </a>
               </li>
             @endcan
@@ -503,7 +509,7 @@
   @yield('javascript')
 
 
-    
+    @stack('script')
 </body>
 
 </html>

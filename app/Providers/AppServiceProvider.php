@@ -110,42 +110,42 @@ class AppServiceProvider extends ServiceProvider
     // =============================== Dashboard =============================
     // Jaringan
     Gate::define('jaringanDashboard', function (User $user){
-        return $user->level == 'jaringan';
+        return $user->level == 'jaringan' || $user->can_jaringan == 1;;
     });
 
     // Server
     Gate::define('serverDashboard', function (User $user){
-        return $user->level == 'server';
+        return $user->level == 'server' || $user->can_server == 1;
     });
 
     // Sistem Informasi
     Gate::define('sistem_informasiDashboard', function (User $user){
-        return $user->level == 'sistem_informasi';
+        return $user->level == 'sistem_informasi' || $user->can_sistem_informasi == 1;
     });
 
     // Website Unima
     Gate::define('website_unimaDashboard', function (User $user){
-        return $user->level == 'website_unima';
+        return $user->level == 'website_unima' || $user->can_website_unima == 1;
     });
 
     // Learning Management System
     Gate::define('lmsDashboard', function (User $user){
-        return $user->level == 'lms';
+        return $user->level == 'lms' || $user->can_lms == 1;
     });
 
     // Ijazah
     Gate::define('ijazahDashboard', function (User $user){
-        return $user->level == 'ijazah';
+        return $user->level == 'ijazah' || $user->can_ijazah == 1;
     });
 
     // Slip
     Gate::define('slipDashboard', function (User $user){
-        return $user->level == 'slip';
+        return $user->level == 'slip' || $user->can_slip == 1;
     });
 
     // Slip
     Gate::define('lain_lainDashboard', function (User $user){
-        return $user->level == 'lain_lain';
+        return $user->level == 'lain_lain' || $user->can_lain_lain == 1;
     });
 
 // ==================================================== Only ================================
