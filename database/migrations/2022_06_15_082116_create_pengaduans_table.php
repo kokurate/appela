@@ -18,6 +18,7 @@ class CreatePengaduansTable extends Migration
               // Foreign Key 
               $table->string('token')->unique()->nullable();
               $table->foreignId('tujuan_id')->nullable();
+              $table->foreignId('user_id')->nullable();
               // $table->foreignId('user_id');
               // Timestamp untuk bking waktu dia buat pengaduan
               $table->timestamp('published_at')->nullable();

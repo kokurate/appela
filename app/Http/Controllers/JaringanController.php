@@ -12,6 +12,7 @@ use App\Mail\SendMailVisitor;
 use App\Models\Catatan;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Gate;
 
 class JaringanController extends Controller
 {
@@ -93,10 +94,19 @@ class JaringanController extends Controller
           'do' => 'mengupdate pengaduan menjadi'.' '. $status ,
           'updated_at' => Carbon::now()->toDateTimeString(),
       ];
+
+    // kalo yang login sesuai kase logic 
+      if(auth()->user()->level == 'jaringan' || auth()->user()->can_jaringan ==1 || auth()->user()->level == 'petugas' ){
+        $user = auth()->user()->id ;
+        $validateData['user_id'] = $user;
+      }
+      else{ $validateData['user_id'] = null; }
+      
+
     // Insert Activity Log
       DB::table('catatans')->insert($activitylog);
     // Update Pengaduan
-       Pengaduan::where('id', $pengaduan->id)->update($validateData);
+           Pengaduan::where('id', $pengaduan->id)->update($validateData);
     // Setup Email Message
        $data =[
         'header' => 'Update Pengaduan ',

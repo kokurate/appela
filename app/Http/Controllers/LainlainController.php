@@ -94,6 +94,14 @@ class LainlainController extends Controller
               'do' => 'mengupdate pengaduan menjadi'.' '. $status ,
               'updated_at' => Carbon::now()->toDateTimeString(),
           ];
+
+          // kalo yang login sesuai kase logic 
+      if(auth()->user()->level == 'lain_lain' || auth()->user()->can_lain_lain ==1 || auth()->user()->level == 'petugas' ){
+        $user = auth()->user()->id ;
+        $validateData['user_id'] = $user;
+      }
+      else{ $validateData['user_id'] = null; }
+      
         // Insert Activity Log
           DB::table('catatans')->insert($activitylog);
         // Update Pengaduan

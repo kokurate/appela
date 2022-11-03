@@ -47,4 +47,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // 1 user memiliki banyak pengaduan
+    public function pengaduan(){
+        return $this->hasMany(Pengaduan::class);
+    }
 }
