@@ -19,6 +19,31 @@ class IjazahController extends Controller
     public function index(Request $request){
       app('App\Http\Controllers\HelperController')->automatically_delete_data();
 
+      $user = auth()->user()->id;
+
+      // ====================== kalo user sesuai kondisi 
+      // ==================== pengaduan proses count
+      if(auth()->user()->level == 'ijazah'){
+        $pengaduan_proses_count = Pengaduan::where('status','Pengaduan Sedang Diproses')
+                                            ->where('tujuan_id','6')->where('user_id', $user)
+                                            ->count();
+        
+      }else{  
+        $pengaduan_proses_count = Pengaduan::where('status','Pengaduan Sedang Diproses')
+                                    ->where('tujuan_id','6')->count();
+      }
+  
+      // ==================== pengaduan proses 
+      if(auth()->user()->level == 'ijazah'){
+        $pengaduan_proses = Pengaduan::where('status','Pengaduan Sedang Diproses')
+                                          ->where('tujuan_id','6')
+                                          ->where('user_id', $user);
+        
+      }else{  
+        $pengaduan_proses = Pengaduan::where('status','Pengaduan Sedang Diproses')
+                                    ->where('tujuan_id','6');
+      }
+
         // Kalo mo ubah paginasi ubah juga variabelnya di view
         $current_left = $request->input('masuk') ? $request->input('masuk') : 1;
         $current_right = $request->input('proses') ? $request->input('proses') : 1;
@@ -37,12 +62,9 @@ class IjazahController extends Controller
    
            // =================================== Jaringan Proses ===============================================
            'current_right' => $current_right,
-           'pengaduan_proses_count' => Pengaduan::where('status','Pengaduan Sedang Diproses')
-                                       ->where('tujuan_id','6')
-                                       ->count(),
-           'pengaduan_proses' => Pengaduan::where('status','Pengaduan Sedang Diproses')
-                                       ->where('tujuan_id','6')->orderBy('id','ASC')
-                                       ->paginate(10,['*'],'proses')->withQueryString(),
+           'pengaduan_proses_count' => $pengaduan_proses_count,
+           'pengaduan_proses' => $pengaduan_proses
+                                ->orderBy('id','ASC')->paginate(10,['*'],'proses')->withQueryString(),
            'title' => 'Ijazah',
            'url' => $request->path(),
            ]);   

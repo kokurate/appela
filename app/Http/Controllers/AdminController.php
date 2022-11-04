@@ -369,7 +369,23 @@ class AdminController extends Controller
     $count_slip = Pengaduan::whereNotNull('rating')->where('tujuan_id',7)->count() ;
     $count_lain_lain = Pengaduan::whereNotNull('rating')->where('tujuan_id',9)->count() ;
 
+    // loop rating
+    $latest_rating = Pengaduan::whereNotNull('rating')->whereNotNull('user_id')->get()->load('tujuan')->load('user');
 
+    // $users = Pengaduan::whereNotNull('rating')->whereNotNull('user_id')->get();
+      
+    // making loop rating with specific rating average
+      // foreach ($users as $user) {
+      // $user['rating'] = $user->ratings()->avg('rating');
+      // $user_rating['rating'] = $user->avg('rating');
+      // }
+      // return $user_rating;
+      // $data = Pengaduan::with('rating');
+      // $data = Pengaduan::with('rating');
+      // $data =$user_rating->get();
+
+      // dd($data);
+    // $rating = Pengaduan::whereNotNull('user_id')->avg('rating');
    
     // 'jaringan' => $jaringan /5 ,
     return view('_admin.rating_average',[
@@ -391,6 +407,8 @@ class AdminController extends Controller
       'count_ijazah' => $count_ijazah,
       'count_slip' => $count_slip,
       'count_lain_lain' => $count_lain_lain,
+      'latest_rating' => $latest_rating,
+      'i' => 1,
     ]);
   }
 }

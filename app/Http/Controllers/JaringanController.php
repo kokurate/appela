@@ -17,7 +17,33 @@ use Illuminate\Support\Facades\Gate;
 class JaringanController extends Controller
 {
     public function index(Request $request){
-    app('App\Http\Controllers\HelperController')->automatically_delete_data();
+    // app('App\Http\Controllers\HelperController')->automatically_delete_data();
+
+    $user = auth()->user()->id;
+
+    // ====================== kalo user sesuai kondisi 
+    // ==================== pengaduan proses count
+    if(auth()->user()->level == 'jaringan'){
+      $pengaduan_proses_count = Pengaduan::where('status','Pengaduan Sedang Diproses')
+                                          ->where('tujuan_id','1')->where('user_id', $user)
+                                          ->count();
+      
+    }else{  
+      $pengaduan_proses_count = Pengaduan::where('status','Pengaduan Sedang Diproses')
+                                  ->where('tujuan_id','1')->count();
+    }
+
+    // ==================== pengaduan proses 
+    if(auth()->user()->level == 'jaringan'){
+      $pengaduan_proses = Pengaduan::where('status','Pengaduan Sedang Diproses')
+                                        ->where('tujuan_id','1')
+                                        ->where('user_id', $user);
+      
+    }else{  
+      $pengaduan_proses = Pengaduan::where('status','Pengaduan Sedang Diproses')
+                                  ->where('tujuan_id','1');
+    }
+
 
      // Kalo mo ubah paginasi ubah juga variabelnya di view
      $current_left = $request->input('masuk') ? $request->input('masuk') : 1;
@@ -32,17 +58,14 @@ class JaringanController extends Controller
                                       ->where('tujuan_id','1')
                                       ->count(),
           'pengaduan_masuk' => Pengaduan::where('status','Pengaduan Sedang Diverifikasi')
-                                  ->where('tujuan_id','1')->orderBy('id','ASC')
-                                  ->paginate(10,['*'],'masuk')->withQueryString(), 
+                                        ->where('tujuan_id','1')->orderBy('id','ASC')
+                                        ->paginate(10,['*'],'masuk')->withQueryString(), 
 
         // =================================== Jaringan Proses ===============================================
         'current_right' => $current_right,
-        'pengaduan_proses_count' => Pengaduan::where('status','Pengaduan Sedang Diproses')
-                                    ->where('tujuan_id','1')
-                                    ->count(),
-        'pengaduan_proses' => Pengaduan::where('status','Pengaduan Sedang Diproses')
-                                    ->where('tujuan_id','1')->orderBy('id','ASC')
-                                    ->paginate(10,['*'],'proses')->withQueryString(),
+        'pengaduan_proses_count' => $pengaduan_proses_count,
+        'pengaduan_proses' => $pengaduan_proses
+                              ->orderBy('id','ASC')->paginate(10,['*'],'proses')->withQueryString(),
         'title' => 'Jaringan',
         'url' => $request->path(),
         ]);   

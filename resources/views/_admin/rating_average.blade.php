@@ -262,5 +262,66 @@
      
     </div>     
     <!-- End Row  Card Section-->
+
+    <!-- Start Row Rating-->
+    <div class="row mt-4">
+        <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="card ">
+              <div class="card-header bg-gradient-light pb-0 p-3">
+                <div class="d-flex justify-content-between">
+                  <h6 class="mb-2">Rating Terbaru</h6>
+                </div>
+              </div>
+              <div class="card">
+                  <div class="table-responsive">
+                    <table class="table align-items-center mb-0">
+                      <thead>
+                        <tr>
+                          <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ">#</th>
+                          <th class="text-uppercase text-dark text-xxs font-weight-bolder  ps-2">Nama</th>
+                          <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2">Tujuan</th>
+                          <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2">Rating</th>
+                          <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2">Detail</th>
+                        </tr>
+                      </thead>
+                          <tbody>
+                        @forelse($latest_rating as $star)
+                                <tr>
+                                    <td>
+                                        <p class="mb-0 text-xs ps-3">{{ $i++ }}</p>
+                                    </td>
+
+                                    <td>
+                                        <p class="text-xs  mb-0"><strong>{{ $star->user->name }}</strong></p>
+                                    </td>
+
+                                    <td>
+                                        <p class="text-xs  mb-0"><strong>{{ $star->tujuan->nama }}</strong></p>
+                                    </td>
+
+                                    <td>
+                                        <i class="fa fa-star text-warning ps-3"> {{ $star->rating }}</i>
+                                    </td>
+
+                                    <td>
+                                        <a href="{{ route('admin.detail', $star->kode) }}">  
+                                            <i class="fa fa-solid fa-info ps-3"></i> 
+                                        </a>
+                                    </td>
+                                </tr>
+                        @empty
+                                <tr>
+                                    <td colspan="4" class="text-center"><p class="font-weight-bold my-2">Belum ada rating</p></td>
+                                </tr>
+                          @endforelse
+                          </tbody>
+                    </table>
+                  </div> <!-- End Table -->
+                </div> <!-- End Card-->
+              </div>
+              <!-- Paginate -->
+              {{-- <div class="d-flex justify-content-center my-2">{{ $pengaduan->onEachSide(2)->links() }}</div> --}}
+          </div> 
+    </div> <!-- End Row all rating-->
 </div> <!-- End Container-->
 @endsection
