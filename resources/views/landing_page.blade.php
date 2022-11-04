@@ -360,7 +360,7 @@ $dataPoints_status = array(
               <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Kenapa tersedia tujuan pengaduan Ijazah dan Slip ? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Karena untuk validasi suatu berkas seperti ijazah dan slip, mahasiswa harus datang langsung ke Pusat Komputer. APPELA sudah memfasilitasi hal tersebut, sekarang mahasiswa bisa melaporkan kapan saja jika mempunyai pengaduan yang bersifat pribadi seperti ijazah dan sliip tanpa harus ke lokasi 
+                  Karena untuk validasi suatu berkas seperti ijazah dan slip, mahasiswa harus datang langsung ke Pusat Komputer. Aplikasi Pengaduan Layanan ini  sudah memfasilitasi hal tersebut, sekarang mahasiswa bisa melaporkan kapan saja jika mempunyai pengaduan yang bersifat pribadi seperti ijazah dan sliip tanpa harus ke lokasi 
                 </p>
               </div>
             </li>
@@ -378,7 +378,7 @@ $dataPoints_status = array(
               <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Apakah saya bisa mengubah pengaduan yang saya kirimkan ? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Tidak. Pengaduan yang sudah dikirimkan tidak bisa diubah.
+                  <strong>Tidak. Pengaduan yang sudah dikirimkan tidak bisa diubah.</strong>
                 </p>
               </div>
             </li>
@@ -387,7 +387,7 @@ $dataPoints_status = array(
               <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Apakah ada format email ? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Ya. Email digunakan untuk membuat pengaduan di APPELA harus email unima. Contoh '18210152@unima.ac.id' 
+                  Ya. Email digunakan untuk membuat pengaduan di Aplikasi Pengaduan Layanan harus email unima. Contoh <strong>'18210152@unima.ac.id'</strong> 
                 </p>
               </div>
             </li>
@@ -396,7 +396,7 @@ $dataPoints_status = array(
               <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-6" class="collapsed">Berapa lama respon terhadap pengaduan ? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
               <div id="faq-list-6" class="collapse" data-bs-parent=".faq-list">
                 <p>
-                  Kecepatan respon tergantung dari banyaknya pengaduan yang masuk. Jika pengaduan sudah direspon oleh petugas, maka akan ada di notifikasi email yang kalian tambahkan pada saat membuat pengaduan.
+                  Kecepatan respon tergantung dari banyaknya pengaduan yang masuk. Jika pengaduan sudah direspon oleh petugas, maka akan ada di notifikasi email yang kalian registrasikan.
                 </p>
               </div>
             </li>
@@ -406,6 +406,15 @@ $dataPoints_status = array(
               <div id="faq-list-7" class="collapse" data-bs-parent=".faq-list">
                 <p>
                   Ya. Dengan memasukkan kode pengaduan anda bisa langsung mengecek proses pengaduan anda sekarang statusnya apa dan diproses oleh petugas siapa  
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="700">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-8" class="collapsed">Kenapa tersedia tujuan pengaduan lain-lain ? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-8" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Jika pengaduan yang akan anda ajukan tidak termasuk ke dalam daftar tujuan pengaduan yang ada. Anda bisa membuat tujuan pengaduan ke lain-lain  
                 </p>
               </div>
             </li>

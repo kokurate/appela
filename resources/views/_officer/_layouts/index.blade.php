@@ -129,7 +129,7 @@
         <div class="row my-4">
             <div class="col-md-6">
                 <div class="card my-3">
-                    <div class="card-header pb-0 p-3 bg-gradient-light ">
+                    <div class="card-header pb-0 p-3 bg-light ">
                         <h4 class="text-dark text-center font-weight-bold text-uppercase">Verifikasi Pengaduan Masuk</h4>
                         <h4 class="text-dark text-center font-weight-bold text-uppercase">({{ $pengaduan_masuk_count }})</h4>
                         <!-- <hr class="bg-primary border-2 border-top border-primary" > -->

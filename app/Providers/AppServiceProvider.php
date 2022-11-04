@@ -69,42 +69,42 @@ class AppServiceProvider extends ServiceProvider
 
         // Jaringan
         Gate::define('jaringan', function (User $user){
-            return $user->level == 'jaringan' || $user->level == 'admin';
+            return $user->level == 'jaringan' || $user->level == 'admin' || $user->can_jaringan = 1;
         });
 
         // Server
         Gate::define('server', function (User $user){
-            return $user->level == 'server' || $user->level == 'admin';
+            return $user->level == 'server' || $user->level == 'admin' || $user->can_server = 1;
         });
 
         // Sistem Informasi
         Gate::define('sistem_informasi', function (User $user){
-            return $user->level == 'sistem_informasi' || $user->level == 'admin';
+            return $user->level == 'sistem_informasi' || $user->level == 'admin' || $user->can_sistem_informasi = 1;
         });
 
         // Website Unima
         Gate::define('website_unima', function (User $user){
-            return $user->level == 'website_unima' || $user->level == 'admin';
+            return $user->level == 'website_unima' || $user->level == 'admin' || $user->can_website_unima = 1;
         });
 
         // Learning Management System
         Gate::define('lms', function (User $user){
-            return $user->level == 'lms' || $user->level == 'admin';
+            return $user->level == 'lms' || $user->level == 'admin' || $user->can_lms = 1;
         });
 
         // Ijazah
         Gate::define('ijazah', function (User $user){
-            return $user->level == 'ijazah' || $user->level == 'admin';
+            return $user->level == 'ijazah' || $user->level == 'admin' || $user->can_ijazah = 1;
         });
 
         // Slip
         Gate::define('slip', function (User $user){
-            return $user->level == 'slip' || $user->level == 'admin';
+            return $user->level == 'slip' || $user->level == 'admin' || $user->can_slip = 1;
         });
 
         // Lain lain
         Gate::define('lain_lain', function (User $user){
-            return $user->level == 'lain_lain' || $user->level == 'admin';
+            return $user->level == 'lain_lain' || $user->level == 'admin' || $user->can_lain_lain = 1;
         });
 
     // =============================== Dashboard =============================
@@ -143,7 +143,7 @@ class AppServiceProvider extends ServiceProvider
         return $user->level == 'slip' || $user->can_slip == 1;
     });
 
-    // Slip
+    // Lain lain
     Gate::define('lain_lainDashboard', function (User $user){
         return $user->level == 'lain_lain' || $user->can_lain_lain == 1;
     });

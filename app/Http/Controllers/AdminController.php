@@ -241,14 +241,14 @@ class AdminController extends Controller
     // dd($pengaduan->toArray());
 
    $users = [];
-    if($pengaduan->tujuan_id == 1){$users = User::where('level', 'jaringan')->orWhere('can_jaringan', 1)->get();}
-    elseif($pengaduan->tujuan_id == 2){$users = User::where('level', 'server')->orWhere('can_server', 1)->get();}
-    elseif($pengaduan->tujuan_id == 3){$users = User::where('level', 'sistem_informasi')->orWhere('can_sistem_informasi', 1)->get();}
-    elseif($pengaduan->tujuan_id == 4){$users = User::where('level', 'website_unima')->orWhere('can_website_unima', 1)->get();}
-    elseif($pengaduan->tujuan_id == 5){$users = User::where('level', 'lms')->orWhere('can_lms', 1)->get();}
-    elseif($pengaduan->tujuan_id == 6){$users = User::where('level', 'ijazah')->orWhere('can_ijazah', 1)->get();}
-    elseif($pengaduan->tujuan_id == 7){$users = User::where('level', 'slip')->orWhere('can_slip', 1)->get();}
-    elseif($pengaduan->tujuan_id == 9){$users = User::where('level', 'lain_lain')->orWhere('can_lain_lain', 1)->get();}
+   if($pengaduan->tujuan_id == 1){$users = User::where('level', 'jaringan')->orWhere('can_jaringan', 1)->get();}
+   elseif($pengaduan->tujuan_id == 2){$users = User::where('level', 'server')->orWhere('can_server', 1)->get();}
+   elseif($pengaduan->tujuan_id == 3){$users = User::where('level', 'sistem_informasi')->orWhere('can_sistem_informasi', 1)->get();}
+   elseif($pengaduan->tujuan_id == 4){$users = User::where('level', 'website_unima')->orWhere('can_website_unima', 1)->get();}
+   elseif($pengaduan->tujuan_id == 5){$users = User::where('level', 'lms')->orWhere('can_lms', 1)->get();}
+   elseif($pengaduan->tujuan_id == 6){$users = User::where('level', 'ijazah')->orWhere('can_ijazah', 1)->get();}
+   elseif($pengaduan->tujuan_id == 7){$users = User::where('level', 'slip')->orWhere('can_slip', 1)->get();}
+   elseif($pengaduan->tujuan_id == 9){$users = User::where('level', 'lain_lain')->orWhere('can_lain_lain', 1)->get();}
     else {
      return back()->with('toast_error','Email petugas tidak ada');
     }    

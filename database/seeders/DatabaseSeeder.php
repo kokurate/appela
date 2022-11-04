@@ -23,12 +23,12 @@ class DatabaseSeeder extends Seeder
           $this->call(TujuanSeeder::class);
           $this->call(UserSeeder::class);
           $this->call(PengaduanSeeder::class);
-          $this->call(PengaduanProsesSeeder::class);
+        //   $this->call(PengaduanProsesSeeder::class);
 
 
 
     // Create a 20 fresh data from factory
-        Pengaduan::factory(25)->create();
+        // Pengaduan::factory(25)->create();
 
 
     }
