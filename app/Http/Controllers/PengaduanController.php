@@ -89,7 +89,7 @@ class PengaduanController extends Controller
                 'important' => 'Harap segera membuat pengaduan. Batas pembuatan pengaduan yaitu 10 menit',
                 'note' => 'Jika setelah 10 menit belum membuat pengaduan. Maka anda diharuskan meregistrasikan kembali email anda',
                 'content' => 'Untuk membuat pengaduan silahkan klik button di bawah ini',
-                'url' => 'http://127.0.0.1:8000/pengaduan/create/' . $validated['token'],
+                'url' => Route('pengaduan.create', $validated['token']) ,
             ];
         // Send to email
         Mail::to($validated['email'])->send(new VerifyAlternative($data));
@@ -162,7 +162,7 @@ class PengaduanController extends Controller
                 'important' => 'Harap segera membuat pengaduan. Batas pembuatan pengaduan yaitu 10 menit',
                 'note' => 'Jika setelah 10 menit belum membuat pengaduan. Maka anda diharuskan meregistrasikan kembali email anda',
                 'content' => 'Ini adalah link baru anda untuk membuat pengaduan. Silahkan klik button di bawah ini untuk membuat pengaduan ',
-                'url' => 'http://127.0.0.1:8000/pengaduan/create/'. $newtoken,
+                'url' => Route('pengaduan.create', $newtoken)  ,
                 ];
             // Kirim ke email
                 Mail::to($validated['email'])->send(new VerifyAlternative($data));

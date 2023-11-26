@@ -256,7 +256,7 @@ class AdminController extends Controller
     // Message to email
     $data = [
       'content' => 'Ada pengaduan yang masuk di ' . $pengaduan->tujuan->nama ,
-      'url' => 'http://127.0.0.1:8000/login',
+      'url' => Route('login'),
   ];
 
   // Loop data petugas
